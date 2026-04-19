@@ -1,6 +1,8 @@
-# ~/.local/share/chezmoi/run_onchange_arch-install-packages.sh.tmpl
-{{ if eq .chezmoi.os "linux" -}}
 #!/bin/sh
+{{ if ne .chezmoi.os "linux" -}}
+exit 0
+{{ end -}}
+
 set -eu
 
 if ! command -v yay >/dev/null 2>&1; then
@@ -36,9 +38,7 @@ fi
 yay -S --needed --noconfirm {{ join " " (uniq $yay) }}
 {{- end }}
 
-{{- $bun := concat
-  .packages.bun.global.cli
-}}
+{{- $bun := concat .packages.bun.global.cli }}
 
 {{- if $bun }}
 if command -v bun >/dev/null 2>&1; then
@@ -47,4 +47,3 @@ else
   echo "bun n'est pas installé, installation des paquets globaux bun ignorée"
 fi
 {{- end }}
-{{ end -}}
