@@ -1,0 +1,19 @@
+# ~/.local/share/chezmoi/.chezmoidata/packages.yaml
+packages:
+  arch:
+    yay:
+      - kitty
+      - fish
+      - thunar
+      - noctalia-shell-git
+      - noctalia-qs-git
+      - base-devel
+      - git
+      - starship
+      - gpu-screen-recorder
+      - wlsunset
+      - hyprshot
+      - hyprpicker
+      - apple_cursor
+      - whitesur-gtk-theme
+      - whitesur-icon-theme-git
