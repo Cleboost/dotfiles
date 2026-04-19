@@ -18,3 +18,5 @@ packages:
       - whitesur-gtk-theme
       - whitesur-icon-theme-git
       - jetbrains-toolbox
+      - bun
+      - bruno
