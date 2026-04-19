@@ -35,7 +35,7 @@ fi
 }}
 
 {{- if $yay }}
-yay -S --needed --noconfirm {{ join " " (uniq $yay) }}
+yay -S --needed --noconfirm --devel --timeupdate {{ join " " (uniq $yay) }}
 {{- end }}
 
 {{- $bun := concat .packages.bun.global.cli }}
