@@ -2,21 +2,52 @@
 packages:
   arch:
     yay:
-      - kitty
-      - fish
-      - thunar
-      - noctalia-shell-git
-      - noctalia-qs-git
-      - base-devel
-      - git
-      - starship
-      - gpu-screen-recorder
-      - wlsunset
-      - hyprshot
-      - hyprpicker
-      - apple_cursor
-      - whitesur-gtk-theme
-      - whitesur-icon-theme-git
-      - jetbrains-toolbox
-      - bun
-      - bruno
+
+      terminal:
+        - kitty
+        - fish
+        - starship
+
+      cli:
+        - git
+        - rust
+        - bun
+
+      files:
+        - thunar
+
+      hyprland:
+        - gpu-screen-recorder
+        - wlsunset
+        - hyprshot
+        - hyprpicker
+
+      themes:
+        - apple_cursor
+        - whitesur-gtk-theme
+        - whitesur-icon-theme-git
+
+      apps:
+        - bruno
+        - discord
+        - spotify
+        - google-chrome
+        - rustmius-bin
+
+      development:
+        - git
+        - bun
+        - rust
+        - jetbrains-toolbox
+
+      noctalia:
+        - noctalia-shell-git
+        - noctalia-qs-git
+
+      bootstrap:
+        - base-devel
+
+  bun:
+    global:
+      cli:
+        - "@google/gemini-cli@nightly"

@@ -6,20 +6,45 @@ set -eu
 if ! command -v yay >/dev/null 2>&1; then
   sudo pacman -Sy --needed --noconfirm base-devel git
 
-  git clone https://aur.archlinux.org/yay.git /tmp/yay
-  cd /tmp/yay
+  tmpdir="$(mktemp -d)"
+  trap 'rm -rf "$tmpdir"' EXIT
+
+  git clone https://aur.archlinux.org/yay.git "$tmpdir/yay"
+  cd "$tmpdir/yay"
   makepkg -si --noconfirm
   cd /
-
-  rm -rf /tmp/yay
 fi
 
-if command -v yay >/dev/null 2>&1; then
-  {{- if .packages.arch.yay }}
-  yay -S --needed {{ join " " .packages.arch.yay }}
-  {{- end }}
-else
+if ! command -v yay >/dev/null 2>&1; then
   echo "yay n'a pas pu être installé"
   exit 1
 fi
+
+{{- $yay := concat
+  .packages.arch.yay.terminal
+  .packages.arch.yay.cli
+  .packages.arch.yay.files
+  .packages.arch.yay.hyprland
+  .packages.arch.yay.themes
+  .packages.arch.yay.apps
+  .packages.arch.yay.development
+  .packages.arch.yay.noctalia
+  .packages.arch.yay.bootstrap
+}}
+
+{{- if $yay }}
+yay -S --needed --noconfirm {{ join " " (uniq $yay) }}
+{{- end }}
+
+{{- $bun := concat
+  .packages.bun.global.cli
+}}
+
+{{- if $bun }}
+if command -v bun >/dev/null 2>&1; then
+  bun add -g {{ join " " (uniq $bun) }}
+else
+  echo "bun n'est pas installé, installation des paquets globaux bun ignorée"
+fi
+{{- end }}
 {{ end -}}
