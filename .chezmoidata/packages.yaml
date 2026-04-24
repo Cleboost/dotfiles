@@ -35,6 +35,7 @@ packages:
         - rustmius-bin
         - onlyoffice-bin
         - evince
+        - lollypop
 
       development:
         - git
