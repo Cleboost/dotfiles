@@ -34,6 +34,7 @@ packages:
         - google-chrome
         - rustmius-bin
         - onlyoffice-bin
+        - evince
 
       development:
         - git
