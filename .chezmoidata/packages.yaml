@@ -33,6 +33,7 @@ packages:
         - spotify
         - google-chrome
         - rustmius-bin
+        - onlyoffice-bin
 
       development:
         - git
