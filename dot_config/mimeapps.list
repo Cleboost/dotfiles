@@ -12,6 +12,18 @@ x-scheme-handler/bruno=bruno.desktop
 application/toml=vim.desktop
 x-scheme-handler/hydralauncher=hydralauncher.desktop
 application/pdf=org.gnome.Evince.desktop
+audio/mpeg=org.gnome.Lollypop.desktop
+audio/x-mpeg=org.gnome.Lollypop.desktop
+audio/mp3=org.gnome.Lollypop.desktop
+audio/x-mp3=org.gnome.Lollypop.desktop
+audio/mpeg3=org.gnome.Lollypop.desktop
+audio/x-mpeg3=org.gnome.Lollypop.desktop
+audio/mpg=org.gnome.Lollypop.desktop
+audio/x-mpg=org.gnome.Lollypop.desktop
+audio/x-m4a=org.gnome.Lollypop.desktop
+audio/ogg=org.gnome.Lollypop.desktop
+audio/flac=org.gnome.Lollypop.desktop
+audio/wav=org.gnome.Lollypop.desktop
 
 [Added Associations]
 application/octet-stream=vim.desktop;
