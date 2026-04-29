@@ -2,7 +2,7 @@ if status is-interactive
     set fish_greeting
 
     starship init fish | source
-    fastfetch --config hypr
+    fastfetch
 
     alias pamcan="pacman"
     alias please="sudo"
