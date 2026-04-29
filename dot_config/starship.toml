@@ -93,7 +93,7 @@ format = '[](bold fg:green)[󰉋 $path]($style)[](bold fg:green)'
 "Music" = " 󰎈 "
 "Pictures" = "  "
 "Videos" = "  "
-"GitHub" = " 󰊤 "
+"Code" = " 󰊤 "
 
 [cmd_duration]
 min_time = 0
