@@ -18,7 +18,7 @@ mapfile -t paths < <(
 repo="$(chezmoi source-path)"
 before="$(git -C "$repo" rev-parse HEAD 2>/dev/null || true)"
 
-chezmoi re-add "${paths[@]}" || {
+chezmoi re-add --exact "${paths[@]}" || {
   notify-send "chezmoi" "Erreur pendant la synchronisation."
   exit 1
 }
