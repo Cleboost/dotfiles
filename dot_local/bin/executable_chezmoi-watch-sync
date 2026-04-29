@@ -12,4 +12,14 @@ mapfile -t paths < <(
 
 [ "${#paths[@]}" -eq 0 ] && exit 0
 
-chezmoi re-add "${paths[@]}"
+repo="$(chezmoi source-path)"
+
+before="$(git -C "$repo" rev-parse HEAD 2>/dev/null || true)"
+
+chezmoi re-add "${paths[@]}" || exit 1
+
+after="$(git -C "$repo" rev-parse HEAD 2>/dev/null || true)"
+
+if [ "$before" != "$after" ]; then
+  notify-send "chezmoi" "Modifications synchronisées et push."
+fi
