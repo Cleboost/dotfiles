@@ -59,3 +59,5 @@ if [ "$before" != "$after" ]; then
 else
   notify-send "chezmoi" "Aucun changement à synchroniser."
 fi
+
+chezmoi apply --force
