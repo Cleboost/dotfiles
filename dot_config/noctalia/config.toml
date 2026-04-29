@@ -36,7 +36,7 @@ blacklist = []                      # ignore MPRIS players by bus/identity/deskt
 enabled             = true
 fill_mode           = "crop"        # center | crop | fit | stretch | repeat
 fill_color          = ""            # optional fallback/fill color: #RRGGBB, #RRGGBBAA, or theme role
-transition          = ["fade", "wipe", "disc", "stripes", "zoom", "honeycomb"]
+transition          = ["fade", "wipe", "disc", "stripes", "zoom"]
 transition_duration = 1500          # milliseconds
 edge_smoothness     = 0.3
 directory           = "~/Pictures/Wallpapers"
@@ -52,14 +52,14 @@ recursive                  = true    # include subdirectories when picking rando
 # ── Theme ─────────────────────────────────────────────────────────────────────
 
 [theme]
-mode   = "dark"                     # dark | light | auto
-source = "builtin"                  # builtin | wallpaper | community
-builtin = "Noctalia"                # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
-                                    # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
-# community_palette = "Noctalia"    # fetched from api.noctalia.dev, cached locally
-# wallpaper_scheme  = "m3-content"  # m3-tonal-spot | m3-content | m3-fruit-salad |
-                                    # m3-rainbow | m3-monochrome | vibrant | faithful |
-                                    # dysfunctional | muted
+mode   = "dark"                       # dark | light | auto
+source = "wallpaper"                  # builtin | wallpaper | community
+builtin = "Noctalia"                  # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
+                                      # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
+# community_palette = "Noctalia"      # fetched from api.noctalia.dev, cached locally
+wallpaper_scheme  = "m3-content"    # m3-tonal-spot | m3-content | m3-fruit-salad |
+                                      # m3-rainbow | m3-monochrome | vibrant | faithful |
+                                      # dysfunctional | muted
 
 [theme.templates]
 enable_builtins       = true
