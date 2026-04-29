@@ -36,7 +36,7 @@ blacklist = []                      # ignore MPRIS players by bus/identity/deskt
 enabled             = true
 fill_mode           = "crop"        # center | crop | fit | stretch | repeat
 fill_color          = ""            # optional fallback/fill color: #RRGGBB, #RRGGBBAA, or theme role
-transition          = ["fade", "wipe", "disc", "stripes", "zoom"]
+transition          = ["disc", "stripes", "zoom"]
 transition_duration = 1500          # milliseconds
 edge_smoothness     = 0.3
 directory           = "~/Pictures/Wallpapers"
@@ -52,18 +52,18 @@ recursive                  = true    # include subdirectories when picking rando
 # ── Theme ─────────────────────────────────────────────────────────────────────
 
 [theme]
-mode   = "dark"                       # dark | light | auto
-source = "wallpaper"                  # builtin | wallpaper | community
+mode    = "dark"                       # dark | light | auto
+source  = "wallpaper"                  # builtin | wallpaper | community
 builtin = "Noctalia"                  # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
                                       # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
 # community_palette = "Noctalia"      # fetched from api.noctalia.dev, cached locally
-wallpaper_scheme  = "m3-content"    # m3-tonal-spot | m3-content | m3-fruit-salad |
+wallpaper_scheme = "m3-content"    # m3-tonal-spot | m3-content | m3-fruit-salad |
                                       # m3-rainbow | m3-monochrome | vibrant | faithful |
                                       # dysfunctional | muted
 
 [theme.templates]
 enable_builtins       = true
-builtin_ids           = []          # opt-in; list ids with: noctalia theme --list-builtins
+builtin_ids           = [ "btop", "kitty", "hyprland" ] # opt-in; list ids with: noctalia theme --list-builtins
 enable_user_templates = false
 user_config           = "~/.config/noctalia/user-templates.toml"
 
@@ -97,8 +97,8 @@ enabled = true                      # sample CPU, memory, network, load, tempera
 # ── Weather ───────────────────────────────────────────────────────────────────
 
 [weather]
-enabled         = false
-auto_locate     = false             # resolve location from IP when true
+enabled         = true
+auto_locate     = true              # resolve location from IP when true
 address         = "Toronto, ON"     # geocoded when auto_locate = false
 refresh_minutes = 30
 unit            = "celsius"         # celsius | fahrenheit
@@ -107,7 +107,7 @@ unit            = "celsius"         # celsius | fahrenheit
 
 [audio]
 enable_overdrive = false            # allow volume above 100% (up to 150%)
-enable_sounds = false               # master toggle for UI feedback sounds
+enable_sounds = true                # master toggle for UI feedback sounds
 sound_volume = 0.5                  # 0.0 - 1.0
 volume_change_sound = ""            # empty = bundled sounds/volume-change.wav
 notification_sound = ""             # empty = bundled sounds/notification.wav
@@ -115,7 +115,7 @@ notification_sound = ""             # empty = bundled sounds/notification.wav
 # ── Brightness ────────────────────────────────────────────────────────────────
 
 [brightness]
-enable_ddcutil = false
+enable_ddcutil = true
 # ignore_mmids = []                 # skip these monitors from ddcutil; run: ddcutil --verbose detect
 
 # Per-monitor backend override:
@@ -159,12 +159,14 @@ up       = ["up"]
 down     = ["down"]
 
 # ── Bar ───────────────────────────────────────────────────────────────────────
+[bar]
+order = [ "main" ]
 
 [bar.main]
 position           = "top"          # top | bottom | left | right
 thickness          = 34
 background_opacity = 1.0
-radius             = 12
+radius             = 80
 margin_h           = 180
 margin_v           = 10
 padding            = 14
@@ -178,14 +180,34 @@ capsule            = false
 # capsule_opacity  = 1.0
 # capsule_border   = "outline"      # uncomment for a border on all widgets
 
-start  = ["launcher", "wallpaper", "workspaces"]
-center = ["clock"]
-end    = ["media", "tray", "notifications", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
+start = [ "media", "clock", "cpu", "ram", "temp" ]
+center = [ "workspaces" ]
+end = [ "tray", "notifications", "battery", "control-center", "session" ]
+#start  = ["launcher", "wallpaper", "workspaces"]
+#center = ["clock"]
+#end    = ["media", "tray", "notifications", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
 
 # Per-monitor override example — only the fields you list are overridden:
 # [bar.main.monitor.dp1]
 # match     = "DP-1"
 # thickness = 44
+
+[widget.cpu]
+display = "gauge"
+show_label = true
+type = "sysmon"
+
+[widget.media]
+capsule = false
+
+[widget.scripted]
+capsule = false
+
+[widget.sysmon]
+stat = "cpu_usage"
+
+[widget.workspaces]
+display = "none"
 
 # ── Dock ──────────────────────────────────────────────────────────────────────
 
