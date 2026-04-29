@@ -8,7 +8,7 @@
 ui_scale              = 1.0
 font_family           = "sans-serif"
 offline_mode          = false        # block all outgoing HTTP when true
-telemetry_enabled     = false        # send an anonymous usage ping on startup
+telemetry_enabled     = true        # send an anonymous usage ping on startup
 polkit_agent          = false
 password_style        = "default"    # default | random
 settings_show_advanced = false       # show advanced settings by default in Settings
