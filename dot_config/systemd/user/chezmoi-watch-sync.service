@@ -1,0 +1,13 @@
+[Unit]
+Description=Watch dotfiles and sync changes with chezmoi
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/chezmoi-watch-sync
+Restart=on-failure
+RestartSec=5
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=default.target
