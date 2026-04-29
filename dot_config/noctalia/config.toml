@@ -1,6 +1,5 @@
 # Noctalia configuration — all settings at their defaults.
 # Copy to ~/.config/noctalia/config.toml and edit what you need.
-# Changes are hot-reloaded via inotify — no restart required.
 
 # ── Shell ─────────────────────────────────────────────────────────────────────
 
