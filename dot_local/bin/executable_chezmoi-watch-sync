@@ -3,14 +3,20 @@ set -u
 
 CONFIG_FILE="$HOME/.config/chezmoi-watch/paths"
 
-mapfile -t paths < <(
-  grep -vE "^[[:space:]]*($|#)" "$CONFIG_FILE" | while read -r path; do
-    expanded="${path/#\~/$HOME}"
-    [ -e "$expanded" ] && printf "%s\n" "$expanded"
-  done
-)
+files=()
+dirs=()
 
-[ "${#paths[@]}" -eq 0 ] && {
+while read -r path; do
+  expanded="${path/#\~/$HOME}"
+
+  if [ -f "$expanded" ]; then
+    files+=("$expanded")
+  elif [ -d "$expanded" ]; then
+    dirs+=("$expanded")
+  fi
+done < <(grep -vE "^[[:space:]]*($|#)" "$CONFIG_FILE")
+
+[ "${#files[@]}" -eq 0 ] && [ "${#dirs[@]}" -eq 0 ] && {
   notify-send "chezmoi" "Aucun chemin valide à synchroniser."
   exit 0
 }
@@ -18,10 +24,19 @@ mapfile -t paths < <(
 repo="$(chezmoi source-path)"
 before="$(git -C "$repo" rev-parse HEAD 2>/dev/null || true)"
 
-chezmoi re-add --exact "${paths[@]}" || {
-  notify-send "chezmoi" "Erreur pendant la synchronisation."
-  exit 1
-}
+if [ "${#files[@]}" -gt 0 ]; then
+  chezmoi re-add "${files[@]}" || {
+    notify-send "chezmoi" "Erreur pendant la synchronisation des fichiers."
+    exit 1
+  }
+fi
+
+if [ "${#dirs[@]}" -gt 0 ]; then
+  chezmoi add --exact --recursive "${dirs[@]}" || {
+    notify-send "chezmoi" "Erreur pendant la synchronisation des dossiers."
+    exit 1
+  }
+fi
 
 after="$(git -C "$repo" rev-parse HEAD 2>/dev/null || true)"
 
