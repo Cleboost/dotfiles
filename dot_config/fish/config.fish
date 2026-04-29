@@ -10,7 +10,7 @@ if status is-interactive
     alias ls='eza --icons --group-directories-first'
     alias ll='eza -alF --icons --group-directories-first'
 
-    alias clear="printf '\033[2J\033[3J\033[1;1H' && fastfetch --config hypr"
+    alias clear="printf '\033[2J\033[3J\033[1;1H' && fastfetch"
 
     alias update="yay"
 end
