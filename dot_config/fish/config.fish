@@ -10,7 +10,7 @@ if status is-interactive
     
     # Correction automatique des fautes de frappe courantes
     alias pamcan="pacman"
-    alias sodo="sudo"
+    alias please="sudo"
 
     alias gem='nohup kitty --override background_opacity=1.0 gemini >/dev/null 2>&1 &; disown; exit'
     
