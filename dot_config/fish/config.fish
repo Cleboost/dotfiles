@@ -1,12 +1,9 @@
 if status is-interactive
-    # Supprime le message de bienvenue par défaut de fish
     set fish_greeting
 
-    # Initialise Starship (Ton prompt stylé)
     starship init fish | source
     fastfetch --config hypr
 
-    # --- ALIAS ---
     
     # Correction automatique des fautes de frappe courantes
     alias pamcan="pacman"
