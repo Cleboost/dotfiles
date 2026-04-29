@@ -39,7 +39,7 @@ sync_now() {
   echo "5/5 git push..."
   timeout "$PUSH_TIMEOUT_SECONDS" git -C "$repo" push || echo "Push timeout/erreur, mais commit local gardé."
 
-  notify-send "chezmoi" "Config synchronisée." 2>/dev/null || true
+  notify-send "chezmoi" "Config synchronisée."
   echo "Sync terminée. Retour en surveillance."
 }
 
