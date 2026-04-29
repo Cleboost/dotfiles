@@ -1,7 +1,0 @@
-[Unit]
-Description=Sync watched config files with chezmoi
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/chezmoi-watch-sync
-Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
