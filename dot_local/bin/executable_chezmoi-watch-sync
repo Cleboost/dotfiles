@@ -21,6 +21,8 @@ done < <(grep -vE "^[[:space:]]*($|#)" "$CONFIG_FILE")
   exit 0
 }
 
+notify-send "chezmoi" "Synchronisation en cours..."
+
 repo="$(chezmoi source-path)"
 before="$(git -C "$repo" rev-parse HEAD 2>/dev/null || true)"
 
