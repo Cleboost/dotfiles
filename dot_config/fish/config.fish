@@ -4,8 +4,6 @@ if status is-interactive
     starship init fish | source
     fastfetch --config hypr
 
-    
-    # Correction automatique des fautes de frappe courantes
     alias pamcan="pacman"
     alias please="sudo"
 
