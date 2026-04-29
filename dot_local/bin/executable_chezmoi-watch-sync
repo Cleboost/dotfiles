@@ -2,71 +2,14 @@
 set -u
 
 CONFIG_FILE="$HOME/.config/chezmoi-watch/paths"
-COMMIT_MESSAGE="auto: sync watched config files"
-DEBOUNCE_SECONDS=5
-PUSH_TIMEOUT_SECONDS=20
 
-trap 'echo "Arrêt demandé."; exit 0' INT TERM
-
-read_paths() {
+mapfile -t paths < <(
   grep -vE "^[[:space:]]*($|#)" "$CONFIG_FILE" | while read -r path; do
     expanded="${path/#\~/$HOME}"
     [ -e "$expanded" ] && printf "%s\n" "$expanded"
   done
-}
+)
 
-sync_now() {
-  mapfile -t paths < <(read_paths)
-  [ "${#paths[@]}" -eq 0 ] && return 0
+[ "${#paths[@]}" -eq 0 ] && exit 0
 
-  echo "1/5 chezmoi re-add..."
-  chezmoi re-add "${paths[@]}" || return 1
-
-  repo="$(chezmoi source-path)"
-
-  echo "2/5 git add..."
-  git -C "$repo" add . || return 1
-
-  echo "3/5 git diff..."
-  if git -C "$repo" diff --cached --quiet; then
-    echo "Aucun changement à commit."
-    return 0
-  fi
-
-  echo "4/5 git commit..."
-  git -C "$repo" commit -m "$COMMIT_MESSAGE" || return 1
-
-  echo "5/5 git push..."
-  timeout "$PUSH_TIMEOUT_SECONDS" git -C "$repo" push || echo "Push timeout/erreur, mais commit local gardé."
-
-  notify-send "chezmoi" "Config synchronisée."
-  echo "Sync terminée. Retour en surveillance."
-}
-
-echo "chezmoi-watch-sync lancé."
-echo "Ctrl+C pour arrêter."
-
-while true; do
-  mapfile -t paths < <(read_paths)
-
-  if [ "${#paths[@]}" -eq 0 ]; then
-    echo "Aucun chemin valide dans $CONFIG_FILE"
-    sleep 30
-    continue
-  fi
-
-  echo "Surveillance de:"
-  printf " - %s\n" "${paths[@]}"
-
-  inotifywait -e modify,create,delete,move "${paths[@]}"
-  status=$?
-
-  if [ "$status" -ne 0 ]; then
-    echo "inotifywait arrêté ou erreur."
-    exit 0
-  fi
-
-  sleep "$DEBOUNCE_SECONDS"
-  sync_now || echo "Erreur pendant la synchronisation."
-  echo ""
-done
+chezmoi re-add "${paths[@]}"
