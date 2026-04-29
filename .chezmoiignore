@@ -1,1 +1,3 @@
 .config/kitty/themes/noctalia.conf
+.config/fish/fish_variables
+.config/Thunar/accels.scm
