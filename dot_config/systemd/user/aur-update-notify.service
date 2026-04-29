@@ -1,6 +1,0 @@
-[Unit]
-Description=Check repo and AUR updates and notify
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/aur-update-notify
