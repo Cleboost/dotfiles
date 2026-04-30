@@ -2,7 +2,7 @@ if status is-interactive
     set fish_greeting
 
     starship init fish | source
-    fastfetch
+    fastfetch-random
 
     alias pamcan="pacman"
     alias please="sudo"
