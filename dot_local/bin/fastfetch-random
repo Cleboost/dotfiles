@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+IMG_DIR="$HOME/.local/share/fastfetch/images"
+
+IMG="$(find "$IMG_DIR" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) | shuf -n 1)"
+
+fastfetch --logo "$IMG" --logo-type kitty --logo-height 18
