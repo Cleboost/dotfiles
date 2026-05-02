@@ -4,16 +4,25 @@ WAV_FILE="/tmp/dictation.wav"
 MODEL="$HOME/.local/share/whisper-models/ggml-large-v3-turbo.bin"
 WHISPER_BIN="/usr/bin/whisper-cli"
 
+NOTIF_ID_FILE="/tmp/dictation_notif_id"
+
 send_toast() {
     local title="$1"
     local body="$2"
     local icon="$3"
     local duration="${4:-5000}"
-    qs -c noctalia-shell ipc call toast send "{\"title\": \"$title\", \"body\": \"$body\", \"icon\": \"$icon\", \"duration\": $duration}" > /dev/null 2>&1
+
+    local id_arg=""
+    [ -f "$NOTIF_ID_FILE" ] && id_arg="-r $(cat "$NOTIF_ID_FILE")"
+
+    notify-send $id_arg -p -i "$icon" -t "$duration" "$title" "$body" > "$NOTIF_ID_FILE"
 }
 
 dismiss_toast() {
-    qs -c noctalia-shell ipc call toast dismiss > /dev/null 2>&1
+    if [ -f "$NOTIF_ID_FILE" ]; then
+        notify-send -r "$(cat "$NOTIF_ID_FILE")" -t 1 "Dictée" "Terminé" > /dev/null 2>&1
+        rm "$NOTIF_ID_FILE"
+    fi
 }
 
 if pgrep -x "arecord" > /dev/null; then
