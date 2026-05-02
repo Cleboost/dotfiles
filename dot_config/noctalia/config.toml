@@ -159,8 +159,8 @@ up       = ["up"]
 down     = ["down"]
 
 # ── Bar ───────────────────────────────────────────────────────────────────────
-[bar]
-order = [ "main" ]
+#[bar]
+#order = [ "main" ]
 
 [bar.main]
 position           = "top"          # top | bottom | left | right
@@ -182,10 +182,7 @@ capsule            = false
 
 start = [ "media", "clock", "cpu", "ram", "temp" ]
 center = [ "workspaces" ]
-end = [ "tray", "notifications", "battery", "control-center", "session" ]
-#start  = ["launcher", "wallpaper", "workspaces"]
-#center = ["clock"]
-#end    = ["media", "tray", "notifications", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
+end = [ "tray", "screen_recorder", "notifications", "battery", "control-center", "session" ]
 
 # Per-monitor override example — only the fields you list are overridden:
 # [bar.main.monitor.dp1]
@@ -197,17 +194,32 @@ display = "gauge"
 show_label = true
 type = "sysmon"
 
-[widget.media]
-capsule = false
-
-[widget.scripted]
-capsule = false
-
 [widget.sysmon]
 stat = "cpu_usage"
 
 [widget.workspaces]
 display = "none"
+
+[widget.screen_recorder]
+type             = "scripted"
+script           = "scripts/screen_recorder.lua"
+directory        = ""
+filename_pattern = "recording_%Y%m%d_%H%M%S"
+video_source     = "focused-monitor"
+video_codec      = "h264"
+audio_codec      = "opus"
+audio_source     = "both"
+quality          = "very_high"
+frame_rate       = 144
+color_range      = "limited"
+resolution       = "original"
+show_cursor      = true
+copy_to_clipboard = false
+restore_portal   = false
+replay_enabled   = false
+replay_duration  = 30
+replay_storage   = "ram"
+hide_inactive    = false
 
 # ── Dock ──────────────────────────────────────────────────────────────────────
 
