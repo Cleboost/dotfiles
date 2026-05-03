@@ -12,6 +12,8 @@ packages:
         - git
         - rust
         - bun
+        - nodejs
+        - npm
 
       files:
         - thunar
