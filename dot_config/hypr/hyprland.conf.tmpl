@@ -1,7 +1,9 @@
 exec = hyprctl dispatch submap global # DO NOT REMOVE THIS OR YOU WON'T BE ABLE TO USE ANY KEYBIND
 submap = global # This is required for catchall to work
 
+{{- if eq .chezmoi.hostname "cleboost-brain" }}
 env = AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2
+{{- end }}
 
 # ── Core ──────────────────────────────────────────────────────────────────────
 source = core/env.conf
