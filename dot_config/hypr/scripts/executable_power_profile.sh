@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 profiles=("power-saver" "balanced" "performance")
 

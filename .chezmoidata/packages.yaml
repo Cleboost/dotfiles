@@ -30,7 +30,6 @@ packages:
         - whitesur-icon-theme-git
 
       apps:
-        - bruno
         - discord
         - spotify
         - google-chrome
