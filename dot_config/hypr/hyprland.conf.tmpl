@@ -7,7 +7,9 @@ env = AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2
 source = core/env.conf
 source = core/execs.conf
 source = core/general.conf
+{{- if eq .chezmoi.hostname "cleboost-brain" }}
 source = core/monitors.conf
+{{- end }}
 
 # ── Appearance ────────────────────────────────────────────────────────────────
 source = theme/colors.conf
