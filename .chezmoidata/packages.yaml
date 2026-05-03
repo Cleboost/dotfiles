@@ -44,8 +44,7 @@ packages:
         - jetbrains-toolbox
 
       noctalia:
-        - noctalia-shell-git
-        - noctalia-qs-git
+        - noctalia-git
 
       bootstrap:
         - base-devel
