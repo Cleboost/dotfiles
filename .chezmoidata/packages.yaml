@@ -7,6 +7,8 @@ packages:
         - kitty
         - fish
         - starship
+        - eza
+        - fastfetch
 
       cli:
         - git
@@ -19,6 +21,7 @@ packages:
         - thunar
 
       hyprland:
+        - hyprland
         - gpu-screen-recorder
         - wlsunset
         - hyprshot
@@ -37,6 +40,7 @@ packages:
         - onlyoffice-bin
         - evince
         - lollypop
+        - steam
 
       development:
         - git
@@ -46,6 +50,8 @@ packages:
 
       noctalia:
         - noctalia-git
+        - ddcutil
+        - power-profiles-daemon
 
       bootstrap:
         - base-devel
