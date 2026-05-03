@@ -35,7 +35,12 @@ fi
 }}
 
 {{- if $yay }}
-yay -S --needed --noconfirm --devel --timeupdate {{ join " " (uniq $yay) }}
+echo "Installation des paquets Arch avec yay..."
+if ! yay -S --needed --noconfirm --devel --timeupdate {{ join " " (uniq $yay) }}; then
+  echo "L'installation automatique a échoué (conflit probable)."
+  echo "Tentative en mode interactif pour permettre de résoudre les conflits..."
+  yay -S --needed --devel --timeupdate {{ join " " (uniq $yay) }}
+fi
 {{- end }}
 
 {{- $bun := concat .packages.bun.global.cli }}
