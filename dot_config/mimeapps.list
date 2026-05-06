@@ -6,11 +6,7 @@ x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 application/octet-stream=vim.desktop
 x-scheme-handler/jetbrains=jetbrainsd.desktop
-x-scheme-handler/opencode=opencode-desktop-handler.desktop
-x-scheme-handler/etcher=balenaEtcher.desktop
-x-scheme-handler/bruno=bruno.desktop
 application/toml=vim.desktop
-x-scheme-handler/hydralauncher=hydralauncher.desktop
 application/pdf=org.gnome.Evince.desktop
 audio/mpeg=org.gnome.Lollypop.desktop
 audio/x-mpeg=org.gnome.Lollypop.desktop
@@ -24,7 +20,9 @@ audio/x-m4a=org.gnome.Lollypop.desktop
 audio/ogg=org.gnome.Lollypop.desktop
 audio/flac=org.gnome.Lollypop.desktop
 audio/wav=org.gnome.Lollypop.desktop
+inode/directory=thunar.desktop
 
 [Added Associations]
 application/octet-stream=vim.desktop;
 application/toml=vim.desktop;
+application/vnd.microsoft.portable-executable=wine.desktop;
