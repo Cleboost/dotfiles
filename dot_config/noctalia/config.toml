@@ -14,7 +14,7 @@ password_style         = "default"    # default | random
 settings_show_advanced = false       # show advanced settings by default in Settings
 show_location          = true         # hide weather location text in shell UI when false
 clipboard_auto_paste   = "auto"       # off | auto | ctrl_v | ctrl_shift_v | shift_insert
-avatar_path            = "~/Pictures/profile.png"
+avatar_path            = "/home/cleboost/Pictures/profile.png"
 lang                   = "fr"
 
 [shell.animation]
