@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+exec env -u GTK_THEME \
+    -u GTK_DEBUG \
+    -u GTK_PATH \
+    -u GTK_DATA_PREFIX \
+    -u XDG_CONFIG_HOME \
+    /usr/bin/nautilus "$@"

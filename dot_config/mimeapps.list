@@ -20,7 +20,7 @@ audio/x-m4a=org.gnome.Lollypop.desktop
 audio/ogg=org.gnome.Lollypop.desktop
 audio/flac=org.gnome.Lollypop.desktop
 audio/wav=org.gnome.Lollypop.desktop
-inode/directory=thunar.desktop
+inode/directory=nautilus-clean.desktop
 
 [Added Associations]
 application/octet-stream=vim.desktop;
