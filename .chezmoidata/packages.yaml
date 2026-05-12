@@ -2,7 +2,6 @@
 packages:
   arch:
     yay:
-
       terminal:
         - kitty
         - fish
@@ -18,7 +17,7 @@ packages:
         - npm
 
       files:
-        - thunar
+        - nautilus
 
       hyprland:
         - hyprland
