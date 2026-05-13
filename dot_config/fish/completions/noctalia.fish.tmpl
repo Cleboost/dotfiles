@@ -20,16 +20,16 @@ end
 
 complete -c noctalia -f -n "__fish_noctalia_needs_command" -a msg -d "Send a message to noctalia shell"
 
-{{ output "bash" "-c" (printf "echo \"%s\" | grep -E '^  [a-z]' | while read -r line; do
-    cmd=$(echo \"$line\" | awk '{print $1}')
-    args=$(echo \"$line\" | grep -oP '<[a-z0-9|\\*-]+>' | tr -d '<>' | tr '|' ' ' | sed 's/\\*//g')
-    desc=$(echo \"$line\" | sed -E 's/^  [a-z0-9-]+( <[a-z0-9|\\*-]+>)?( \\[context\\])?\\s+//' | sed 's/\"/\\\\\"/g')
+{{ output "bash" "-c" (printf `echo "%s" | grep -E '^  [a-z]' | while read -r line; do
+    cmd=$(echo "$line" | awk '{print $1}')
+    args=$(echo "$line" | grep -oP '<[a-z0-9|\*-]+>' | tr -d '<>' | tr '|' ' ' | sed 's/\*//g')
+    desc=$(echo "$line" | sed -E 's/^  [a-z0-9-]+( <[a-z0-9|\*-]+>)?( \[context\])?\s+//' | sed 's/"/\\"/g')
 
-    echo \"complete -c noctalia -f -n \\\"__fish_noctalia_msg_needs_subcommand\\\" -a $cmd -d \\\"$desc\\\"\"
-    if [ -n \"$args\" ] && [ \"$args\" != \"value\" ] && [ \"$args\" != \"step\" ]; then
-        echo \"complete -c noctalia -f -n \\\"__fish_seen_subcommand_from $cmd\\\" -a \\\"$args\\\"\"
+    echo "complete -c noctalia -f -n \"__fish_noctalia_msg_needs_subcommand\" -a $cmd -d \"$desc\""
+    if [ -n "$args" ] && [ "$args" != "value" ] && [ "$args" != "step" ]; then
+        echo "complete -c noctalia -f -n \"__fish_seen_subcommand_from $cmd\" -a \"$args\""
     fi
-done" $help) }}
+done` $help) }}
 
 # Hardcoded completions for arguments not explicitly detailed in help
 complete -c noctalia -f -n "__fish_seen_subcommand_from panel-toggle" -a "launcher clipboard control-center session wallpaper"
