@@ -57,6 +57,7 @@ complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a notificatio
 complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a notification-dnd-toggle -d "Toggle Do Not Disturb state"
 complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a panel-toggle -d "Toggle a panel by id"
 complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a power-set -d "Set the UPower power profile"
+complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a power-cycle -d "Cycle through power profiles"
 complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a screen-lock -d "Lock the session"
 complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a scripted-widget -d "Dispatch an event to a scripted bar widget"
 complete -c noctalia -f -n "__fish_noctalia_msg_needs_subcommand" -a settings-toggle -d "Toggle the settings window"
