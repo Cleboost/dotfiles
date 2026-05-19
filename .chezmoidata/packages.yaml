@@ -28,7 +28,6 @@ packages:
 
       themes:
         - apple_cursor
-        - whitesur-gtk-theme
         - whitesur-icon-theme-git
 
       apps:
