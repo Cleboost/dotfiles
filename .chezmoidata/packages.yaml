@@ -45,6 +45,7 @@ packages:
         - bun
         - rust
         - jetbrains-toolbox
+        - zed
 
       noctalia:
         - noctalia-git
