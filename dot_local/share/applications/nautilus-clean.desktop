@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Nautilus Clean
-Comment=Open folders with Nautilus clean environment
-Exec=/home/cleboost/.local/bin/nautilus-fix %U
-Terminal=false
-Type=Application
-MimeType=inode/directory;
-Icon=org.gnome.Nautilus
-Categories=System;FileManager;
