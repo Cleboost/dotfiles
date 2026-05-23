@@ -3,6 +3,4 @@
 
 .config/fish/fish_variables
 
-.config/Thunar/accels.scm
-
 .config/starship.toml
