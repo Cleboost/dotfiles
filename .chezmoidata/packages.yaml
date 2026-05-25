@@ -47,6 +47,9 @@ packages:
         - jetbrains-toolbox
         - zed
         - antigravity-cli
+        - docker
+        - docker-compose
+        - docker-buildx
 
       noctalia:
         - noctalia-git
