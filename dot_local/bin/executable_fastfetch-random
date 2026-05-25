@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-
 IMG_DIR="$HOME/.local/share/fastfetch/images"
-
 IMG="$(find "$IMG_DIR" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) | shuf -n 1)"
-
+#IMG="$(curl -s -H "X-Api-Key: qMCHKAL8IwaB57d5B6fEJO40hF6HMJD62jneCzIwK0_" \
+#    "https://api.waifu.im/images?Orientation=Portrait" | jq -r '.items[0].url')"
 fastfetch --logo "$IMG" --logo-type kitty --logo-height 18
