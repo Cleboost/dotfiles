@@ -5,4 +5,5 @@ exec env -u GTK_THEME \
     -u GTK_PATH \
     -u GTK_DATA_PREFIX \
     -u XDG_CONFIG_HOME \
+    GSK_RENDERER=gl \
     /usr/bin/nautilus "$@"
