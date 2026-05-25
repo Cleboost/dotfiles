@@ -1,0 +1,12 @@
+[user]
+	name = Cleboost
+	email = clement.balarot@gmail.com
+	signingkey = /home/cleboost/.ssh/github.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[credential]
+	helper = store
+[core]
+	autocrlf = input
