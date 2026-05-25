@@ -46,6 +46,7 @@ packages:
         - rust
         - jetbrains-toolbox
         - zed
+        - antigravity-cli
 
       noctalia:
         - noctalia-git
