@@ -183,25 +183,25 @@ stat = "cpu_usage"
 display = "none"
 
 [widget.screen_recorder]
-type             = "scripted"
-script           = "scripts/screen_recorder.lua"
-directory        = "~/Videos"
-filename_pattern = "recording_%Y%m%d_%H%M%S"
-video_source     = "focused-monitor"
-video_codec      = "h264"
-audio_codec      = "opus"
-audio_source     = "both"
-quality          = "very_high"
-frame_rate       = 144
-color_range      = "limited"
-resolution       = "original"
-show_cursor      = true
+type              = "scripted"
+script            = "scripts/screen_recorder.lua"
+directory         = "Videos"
+filename_pattern  = "recording_%Y%m%d_%H%M%S"
+#video_source      = "focused-monitor"
+video_codec       = "h264"
+audio_codec       = "opus"
+audio_source      = "both"
+quality           = "ultra"
+frame_rate        = 144
+color_range       = "limited"
+resolution        = "original"
+show_cursor       = true
 copy_to_clipboard = false
-restore_portal   = false
-replay_enabled   = false
-replay_duration  = 30
-replay_storage   = "ram"
-hide_inactive    = false
+restore_portal    = true
+replay_enabled    = false
+replay_duration   = 30
+replay_storage    = "ram"
+hide_inactive     = false
 
 [widget.bongocat]
 type   = "scripted"
