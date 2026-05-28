@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Main.qml hash: {{ include "sddm-theme-cleboost/Main.qml" | sha256sum }}
+# theme.conf hash: {{ include "sddm-theme-cleboost/theme.conf" | sha256sum }}
+# metadata.desktop hash: {{ include "sddm-theme-cleboost/metadata.desktop" | sha256sum }}
+
+THEME_DIR="/usr/share/sddm/themes/sddm-cleboost"
+
+echo "Deploying custom SDDM theme sddm-cleboost..."
+
+sudo mkdir -p "$THEME_DIR"
+
+sudo cp -rf "{{ .chezmoi.sourceDir }}/sddm-theme-cleboost/." "$THEME_DIR/"
+
+sudo chmod -R 755 "$THEME_DIR"
+
+echo "Activating sddm-cleboost as default theme..."
+sudo mkdir -p /etc/sddm.conf.d
+echo -e "[Theme]\nCurrent=sddm-cleboost" | sudo tee /etc/sddm.conf.d/theme.conf > /dev/null
+
+echo "SDDM theme sddm-cleboost deployed and activated successfully."
