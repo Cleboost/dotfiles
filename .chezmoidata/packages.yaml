@@ -50,6 +50,7 @@ packages:
         - docker
         - docker-compose
         - docker-buildx
+        - codegraph-rs-bin
 
       noctalia:
         - noctalia-git
