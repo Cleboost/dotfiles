@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 {{ if ne .chezmoi.os "linux" -}}
 exit 0
 {{ end -}}
@@ -22,26 +22,79 @@ if ! command -v yay >/dev/null 2>&1; then
   exit 1
 fi
 
-{{- $yay := concat
-  .packages.arch.yay.terminal
-  .packages.arch.yay.cli
-  .packages.arch.yay.files
-  .packages.arch.yay.hyprland
-  .packages.arch.yay.themes
-  .packages.arch.yay.apps
-  .packages.arch.yay.development
-  .packages.arch.yay.noctalia
-  .packages.arch.yay.sddm
-  .packages.arch.yay.bootstrap
-}}
+{{- $yay := list -}}
+{{- range (values .packages.arch.yay) -}}
+  {{- range . -}}
+    {{- $yay = append $yay . -}}
+  {{- end -}}
+{{- end -}}
+{{- range (values .apps.arch.yay) -}}
+  {{- range . -}}
+    {{- $yay = append $yay . -}}
+  {{- end -}}
+{{- end -}}
 
 {{- if $yay }}
-echo "Installation des paquets Arch avec yay..."
-if ! yay -S --needed --noconfirm --devel --timeupdate {{ join " " (uniq $yay) }}; then
-  echo "L'installation automatique a échoué (conflit probable)."
-  echo "Tentative en mode interactif pour permettre de résoudre les conflits..."
-  yay -S --needed --devel --timeupdate {{ join " " (uniq $yay) }}
+echo "=================================================="
+echo "    Synchronizing Arch Linux packages with yay    "
+echo "=================================================="
+
+packages_all="{{ join " " (uniq $yay) }}"
+total_packages=$(echo "$packages_all" | wc -w)
+up_to_date_count=0
+new_install_count=0
+exit_code=0
+
+# Run yay in non-interactive mode and parse its output in real-time
+while IFS= read -r line; do
+  case "$line" in
+    EXIT_CODE=*)
+      exit_code="${line#EXIT_CODE=}"
+      continue
+      ;;
+  esac
+
+  if echo "$line" | grep -E -q "est à jour -- ignoré|is up to date -- ignoring|is up to date -- skipping|avertissement : .* est à jour|warning: .* is up to date"; then
+    up_to_date_count=$((up_to_date_count + 1))
+  elif echo "$line" | grep -E -q "il n’y a rien à faire|there is nothing to do|Sync Explicit|Sync Dependency"; then
+    # Silence these lines completely
+    :
+  else
+    # Check if it represents an installation or update action
+    if echo "$line" | grep -E -q "Installing|Upgrading|Installation de|Mise à jour de"; then
+      new_install_count=$((new_install_count + 1))
+    fi
+    echo "  $line"
+  fi
+done < <(yay -S --needed --noconfirm --devel --timeupdate $packages_all 2>&1; echo "EXIT_CODE=$?")
+
+if [ "$exit_code" -ne 0 ]; then
+  echo ""
+  echo "Automatic installation failed (probable conflict or auth issue)."
+  echo "Retrying in interactive mode to let you resolve conflicts..."
+  echo ""
+  if ! yay -S --needed --devel --timeupdate $packages_all; then
+    echo "Interactive installation failed."
+    exit "$exit_code"
+  fi
+  # If interactive succeeds, we set exit_code to 0
+  exit_code=0
+  new_install_count=$((total_packages - up_to_date_count))
 fi
+
+echo "=================================================="
+echo "        Arch Linux Package Sync Completed         "
+echo "=================================================="
+echo "  Total packages configured: $total_packages"
+echo "  Already up-to-date:        $up_to_date_count"
+echo "  Newly installed/updated:   $new_install_count"
+echo "=================================================="
+if [ "$exit_code" -eq 0 ]; then
+  echo "  Status:                    All packages up-to-date."
+else
+  echo "  Status:                    Failed (Exit code: $exit_code)"
+fi
+echo "=================================================="
 {{- end }}
 
 {{- $bun := concat .packages.bun.global.cli }}

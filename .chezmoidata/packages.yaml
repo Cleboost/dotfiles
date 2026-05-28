@@ -30,23 +30,10 @@ packages:
         - apple_cursor
         - whitesur-icon-theme-git
 
-      apps:
-        - discord
-        - spotify
-        - google-chrome
-        - rustmius-bin
-        - onlyoffice-bin
-        - evince
-        - lollypop
-        - steam
-
       development:
         - git
         - bun
         - rust
-        - jetbrains-toolbox
-        - zed
-        - antigravity-cli
         - docker
         - docker-compose
         - docker-buildx

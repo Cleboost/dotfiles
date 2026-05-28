@@ -1,0 +1,22 @@
+# ~/.local/share/chezmoi/.chezmoidata/apps.yaml
+apps:
+  arch:
+    yay:
+      social:
+        - discord
+      music:
+        - spotify
+        - lollypop
+      browser:
+        - google-chrome
+      office:
+        - onlyoffice-bin
+        - evince
+      gaming:
+        - steam
+      tools:
+        - rustmius-bin
+      dev:
+        - jetbrains-toolbox
+        - zed
+        - antigravity-cli
