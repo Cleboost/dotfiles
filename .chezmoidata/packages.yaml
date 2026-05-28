@@ -57,6 +57,10 @@ packages:
         - ddcutil
         - power-profiles-daemon
 
+      sddm:
+        - qt5-graphicaleffects
+        - qt5-quickcontrols2
+
       bootstrap:
         - base-devel
 
