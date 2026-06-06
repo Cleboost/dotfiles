@@ -39,7 +39,7 @@ echo "=================================================="
 echo "    Synchronizing Arch Linux packages with yay    "
 echo "=================================================="
 
-packages_all="{{ join " " (uniq $yay) }}"
+packages_all="{{ join " " (uniq (sortAlpha $yay)) }}"
 total_packages=$(echo "$packages_all" | wc -w)
 up_to_date_count=0
 new_install_count=0
