@@ -16,7 +16,9 @@ socat -U - "UNIX-CONNECT:${SOCKET}" | while read -r line; do
         if [[ "$title" == "Bitwarden" || "$class" == *"nngceckbapebfimnlniiiahkandclblb"* ]]; then
             hyprctl dispatch setfloating "address:${addr}"
             hyprctl dispatch resizewindowpixel "exact 400 600,address:${addr}"
-            hyprctl dispatch centerwindow "address:${addr}"
+            # Position: top-right with 50px top margin
+            MONITOR_W=$(hyprctl monitors -j | jq '.[0].width')
+            hyprctl dispatch movewindowpixel "exact $((MONITOR_W - 410)) 50,address:${addr}"
         fi
     fi
 done
