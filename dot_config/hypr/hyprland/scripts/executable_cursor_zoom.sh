@@ -48,4 +48,5 @@ NEW_SIZE=${SIZES[$INDEX]}
 echo "$NEW_SIZE" > "$STATE_FILE"
 
 hyprctl setcursor "$THEME" "$NEW_SIZE"
+hyprctl setenv XCURSOR_SIZE "$NEW_SIZE"
 notify-send "Cursor" "Size set to $NEW_SIZE" -t 1000 --icon=preferences-desktop-cursor
