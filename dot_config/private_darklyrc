@@ -1,7 +1,7 @@
 [Style]
-DolphinSidebarOpacity=85
-DolphinViewOpacity=85
-MenuBarOpacity=85
-MenuOpacity=85
-TabBarOpacity=85
-ToolBarOpacity=85
+DolphinSidebarOpacity=100
+DolphinViewOpacity=100
+MenuBarOpacity=100
+MenuOpacity=100
+TabBarOpacity=100
+ToolBarOpacity=100
