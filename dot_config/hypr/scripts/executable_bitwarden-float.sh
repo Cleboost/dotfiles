@@ -19,9 +19,11 @@ socat -U - "UNIX-CONNECT:${SOCKET}" | while read -r line; do
             CHROME_MONITOR=$(hyprctl clients -j | jq -r '.[] | select(.class == "google-chrome") | .monitor' | head -1)
             MONITOR_INFO=$(hyprctl monitors -j | jq ".[] | select(.id == ${CHROME_MONITOR})")
             MONITOR_X=$(echo "$MONITOR_INFO" | jq '.x')
+            MONITOR_Y=$(echo "$MONITOR_INFO" | jq '.y')
             MONITOR_W=$(echo "$MONITOR_INFO" | jq '.width')
             POS_X=$(( MONITOR_X + MONITOR_W - 410 ))
-            hyprctl dispatch movewindowpixel "exact ${POS_X} 50,address:${addr}"
+            POS_Y=$(( MONITOR_Y + 50 ))
+            hyprctl dispatch movewindowpixel "exact ${POS_X} ${POS_Y},address:${addr}"
         fi
     fi
 done
