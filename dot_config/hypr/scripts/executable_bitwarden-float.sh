@@ -8,12 +8,11 @@ socat -U - "UNIX-CONNECT:${SOCKET}" | while read -r line; do
     event="${line%%>>*}"
     data="${line#*>>}"
 
-    if [[ "$event" == "windowtitle" ]]; then
-        addr="0x${data}"
-        title=$(hyprctl clients -j | jq -r ".[] | select(.address == \"${addr}\") | .title")
-        class=$(hyprctl clients -j | jq -r ".[] | select(.address == \"${addr}\") | .class")
+    if [[ "$event" == "windowtitlev2" ]]; then
+        addr="0x${data%%,*}"
+        title="${data#*,}"
 
-        if [[ "$title" == "Bitwarden" || "$class" == *"nngceckbapebfimnlniiiahkandclblb"* ]]; then
+        if [[ "$title" == "Bitwarden" ]]; then
             hyprctl dispatch setfloating "address:${addr}"
             hyprctl dispatch resizewindowpixel "exact 400 600,address:${addr}"
             # Position: top-right with 50px top margin
