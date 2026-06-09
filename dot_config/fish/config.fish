@@ -1,3 +1,5 @@
+set -gx PATH "$HOME/.local/bin" $PATH
+
 if status is-interactive
     set fish_greeting
 
@@ -14,4 +16,3 @@ if status is-interactive
 
     alias update="yay"
 end
-export PATH="$HOME/.local/bin:$PATH"
