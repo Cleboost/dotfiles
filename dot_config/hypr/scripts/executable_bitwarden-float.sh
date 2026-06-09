@@ -13,7 +13,7 @@ socat -U - "UNIX-CONNECT:${SOCKET}" | while read -r line; do
         title=$(hyprctl clients -j | jq -r ".[] | select(.address == \"${addr}\") | .title")
         class=$(hyprctl clients -j | jq -r ".[] | select(.address == \"${addr}\") | .class")
 
-        if [[ "$class" == "google-chrome" && "$title" == *"Bitwarden"* ]]; then
+        if [[ "$title" == "Bitwarden" || "$class" == *"nngceckbapebfimnlniiiahkandclblb"* ]]; then
             hyprctl dispatch setfloating "address:${addr}"
             hyprctl dispatch resizewindowpixel "exact 400 600,address:${addr}"
             hyprctl dispatch centerwindow "address:${addr}"
