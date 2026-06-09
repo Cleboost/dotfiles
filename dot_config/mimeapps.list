@@ -22,6 +22,7 @@ audio/flac=org.gnome.Lollypop.desktop
 audio/wav=org.gnome.Lollypop.desktop
 inode/directory=nautilus-clean.desktop
 x-scheme-handler/claude=claude.desktop
+x-scheme-handler/discord=vesktop.desktop
 
 [Added Associations]
 application/octet-stream=vim.desktop;
