@@ -1,7 +1,8 @@
 #!/bin/bash
 # Listen to Hyprland socket2 for windowtitle events and float Bitwarden popups
 
-SOCKET="/tmp/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock"
+SIG="${HYPRLAND_INSTANCE_SIGNATURE:-$(ls /run/user/${UID}/hypr/ | head -1)}"
+SOCKET="/run/user/${UID}/hypr/${SIG}/.socket2.sock"
 
 socat -U - "UNIX-CONNECT:${SOCKET}" | while read -r line; do
     event="${line%%>>*}"
