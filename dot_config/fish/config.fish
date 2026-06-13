@@ -14,5 +14,5 @@ if status is-interactive
 
     alias clear="printf '\033[2J\033[3J\033[1;1H' && fastfetch-random"
 
-    alias update="yay"
+    alias update="yay --noconfirm -Syu"
 end
