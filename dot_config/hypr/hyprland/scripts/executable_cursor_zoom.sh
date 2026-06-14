@@ -3,7 +3,7 @@
 SIZES=(16 20 22 24 28 32 40 48 56 64 72 80 88 96)
 DEFAULT_SIZE=24
 STATE_FILE="/tmp/hypr_cursor_size"
-THEME="macOS"
+THEME="cleboost-cursor"
 
 # Load current size
 if [ -f "$STATE_FILE" ]; then
@@ -49,4 +49,5 @@ echo "$NEW_SIZE" > "$STATE_FILE"
 
 hyprctl setcursor "$THEME" "$NEW_SIZE"
 hyprctl setenv XCURSOR_SIZE "$NEW_SIZE"
+hyprctl setenv HYPRCURSOR_SIZE "$NEW_SIZE"
 notify-send "Cursor" "Size set to $NEW_SIZE" -t 1000 --icon=preferences-desktop-cursor
