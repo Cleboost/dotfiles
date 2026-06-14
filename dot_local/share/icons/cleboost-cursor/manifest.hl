@@ -1,0 +1,4 @@
+name = cleboost-cursor
+description = Custom macOS cursor with rounded pointer
+version = 1.0
+cursors_directory = hyprcursors
