@@ -27,7 +27,6 @@ packages:
         - hyprpicker
 
       themes:
-        - apple_cursor
         - whitesur-icon-theme-git
 
       development:
