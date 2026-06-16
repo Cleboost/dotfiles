@@ -1,0 +1,12 @@
+.config/hypr/hyprland.conf
+.config/hypr/core/env.conf
+.config/hypr/core/execs.conf
+.config/hypr/core/general.conf
+.config/hypr/core/monitors.conf
+.config/hypr/theme/colors.conf
+.config/hypr/binds/noctalia.conf
+.config/hypr/binds/workspaces.conf
+.config/hypr/binds/keybinds.conf
+.config/hypr/rules/rules.conf
+.config/hypr/rules/specialwork.conf
+.config/hypr/custom.conf
