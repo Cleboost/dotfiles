@@ -137,9 +137,9 @@ hl.curve("menu_accel", { type = "bezier", points = { {0.52, 0.03}, {0.72, 0.08} 
 hl.curve("stall", { type = "bezier", points = { {1, -0.1}, {0.7, 0.85} } })
 
 -- Animations
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 3.8, bezier = "easeOutBack", style = "popin 40%" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 3.5, bezier = "easeOutQuint", style = "popin 40%" })
 hl.animation({ leaf = "fadeIn", enabled = true, speed = 3, bezier = "emphasizedDecel" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 3.8, bezier = "easeOutBack", style = "popin 40%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 3.5, bezier = "easeOutQuint", style = "popin 40%" })
 hl.animation({ leaf = "fadeOut", enabled = true, speed = 2, bezier = "emphasizedDecel" })
 hl.animation({ leaf = "windowsMove", enabled = true, speed = 4.0, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "emphasizedDecel" })
