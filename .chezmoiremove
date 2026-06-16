@@ -10,3 +10,4 @@
 .config/hypr/rules/rules.conf
 .config/hypr/rules/specialwork.conf
 .config/hypr/custom.conf
+.config/hypr/custom.lua

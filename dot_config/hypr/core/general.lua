@@ -5,7 +5,7 @@ hl.config({
         gaps_in = 4,
         gaps_out = 8,
         gaps_workspaces = 50,
-        border_size = 4,
+        border_size = 6,
         resize_on_border = true,
         no_focus_fallback = true,
         allow_tearing = true,
@@ -14,6 +14,10 @@ hl.config({
             window_gap = 4,
             monitor_gap = 5,
             respect_gaps = true,
+        },
+        col = {
+            active_border = { colors = {"rgba(ffffff66)", "rgba(ffffff33)"}, angle = 135 },
+            inactive_border = { colors = {"rgba(ffffff22)", "rgba(ffffff11)"}, angle = 135 },
         },
     },
     dwindle = {
@@ -35,7 +39,6 @@ hl.config({
             scroll_factor = 0.7,
         },
     },
-
     decoration = {
         rounding_power = 2.4,
         rounding = 18,
@@ -95,9 +98,31 @@ hl.config({
     debug = {
         vfr = 1,
     },
+    plugin = {
+        ["dynamic-cursors"] = {
+            enabled = true,
+            mode = "stretch",
+            shake = {
+                enabled = true,
+                nearest = false,
+                base = 1.0,
+                speed = 4.0,
+                influence = 2.0,
+                limit = 3.0,
+                threshold = 3.0,
+                timeout = 1000,
+            },
+            hyprcursor = {
+                enabled = true,
+                resolution = 256,
+                fallback = "default",
+            },
+        },
+    },
 })
 
 -- Curves & Bezier
+hl.curve("easeOutQuint", { type = "bezier", points = { {0.22, 1}, {0.36, 1} } })
 hl.curve("expressiveFastSpatial", { type = "bezier", points = { {0.42, 1.67}, {0.21, 0.90} } })
 hl.curve("expressiveSlowSpatial", { type = "bezier", points = { {0.39, 1.29}, {0.35, 0.98} } })
 hl.curve("expressiveDefaultSpatial", { type = "bezier", points = { {0.38, 1.21}, {0.22, 1.00} } })
@@ -109,17 +134,17 @@ hl.curve("menu_accel", { type = "bezier", points = { {0.52, 0.03}, {0.72, 0.08} 
 hl.curve("stall", { type = "bezier", points = { {1, -0.1}, {0.7, 0.85} } })
 
 -- Animations
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "emphasizedDecel", style = "popin 80%" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 3.5, bezier = "easeOutQuint", style = "popin 5%" })
 hl.animation({ leaf = "fadeIn", enabled = true, speed = 3, bezier = "emphasizedDecel" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 2, bezier = "emphasizedDecel", style = "popin 90%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 3.5, bezier = "easeOutQuint", style = "popin 5%" })
 hl.animation({ leaf = "fadeOut", enabled = true, speed = 2, bezier = "emphasizedDecel" })
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 3, bezier = "emphasizedDecel", style = "slide" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 4.0, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "emphasizedDecel" })
 hl.animation({ leaf = "layersIn", enabled = true, speed = 2.7, bezier = "emphasizedDecel", style = "popin 93%" })
 hl.animation({ leaf = "layersOut", enabled = true, speed = 2.4, bezier = "menu_accel", style = "popin 94%" })
 hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 0.5, bezier = "menu_decel" })
 hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 2.7, bezier = "stall" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 7, bezier = "menu_decel", style = "slide" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 3.5, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "specialWorkspaceIn", enabled = true, speed = 2.8, bezier = "emphasizedDecel", style = "slidevert" })
 hl.animation({ leaf = "specialWorkspaceOut", enabled = true, speed = 1.2, bezier = "emphasizedAccel", style = "slidevert" })
 
@@ -130,6 +155,8 @@ hl.gesture({ fingers = 4, direction = "down", action = function() hl.exec_cmd("n
 
 -- Startup apps
 hl.on("hyprland.start", function()
+    hl.exec_cmd("hyprctl plugin load /var/cache/hyprpm/cleboost/dynamic-cursors/dynamic-cursors.so")
+    hl.exec_cmd("hyprctl setcursor cleboost-cursor 24")
     hl.exec_cmd("noctalia")
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
     hl.exec_cmd("systemctl --user import-environment XDG_SESSION_CLASS WAYLAND_DISPLAY DISPLAY")
