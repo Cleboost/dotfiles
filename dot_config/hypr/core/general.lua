@@ -125,6 +125,7 @@ hl.config({
 
 -- Curves & Bezier
 hl.curve("easeOutQuint", { type = "bezier", points = { {0.22, 1}, {0.36, 1} } })
+hl.curve("easeOutBack", { type = "bezier", points = { {0.34, 1.56}, {0.64, 1} } })
 hl.curve("expressiveFastSpatial", { type = "bezier", points = { {0.42, 1.67}, {0.21, 0.90} } })
 hl.curve("expressiveSlowSpatial", { type = "bezier", points = { {0.39, 1.29}, {0.35, 0.98} } })
 hl.curve("expressiveDefaultSpatial", { type = "bezier", points = { {0.38, 1.21}, {0.22, 1.00} } })
@@ -136,9 +137,9 @@ hl.curve("menu_accel", { type = "bezier", points = { {0.52, 0.03}, {0.72, 0.08} 
 hl.curve("stall", { type = "bezier", points = { {1, -0.1}, {0.7, 0.85} } })
 
 -- Animations
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 3.5, bezier = "easeOutQuint", style = "popin 5%" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 3.8, bezier = "easeOutBack", style = "popin 40%" })
 hl.animation({ leaf = "fadeIn", enabled = true, speed = 3, bezier = "emphasizedDecel" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 3.5, bezier = "easeOutQuint", style = "popin 5%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 3.8, bezier = "easeOutBack", style = "popin 40%" })
 hl.animation({ leaf = "fadeOut", enabled = true, speed = 2, bezier = "emphasizedDecel" })
 hl.animation({ leaf = "windowsMove", enabled = true, speed = 4.0, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "emphasizedDecel" })
