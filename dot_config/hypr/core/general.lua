@@ -35,15 +35,7 @@ hl.config({
             scroll_factor = 0.7,
         },
     },
-    gestures = {
-        workspace_swipe_distance = 700,
-        workspace_swipe_cancel_ratio = 0.2,
-        workspace_swipe_min_speed_to_force = 5,
-        workspace_swipe_direction_lock = true,
-        workspace_swipe_direction_lock_threshold = 10,
-        workspace_swipe_create_new = true,
-        workspace_swipe_use_r = true,
-    },
+
     decoration = {
         rounding_power = 2.4,
         rounding = 18,

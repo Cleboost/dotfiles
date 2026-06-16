@@ -23,9 +23,6 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down")
 hl.bind("SUPER + L", hl.dsp.exec_cmd("noctalia msg screen-lock"), { desc = "Lock Screen" })
 hl.bind("SUPER + F5", hl.dsp.exec_cmd("noctalia msg power-cycle"))
 
--- Media (Mouse Specific)
-hl.bind("SUPER + mouse:275", hl.dsp.exec_cmd("noctalia msg media previous"))
-hl.bind("SUPER + mouse:276", hl.dsp.exec_cmd("noctalia msg media next"))
 
 -- Shell Management
 hl.bind("CTRL + SUPER + ALT + R", hl.dsp.exec_cmd("pkill noctalia; pkill polkit-kde-auth; noctalia"), { desc = "Restart shell" })

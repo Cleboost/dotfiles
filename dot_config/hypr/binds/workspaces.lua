@@ -29,10 +29,6 @@ hl.bind("CTRL + SUPER + Right", hl.dsp.focus({ workspace = "r+1" }))
 hl.bind("CTRL + SUPER + Left", hl.dsp.focus({ workspace = "r-1" }))
 hl.bind("SUPER + Page_Down", hl.dsp.focus({ workspace = "+1" }))
 hl.bind("SUPER + Page_Up", hl.dsp.focus({ workspace = "-1" }))
-hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "r+1" }))
-hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "r-1" }))
-hl.bind("CTRL + SUPER + mouse_up", hl.dsp.focus({ workspace = "r+1" }))
-hl.bind("CTRL + SUPER + mouse_down", hl.dsp.focus({ workspace = "r-1" }))
 
 -- Move Windows (Silent)
 hl.bind("SUPER + ALT + code:10", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/workspace_action.sh movetoworkspacesilent 1"))
@@ -47,10 +43,6 @@ hl.bind("SUPER + ALT + code:18", hl.dsp.exec_cmd("~/.config/hypr/hyprland/script
 hl.bind("SUPER + ALT + code:19", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/workspace_action.sh movetoworkspacesilent 10"))
 
 -- Directional & Mouse Move
-hl.bind("SUPER + SHIFT + mouse_down", hl.dsp.window.move({ workspace = "r-1" }))
-hl.bind("SUPER + SHIFT + mouse_up", hl.dsp.window.move({ workspace = "r+1" }))
-hl.bind("SUPER + ALT + mouse_down", hl.dsp.window.move({ workspace = "-1" }))
-hl.bind("SUPER + ALT + mouse_up", hl.dsp.window.move({ workspace = "+1" }))
 hl.bind("SUPER + ALT + Page_Down", hl.dsp.window.move({ workspace = "+1" }))
 hl.bind("SUPER + ALT + Page_Up", hl.dsp.window.move({ workspace = "-1" }))
 hl.bind("SUPER + ALT + Right", hl.dsp.window.move({ workspace = "+1" }))
