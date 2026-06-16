@@ -1,0 +1,43 @@
+-- Main Hyprland Lua configuration
+
+-- ── Environment Variables ───────────────────────────────────────────────────
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("XDG_DATA_DIRS", os.getenv("HOME") .. "/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share")
+hl.env("TERMINAL", "kitty -1")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("QT_QPA_PLATFORMTHEME", "kde")
+hl.env("QT_STYLE_OVERRIDE", "kvantum")
+hl.env("XDG_MENU_PREFIX", "plasma-")
+hl.env("GTK_ICON_THEME", "WhiteSur-dark")
+hl.env("GTK_USE_PORTAL", "0")
+hl.env("GSK_RENDERER", "gl")
+hl.env("XCURSOR_THEME", "cleboost-cursor")
+hl.env("XCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_THEME", "cleboost-cursor")
+hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("__GL_GSYNC_ALLOWED", "1")
+hl.env("__GL_VRR_ALLOWED", "1")
+hl.env("NVD_BACKEND", "direct")
+hl.env("AQ_FORCE_LINEAR_BLIT", "0")
+
+{{- if eq .chezmoi.hostname "cleboost-brain" }}
+hl.env("AQ_DRM_DEVICES", "/dev/dri/card1:/dev/dri/card2")
+{{- end }}
+
+-- Global submap initialization (equivalent to exec = hyprctl dispatch submap global)
+hl.dispatch(hl.dsp.submap("global"))
+
+-- ── Modules ──────────────────────────────────────────────────────────────────
+require("core/general")
+require("core/monitors")
+require("rules/rules")
+require("rules/specialwork")
+require("binds/noctalia")
+require("binds/workspaces")
+require("binds/keybinds")
+
+-- Custom overrides (loaded last)
+require("custom")
