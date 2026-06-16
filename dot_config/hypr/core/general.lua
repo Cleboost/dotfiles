@@ -1,5 +1,8 @@
 -- General Configuration
 
+-- Load dynamic-cursors plugin at parsing time so its configuration variables are registered
+hl.plugin.load("/var/cache/hyprpm/cleboost/dynamic-cursors/dynamic-cursors.so")
+
 hl.config({
     general = {
         gaps_in = 4,
@@ -98,6 +101,26 @@ hl.config({
     debug = {
         vfr = 1,
     },
+    plugin = {
+        dynamic_cursors = {
+            enabled = true,
+            mode = "stretch",
+            shake = {
+                enabled = true,
+                base = 1.0,
+                speed = 4.0,
+                influence = 2.0,
+                limit = 3.0,
+                threshold = 3.0,
+                timeout = 1000,
+            },
+            hyprcursor = {
+                enabled = true,
+                resolution = 256,
+                fallback = "default",
+            },
+        },
+    },
 })
 
 -- Curves & Bezier
@@ -134,34 +157,7 @@ hl.gesture({ fingers = 4, direction = "down", action = function() hl.exec_cmd("n
 
 -- Startup apps
 hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprctl plugin load /var/cache/hyprpm/cleboost/dynamic-cursors/dynamic-cursors.so")
     hl.exec_cmd("hyprctl setcursor cleboost-cursor 24")
-    
-    -- Configure dynamic-cursors once it has been loaded
-    hl.config({
-        plugin = {
-            ["dynamic-cursors"] = {
-                enabled = true,
-                mode = "stretch",
-                shake = {
-                    enabled = true,
-                    nearest = false,
-                    base = 1.0,
-                    speed = 4.0,
-                    influence = 2.0,
-                    limit = 3.0,
-                    threshold = 3.0,
-                    timeout = 1000,
-                },
-                hyprcursor = {
-                    enabled = true,
-                    resolution = 256,
-                    fallback = "default",
-                },
-            },
-        },
-    })
-
     hl.exec_cmd("noctalia")
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
     hl.exec_cmd("systemctl --user import-environment XDG_SESSION_CLASS WAYLAND_DISPLAY DISPLAY")
