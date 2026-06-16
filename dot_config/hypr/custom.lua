@@ -6,7 +6,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprctl setcursor cleboost-cursor 24")
 end)
 
--- Border and plugin configuration
+-- Border configuration
 hl.config({
     general = {
         border_size = 6,
@@ -15,28 +15,34 @@ hl.config({
             inactive_border = { colors = {"rgba(ffffff22)", "rgba(ffffff11)"}, angle = 135 },
         },
     },
-    plugin = {
-        ["dynamic-cursors"] = {
-            enabled = true,
-            mode = "stretch",
-            shake = {
+})
+
+-- Plugin configuration (only applied if loaded)
+if hl.plugin["dynamic-cursors"] ~= nil then
+    hl.config({
+        plugin = {
+            ["dynamic-cursors"] = {
                 enabled = true,
-                nearest = false,
-                base = 1.0,
-                speed = 4.0,
-                influence = 2.0,
-                limit = 3.0,
-                threshold = 3.0,
-                timeout = 1000,
-            },
-            hyprcursor = {
-                enabled = true,
-                resolution = 256,
-                fallback = "default",
+                mode = "stretch",
+                shake = {
+                    enabled = true,
+                    nearest = false,
+                    base = 1.0,
+                    speed = 4.0,
+                    influence = 2.0,
+                    limit = 3.0,
+                    threshold = 3.0,
+                    timeout = 1000,
+                },
+                hyprcursor = {
+                    enabled = true,
+                    resolution = 256,
+                    fallback = "default",
+                },
             },
         },
-    },
-})
+    })
+end
 
 -- Animation overrides
 hl.curve("easeOutQuint", { type = "bezier", points = { {0.22, 1}, {0.36, 1} } })

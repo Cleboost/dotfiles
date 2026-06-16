@@ -133,8 +133,8 @@ hl.animation({ leaf = "specialWorkspaceOut", enabled = true, speed = 1.2, bezier
 
 -- Gestures & Actions
 hl.gesture({ fingers = 4, direction = "horizontal", action = "workspace" })
-hl.gesture({ fingers = 4, direction = "up", action = hl.dsp.exec_cmd("noctalia msg panel-toggle launcher") })
-hl.gesture({ fingers = 4, direction = "down", action = hl.dsp.exec_cmd("noctalia msg panel-toggle session") })
+hl.gesture({ fingers = 4, direction = "up", action = function() hl.exec_cmd("noctalia msg panel-toggle launcher") end })
+hl.gesture({ fingers = 4, direction = "down", action = function() hl.exec_cmd("noctalia msg panel-toggle session") end })
 
 -- Startup apps
 hl.on("hyprland.start", function()
