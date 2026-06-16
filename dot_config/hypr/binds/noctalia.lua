@@ -3,9 +3,9 @@
 -- Shell Toggles
 hl.bind("SUPER + Super_L", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 hl.bind("SUPER + Super_R", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
-hl.bind("Ctrl + SUPER + T", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
+hl.bind("CTRL + SUPER + T", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
 hl.bind("SUPER + comma", hl.dsp.exec_cmd("noctalia msg settings-toggle"))
-hl.bind("Ctrl + Alt + Delete", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
+hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"), { desc = "Clipboard history" })
 hl.bind("SUPER + semicolon", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher \"/emo\""), { desc = "Emoji launcher" })
 
@@ -28,8 +28,8 @@ hl.bind("SUPER + mouse:275", hl.dsp.exec_cmd("noctalia msg media previous"))
 hl.bind("SUPER + mouse:276", hl.dsp.exec_cmd("noctalia msg media next"))
 
 -- Shell Management
-hl.bind("Ctrl + SUPER + Alt + R", hl.dsp.exec_cmd("pkill noctalia; pkill polkit-kde-auth; noctalia"), { desc = "Restart shell" })
-hl.bind("Ctrl + Shift + SUPER + Alt + R", hl.dsp.exec_cmd("pkill noctalia"), { desc = "Kill shell" })
-hl.bind("Ctrl + SUPER + Alt + T", hl.dsp.exec_cmd("noctalia msg wallpaper-random"))
+hl.bind("CTRL + SUPER + ALT + R", hl.dsp.exec_cmd("pkill noctalia; pkill polkit-kde-auth; noctalia"), { desc = "Restart shell" })
+hl.bind("CTRL + SHIFT + SUPER + ALT + R", hl.dsp.exec_cmd("pkill noctalia"), { desc = "Kill shell" })
+hl.bind("CTRL + SUPER + ALT + T", hl.dsp.exec_cmd("noctalia msg wallpaper-random"))
 
 hl.bind("SUPER + R", hl.dsp.exec_cmd("noctalia msg scripted-widget screen_recorder focused start"))

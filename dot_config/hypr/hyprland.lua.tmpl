@@ -27,17 +27,20 @@ hl.env("AQ_FORCE_LINEAR_BLIT", "0")
 hl.env("AQ_DRM_DEVICES", "/dev/dri/card1:/dev/dri/card2")
 {{- end }}
 
--- Global submap initialization (equivalent to exec = hyprctl dispatch submap global)
-hl.dispatch(hl.dsp.submap("global"))
-
 -- ── Modules ──────────────────────────────────────────────────────────────────
 require("core/general")
 require("core/monitors")
 require("rules/rules")
 require("rules/specialwork")
-require("binds/noctalia")
-require("binds/workspaces")
-require("binds/keybinds")
 
--- Custom overrides (loaded last)
-require("custom")
+-- Define global submap containing all keybinds
+hl.define_submap("global", function()
+    require("binds/noctalia")
+    require("binds/workspaces")
+    require("binds/keybinds")
+    -- Custom overrides (loaded last)
+    require("custom")
+end)
+
+-- Activate global submap
+hl.dispatch(hl.dsp.submap("global"))
