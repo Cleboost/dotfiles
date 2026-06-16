@@ -42,10 +42,7 @@ hl.define_submap("global", function()
     require("custom")
 end)
 
--- Safe submap activation on startup and reload
-local function activate_global_submap()
+-- Safe submap activation on startup and reload via a deferred timer (prevents startup crash)
+hl.timer(function()
     hl.dispatch(hl.dsp.submap("global"))
-end
-
-hl.on("hyprland.start", activate_global_submap)
-hl.on("config.reloaded", activate_global_submap)
+end, { timeout = 100, type = "oneshot" })
