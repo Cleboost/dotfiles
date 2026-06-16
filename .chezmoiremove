@@ -11,3 +11,4 @@
 .config/hypr/rules/specialwork.conf
 .config/hypr/custom.conf
 .config/hypr/custom.lua
+.config/hypr/workspaces.conf
