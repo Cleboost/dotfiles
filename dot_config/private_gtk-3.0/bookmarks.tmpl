@@ -1,0 +1,10 @@
+file:///home/cleboost/Downloads Downloads
+file:///home/cleboost/Documents Documents
+file:///home/cleboost/.local/share/chezmoi chezmoi
+file:///home/cleboost/Pictures Pictures
+file:///home/cleboost/Videos Videos
+{{- if eq .chezmoi.hostname "cleboost-brain" }}
+sftp://cleboost@100.102.20.42/home/cleboost cleboost-sage
+{{- else if eq .chezmoi.hostname "cleboost-sage" }}
+sftp://cleboost@100.102.199.19/home/cleboost cleboost-brain
+{{- end }}
