@@ -29,6 +29,7 @@ categories:
         - ttf-jetbrains-mono-nerd
         - netbird-bin
         - kdeconnect
+        - hypr-kdeconnect-fix
       development:
         - bun
         - rust
