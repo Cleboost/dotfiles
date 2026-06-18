@@ -66,14 +66,14 @@ while IFS= read -r line; do
     fi
     echo "  $line"
   fi
-done < <(yay -S --needed --noconfirm --devel --timeupdate $packages_all 2>&1; echo "EXIT_CODE=$?")
+done < <(yay -S --needed --noconfirm --devel $packages_all 2>&1; echo "EXIT_CODE=$?")
 
 if [ "$exit_code" -ne 0 ]; then
   echo ""
   echo "Automatic installation failed (probable conflict or auth issue)."
   echo "Retrying in interactive mode to let you resolve conflicts..."
   echo ""
-  if ! yay -S --needed --devel --timeupdate $packages_all; then
+  if ! yay -S --needed --devel $packages_all; then
     echo "Interactive installation failed."
     exit "$exit_code"
   fi
