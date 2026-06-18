@@ -310,3 +310,16 @@ quality = "ultra"
 video_codec = "hevc"
 video_source = "portal"
 
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "power_profile"
+
+
