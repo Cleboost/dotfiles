@@ -6,8 +6,8 @@ if command -v hyprpm >/dev/null 2>&1; then
   echo "       Installing Hyprland dynamic-cursors        "
   echo "=================================================="
   hyprpm update
-  hyprpm add https://github.com/virtcode/hyprland-dynamic-cursors
-  hyprpm enable hyprland-dynamic-cursors
+  hyprpm add https://github.com/VirtCode/hypr-dynamic-cursors
+  hyprpm enable hypr-dynamic-cursors
 else
   echo "hyprpm n'est pas installé, installation des plugins Hyprland ignorée"
 fi
