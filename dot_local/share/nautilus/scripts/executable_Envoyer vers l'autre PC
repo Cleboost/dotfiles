@@ -1,0 +1,6 @@
+#!/bin/bash
+# Nautilus script to share files using ecosystem-share.sh (AirDrop)
+
+for file in "$@"; do
+    ~/.local/bin/ecosystem-share.sh "$file"
+done

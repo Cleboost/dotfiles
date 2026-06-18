@@ -13,6 +13,7 @@ hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region --freeze --clipboard-only")
 hl.bind("SUPER + X", hl.dsp.exec_cmd("dictate"), { description = "Dictation (Whisper)" })
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a"), { desc = "Color picker" })
 hl.bind("SUPER + H", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/hotspot.sh"), { desc = "Launch Hotspot" })
+hl.bind("SUPER + SHIFT + H", hl.dsp.exec_cmd("~/.local/bin/ecosystem-share.sh"), { desc = "Ecosystem Handoff (Share Clipboard)" })
 
 -- Zoom & Screen
 hl.bind("SUPER + Z", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/cursor_zoom.sh up"))
