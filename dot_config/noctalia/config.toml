@@ -241,3 +241,42 @@ enabled = true
 
 [hooks]
 battery_low_percent_threshold = 30
+
+# ── Plugins ───────────────────────────────────────────────────────────────────
+
+[plugins]
+enabled = [
+    "noctalia/bongocat",
+    "noctalia/screen_recorder"
+]
+
+    [[plugins.source]]
+    auto_update = true
+    kind = "git"
+    location = "https://github.com/noctalia-dev/community-plugins"
+    name = "community"
+
+    [[plugins.source]]
+    auto_update = true
+    kind = "git"
+    location = "https://github.com/noctalia-dev/official-plugins"
+    name = "official"
+
+    [[plugins.source]]
+    auto_update = true
+    enabled = false
+    kind = "git"
+    location = "https://github.com/Cleboost/noctalia-plugins"
+    name = "cleboost-plugin"
+
+    [[plugins.source]]
+    kind = "path"
+    location = "~/Projects/noctalia/custom-plugins"
+    name = "custom"
+
+[plugin_settings."noctalia/screen_recorder"]
+frame_rate = 144
+quality = "ultra"
+video_codec = "hevc"
+video_source = "portal"
+
