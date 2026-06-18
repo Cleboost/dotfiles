@@ -1,7 +1,7 @@
 -- General Configuration
 
 -- Load dynamic-cursors plugin at parsing time so its configuration variables are registered
-hl.plugin.load("/var/cache/hyprpm/cleboost/dynamic-cursors/dynamic-cursors.so")
+hl.plugin.load("/var/cache/hyprpm/{{ .chezmoi.username }}/dynamic-cursors/dynamic-cursors.so")
 
 hl.config({
     general = {
