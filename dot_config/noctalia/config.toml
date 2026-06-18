@@ -151,7 +151,7 @@ down     = ["down"]
 [bar.main]
 position           = "top"          # top | bottom | left | right
 thickness          = 34
-background_opacity = 1.0
+background_opacity = 0.85
 radius             = 80
 radius_top_left    = 0
 radius_top_right   = 0
@@ -167,27 +167,46 @@ auto_hide          = false
 reserve_space      = true
 capsule            = false
 
-start = [ "media", "clock", "cpu", "ram", "temp" ]
-center = [ "workspaces", "bongocat" ]
-end = [ "tray", "screen_recorder", "notifications", "battery", "control-center", "session" ]
+start = [ "cpu", "temp", "ram", "workspaces" ]
+center = [ "media", "audio_visualizer" ]
+end = [ "cat", "recorder", "notifications", "tray", "screen_recorder", "clock", "control-center" ]
+
+[widget.audio_visualizer]
+capsule = true
+show_when_idle = true
+
+[widget.bongocat]
+type   = "scripted"
+script = "scripts/bongocat.lua"
+input_device = "/dev/input/event3"
+capsule = false
+
+[widget.cat]
+input_device = "/dev/input/event3"
+type = "noctalia/bongocat:cat"
 
 [widget.cpu]
 display = "gauge"
-show_label = true
+show_label = false
 type = "sysmon"
 
 [widget.sysmon]
 stat = "cpu_usage"
 
-[widget.workspaces]
-display = "none"
+[widget.media]
+capsule = true
+
+[widget.ram]
+show_label = false
+
+[widget.recorder]
+type = "noctalia/screen_recorder:recorder"
 
 [widget.screen_recorder]
 type              = "scripted"
 script            = "scripts/screen_recorder.lua"
 directory         = "Videos"
 filename_pattern  = "recording_%Y%m%d_%H%M%S"
-#video_source      = "focused-monitor"
 video_codec       = "av1"
 audio_codec       = "opus"
 audio_source      = "both"
@@ -203,10 +222,18 @@ replay_duration   = 30
 replay_storage    = "ram"
 hide_inactive     = false
 
-[widget.bongocat]
-type   = "scripted"
-script = "scripts/bongocat.lua"
-input_device = "/dev/input/event3"
+[widget.temp]
+show_label = false
+
+[widget.tray]
+capsule = true
+drawer = true
+hidden = [ "spotify", "discord" ]
+pinned = [ "MP-wLD5ZvD" ]
+
+[widget.workspaces]
+capsule = true
+display = "name"
 
 # ── Dock ──────────────────────────────────────────────────────────────────────
 
