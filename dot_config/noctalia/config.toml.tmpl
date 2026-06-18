@@ -178,7 +178,7 @@ capsule            = false
 
 start = [ "cpu", "temp", "ram", "workspaces" ]
 center = [ "media", "audio_visualizer" ]
-end = [ "cat", "recorder", "notifications", "tray", "screen_recorder", "clock", "control-center" ]
+end = [ "cat", "recorder", "notifications", "tray", "screen_recorder", "clock", "control-center"{{- if eq .chezmoi.hostname "cleboost-brain" }}, "widget"{{- end }} ]
 
 [widget.audio_visualizer]
 capsule = true
@@ -243,6 +243,11 @@ pinned = [ "MP-wLD5ZvD" ]
 [widget.workspaces]
 capsule = true
 display = "name"
+
+{{- if eq .chezmoi.hostname "cleboost-brain" }}
+[widget.widget]
+type = "noctalia/mechsound:widget"
+{{- end }}
 
 # ── Dock ──────────────────────────────────────────────────────────────────────
 
@@ -347,6 +352,9 @@ battery_low_percent_threshold = 30
 enabled = [
     "noctalia/bongocat",
     "noctalia/screen_recorder"
+    {{- if eq .chezmoi.hostname "cleboost-brain" }},
+    "noctalia/mechsound"
+    {{- end }}
 ]
 
     [[plugins.source]]
@@ -363,7 +371,11 @@ enabled = [
 
     [[plugins.source]]
     auto_update = true
+    {{- if eq .chezmoi.hostname "cleboost-brain" }}
+    enabled = true
+    {{- else }}
     enabled = false
+    {{- end }}
     kind = "git"
     location = "https://github.com/Cleboost/noctalia-plugins"
     name = "cleboost-plugin"
