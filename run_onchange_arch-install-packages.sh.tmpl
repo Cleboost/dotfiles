@@ -100,7 +100,10 @@ fi
 echo "=================================================="
 {{- end }}
 
-{{- $bun := concat .categories.bun.global.cli }}
+{{- $bun := list -}}
+{{- if hasKey .categories "bun" -}}
+  {{- $bun = .categories.bun.global.cli -}}
+{{- end -}}
 
 {{- if $bun }}
 if command -v bun >/dev/null 2>&1; then

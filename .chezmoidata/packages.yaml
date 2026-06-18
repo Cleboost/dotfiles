@@ -7,76 +7,66 @@ categories:
       # Paquets de base installés automatiquement sur TOUTES les machines
       base:
         - base-devel
-        - kitty
-        - fish
-        - starship
-        - eza
-        - fastfetch
-        - git
-        - rust
-        - bun
-        - nodejs
-        - npm
-        - nautilus
-        - google-chrome
-        - jetbrains-toolbox
-        - zed
-        - antigravity-cli
-
-      # Catégories optionnelles ou spécifiques à certains PC
-      development:
-        - git
-        - bun
-        - rust
-        - docker
-        - docker-compose
-        - docker-buildx
-        - codegraph-rs-bin
-      hyprland:
         - hyprland
         - gpu-screen-recorder
         - wlsunset
         - hyprshot
         - hyprpicker
-      themes:
+        - git
+        - kitty
+        - fish
+        - starship
+        - eza
+        - fastfetch
+        - nautilus
+        - google-chrome
+        - zed
+        - noctalia-git
         - whitesur-icon-theme-git
+        - ddcutil
+        - power-profiles-daemon
+      development:
+        - bun
+        - rust
+        - docker
+        - docker-compose
+        - docker-buildx
+        - rust
+        - bun
+        - nodejs
+        - npm
+      ia:
+        - antigravity-cli
+        - opencode
       sddm:
         - qt5-graphicaleffects
         - qt5-quickcontrols2
-      noctalia:
-        - noctalia-git
-        - ddcutil
-        - power-profiles-daemon
       social:
         - discord
       music:
         - spotify
-        - lollypop
       office:
         - onlyoffice-bin
+        - lollypop
         - evince
       gaming:
         - steam
+        - lutris
       tools:
         - rustmius-bin
+      jetbrain:
+        - jetbrains-toolbox
 
-  bun:
-    global:
-      cli:
-        - "@google/gemini-cli@nightly"
-
-# 2. Association des hôtes (PC) aux catégories de paquets supplémentaires
 hosts:
-  # La catégorie "base" est installée pour tout le monde via le script.
-  # On liste ici uniquement les catégories supplémentaires par machine.
   cleboost-brain:
-    - hyprland
-    - themes
     - sddm
     - development
-    - noctalia
     - social
     - music
     - office
     - gaming
     - tools
+  cleboost-sage:
+    - sddm
+    - social
+    - office
