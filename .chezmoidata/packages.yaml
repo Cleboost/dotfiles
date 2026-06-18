@@ -49,3 +49,10 @@ packages:
     global:
       cli:
         - "@google/gemini-cli@nightly"
+
+packages_hosts:
+  cleboost-brain:
+    - noctalia-git
+    - ddcutil
+    - power-profiles-daemon
+

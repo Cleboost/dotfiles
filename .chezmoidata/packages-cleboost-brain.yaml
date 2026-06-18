@@ -1,6 +1,0 @@
-# ~/.local/share/chezmoi/.chezmoidata/packages-cleboost-brain.yaml
-packages_hosts:
-  cleboost-brain:
-    - noctalia-git
-    - ddcutil
-    - power-profiles-daemon
