@@ -26,6 +26,7 @@ categories:
         - ddcutil
         - power-profiles-daemon
         - cmake
+        - ttf-jetbrains-mono-nerd
       development:
         - bun
         - rust
