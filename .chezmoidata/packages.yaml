@@ -1,34 +1,31 @@
 # ~/.local/share/chezmoi/.chezmoidata/packages.yaml
-packages:
+
+# 1. Définition de toutes les catégories de paquets disponibles
+categories:
   arch:
     yay:
+      bootstrap:
+        - base-devel
       terminal:
         - kitty
         - fish
         - starship
         - eza
         - fastfetch
-
       cli:
         - git
         - rust
         - bun
         - nodejs
         - npm
-
       files:
         - nautilus
-
-      hyprland:
-        - hyprland
-        - gpu-screen-recorder
-        - wlsunset
-        - hyprshot
-        - hyprpicker
-
-      themes:
-        - whitesur-icon-theme-git
-
+      browser:
+        - google-chrome
+      dev:
+        - jetbrains-toolbox
+        - zed
+        - antigravity-cli
       development:
         - git
         - bun
@@ -37,22 +34,59 @@ packages:
         - docker-compose
         - docker-buildx
         - codegraph-rs-bin
-
+      hyprland:
+        - hyprland
+        - gpu-screen-recorder
+        - wlsunset
+        - hyprshot
+        - hyprpicker
+      themes:
+        - whitesur-icon-theme-git
       sddm:
         - qt5-graphicaleffects
         - qt5-quickcontrols2
-
-      bootstrap:
-        - base-devel
+      noctalia:
+        - noctalia-git
+        - ddcutil
+        - power-profiles-daemon
+      social:
+        - discord
+      music:
+        - spotify
+        - lollypop
+      office:
+        - onlyoffice-bin
+        - evince
+      gaming:
+        - steam
+      tools:
+        - rustmius-bin
 
   bun:
     global:
       cli:
         - "@google/gemini-cli@nightly"
 
-packages_hosts:
-  cleboost-brain:
-    - noctalia-git
-    - ddcutil
-    - power-profiles-daemon
+# 2. Association des hôtes (PC) aux catégories de paquets qu'ils doivent installer
+hosts:
+  # Catégories communes installées sur toutes les machines
+  default:
+    - bootstrap
+    - terminal
+    - cli
+    - files
+    - browser
+    - dev
 
+  # Catégories supplémentaires pour la machine cleboost-brain
+  cleboost-brain:
+    - hyprland
+    - themes
+    - sddm
+    - development
+    - noctalia
+    - social
+    - music
+    - office
+    - gaming
+    - tools

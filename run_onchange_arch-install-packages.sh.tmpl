@@ -22,24 +22,20 @@ if ! command -v yay >/dev/null 2>&1; then
   exit 1
 fi
 
+{{- $categories := .hosts.default -}}
+{{- if hasKey .hosts .chezmoi.hostname -}}
+  {{- $categories = concat $categories (index .hosts .chezmoi.hostname) -}}
+{{- end -}}
+
 {{- $yay := list -}}
-{{- range (values .packages.arch.yay) -}}
-  {{- range . -}}
-    {{- $yay = append $yay . -}}
-  {{- end -}}
-{{- end -}}
-{{- range (values .apps.arch.yay) -}}
-  {{- range . -}}
-    {{- $yay = append $yay . -}}
-  {{- end -}}
-{{- end -}}
-{{- if hasKey . "packages_hosts" -}}
-  {{- if hasKey .packages_hosts .chezmoi.hostname -}}
-    {{- range (index .packages_hosts .chezmoi.hostname) -}}
+{{- range $categories -}}
+  {{- if hasKey $.categories.arch.yay . -}}
+    {{- range (index $.categories.arch.yay .) -}}
       {{- $yay = append $yay . -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
+
 
 {{- if $yay }}
 echo "=================================================="
@@ -104,7 +100,7 @@ fi
 echo "=================================================="
 {{- end }}
 
-{{- $bun := concat .packages.bun.global.cli }}
+{{- $bun := concat .categories.bun.global.cli }}
 
 {{- if $bun }}
 if command -v bun >/dev/null 2>&1; then
