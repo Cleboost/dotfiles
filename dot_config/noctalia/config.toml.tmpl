@@ -2,6 +2,12 @@
 # Copy to ~/.config/noctalia/config.toml and edit what you need.
 # Changes are hot-reloaded via inotify — no restart required.
 
+{{- $output := "DP-2" -}}
+{{- if eq .chezmoi.hostname "cleboost-sage" -}}
+  {{- $output = "eDP-1" -}}
+{{- end -}}
+
+
 # ── Shell ─────────────────────────────────────────────────────────────────────
 
 [shell]
@@ -266,6 +272,69 @@ pinned              = []            # e.g. ["firefox", "code", "kitty"]
 
 [desktop_widgets]
 enabled = true
+schema_version = 1
+widget_order = [
+    "desktop_clock",
+    "desktop_audio_visualizer",
+    "desktop_media_player",
+    "desktop_weather"
+]
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget.desktop_clock]
+    box_height = 341.0
+    box_width = 579.0
+    cx = 961.5
+    cy = 406.5
+    output = "{{ $output }}"
+    rotation = 0.0
+    type = "clock"
+
+        [desktop_widgets.widget.desktop_clock.settings]
+        background = false
+
+    [desktop_widgets.widget.desktop_audio_visualizer]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 968.0
+    cy = 556.0
+    output = "{{ $output }}"
+    rotation = 0.0
+    type = "audio_visualizer"
+
+        [desktop_widgets.widget.desktop_audio_visualizer.settings]
+        aspect_ratio = 2.5
+        background = false
+        bands = 32
+        show_when_idle = true
+
+    [desktop_widgets.widget.desktop_media_player]
+    box_height = 117.25372314453125
+    box_width = 274.19699096679688
+    cx = 160.0
+    cy = 998.6268310546875
+    output = "{{ $output }}"
+    rotation = 0.0
+    type = "media_player"
+
+        [desktop_widgets.widget.desktop_media_player.settings]
+        layout = "horizontal"
+
+    [desktop_widgets.widget.desktop_weather]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 118.0
+    cy = 892.0
+    output = "{{ $output }}"
+    rotation = 0.0
+    type = "weather"
+
+        [desktop_widgets.widget.desktop_weather.settings]
+        background = false
 
 # ── Hooks ─────────────────────────────────────────────────────────────────────
 
