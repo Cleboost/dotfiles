@@ -57,19 +57,20 @@ recursive                  = true    # include subdirectories when picking rando
 [theme]
 mode    = "dark"                       # dark | light | auto
 source  = "wallpaper"                  # builtin | wallpaper | community
-builtin = "Noctalia"                  # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
+builtin = "Ayu"                  # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
                                       # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
-# community_palette = "Noctalia"      # fetched from api.noctalia.dev, cached locally
+community_palette = "ADW"      # fetched from api.noctalia.dev, cached locally
 wallpaper_scheme = "m3-content"    # m3-tonal-spot | m3-content | m3-fruit-salad |
                                       # m3-rainbow | m3-monochrome | vibrant | faithful |
                                       # dysfunctional | muted
 
 [theme.templates]
 enable_builtins       = true
-builtin_ids           = [ "btop", "kitty", "hyprland", "starship" ] # opt-in; list ids with: noctalia theme --list-builtins
-community_ids         = [ "steam" ]
+builtin_ids           = [ "btop", "gtk3", "gtk4", "hyprland", "kitty", "qt", "starship" ] # opt-in; list ids with: noctalia theme --list-builtins
+community_ids         = []
 enable_user_templates = false
 user_config           = "~/.config/noctalia/user-templates.toml"
+
 
 # ── Overview ──────────────────────────────────────────────────────────────────
 
