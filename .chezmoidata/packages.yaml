@@ -27,6 +27,8 @@ categories:
         - power-profiles-daemon
         - cmake
         - ttf-jetbrains-mono-nerd
+        - netbird
+        - kdeconnect
       development:
         - bun
         - rust
