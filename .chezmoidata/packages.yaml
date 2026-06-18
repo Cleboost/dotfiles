@@ -25,6 +25,7 @@ categories:
         - whitesur-icon-theme-git
         - ddcutil
         - power-profiles-daemon
+        - cmake
       development:
         - bun
         - rust
