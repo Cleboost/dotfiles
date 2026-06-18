@@ -30,6 +30,7 @@ categories:
         - netbird-bin
         - kdeconnect
         - hypr-kdeconnect-fix
+        - wl-clipboard
       development:
         - bun
         - rust
