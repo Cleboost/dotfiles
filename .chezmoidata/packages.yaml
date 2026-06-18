@@ -4,28 +4,26 @@
 categories:
   arch:
     yay:
-      bootstrap:
+      # Paquets de base installés automatiquement sur TOUTES les machines
+      base:
         - base-devel
-      terminal:
         - kitty
         - fish
         - starship
         - eza
         - fastfetch
-      cli:
         - git
         - rust
         - bun
         - nodejs
         - npm
-      files:
         - nautilus
-      browser:
         - google-chrome
-      dev:
         - jetbrains-toolbox
         - zed
         - antigravity-cli
+
+      # Catégories optionnelles ou spécifiques à certains PC
       development:
         - git
         - bun
@@ -67,18 +65,10 @@ categories:
       cli:
         - "@google/gemini-cli@nightly"
 
-# 2. Association des hôtes (PC) aux catégories de paquets qu'ils doivent installer
+# 2. Association des hôtes (PC) aux catégories de paquets supplémentaires
 hosts:
-  # Catégories communes installées sur toutes les machines
-  default:
-    - bootstrap
-    - terminal
-    - cli
-    - files
-    - browser
-    - dev
-
-  # Catégories supplémentaires pour la machine cleboost-brain
+  # La catégorie "base" est installée pour tout le monde via le script.
+  # On liste ici uniquement les catégories supplémentaires par machine.
   cleboost-brain:
     - hyprland
     - themes

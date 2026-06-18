@@ -22,7 +22,7 @@ if ! command -v yay >/dev/null 2>&1; then
   exit 1
 fi
 
-{{- $categories := .hosts.default -}}
+{{- $categories := list "base" -}}
 {{- if hasKey .hosts .chezmoi.hostname -}}
   {{- $categories = concat $categories (index .hosts .chezmoi.hostname) -}}
 {{- end -}}
