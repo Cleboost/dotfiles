@@ -1,0 +1,12 @@
+[Unit]
+Description=KDE Connect Clipboard Sync Daemon
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/wl-paste --watch /usr/bin/kdeconnect-cli --send-clipboard
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=graphical-session.target
