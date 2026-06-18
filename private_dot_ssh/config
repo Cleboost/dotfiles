@@ -1,0 +1,21 @@
+
+
+Host "Yanis roue de la chance"
+    HostName 37.59.110.81
+    User debian
+    Port 22
+    IdentityFile /home/cleboost/.ssh/cleboost
+
+Host "Gaming AD"
+    HostName 151.80.232.116
+    User debian
+    Port 22
+
+Host yanisss
+    HostName 37.59.110.81
+    User debian
+    Port 22
+
+Host 100.102.*
+    User cleboost
+    IdentityFile ~/.ssh/cleboost
