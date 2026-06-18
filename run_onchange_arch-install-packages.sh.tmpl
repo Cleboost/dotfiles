@@ -33,6 +33,13 @@ fi
     {{- $yay = append $yay . -}}
   {{- end -}}
 {{- end -}}
+{{- if hasKey . "packages_hosts" -}}
+  {{- if hasKey .packages_hosts .chezmoi.hostname -}}
+    {{- range (index .packages_hosts .chezmoi.hostname) -}}
+      {{- $yay = append $yay . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 {{- if $yay }}
 echo "=================================================="
