@@ -184,12 +184,6 @@ end = [ "cat", "recorder", "notifications", "tray", "screen_recorder", "clock", 
 capsule = true
 show_when_idle = true
 
-[widget.bongocat]
-type   = "scripted"
-script = "scripts/bongocat.lua"
-input_device = "/dev/input/event3"
-capsule = false
-
 [widget.cat]
 input_devices = [ "/dev/input/event3" ]
 type = "noctalia/bongocat:cat"
@@ -402,5 +396,3 @@ type = "notification"
 
 [[control_center.shortcuts]]
 type = "power_profile"
-
-
