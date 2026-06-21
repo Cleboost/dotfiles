@@ -25,3 +25,15 @@ if systemctl --user list-unit-files | grep -q "^kdeconnect-clipboard-sync\.servi
   fi
 fi
 
+# Enable and start the KDE Connect keepalive timer if installed
+if systemctl --user list-unit-files | grep -q "^kdeconnect-keepalive\.timer"; then
+  if systemctl --user is-active --quiet kdeconnect-keepalive.timer 2>/dev/null; then
+    echo "kdeconnect-keepalive timer is already active."
+  else
+    echo "=================================================="
+    echo "Starting and enabling KDE Connect keepalive timer..."
+    echo "=================================================="
+    systemctl --user enable --now kdeconnect-keepalive.timer
+  fi
+fi
+

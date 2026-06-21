@@ -1,0 +1,7 @@
+[Unit]
+Description=KDE Connect Keepalive Refresh
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/kdeconnect-cli --refresh
