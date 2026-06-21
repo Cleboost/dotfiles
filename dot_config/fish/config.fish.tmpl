@@ -27,4 +27,9 @@ if status is-interactive
     end
     {{- end }}
     alias sync-ssh="sync-ssh-pubkeys.sh"
+
+    {{- if and (hasKey .pcs .chezmoi.hostname) (has "development" (index .pcs .chezmoi.hostname).packages) }}
+    alias dbtool="kitty +kitten icat --clear && spindb"
+    {{- end }}
 end
+
