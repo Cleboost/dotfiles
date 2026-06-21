@@ -3,8 +3,8 @@ Description=Run KDE Connect Keepalive Refresh periodically
 PartOf=graphical-session.target
 
 [Timer]
-OnActiveSec=1min
-OnUnitActiveSec=5min
+OnActiveSec=30sec
+OnUnitActiveSec=1min
 
 [Install]
 WantedBy=timers.target
