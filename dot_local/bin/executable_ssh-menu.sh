@@ -36,7 +36,7 @@ fi
 if [ -n "$selected_host" ] && [ "$selected_host" != "[Enter address manually]" ]; then
     # Disable floating mode if the window is currently floating
     if command -v hyprctl >/dev/null 2>&1 && hyprctl activewindow | grep -q "floating: 1"; then
-        hyprctl dispatch togglefloating
+        hyprctl dispatch 'hl.dsp.window.float({ action = "toggle" })'
     fi
     clear
     echo "🔌 Connecting SSH to $selected_host..."

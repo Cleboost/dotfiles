@@ -43,13 +43,8 @@ if [ -n "$selected" ]; then
     target_name=$(echo "$selected" | awk '{print $1}')
     
     # Disable floating mode if the window is currently floating
-    echo "=== DEBUG ACTIVE WINDOW ===" > /tmp/hypr-ssh.log
-    hyprctl activewindow >> /tmp/hypr-ssh.log 2>&1
     if command -v hyprctl >/dev/null 2>&1 && hyprctl activewindow | grep -q "floating: 1"; then
-        echo "Toggling floating off!" >> /tmp/hypr-ssh.log
-        hyprctl dispatch togglefloating >> /tmp/hypr-ssh.log 2>&1
-    else
-        echo "Not toggling!" >> /tmp/hypr-ssh.log
+        hyprctl dispatch 'hl.dsp.window.float({ action = "toggle" })'
     fi
 
     clear
