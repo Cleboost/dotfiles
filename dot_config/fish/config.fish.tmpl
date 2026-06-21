@@ -16,13 +16,15 @@ if status is-interactive
 
     alias clear="printf '\033[2J\033[3J\033[1;1H' && fastfetch-random"
 
+    {{- if eq .chezmoi.hostname "cleboost-brain" }}
+    alias update="yay --noconfirm -Syu"
+    {{- else }}
     function update
-        if test (hostname) != "cleboost-brain"
-            echo "🔄 Syncing build cache from cleboost-brain..."
-            # Sync yay cache from brain. 5s timeout in case brain is offline.
-            rsync -az --timeout=5 {{ (index .pcs "cleboost-brain").ip }}:~/.cache/yay/ ~/.cache/yay/
-        end
+        echo "🔄 Syncing build cache from cleboost-brain..."
+        # Sync yay cache from brain. 5s timeout in case brain is offline.
+        rsync -az --timeout=5 {{ (index .pcs "cleboost-brain").ip }}:~/.cache/yay/ ~/.cache/yay/
         yay --noconfirm -Syu
     end
+    {{- end }}
     alias sync-ssh="sync-ssh-pubkeys.sh"
 end
