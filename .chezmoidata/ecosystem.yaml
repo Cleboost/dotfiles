@@ -13,7 +13,7 @@ pcs:
       - gaming
       - tools
   cleboost-sage:
-    ip: "100.64.0.2"
+    ip: "100.64.70.2"
     packages:
       - sddm
       - social
