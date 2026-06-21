@@ -30,6 +30,7 @@ categories:
         - netbird-bin
         - bitwarden
         - mpv
+        - rsync
         - kdeconnect
         - hypr-kdeconnect-fix
         - wl-clipboard
