@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Ensure we detect changes to any wifi connection profile
+{{- $netDir := joinPath .chezmoi.sourceDir "private_dot_config/private_networks" -}}
+{{- if stat $netDir -}}
+  {{- range (glob (joinPath $netDir "encrypted_*.nmconnection.age")) -}}
+    # {{ base . }} hash: {{ include . | sha256sum }}
+  {{- end -}}
+{{- end }}
+
+NET_SRC="$HOME/.config/networks"
+NET_DST="/etc/NetworkManager/system-connections"
+
+if [ -d "$NET_SRC" ] && [ "$(ls -A "$NET_SRC")" ]; then
+    echo "Syncing Wi-Fi connections to NetworkManager..."
+    
+    # Create destination if it doesn't exist
+    sudo mkdir -p "$NET_DST"
+    
+    # Copy all profiles
+    sudo cp -f "$NET_SRC"/*.nmconnection "$NET_DST/" 2>/dev/null || true
+    
+    # Apply strict permissions required by NetworkManager
+    sudo chown root:root "$NET_DST"/*.nmconnection 2>/dev/null || true
+    sudo chmod 600 "$NET_DST"/*.nmconnection 2>/dev/null || true
+    
+    # Reload NetworkManager to apply changes
+    echo "Reloading NetworkManager connections..."
+    sudo nmcli connection reload
+    
+    echo "Wi-Fi connections synced successfully."
+fi
