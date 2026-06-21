@@ -1,0 +1,5 @@
+#!/bin/bash
+# systemd-user-units hash: {{ glob "dot_config/systemd/user/*" | join "," | sha256sum }}
+
+echo "Reloading systemd user daemon..."
+systemctl --user daemon-reload
