@@ -30,7 +30,7 @@ echo "$keys" | while read -r key_line; do
         if [ -n "$filename" ]; then
             pubkey_path="$HOME/.ssh/$filename.pub"
             echo "$key_line" > "$pubkey_path"
-            chmod 644 "$pubkey_path"
+            chmod 600 "$pubkey_path"
             echo "✅ Synchronized: $pubkey_path ($comment)"
         fi
     fi
