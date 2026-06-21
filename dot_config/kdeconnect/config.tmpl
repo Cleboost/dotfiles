@@ -1,7 +1,11 @@
 [General]
 keyAlgorithm=EC
-{{- if eq .chezmoi.hostname "cleboost-brain" }}
-customDevices=100.102.20.42
-{{- else if eq .chezmoi.hostname "cleboost-sage" }}
-customDevices=100.102.199.19
+{{- $ips := list -}}
+{{- range $name, $pc := .pcs -}}
+  {{- if ne $name $.chezmoi.hostname -}}
+    {{- $ips = append $ips $pc.ip -}}
+  {{- end -}}
+{{- end }}
+{{- if $ips }}
+customDevices={{ join "," $ips }}
 {{- end }}
