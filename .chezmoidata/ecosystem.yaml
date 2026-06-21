@@ -3,7 +3,7 @@
 # Configuration file for ecosystem PCs
 pcs:
   cleboost-brain:
-    ip: "100.64.70.1"
+    ip: "100.64.0.1"
     packages:
       - sddm
       - development
@@ -13,7 +13,7 @@ pcs:
       - gaming
       - tools
   cleboost-sage:
-    ip: "100.64.70.2"
+    ip: "100.64.0.2"
     packages:
       - sddm
       - social
