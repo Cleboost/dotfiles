@@ -44,7 +44,7 @@ if [ -n "$selected" ]; then
     
     clear
     echo "🔌 Connecting SSH to $target_name ($target_ip)..."
-    ssh "$target_ip"
+    ssh -t "$target_ip" "clear; exec \$SHELL"
     
     if [ $? -ne 0 ]; then
         echo -e "\n❌ Connection error to $target_name. Closing in 5 seconds..."
