@@ -36,7 +36,7 @@ fi
 if [ -n "$selected_host" ] && [ "$selected_host" != "[Enter address manually]" ]; then
     clear
     echo "🔌 Connecting SSH to $selected_host..."
-    ssh "$selected_host"
+    ssh -t "$selected_host" "clear; exec \$SHELL"
     
     # Keep the terminal open briefly if the connection fails
     if [ $? -ne 0 ]; then
