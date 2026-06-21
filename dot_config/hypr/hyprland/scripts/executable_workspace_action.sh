@@ -7,12 +7,17 @@ if [[ -z "${dispatcher}" || "${dispatcher}" == "--help" || "${dispatcher}" == "-
   echo "Usage: $0 <dispatcher> <target>"
   exit 1
 fi
-if [[ "$1" == *"+"* || "$1" == *"-"* ]]; then ## Is this something like r+1 or -1?
-  hyprctl dispatch "${dispatcher}" "$1" ## $1 = workspace id since we shifted earlier.
-elif [[ "$1" =~ ^[0-9]+$ ]]; then ## Is this just a number?
+
+if [[ "$1" =~ ^[0-9]+$ ]]; then
   target_workspace=$((((curr_workspace - 1) / 10 ) * 10 + $1))
-  hyprctl dispatch "${dispatcher}" "${target_workspace}"
 else
-  hyprctl dispatch "${dispatcher}" "$1" ## In case the target in a string, required for special workspaces.
-  exit 1
+  target_workspace="$1"
+fi
+
+if [[ "${dispatcher}" == "workspace" ]]; then
+  hyprctl dispatch "hl.dsp.focus({ workspace = \"${target_workspace}\" })"
+elif [[ "${dispatcher}" == "movetoworkspacesilent" ]]; then
+  hyprctl dispatch "hl.dsp.window.move({ workspace = \"${target_workspace}\", follow = false })"
+else
+  hyprctl dispatch "${dispatcher}" "${target_workspace}"
 fi
