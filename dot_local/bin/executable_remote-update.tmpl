@@ -45,10 +45,10 @@ update_pc() {
     
     if [ "$name" = "$current_hostname" ]; then
         # Run update locally
-        fish -c "update"
+        fish -i -c "update"
     else
         # Run update remotely via SSH
-        ssh -t "$ip" "fish -c update"
+        ssh -t "$ip" "fish -i -c update"
     fi
     
     if [ $? -eq 0 ]; then
