@@ -38,6 +38,16 @@ if [ -n "$selected_host" ] && [ "$selected_host" != "[Enter address manually]" ]
     if command -v hyprctl >/dev/null 2>&1 && hyprctl activewindow | grep -q "floating: 1"; then
         hyprctl dispatch 'hl.dsp.window.float({ action = "toggle" })'
     fi
+    
+    # Check if remote terminfo is needed for Kitty
+    if [ "$TERM" = "xterm-kitty" ] && command -v kitty >/dev/null 2>&1; then
+        echo "🔍 Checking remote terminal compatibility..."
+        if ! ssh -o ConnectTimeout=3 -o BatchMode=yes "$selected_host" "infocmp xterm-kitty >/dev/null 2>&1"; then
+            echo "📦 Copying Kitty terminfo to remote server..."
+            kitty +kitten ssh "$selected_host" "exit" >/dev/null 2>&1
+        fi
+    fi
+
     clear
     echo "🔌 Connecting SSH to $selected_host..."
     ssh -t "$selected_host" "clear; exec \$SHELL"

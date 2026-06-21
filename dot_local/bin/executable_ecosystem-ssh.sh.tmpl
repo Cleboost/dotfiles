@@ -47,6 +47,15 @@ if [ -n "$selected" ]; then
         hyprctl dispatch 'hl.dsp.window.float({ action = "toggle" })'
     fi
 
+    # Check if remote terminfo is needed for Kitty
+    if [ "$TERM" = "xterm-kitty" ] && command -v kitty >/dev/null 2>&1; then
+        echo "🔍 Checking remote terminal compatibility..."
+        if ! ssh -o ConnectTimeout=3 -o BatchMode=yes "$target_ip" "infocmp xterm-kitty >/dev/null 2>&1"; then
+            echo "📦 Copying Kitty terminfo to remote server..."
+            kitty +kitten ssh "$target_ip" "exit" >/dev/null 2>&1
+        fi
+    fi
+
     clear
     echo "🔌 Connecting SSH to $target_name ($target_ip)..."
     ssh -t "$target_ip" "clear; exec \$SHELL"
