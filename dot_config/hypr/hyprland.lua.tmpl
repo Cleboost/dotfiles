@@ -2,6 +2,7 @@
 
 -- ── Environment Variables ───────────────────────────────────────────────────
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("SSH_AUTH_SOCK", os.getenv("HOME") .. "/.bitwarden-ssh-agent.sock")
 hl.env("XDG_DATA_DIRS", os.getenv("HOME") .. "/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share")
 hl.env("TERMINAL", "kitty -1")
 hl.env("QT_QPA_PLATFORM", "wayland")

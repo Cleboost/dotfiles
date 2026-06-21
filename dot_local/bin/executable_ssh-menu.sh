@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:-$HOME/.bitwarden-ssh-agent.sock}"
 
 # Fetch SSH hosts from ~/.ssh/config (ignoring wildcards)
 hosts=$(grep -i -E '^Host[[:space:]]+' ~/.ssh/config 2>/dev/null | awk '{$1=""; print $0}' | tr -d '"' | xargs -n1 | grep -v '\*')
