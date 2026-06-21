@@ -1,4 +1,6 @@
 set -gx PATH "$HOME/.local/bin" $PATH
+set -gx SSH_AUTH_SOCK "$HOME/.bitwarden-ssh-agent.sock"
+
 
 if status is-interactive
     set fish_greeting

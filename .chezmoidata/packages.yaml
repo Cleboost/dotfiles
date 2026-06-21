@@ -28,6 +28,7 @@ categories:
         - cmake
         - ttf-jetbrains-mono-nerd
         - netbird-bin
+        - bitwarden
         - kdeconnect
         - hypr-kdeconnect-fix
         - wl-clipboard
