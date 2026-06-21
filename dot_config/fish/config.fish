@@ -17,4 +17,5 @@ if status is-interactive
     alias clear="printf '\033[2J\033[3J\033[1;1H' && fastfetch-random"
 
     alias update="yay --noconfirm -Syu"
+    alias sync-ssh="sync-ssh-pubkeys.sh"
 end
