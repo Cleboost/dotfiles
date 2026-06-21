@@ -1,3 +1,12 @@
+{{- $hasSocial := false -}}
+{{- $hasMusic := false -}}
+{{- $pc := index .pcs .chezmoi.hostname -}}
+{{- if $pc -}}
+  {{- range $pc.packages -}}
+    {{- if eq . "social" -}}{{- $hasSocial = true -}}{{- end -}}
+    {{- if eq . "music" -}}{{- $hasMusic = true -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
 -- Workspaces Navigation & Management
 
 -- Number Keys Focus
@@ -53,7 +62,11 @@ hl.bind("CTRL + SUPER + SHIFT + Right", hl.dsp.window.move({ workspace = "r+1" }
 hl.bind("CTRL + SUPER + SHIFT + Left", hl.dsp.window.move({ workspace = "r-1" }))
 
 -- Special Workspaces
+{{- if $hasSocial }}
 hl.bind("SUPER + D", hl.dsp.workspace.toggle_special("comm"))
+{{- end }}
+{{- if $hasMusic }}
 hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("music"))
+{{- end }}
 hl.bind("CTRL + SUPER + BracketLeft", hl.dsp.focus({ workspace = "-1" }))
 hl.bind("CTRL + SUPER + BracketRight", hl.dsp.focus({ workspace = "+1" }))

@@ -1,0 +1,29 @@
+{{- $hasSocial := false -}}
+{{- $hasMusic := false -}}
+{{- $pc := index .pcs .chezmoi.hostname -}}
+{{- if $pc -}}
+  {{- range $pc.packages -}}
+    {{- if eq . "social" -}}{{- $hasSocial = true -}}{{- end -}}
+    {{- if eq . "music" -}}{{- $hasMusic = true -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+-- Special Workspaces Configuration
+
+{{- if $hasSocial }}
+hl.window_rule({ match = { class = "^(discord)$" }, workspace = "special:comm silent", no_initial_focus = true })
+hl.workspace_rule({ workspace = "special:comm", gaps_out = 50 })
+{{- end }}
+
+{{- if $hasMusic }}
+hl.window_rule({ match = { class = "^(Spotify)$" }, workspace = "special:music silent", no_initial_focus = true })
+hl.workspace_rule({ workspace = "special:music", gaps_out = 50 })
+{{- end }}
+
+hl.on("hyprland.start", function()
+{{- if $hasSocial }}
+    hl.exec_cmd("discord")
+{{- end }}
+{{- if $hasMusic }}
+    hl.exec_cmd("spotify")
+{{- end }}
+end)
