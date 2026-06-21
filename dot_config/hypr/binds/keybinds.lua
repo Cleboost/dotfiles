@@ -2,6 +2,8 @@
 
 -- Apps
 hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty -1"), { description = "Terminal" })
+hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("kitty --class ssh-menu -e ~/.local/bin/ssh-menu.sh"), { description = "SSH Selector" })
+hl.bind("SUPER + ALT + T", hl.dsp.exec_cmd("kitty --class ssh-menu -e ~/.local/bin/ecosystem-ssh.sh"), { description = "Ecosystem SSH Selector" })
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus -w"), { description = "File Manager" })
 hl.bind("SUPER + W", hl.dsp.exec_cmd("google-chrome-stable"), { description = "Browser" })
 hl.bind("SUPER + O", hl.dsp.exec_cmd("obsidian"), { description = "Obsidian" })

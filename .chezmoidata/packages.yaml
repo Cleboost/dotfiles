@@ -63,16 +63,3 @@ categories:
       jetbrain:
         - jetbrains-toolbox
 
-hosts:
-  cleboost-brain:
-    - sddm
-    - development
-    - social
-    - music
-    - office
-    - gaming
-    - tools
-  cleboost-sage:
-    - sddm
-    - social
-    - office

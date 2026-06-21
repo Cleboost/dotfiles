@@ -1,0 +1,20 @@
+# ~/.local/share/chezmoi/.chezmoidata/ecosystem.yaml
+
+# Configuration file for ecosystem PCs
+pcs:
+  cleboost-brain:
+    ip: "100.102.199.19"
+    packages:
+      - sddm
+      - development
+      - social
+      - music
+      - office
+      - gaming
+      - tools
+  cleboost-sage:
+    ip: "100.102.20.42"
+    packages:
+      - sddm
+      - social
+      - office

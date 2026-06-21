@@ -17,6 +17,7 @@ hl.window_rule({ match = { class = "^(cursor)$" }, opacity = "0.85 0.85" })
 hl.window_rule({ match = { class = "^(claude)$" }, opacity = "0.85 0.85" })
 hl.window_rule({ match = { class = "^(dev.noctalia.Noctalia.Settings)$" }, opacity = "0.85 0.85" })
 hl.window_rule({ match = { class = "^(dev.faetalize.waytator)$" }, opacity = "0.85 0.85", float = true, center = true })
+hl.window_rule({ match = { class = "^(ssh-menu)$" }, float = true, size = "600 400", center = true, opacity = "0.90 0.90" })
 
 hl.window_rule({ match = { class = "^(pavucontrol)$" }, float = true, size = "(monitor_w*.45) (monitor_h*.45)", center = true })
 

@@ -23,8 +23,8 @@ if ! command -v yay >/dev/null 2>&1; then
 fi
 
 {{- $categories := list "base" -}}
-{{- if hasKey .hosts .chezmoi.hostname -}}
-  {{- $categories = concat $categories (index .hosts .chezmoi.hostname) -}}
+{{- if hasKey .pcs .chezmoi.hostname -}}
+  {{- $categories = concat $categories (index .pcs .chezmoi.hostname).packages -}}
 {{- end -}}
 
 {{- $yay := list -}}
