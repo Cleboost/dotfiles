@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure we detect changes to any wifi connection profile
-{{- $netDir := joinPath .chezmoi.sourceDir "private_dot_config/private_networks" -}}
+{{- $netDir := joinPath .chezmoi.sourceDir "dot_config/private_networks" -}}
 {{- if stat $netDir -}}
   {{- range (glob (joinPath $netDir "encrypted_*.nmconnection.age")) -}}
     # {{ base . }} hash: {{ include . | sha256sum }}
