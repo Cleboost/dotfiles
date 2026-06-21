@@ -18,3 +18,9 @@ pcs:
       - sddm
       - social
       - office
+  cleboost-old-baby:
+    ip: "100.64.0.3"
+    packages:
+      - sddm
+      - social
+      - office
