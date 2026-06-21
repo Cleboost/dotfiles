@@ -14,9 +14,7 @@ current_hostname="{{ .chezmoi.hostname }}"
 # Prepare list for fzf
 menu_list="✨ All PCs\n"
 for name in "${!pcs[@]}"; do
-    if [ "$name" = "$current_hostname" ]; then
-        menu_list="$menu_list$name (${pcs[$name]}) [Local]\n"
-    else
+    if [ "$name" != "$current_hostname" ]; then
         menu_list="$menu_list$name (${pcs[$name]})\n"
     fi
 done
