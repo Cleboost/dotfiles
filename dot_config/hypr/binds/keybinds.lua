@@ -6,10 +6,11 @@ hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("kitty --class ssh-menu -e ~/.local
 hl.bind("SUPER + ALT + T", hl.dsp.exec_cmd("kitty --class ssh-menu -e ~/.local/bin/ecosystem-ssh.sh"), { description = "Ecosystem SSH Selector" })
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus -w"), { description = "File Manager" })
 hl.bind("SUPER + W", hl.dsp.exec_cmd("google-chrome-stable"), { description = "Browser" })
+hl.bind("SUPER + U", hl.dsp.exec_cmd("sh -c 'pkill -9 chrome; sleep 0.1; google-chrome-stable --new-window \"https://fr.wikipedia.org\" \"https://docs.google.com\" \"https://www.google.com/search?q=les+oiseaux\"'"), { description = "Reopen Google Chrome with 3 tabs" })
 hl.bind("SUPER + O", hl.dsp.exec_cmd("obsidian"), { description = "Obsidian" })
 
 -- Utilities
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --freeze"), { description = "Screenshot" })
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot" })
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("sh -c 'hyprshot -m region --raw | waytator'"), { description = "Screenshot" })
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region --freeze --clipboard-only"), { description = "Screenshot" })
 hl.bind("SUPER + X", hl.dsp.exec_cmd("dictate"), { description = "Dictation (Whisper)" })

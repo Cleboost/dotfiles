@@ -15,7 +15,7 @@ hl.workspace_rule({ workspace = "special:comm", gaps_out = 50 })
 {{- end }}
 
 {{- if $hasMusic }}
-hl.window_rule({ match = { class = "^(Spotify)$" }, workspace = "special:music silent", no_initial_focus = true })
+hl.window_rule({ match = { class = "^(ncspot)$" }, workspace = "special:music silent", no_initial_focus = true })
 hl.workspace_rule({ workspace = "special:music", gaps_out = 50 })
 {{- end }}
 
@@ -24,6 +24,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("discord")
 {{- end }}
 {{- if $hasMusic }}
-    hl.exec_cmd("spotify")
+    hl.exec_cmd("kitty --class ncspot ncspot")
 {{- end }}
 end)

@@ -27,6 +27,6 @@ hl.bind("SUPER + F5", hl.dsp.exec_cmd("noctalia msg power-cycle"))
 -- Shell Management
 hl.bind("CTRL + SUPER + ALT + R", hl.dsp.exec_cmd("pkill -9 noctalia; while pgrep -x noctalia >/dev/null; do sleep 0.1; done; noctalia"), { desc = "Restart shell" })
 hl.bind("CTRL + SHIFT + SUPER + ALT + R", hl.dsp.exec_cmd("pkill noctalia"), { desc = "Kill shell" })
-hl.bind("CTRL + SUPER + ALT + T", hl.dsp.exec_cmd("noctalia msg wallpaper-random"))
+hl.bind("CTRL + SUPER + ALT + T", hl.dsp.exec_cmd("noctalia msg panel-toggle noctalia/mpvpaper:picker"))
 
 hl.bind("SUPER + R", hl.dsp.exec_cmd("noctalia msg scripted-widget screen_recorder focused start"))

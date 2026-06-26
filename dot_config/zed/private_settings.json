@@ -31,9 +31,17 @@
     "provider": "copilot",
   },
   "agent_servers": {
-    "gemini": {
-      "default_mode": "yolo",
-      "type": "registry",
+    "kilo": {
+      "type": "registry"
+    },
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "cursor": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
     },
   },
   "icon_theme": {

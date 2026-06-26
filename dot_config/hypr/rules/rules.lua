@@ -8,7 +8,7 @@ hl.window_rule({ match = { title = "^(Save As)(.*)$" }, float = true, center = t
 hl.window_rule({ match = { class = "^(chrome-nngceckbapebfimnlniiiahkandclblb-Default)$" }, float = true, size = "400 600" })
 
 hl.window_rule({ match = { class = "^(org.gnome.Nautilus)$" }, opacity = "0.85 0.85" })
-hl.window_rule({ match = { class = "^(Spotify)$" }, opacity = "0.85 0.85" })
+hl.window_rule({ match = { class = "^(ncspot)$" }, opacity = "0.85 0.85" })
 hl.window_rule({ match = { class = "^(discord)$" }, opacity = "0.85 0.85" })
 
 hl.window_rule({ match = { class = "^(dev.zed.Zed)$" }, opacity = "0.85 0.85" })
