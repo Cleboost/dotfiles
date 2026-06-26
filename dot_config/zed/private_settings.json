@@ -9,11 +9,12 @@
 {
   "language_models": {
     "openai_compatible": {
-      "NIM Nividia": {
-        "api_url": "https://integrate.api.nvidia.com/v1/",
+      "NIM Nvidia": {
+        "api_url": "https://integrate.api.nvidia.com/v1",
         "available_models": [
           {
             "name": "nvidia/nemotron-3-nano-30b-a3b",
+            "display_name": "Nemotron 3 Nano",
             "max_tokens": 1000000,
             "max_output_tokens": 32768,
             "max_completion_tokens": 32768,
@@ -23,12 +24,57 @@
               "parallel_tool_calls": true,
               "prompt_cache_key": false,
               "chat_completions": true,
-              "interleaved_reasoning": false
-            }
-          }
-        ]
-      }
-    }
+              "interleaved_reasoning": true,
+            },
+          },
+          {
+            "name": "moonshotai/kimi-k2.6",
+            "display_name": "Kimi K2.6",
+            "max_tokens": 262144,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": true,
+            },
+          },
+          {
+            "name": "nvidia/nemotron-3-ultra-550b-a55b",
+            "display_name": "Nemotron 3 Ultra",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": true,
+            },
+          },
+          {
+            "name": "nvidia/nemotron-3-super-120b-a12b",
+            "display_name": "Nemotron 3 Super",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": true,
+            },
+          },
+        ],
+      },
+    },
   },
   "proxy": "",
   "restore_on_startup": "last_workspace",
@@ -43,6 +89,11 @@
     "dock": "left",
   },
   "agent": {
+    "default_model": {
+      "provider": "NIM Nvidia",
+      "model": "moonshotai/kimi-k2.6",
+      "enable_thinking": false,
+    },
     "dock": "right",
     "favorite_models": [],
     "model_parameters": [],
@@ -51,36 +102,36 @@
     "dock": "left",
   },
   "edit_predictions": {
-    "provider": "copilot",
+    "open_ai_compatible_api": {
+      "api_url": "https://integrate.api.nvidia.com/v1/",
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+    },
+    "provider": "open_ai_compatible_api",
   },
   "agent_servers": {
     "kilo": {
       "default_config_options": {
-        "model": "kilo/kilo-auto/free"
+        "model": "kilo/kilo-auto/free",
       },
-      "type": "registry"
+      "type": "registry",
     },
     "github-copilot-cli": {
-      "type": "registry"
+      "type": "registry",
     },
     "cursor": {
-      "type": "registry"
+      "type": "registry",
     },
     "claude-acp": {
       "favorite_config_option_values": {
-        "effort": [
-          "low"
-        ],
-        "model": [
-          "sonnet"
-        ]
+        "effort": ["low"],
+        "model": ["sonnet"],
       },
       "default_config_options": {
         "mode": "bypassPermissions",
         "effort": "low",
-        "model": "sonnet"
+        "model": "sonnet",
       },
-      "type": "registry"
+      "type": "registry",
     },
   },
   "icon_theme": {
