@@ -7,6 +7,29 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "language_models": {
+    "openai_compatible": {
+      "NIM Nividia": {
+        "api_url": "https://integrate.api.nvidia.com/v1/",
+        "available_models": [
+          {
+            "name": "nvidia/nemotron-3-nano-30b-a3b",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": false
+            }
+          }
+        ]
+      }
+    }
+  },
   "proxy": "",
   "restore_on_startup": "last_workspace",
   "cli_default_open_behavior": "existing_window",
@@ -32,6 +55,9 @@
   },
   "agent_servers": {
     "kilo": {
+      "default_config_options": {
+        "model": "kilo/kilo-auto/free"
+      },
       "type": "registry"
     },
     "github-copilot-cli": {
@@ -41,6 +67,19 @@
       "type": "registry"
     },
     "claude-acp": {
+      "favorite_config_option_values": {
+        "effort": [
+          "low"
+        ],
+        "model": [
+          "sonnet"
+        ]
+      },
+      "default_config_options": {
+        "mode": "bypassPermissions",
+        "effort": "low",
+        "model": "sonnet"
+      },
       "type": "registry"
     },
   },
