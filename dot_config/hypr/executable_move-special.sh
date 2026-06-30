@@ -20,5 +20,5 @@ move() {
 }
 
 move discord comm &
-move ncspot music &
+move spotify music &
 wait
