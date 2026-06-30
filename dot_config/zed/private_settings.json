@@ -94,6 +94,12 @@
       "model": "moonshotai/kimi-k2.6",
       "enable_thinking": false,
     },
+    "commit_message_model": {
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "provider": "NIM Nvidia",
+      "enable_thinking": false,
+    },
+    "commit_message_instructions": "Generate a Git commit message following the Conventional Commits specification.\n\nRequirements:\n- Write everything in English.\n- Use the format: <type>(<scope>): <short imperative summary>\n- If the change is significant, add a blank line followed by bullet points describing the key changes.\n- Keep the summary under 72 characters.\n- Use the imperative mood (e.g. add, fix, refactor, remove).\n- Do not mention files unless necessary.\n- Group related changes instead of listing every modified file.\n- Focus on the intent and impact of the change.\n- If the change is trivial (formatting, dependency bump, typo, etc.), output only the summary line.\n- Do not wrap the message in code fences.\n- Output only the commit message.\n\nUse Conventional Commit types when appropriate: feat, fix, refactor, perf, docs, style, test, build, ci, chore, revert.",
     "dock": "right",
     "favorite_models": [],
     "model_parameters": [],
