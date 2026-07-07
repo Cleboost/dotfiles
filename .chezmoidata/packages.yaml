@@ -21,7 +21,6 @@ categories:
         - nautilus
         - google-chrome
         - zed
-        - noctalia-git
         - whitesur-icon-theme-git
         - ddcutil
         - power-profiles-daemon
@@ -34,6 +33,10 @@ categories:
         - kdeconnect
         - hypr-kdeconnect-fix
         - wl-clipboard
+      noctalia:
+        - noctalia
+      noctalia-dev:
+        - noctalia-git
       development:
         - bun
         - rust

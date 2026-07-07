@@ -22,6 +22,7 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down")
 -- Power/Lock
 hl.bind("SUPER + L", hl.dsp.exec_cmd("noctalia msg screen-lock"), { desc = "Lock Screen" })
 hl.bind("SUPER + F5", hl.dsp.exec_cmd("noctalia msg power-cycle"))
+hl.bind("SUPER + N", hl.dsp.exec_cmd("/home/cleboost/.local/bin/boost-control night-toggle"), { desc = "Toggle Night Mode" })
 
 
 -- Shell Management

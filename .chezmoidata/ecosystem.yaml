@@ -12,15 +12,18 @@ pcs:
       - office
       - gaming
       - tools
+      - noctalia-dev
   cleboost-sage:
     ip: "100.64.0.2"
     packages:
       - sddm
       - social
       - office
+      - noctalia
   cleboost-old-baby:
     ip: "100.64.0.3"
     packages:
       - sddm
       - social
       - office
+      - noctalia
