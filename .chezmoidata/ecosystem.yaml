@@ -12,7 +12,7 @@ pcs:
       - office
       - gaming
       - tools
-      - noctalia-dev
+      - noctalia
   cleboost-sage:
     ip: "100.64.0.2"
     packages:
