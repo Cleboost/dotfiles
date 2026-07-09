@@ -15,7 +15,7 @@ hl.workspace_rule({ workspace = "special:comm", gaps_out = 50 })
 {{- end }}
 
 {{- if $hasMusic }}
-hl.window_rule({ match = { class = "^(Spotify)$" }, workspace = "special:music silent", no_initial_focus = true })
+hl.window_rule({ match = { class = "^(spotify)$" }, workspace = "special:music silent", no_initial_focus = true })
 hl.workspace_rule({ workspace = "special:music", gaps_out = 50 })
 {{- end }}
 
