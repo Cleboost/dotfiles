@@ -36,3 +36,4 @@ hl.window_rule({ match = { class = "^(jetbrains-idea)$" }, opacity = "0.85 0.85"
 hl.window_rule({ match = { class = "^(jetbrains-clion)$" }, opacity = "0.85 0.85" })
 hl.window_rule({ match = { class = "^(jetbrains-goland)$" }, opacity = "0.85 0.85" })
 hl.window_rule({ match = { class = "^(obsidian)$" }, opacity = "0.85 0.85" })
+hl.window_rule({ match = { class = "^(google-chrome)$" }, opacity = "0.85 0.85" })
