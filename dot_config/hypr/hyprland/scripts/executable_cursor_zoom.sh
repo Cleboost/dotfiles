@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SIZES=(16 20 22 24 28 32 40 48 56 64 72 80 88 96)
-DEFAULT_SIZE=24
+SIZES=(16 18 20 22 24 28 32 40 48 56 64 72 80 88 96)
+DEFAULT_SIZE=18
 STATE_FILE="/tmp/hypr_cursor_size"
 THEME="cleboost-cursor"
 
@@ -23,7 +23,7 @@ done
 
 # Fallback if size not in list
 if [ $INDEX -eq -1 ]; then
-    INDEX=3 # Index of 24 in the array
+    INDEX=1 # Index of 18 in the array
 fi
 
 case "$1" in
@@ -36,7 +36,7 @@ case "$1" in
         if [ $INDEX -lt 0 ]; then INDEX=0; fi
         ;;
     reset)
-        INDEX=3 # Index of 24
+        INDEX=1 # Index of 18
         ;;
     *)
         echo "Usage: $0 {up|down|reset}"

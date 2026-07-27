@@ -9,32 +9,36 @@ hl.monitor({
     scale    = 1,
 })
 
+ -- Papa
 hl.monitor({
     output   = "desc:ASUSTek COMPUTER INC VY279HGE S7LMQS001610",
     mode     = "1920x1080@144",
-    position = "0x-1080",
+    position = "1920x0",
     scale    = 1,
     vrr      = 1,
 })
 
+-- Maman
 hl.monitor({
     output   = "desc:ASUSTek COMPUTER INC VG2791R S3LMDW006158",
     mode     = "1920x1080@144",
-    position = "0x-1080",
+    position = "1920x0",
     scale    = 1,
     vrr      = 1,
 })
 
+-- Papa
 hl.monitor({
     output   = "desc:Eizo Nanao Corporation EV2216W 70457074",
     mode     = "preferred",
-    position = "1920x0",
+    position = "3840x0",
     scale    = 1,
 })
 
+-- Maman
 hl.monitor({
     output   = "desc:Eizo Nanao Corporation EV2216W 68119076",
     mode     = "preferred",
-    position = "-1680x0",
+    position = "3840x0",
     scale    = 1,
 })
