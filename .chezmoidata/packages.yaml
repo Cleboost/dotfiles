@@ -50,9 +50,9 @@ categories:
       ia:
         - antigravity-cli
         - opencode
-      sddm:
-        - qt5-graphicaleffects
-        - qt5-quickcontrols2
+      greeter:
+        - greetd
+        - noctalia-greeter
       social:
         - discord
       music:

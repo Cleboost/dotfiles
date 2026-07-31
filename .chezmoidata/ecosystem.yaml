@@ -5,7 +5,7 @@ pcs:
   cleboost-brain:
     ip: "100.64.0.1"
     packages:
-      - sddm
+      - greeter
       - development
       - social
       - music
@@ -16,14 +16,14 @@ pcs:
   cleboost-sage:
     ip: "100.64.0.2"
     packages:
-      - sddm
+      - greeter
       - social
       - office
       - noctalia
   cleboost-old-baby:
     ip: "100.64.0.3"
     packages:
-      - sddm
+      - greeter
       - social
       - office
       - noctalia

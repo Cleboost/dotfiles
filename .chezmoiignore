@@ -5,5 +5,3 @@
 
 .config/starship.toml
 .config/hypr/workspaces.conf
-
-sddm-theme-cleboost
