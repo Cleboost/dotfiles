@@ -16,7 +16,7 @@ font_family                    = "JetBrainsMono Nerd Font"
 offline_mode                   = false                                 # block all outgoing HTTP when true
 telemetry_enabled              = true                                  # send an anonymous usage ping on startup
 polkit_agent                   = true
-password_style                 = "default"                             # default | random
+password_style                 = "random"                              # default | random
 settings_show_advanced         = false                                 # show advanced settings by default in Settings
 show_location                  = true                                  # hide weather location text in shell UI when false
 clipboard_auto_paste           = "off"
@@ -24,8 +24,7 @@ clipboard_image_action_command = "feh {path}"                          # When we
 avatar_path                    = "/home/cleboost/Pictures/profile.png" # My Avatar ;)
 lang                           = "fr"                                  # Shell language (baguette btw)
 corner_radius_scale            = 2.0
-screen_time_enabled            = true
-password_style                 = "random"                              # Password style in polkit agent
+screen_time_enabled            = true                                  # Password style in polkit agent
 
 [shell.animation]
 enabled = true
@@ -203,6 +202,7 @@ stat = "cpu_usage"
 
 [widget.media]
 capsule = true
+title_scroll = "always"
 
 [widget.ram]
 show_label = false
@@ -337,8 +337,8 @@ widget_order = [
     rotation = 0.0
     type = "weather"
 
-        [desktop_widgets.widget.desktop_weather.settings]
-        background = false
+[desktop_widgets.widget.desktop_weather.settings]
+background = false
 
 # ── Hooks ─────────────────────────────────────────────────────────────────────
 
@@ -351,44 +351,42 @@ power_profile_changed = "~/.local/bin/asus-perf-keyboard-color"
 [plugins]
 enabled = [
     "noctalia/bongocat",
-    "noctalia/screen_recorder"
-    {{- if eq .chezmoi.hostname "cleboost-brain" }},
-    "noctalia/mechsound"
+    "noctalia/screen_recorder",
+    "noctalia/translator",
+    "cleboost/anilist",
+    "cleboost/ssh-launcher"
+    {{- if eq .chezmoi.hostname "cleboost-brain" -}},
+    "cleboost/bitwarden",
+    "radimous/prismlauncher-instances",
+    "cleboost/zed-provider",
+    "cleboost/jetbrains-provider"
     {{- end }}
 ]
 
-    [[plugins.source]]
-    auto_update = true
-    kind = "git"
-    location = "https://github.com/noctalia-dev/community-plugins"
-    name = "community"
 
-    [[plugins.source]]
-    auto_update = true
-    kind = "git"
-    location = "https://github.com/noctalia-dev/official-plugins"
-    name = "official"
+[[plugins.source]]
+auto_update = true
+kind = "git"
+location = "https://github.com/noctalia-dev/community-plugins"
+name = "community"
 
-    [[plugins.source]]
-    auto_update = true
-    {{- if eq .chezmoi.hostname "cleboost-brain" }}
-    enabled = true
-    {{- else }}
-    enabled = false
-    {{- end }}
-    kind = "git"
-    location = "https://github.com/Cleboost/noctalia-plugins"
-    name = "cleboost-plugin"
+[[plugins.source]]
+auto_update = true
+kind = "git"
+location = "https://github.com/noctalia-dev/official-plugins"
+name = "official"
 
-    [[plugins.source]]
-    kind = "path"
-    location = "~/Projects/noctalia/custom-plugins"
-    name = "custom"
+{{- if eq .chezmoi.hostname "cleboost-brain" }}
+[[plugins.source]]
+kind = "path"
+location = "/home/cleboost/Projects/noctalia/community-plugins"
+name = "community-local"
+{{- end }}
 
 [plugin_settings."noctalia/screen_recorder"]
 frame_rate = 144
 quality = "ultra"
-video_codec = "hevc"
+video_codec = "h264"
 video_source = "portal"
 
 [[control_center.shortcuts]]
