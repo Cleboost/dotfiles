@@ -1,0 +1,6 @@
+[General]
+cursors_directory = "hyprcursors"
+name = "cleboost-cursor"
+description = "Custom macOS cursor with rounded pointer (Hyprcursor)"
+version = "1.0"
+author = "Cleboost & Antigravity"

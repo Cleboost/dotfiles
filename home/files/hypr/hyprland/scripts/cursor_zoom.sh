@@ -1,0 +1,53 @@
+#!/bin/bash
+
+SIZES=(16 18 20 22 24 28 32 40 48 56 64 72 80 88 96)
+DEFAULT_SIZE=18
+STATE_FILE="/tmp/hypr_cursor_size"
+THEME="cleboost-cursor"
+
+# Load current size
+if [ -f "$STATE_FILE" ]; then
+    CURRENT_SIZE=$(cat "$STATE_FILE")
+else
+    CURRENT_SIZE=$DEFAULT_SIZE
+fi
+
+# Find current index
+INDEX=-1
+for i in "${!SIZES[@]}"; do
+   if [[ "${SIZES[$i]}" == "${CURRENT_SIZE}" ]]; then
+       INDEX=$i
+       break
+   fi
+done
+
+# Fallback if size not in list
+if [ $INDEX -eq -1 ]; then
+    INDEX=1 # Index of 18 in the array
+fi
+
+case "$1" in
+    up)
+        ((INDEX++))
+        if [ $INDEX -ge ${#SIZES[@]} ]; then INDEX=$((${#SIZES[@]} - 1)); fi
+        ;;
+    down)
+        ((INDEX--))
+        if [ $INDEX -lt 0 ]; then INDEX=0; fi
+        ;;
+    reset)
+        INDEX=1 # Index of 18
+        ;;
+    *)
+        echo "Usage: $0 {up|down|reset}"
+        exit 1
+        ;;
+esac
+
+NEW_SIZE=${SIZES[$INDEX]}
+echo "$NEW_SIZE" > "$STATE_FILE"
+
+hyprctl setcursor "$THEME" "$NEW_SIZE"
+hyprctl setenv XCURSOR_SIZE "$NEW_SIZE"
+hyprctl setenv HYPRCURSOR_SIZE "$NEW_SIZE"
+notify-send "Cursor" "Size set to $NEW_SIZE" -t 1000 --icon=preferences-desktop-cursor

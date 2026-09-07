@@ -1,0 +1,155 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "language_models": {
+    "openai_compatible": {
+      "NIM Nvidia": {
+        "api_url": "https://integrate.api.nvidia.com/v1",
+        "available_models": [
+          {
+            "name": "nvidia/nemotron-3-nano-30b-a3b",
+            "display_name": "Nemotron 3 Nano",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": true
+            }
+          },
+          {
+            "name": "moonshotai/kimi-k2.6",
+            "display_name": "Kimi K2.6",
+            "max_tokens": 262144,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": true
+            }
+          },
+          {
+            "name": "nvidia/nemotron-3-ultra-550b-a55b",
+            "display_name": "Nemotron 3 Ultra",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": true
+            }
+          },
+          {
+            "name": "nvidia/nemotron-3-super-120b-a12b",
+            "display_name": "Nemotron 3 Super",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "proxy": "",
+  "restore_on_startup": "last_workspace",
+  "cli_default_open_behavior": "existing_window",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "default_model": {
+      "provider": "NIM Nvidia",
+      "model": "moonshotai/kimi-k2.6",
+      "enable_thinking": false
+    },
+    "commit_message_model": {
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "provider": "NIM Nvidia",
+      "enable_thinking": false
+    },
+    "commit_message_instructions": "Generate a Git commit message following the Conventional Commits specification.\n\nRequirements:\n- Write everything in English.\n- Use the format: <type>(<scope>): <short imperative summary>\n- If the change is significant, add a blank line followed by bullet points describing the key changes.\n- Keep the summary under 72 characters.\n- Use the imperative mood (e.g. add, fix, refactor, remove).\n- Do not mention files unless necessary.\n- Group related changes instead of listing every modified file.\n- Focus on the intent and impact of the change.\n- If the change is trivial (formatting, dependency bump, typo, etc.), output only the summary line.\n- Do not wrap the message in code fences.\n- Output only the commit message.\n\nUse Conventional Commit types when appropriate: feat, fix, refactor, perf, docs, style, test, build, ci, chore, revert.",
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "edit_predictions": {
+    "open_ai_compatible_api": {
+      "api_url": "https://integrate.api.nvidia.com/v1/",
+      "model": "nvidia/nemotron-3-nano-30b-a3b"
+    },
+    "provider": "open_ai_compatible_api"
+  },
+  "agent_servers": {
+    "kilo": {
+      "default_config_options": {
+        "model": "kilo/kilo-auto/free"
+      },
+      "type": "registry"
+    },
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "cursor": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "favorite_config_option_values": {
+        "effort": ["low"],
+        "model": ["sonnet"]
+      },
+      "default_config_options": {
+        "mode": "bypassPermissions",
+        "effort": "low",
+        "model": "sonnet"
+      },
+      "type": "registry"
+    }
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Ayu Dark"
+  }
+}
