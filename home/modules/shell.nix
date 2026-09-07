@@ -11,12 +11,11 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles-nixos#nixos";
+      rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles-nixos#cleboost-brain";
       please  = "sudo";
       ls      = "eza --icons --group-directories-first";
       ll      = "eza -alF --icons --group-directories-first";
       clear   = "printf '\\033[2J\\033[3J\\033[1;1H' && fastfetch-random";
-      sync-ssh = "sync-ssh-pubkeys.sh";
     };
     interactiveShellInit = ''
       set -g fish_greeting

@@ -3,7 +3,6 @@
 -- Apps
 hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty -1"), { description = "Terminal" })
 hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("kitty --class ssh-menu -e ~/.local/bin/ssh-menu.sh"), { description = "SSH Selector" })
-hl.bind("SUPER + ALT + T", hl.dsp.exec_cmd("kitty --class ssh-menu -e ~/.local/bin/ecosystem-ssh.sh"), { description = "Ecosystem SSH Selector" })
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus -w"), { description = "File Manager" })
 hl.bind("SUPER + W", hl.dsp.exec_cmd("google-chrome-stable"), { description = "Browser" })
 hl.bind("SUPER + U", hl.dsp.exec_cmd("sh -c 'pkill -9 chrome; sleep 0.1; google-chrome-stable --new-window \"https://fr.wikipedia.org\" \"https://docs.google.com\" \"https://www.google.com/search?q=les+oiseaux\"'"), { description = "Reopen Google Chrome with 3 tabs" })
@@ -16,7 +15,6 @@ hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region --freeze --clipboard-only")
 hl.bind("SUPER + X", hl.dsp.exec_cmd("dictate"), { description = "Dictation (Whisper)" })
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a"), { desc = "Color picker" })
 hl.bind("SUPER + H", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/hotspot.sh"), { desc = "Launch Hotspot" })
-hl.bind("SUPER + SHIFT + H", hl.dsp.exec_cmd("~/.local/bin/ecosystem-share.sh"), { desc = "Ecosystem Handoff (Share Clipboard)" })
 
 -- Zoom & Screen
 hl.bind("SUPER + Z", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/cursor_zoom.sh up"))
