@@ -17,11 +17,6 @@
   # Mime applications association
   xdg.configFile."mimeapps.list".source = ../files/mimeapps.list;
 
-  # KDE Connect service
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
 
   # GTK Theme & Icons
   gtk = {
