@@ -7,6 +7,26 @@
   # Noctalia configuration
   xdg.configFile."noctalia/config.toml".source = ../files/noctalia/config.toml;
 
+  # KDE Connect service
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
+
+  # GTK Theme & Icons
+  gtk = {
+    enable = true;
+    gtk4.theme = null;
+    iconTheme = {
+      name = "WhiteSur-dark";
+      package = pkgs.whitesur-icon-theme;
+    };
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+  };
+
   # User packages
   home.packages = with pkgs; [
     # Applications
