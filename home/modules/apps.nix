@@ -34,10 +34,9 @@
 
   # User packages
   home.packages = with pkgs; [
-    # Applications
+    # App
     google-chrome
     discord
-    spotify
     bitwarden-desktop
     qbittorrent
     feh
