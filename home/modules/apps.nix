@@ -73,7 +73,6 @@
 
     # ── Wayland / Hyprland Utilities ────────────────
     hyprpicker
-    hyprshot
     wlsunset
     gpu-screen-recorder
     libnotify
