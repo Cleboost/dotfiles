@@ -63,7 +63,7 @@
     isNormalUser = true;
     description = "Cleboost";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" ];
   };
 
   # NixOS state version
