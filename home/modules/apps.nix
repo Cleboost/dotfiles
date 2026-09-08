@@ -59,6 +59,7 @@
     eza
     fastfetch
     btop
+    nvd
     ripgrep
     fd
     jq

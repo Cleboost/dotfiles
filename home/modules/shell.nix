@@ -11,11 +11,14 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
-      please  = "sudo";
-      ls      = "eza --icons --group-directories-first";
-      ll      = "eza -alF --icons --group-directories-first";
-      clear   = "printf '\\033[2J\\033[3J\\033[1;1H' && fastfetch-random";
+      rebuild       = "old=$(readlink -f /run/current-system) && sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain && nvd diff $old /run/current-system";
+      update        = "old=$(readlink -f /run/current-system) && nix flake update --flake /home/cleboost/dotfiles && sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain && nvd diff $old /run/current-system";
+      check-updates = "nix flake update --flake /home/cleboost/dotfiles && nixos-rebuild build --flake /home/cleboost/dotfiles#cleboost-brain && nvd diff /run/current-system ./result && rm -f ./result";
+      check-diff    = "nvd diff (ls -dv /nix/var/nix/profiles/system-*-link | tail -n 2 | head -n 1) /run/current-system";
+      please        = "sudo";
+      ls            = "eza --icons --group-directories-first";
+      ll            = "eza -alF --icons --group-directories-first";
+      clear         = "printf '\\033[2J\\033[3J\\033[1;1H' && fastfetch-random";
     };
     interactiveShellInit = ''
       set -g fish_greeting
