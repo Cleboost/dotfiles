@@ -9,26 +9,32 @@ update_workspaces() {
     fi
 
     internal=$(echo "$monitors_json" | jq -r '.[] | select(.name | startswith("eDP") or startswith("LVDS")) | .name' | head -n 1)
-    mapfile -t externals < <(echo "$monitors_json" | jq -r '.[] | select(.name | startswith("eDP") or startswith("LVDS") | not) | .name' | sort)
+    # Sort external monitors by physical horizontal position (X coordinate)
+    mapfile -t externals < <(echo "$monitors_json" | jq -r '[.[] | select(.name | startswith("eDP") or startswith("LVDS") | not)] | sort_by(.x) | .[].name')
 
     {
         echo "# Generated dynamically by manage_workspaces.sh"
         
         if (( ${#externals[@]} >= 2 )); then
-            ext1="${externals[0]}"
-            ext2="${externals[1]}"
+            # externals[0] = Left monitor (x=0)
+            # externals[1] = Central/Main monitor (x=1920)
+            left_monitor="${externals[0]}"
+            center_monitor="${externals[1]}"
             
+            # Central monitor: Workspaces 1 to 10
             for w in {1..10}; do
-                echo "workspace = $w, monitor:$ext1, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
+                echo "workspace = $w, monitor:$center_monitor, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
             done
+            # Left monitor: Workspaces 11 to 20
+            for w in {11..20}; do
+                echo "workspace = $w, monitor:$left_monitor, default:$([[ $w -eq 11 ]] && echo "true" || echo "false")"
+            done
+            # Laptop monitor (right): Workspaces 21 to 30
             if [[ -n "$internal" ]]; then
-                for w in {11..20}; do
-                    echo "workspace = $w, monitor:$internal, default:$([[ $w -eq 11 ]] && echo "true" || echo "false")"
+                for w in {21..30}; do
+                    echo "workspace = $w, monitor:$internal, default:$([[ $w -eq 21 ]] && echo "true" || echo "false")"
                 done
             fi
-            for w in {21..30}; do
-                echo "workspace = $w, monitor:$ext2, default:$([[ $w -eq 21 ]] && echo "true" || echo "false")"
-            done
             
         elif (( ${#externals[@]} == 1 )); then
             ext="${externals[0]}"
