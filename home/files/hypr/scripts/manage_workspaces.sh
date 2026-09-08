@@ -58,6 +58,31 @@ update_workspaces() {
     } > "$CONFIG_PATH"
 
     hyprctl reload >/dev/null
+
+    # Explicitly migrate any already-open workspaces to their assigned monitors
+    if (( ${#externals[@]} >= 2 )); then
+        for w in {1..10}; do
+            hyprctl dispatch moveworkspacetomonitor "$w $center_monitor" >/dev/null 2>&1
+        done
+        for w in {11..20}; do
+            hyprctl dispatch moveworkspacetomonitor "$w $left_monitor" >/dev/null 2>&1
+        done
+        if [[ -n "$internal" ]]; then
+            for w in {21..30}; do
+                hyprctl dispatch moveworkspacetomonitor "$w $internal" >/dev/null 2>&1
+            done
+        fi
+    elif (( ${#externals[@]} == 1 )); then
+        for w in {1..10}; do
+            hyprctl dispatch moveworkspacetomonitor "$w $ext" >/dev/null 2>&1
+        done
+        if [[ -n "$internal" ]]; then
+            for w in {11..20}; do
+                hyprctl dispatch moveworkspacetomonitor "$w $internal" >/dev/null 2>&1
+            done
+        fi
+    fi
+
     notify-send -a "Hyprland" -i "display" "Workspaces réorganisés" "Centre (1-10) • Gauche (11-20) • Portable (21-30)" -t 3000
 }
 
