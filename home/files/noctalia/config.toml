@@ -144,7 +144,7 @@ reserve_space      = true
 capsule            = false
 
 start  = ["cpu", "temp", "ram", "workspaces"]
-center = ["media", "audio_visualizer"]
+center = ["media", "fan-control"]
 end    = [
     "cat",
     "recorder",
@@ -156,9 +156,9 @@ end    = [
 
 # ── Bar Widgets ───────────────────────────────────────────────────────────────
 
-[widget.audio_visualizer]
-capsule        = true
-show_when_idle = true
+[widget.fan-control]
+type       = "cleboost/asus-fans-controller-ec:fan-control"
+show_label = true
 
 [widget.cat]
 type          = "noctalia/bongocat:cat"
@@ -323,7 +323,8 @@ enabled = [
     "cleboost/bitwarden",
     "radimous/prismlauncher-instances",
     "cleboost/zed-provider",
-    "cleboost/jetbrains-provider"
+    "cleboost/jetbrains-provider",
+    "cleboost/asus-fans-controller-ec"
 ]
 
 [[plugins.source]]
