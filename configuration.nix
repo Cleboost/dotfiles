@@ -27,8 +27,8 @@
 
   # Raccourcis pour rebuild et màj
   environment.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles-nixos#cleboost-brain";
-    update  = "nix flake update --flake /home/cleboost/dotfiles-nixos && sudo nixos-rebuild switch --flake /home/cleboost/dotfiles-nixos#cleboost-brain";
+    rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
+    update  = "nix flake update --flake /home/cleboost/dotfiles && sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
   };
 
   # Démarrage EFI systemd-boot & Noyau le plus récent

@@ -11,7 +11,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles-nixos#cleboost-brain";
+      rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
       please  = "sudo";
       ls      = "eza --icons --group-directories-first";
       ll      = "eza -alF --icons --group-directories-first";
