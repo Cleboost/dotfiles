@@ -44,7 +44,7 @@
     inputs.antigravity.packages.${pkgs.system}.google-antigravity-ide
 
     # ── Daily Applications ──────────────────────────
-    firefox
+    google-chrome
     discord
     nautilus
     inputs.fastpotify.packages.${pkgs.system}.default
