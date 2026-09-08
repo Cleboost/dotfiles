@@ -24,9 +24,21 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     gamescopeSession.enable = true;
+    extraPackages = with pkgs; [
+      gamemode
+      mangohud
+    ];
     extraCompatPackages = with pkgs; [
       proton-ge-bin # Custom GloriousEggroll Proton build for wide game compatibility
     ];
+    package = pkgs.steam.override (prev: {
+      extraLibraries = pkgs: [
+        pkgs.gamemode.lib
+        pkgs.pkgsi686Linux.gamemode.lib
+        pkgs.mangohud
+        pkgs.pkgsi686Linux.mangohud
+      ] ++ (if prev ? extraLibraries then prev.extraLibraries pkgs else [ ]);
+    });
   };
 
   # Gaming performance utilities
