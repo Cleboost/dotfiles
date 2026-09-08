@@ -46,6 +46,7 @@
     # ── Daily Applications ──────────────────────────
     firefox
     discord
+    nautilus
     inputs.fastpotify.packages.${pkgs.system}.default
     bitwarden-desktop
     qbittorrent
