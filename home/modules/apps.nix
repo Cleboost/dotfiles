@@ -29,6 +29,10 @@
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
+    cursorTheme = {
+      name = "cleboost-cursor";
+      size = 18;
+    };
   };
 
   # User applications and packages
