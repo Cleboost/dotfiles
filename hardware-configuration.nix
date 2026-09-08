@@ -24,6 +24,13 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  # Games SSD (500GB)
+  fileSystems."/mnt/games" =
+    { device = "/dev/disk/by-uuid/4d78365a-ea4b-4a67-ac44-65ce633b82ec";
+      fsType = "ext4";
+      options = [ "defaults" "noatime" ];
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
