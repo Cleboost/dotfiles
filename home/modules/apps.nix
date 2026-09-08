@@ -40,7 +40,7 @@
     inputs.antigravity.packages.${pkgs.system}.google-antigravity-ide
 
     # ── Daily Applications ──────────────────────────
-    google-chrome
+    firefox
     discord
     inputs.fastpotify.packages.${pkgs.system}.default
     bitwarden-desktop
