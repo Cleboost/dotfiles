@@ -39,6 +39,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # V4L2 Loopback virtual camera (for scrcpy / phone webcam)
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+  boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback video_nr=20 card_label="Phone Camera" exclusive_caps=1
+  '';
+
   # Networking
   networking.hostName = "cleboost-brain";
   networking.networkmanager.enable = true;
