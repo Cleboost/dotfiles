@@ -58,6 +58,7 @@ update_workspaces() {
     } > "$CONFIG_PATH"
 
     hyprctl reload >/dev/null
+    notify-send -a "Hyprland" -i "display" "Workspaces réorganisés" "Centre (1-10) • Gauche (11-20) • Portable (21-30)" -t 3000
 }
 
 if [[ "$1" == "--once" ]]; then
