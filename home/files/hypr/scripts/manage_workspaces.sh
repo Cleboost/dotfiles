@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG_PATH="$HOME/.config/hypr/workspaces_rules.lua"
+CONFIG_PATH="$HOME/.config/hypr/workspaces.conf"
 
 update_workspaces() {
     monitors_json=$(hyprctl monitors -j)
@@ -8,70 +8,45 @@ update_workspaces() {
         return
     fi
 
-    # Sort all active monitors from left to right (x position, then y)
-    mapfile -t monitors < <(echo "$monitors_json" | jq -r 'sort_by(.x, .y)[] | .name')
-    num_monitors=${#monitors[@]}
-
-    if (( num_monitors == 0 )); then
-        return
-    fi
+    internal=$(echo "$monitors_json" | jq -r '.[] | select(.name | startswith("eDP") or startswith("LVDS")) | .name' | head -n 1)
+    mapfile -t externals < <(echo "$monitors_json" | jq -r '.[] | select(.name | startswith("eDP") or startswith("LVDS") | not) | .name' | sort)
 
     {
-        echo "-- Generated dynamically by manage_workspaces.sh"
-
-        if (( num_monitors == 1 )); then
-            mon="${monitors[0]}"
-            for w in {1..30}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$mon\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
-            done
-        elif (( num_monitors == 2 )); then
-            mon1="${monitors[0]}"
-            mon2="${monitors[1]}"
+        echo "# Generated dynamically by manage_workspaces.sh"
+        
+        if (( ${#externals[@]} >= 2 )); then
+            ext1="${externals[0]}"
+            ext2="${externals[1]}"
+            
             for w in {1..10}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$mon1\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
+                echo "workspace = $w, monitor:$ext1, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
             done
-            for w in {11..20}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$mon2\", default = $([[ $w -eq 11 ]] && echo "true" || echo "false") })"
-            done
-            for w in {21..30}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$mon2\", default = false })"
-            done
-        elif (( num_monitors == 3 )); then
-            left="${monitors[0]}"
-            center="${monitors[1]}"
-            right="${monitors[2]}"
-
-            # Center (principal): 1..10
-            for w in {1..10}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$center\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
-            done
-            # Left: 11..20
-            for w in {11..20}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$left\", default = $([[ $w -eq 11 ]] && echo "true" || echo "false") })"
-            done
-            # Right: 21..30
-            for w in {21..30}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$right\", default = $([[ $w -eq 21 ]] && echo "true" || echo "false") })"
-            done
-        else
-            center_idx=$(( num_monitors / 2 ))
-            center="${monitors[$center_idx]}"
-            for w in {1..10}; do
-                echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$center\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
-            done
-
-            block=1
-            for i in "${!monitors[@]}"; do
-                if (( i == center_idx )); then
-                    continue
-                fi
-                mon="${monitors[$i]}"
-                start_w=$(( block * 10 + 1 ))
-                end_w=$(( (block + 1) * 10 ))
-                for (( w = start_w; w <= end_w; w++ )); do
-                    echo "hl.workspace_rule({ workspace = \"$w\", monitor = \"$mon\", default = $([[ $w -eq $start_w ]] && echo "true" || echo "false") })"
+            if [[ -n "$internal" ]]; then
+                for w in {11..20}; do
+                    echo "workspace = $w, monitor:$internal, default:$([[ $w -eq 11 ]] && echo "true" || echo "false")"
                 done
-                ((block++))
+            fi
+            for w in {21..30}; do
+                echo "workspace = $w, monitor:$ext2, default:$([[ $w -eq 21 ]] && echo "true" || echo "false")"
+            done
+            
+        elif (( ${#externals[@]} == 1 )); then
+            ext="${externals[0]}"
+            for w in {1..10}; do
+                echo "workspace = $w, monitor:$ext, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
+            done
+            if [[ -n "$internal" ]]; then
+                for w in {11..20}; do
+                    echo "workspace = $w, monitor:$internal, default:$([[ $w -eq 11 ]] && echo "true" || echo "false")"
+                done
+                for w in {21..30}; do
+                    echo "workspace = $w, monitor:$ext"
+                done
+            fi
+        else
+            target="${internal:-$(echo "$monitors_json" | jq -r '.[0].name')}"
+            for w in {1..30}; do
+                echo "workspace = $w, monitor:$target, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
             done
         fi
     } > "$CONFIG_PATH"
