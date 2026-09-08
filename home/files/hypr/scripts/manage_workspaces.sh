@@ -72,6 +72,16 @@ update_workspaces() {
                 hyprctl dispatch moveworkspacetomonitor "$w $internal" >/dev/null 2>&1
             done
         fi
+        # Ensure default initial workspaces are focused on each screen
+        current_active="$(hyprctl activeworkspace -j | jq -r '.id')"
+        hyprctl dispatch focusmonitor "$left_monitor" >/dev/null 2>&1
+        hyprctl dispatch workspace 11 >/dev/null 2>&1
+        if [[ -n "$internal" ]]; then
+            hyprctl dispatch focusmonitor "$internal" >/dev/null 2>&1
+            hyprctl dispatch workspace 21 >/dev/null 2>&1
+        fi
+        hyprctl dispatch focusmonitor "$center_monitor" >/dev/null 2>&1
+        hyprctl dispatch workspace "${current_active:-1}" >/dev/null 2>&1
     elif (( ${#externals[@]} == 1 )); then
         for w in {1..10}; do
             hyprctl dispatch moveworkspacetomonitor "$w $ext" >/dev/null 2>&1
@@ -80,6 +90,9 @@ update_workspaces() {
             for w in {11..20}; do
                 hyprctl dispatch moveworkspacetomonitor "$w $internal" >/dev/null 2>&1
             done
+            hyprctl dispatch focusmonitor "$internal" >/dev/null 2>&1
+            hyprctl dispatch workspace 11 >/dev/null 2>&1
+            hyprctl dispatch focusmonitor "$ext" >/dev/null 2>&1
         fi
     fi
 
