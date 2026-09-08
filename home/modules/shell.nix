@@ -30,6 +30,7 @@
       ls            = "eza --icons --group-directories-first";
       ll            = "eza -alF --icons --group-directories-first";
       clear         = "printf '\\033[2J\\033[3J\\033[1;1H' && fastfetch-random";
+      phonecam-start = "scrcpy --video-source=camera --camera-facing=back --v4l2-sink=/dev/video20 --no-video-playback";
     };
     interactiveShellInit = ''
       set -g fish_greeting
