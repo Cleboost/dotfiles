@@ -14,7 +14,6 @@
   xdg.configFile."hypr/hyprlock".source = ../files/hypr/hyprlock;
   xdg.configFile."hypr/scripts".source = ../files/hypr/scripts;
   xdg.configFile."hypr/workspaces.conf".source = ../files/hypr/workspaces.conf;
-  xdg.configFile."hypr/noctalia.conf".source = ../files/hypr/noctalia.conf;
   xdg.configFile."hypr/move-special.sh".source = ../files/hypr/move-special.sh;
 
   # User custom scripts into ~/.local/bin
