@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Zed editor configuration
@@ -17,7 +17,6 @@
   # Mime applications association
   xdg.configFile."mimeapps.list".source = ../files/mimeapps.list;
 
-
   # GTK Theme & Icons
   gtk = {
     enable = true;
@@ -32,18 +31,34 @@
     };
   };
 
-  # User packages
+  # Applications et paquets utilisateur
   home.packages = with pkgs; [
-    # App
+    # ── Écrans & Éditeurs ───────────────────────────
+    zed-editor
+    code-cursor
+    inputs.antigravity.packages.${pkgs.system}.google-antigravity-cli
+    inputs.antigravity.packages.${pkgs.system}.google-antigravity-ide
+
+    # ── Applications Quotidiennes ───────────────────
     google-chrome
     discord
+    spotify
     bitwarden-desktop
     qbittorrent
     feh
     mpv
 
-    # Outils CLI & Développements
+    # ── Outils Développeur & Runtimes ──────────────
+    bun
+    nodejs_22
+    rustup
+    gcc
+    gnumake
+
+    # ── Utilitaires CLI & Terminal ──────────────────
     eza
+    fastfetch
+    btop
     ripgrep
     fd
     jq
@@ -55,14 +70,7 @@
     unzip
     rsync
 
-    # Dev Runtimes
-    bun
-    nodejs_22
-    rustup
-    gcc
-    gnumake
-
-    # Wayland tools
+    # ── Utilitaires Wayland / Hyprland ───────────────
     hyprpicker
     hyprshot
     wlsunset

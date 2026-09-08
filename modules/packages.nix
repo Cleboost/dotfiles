@@ -17,39 +17,14 @@
   # Netbird & Services
   services.netbird.enable = true;
 
-  # Paquets installés au niveau du système
+  # Paquets d'administration et utilitaires système de base
   environment.systemPackages = with pkgs; [
-    # Applications graphiques & éditeurs
-    zed-editor
-    code-cursor
-    discord
-    google-chrome
-
-    # Antigravity CLI & IDE
-    inputs.antigravity.packages.${pkgs.system}.google-antigravity-cli
-    inputs.antigravity.packages.${pkgs.system}.google-antigravity-ide
-
-    # Terminal & Outils CLI essentiels
-    kitty
     git
     nano
-    fastfetch
-    btop
-
-    # Utilitaires Wayland & Système
-    wl-clipboard
-    brightnessctl
-    playerctl
     pciutils
     usbutils
-    jq
-    socat
-    netcat-openbsd
-    fzf
-    eza
-    ripgrep
-    fd
-    rsync
-    age
+    brightnessctl
+    playerctl
+    wl-clipboard
   ];
 }
