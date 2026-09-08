@@ -42,7 +42,7 @@
     # ── Daily Applications ──────────────────────────
     google-chrome
     discord
-    spotify
+    inputs.fastpotify.packages.${pkgs.system}.default
     bitwarden-desktop
     qbittorrent
     feh

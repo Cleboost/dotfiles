@@ -28,9 +28,14 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Fastpotify (native fast Spotify client)
+    fastpotify = {
+      url = "github:crmne/fastpotify";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, ... }@inputs: {
     nixosConfigurations.cleboost-brain = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
