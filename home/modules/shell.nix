@@ -59,8 +59,7 @@
   xdg.configFile."fastfetch/config.jsonc".source = ../files/fastfetch/config.jsonc;
   xdg.dataFile."fastfetch/images".source = ../files/fastfetch/images;
 
-  # Kitty extra files (search scripts, themes)
+  # Kitty extra files (search scripts)
   xdg.configFile."kitty/search.py".source = ../files/kitty/search.py;
   xdg.configFile."kitty/scroll_mark.py".source = ../files/kitty/scroll_mark.py;
-  xdg.configFile."kitty/themes".source = ../files/kitty/themes;
 }
