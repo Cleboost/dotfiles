@@ -1,4 +1,4 @@
-# Configuration principale NixOS pour Cleboost
+# Main NixOS system configuration for Cleboost
 { config, pkgs, ... }:
 
 {
@@ -10,7 +10,7 @@
     ./modules/packages.nix
   ];
 
-  # Configuration du gestionnaire de paquets Nix et des Flakes
+  # Nix package manager settings and Flakes configuration
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
@@ -25,22 +25,22 @@
     ];
   };
 
-  # Raccourcis pour rebuild et màj
+  # Shell aliases for system rebuild and updates
   environment.shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
     update  = "nix flake update --flake /home/cleboost/dotfiles && sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
   };
 
-  # Démarrage EFI systemd-boot & Noyau le plus récent
+  # EFI systemd-boot & latest Linux kernel
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Réseau
+  # Networking
   networking.hostName = "cleboost-brain";
   networking.networkmanager.enable = true;
 
-  # Localisation & Fuseau horaire
+  # Localization & Timezone
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "fr_FR.UTF-8";
   i18n.extraLocaleSettings = {
@@ -55,7 +55,7 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # Utilisateur principal
+  # Primary user account
   users.users.cleboost = {
     isNormalUser = true;
     description = "Cleboost";
@@ -63,6 +63,6 @@
     extraGroups = [ "networkmanager" "wheel" "video" "input" ];
   };
 
-  # Version d'état NixOS
+  # NixOS state version
   system.stateVersion = "25.05";
 }

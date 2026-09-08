@@ -1,4 +1,4 @@
-# Module Noctalia Shell & Noctalia Greeter (Écran de login / déverrouillage)
+# Noctalia Shell & Noctalia Greeter (Login / Display Manager) Module
 { config, pkgs, ... }:
 
 {
@@ -8,7 +8,7 @@
     recommendedServices.enable = true; # NetworkManager, Bluetooth, UPower, power-profiles
   };
 
-  # Noctalia Greeter (écran de connexion graphique avec Greetd)
+  # Noctalia Greeter (graphical login screen via Greetd)
   programs.noctalia-greeter = {
     enable = true;
     passwordless-sync-users = [ "cleboost" ];
@@ -18,7 +18,7 @@
     };
   };
 
-  # Service de session greetd
+  # Greetd session service
   services.greetd = {
     enable = true;
     settings = {
@@ -28,7 +28,7 @@
     };
   };
 
-  # Utilisateur système pour le greeter
+  # Greeter system user
   users.users.greeter = {
     isSystemUser = true;
     group = "greeter";

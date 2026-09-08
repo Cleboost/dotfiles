@@ -1,21 +1,21 @@
-# Module Hyprland & Environnement de bureau
+# Hyprland & Desktop Environment Module
 { config, pkgs, ... }:
 
 {
-  # Gestionnaire de fenêtres Hyprland
+  # Hyprland window manager
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
 
-  # Clavier AZERTY pour X11 / Wayland et la console
+  # AZERTY keyboard layout for X11 / Wayland and console
   services.xserver.xkb = {
     layout = "fr";
     variant = "";
   };
   console.keyMap = "fr";
 
-  # Accès aux périphériques et polkit
+  # Hardware access & polkit
   security.polkit.enable = true;
 }
