@@ -17,6 +17,9 @@
   # Mime applications association
   xdg.configFile."mimeapps.list".source = ../files/mimeapps.list;
 
+  # MangoHud configuration
+  xdg.configFile."MangoHud/MangoHud.conf".source = ../files/mangohud/MangoHud.conf;
+
   # GTK Theme & Icons
   gtk = {
     enable = true;
