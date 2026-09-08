@@ -52,6 +52,8 @@
     qbittorrent
     feh
     mpv
+    scrcpy
+    android-tools
 
     # ── Developer Tools & Runtimes ──────────────────
     bun
