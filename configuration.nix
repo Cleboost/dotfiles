@@ -8,6 +8,7 @@
     ./modules/desktop.nix
     ./modules/noctalia.nix
     ./modules/packages.nix
+    ./modules/gaming.nix
   ];
 
   # Nix package manager settings and Flakes configuration
