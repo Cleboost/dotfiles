@@ -1,5 +1,5 @@
 {
-  description = "Configuration NixOS modulaire et Home Manager de Cleboost";
+  description = "Cleboost's modular NixOS and Home Manager configuration";
 
   inputs = {
     # Nixpkgs unstable (rolling release)
@@ -17,7 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Noctalia Greeter (Écran de déverrouillage / login)
+    # Noctalia Greeter (Lock screen / display manager)
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +49,7 @@
       ];
     };
 
-    # Alias nixos vers cleboost-brain pour compatibilité
+    # Alias nixos -> cleboost-brain for compatibility
     nixosConfigurations.nixos = self.nixosConfigurations.cleboost-brain;
   };
 }

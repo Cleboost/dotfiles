@@ -31,15 +31,15 @@
     };
   };
 
-  # Applications et paquets utilisateur
+  # User applications and packages
   home.packages = with pkgs; [
-    # ── Écrans & Éditeurs ───────────────────────────
+    # ── Screens & Editors ───────────────────────────
     zed-editor
     code-cursor
     inputs.antigravity.packages.${pkgs.system}.google-antigravity-cli
     inputs.antigravity.packages.${pkgs.system}.google-antigravity-ide
 
-    # ── Applications Quotidiennes ───────────────────
+    # ── Daily Applications ──────────────────────────
     google-chrome
     discord
     spotify
@@ -48,14 +48,14 @@
     feh
     mpv
 
-    # ── Outils Développeur & Runtimes ──────────────
+    # ── Developer Tools & Runtimes ──────────────────
     bun
     nodejs_22
     rustup
     gcc
     gnumake
 
-    # ── Utilitaires CLI & Terminal ──────────────────
+    # ── CLI & Terminal Utilities ────────────────────
     eza
     fastfetch
     btop
@@ -70,7 +70,7 @@
     unzip
     rsync
 
-    # ── Utilitaires Wayland / Hyprland ───────────────
+    # ── Wayland / Hyprland Utilities ────────────────
     hyprpicker
     hyprshot
     wlsunset
