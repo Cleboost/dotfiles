@@ -14,19 +14,16 @@
     # Noctalia v5 Shell
     noctalia = {
       url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Noctalia Greeter (Lock screen / display manager)
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Antigravity (IDE & CLI)
     antigravity = {
       url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Fastpotify (native fast Spotify client)
