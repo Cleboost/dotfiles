@@ -2,6 +2,9 @@
 { config, pkgs, ... }:
 
 {
+  # Early KMS for AMD iGPU to ensure display is ready before greetd (avoids race condition with dock stations)
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   # Display driver
   services.xserver.videoDrivers = [ "nvidia" ];
 
