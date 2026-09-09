@@ -28,6 +28,9 @@
     };
   };
 
+  # Prevent greetd from instantly failing with start-limit-hit if display isn't ready
+  systemd.services.greetd.serviceConfig.RestartSec = "1s";
+
   # Greeter system user
   users.users.greeter = {
     isSystemUser = true;
