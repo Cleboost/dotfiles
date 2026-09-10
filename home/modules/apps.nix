@@ -20,6 +20,9 @@
   # MangoHud configuration
   xdg.configFile."MangoHud/MangoHud.conf".source = ../files/mangohud/MangoHud.conf;
 
+  # qBittorrent theme
+  xdg.configFile."qBittorrent/themes/catppuccin-mocha.qbtheme".source = ../files/qbittorrent/catppuccin-mocha.qbtheme;
+
   # GTK Theme & Icons
   gtk = {
     enable = true;
