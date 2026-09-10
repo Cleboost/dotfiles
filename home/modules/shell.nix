@@ -7,6 +7,12 @@
     enableFishIntegration = true;
   };
 
+  # Direnv with nix-direnv integration (instant dev environments per project)
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   # Fish shell
   programs.fish = {
     enable = true;

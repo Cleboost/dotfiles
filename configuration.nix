@@ -56,10 +56,32 @@
     update  = "nix flake update --flake /home/cleboost/dotfiles && sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
   };
 
-  # EFI systemd-boot & latest Linux kernel
+  # Boot optimizations & /tmp cleanup
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.tmp.cleanOnBoot = true;
+
+  # ZRAM swap (compressed in-RAM swap, prevents out-of-memory stalls without wearing SSD)
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
+  # Kernel memory & gaming responsiveness tuning
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180;             # Optimal with zram to favor compressed RAM over disk cache eviction
+    "vm.watermark_boost_factor" = 0;   # Reduces stuttering and latency spikes under memory pressure
+    "vm.watermark_scale_factor" = 125; # Proactively reclaim memory to prevent sudden drops
+    "vm.max_map_count" = 2147483642;   # Required for modern high-performance games and Proton
+  };
+
+  # Bound systemd journal logs to prevent disk bloat
+  services.journald.settings.Journal = {
+    SystemMaxUse = "500M";
+    MaxRetentionSec = "1month";
+  };
 
   # V4L2 Loopback virtual camera (for scrcpy / phone webcam)
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
