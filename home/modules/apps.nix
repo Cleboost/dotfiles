@@ -71,6 +71,7 @@
     gnumake
 
     # ── CLI & Terminal Utilities ────────────────────
+    gh
     eza
     fastfetch
     btop
@@ -87,6 +88,9 @@
     rsync
 
     # ── Wayland / Hyprland Utilities ────────────────
+    brightnessctl
+    playerctl
+    wl-clipboard
     hyprpicker
     wlsunset
     gpu-screen-recorder

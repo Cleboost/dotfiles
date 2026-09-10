@@ -40,9 +40,5 @@
     nano
     pciutils
     usbutils
-    brightnessctl
-    playerctl
-    wl-clipboard
-    gh
   ];
 }
