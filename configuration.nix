@@ -26,6 +26,28 @@
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
+    auto-optimise-store = true;
+  };
+
+  # Nettoyage automatique : ne conserver que les 10 dernières versions du système
+  systemd.services.nix-clean-generations = {
+    description = "Garder uniquement les 10 dernières générations NixOS et nettoyer le store";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.writeShellScript "nix-keep-10-generations" ''
+        ${pkgs.nix}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +10
+        ${pkgs.nix}/bin/nix-collect-garbage
+      ''}";
+    };
+  };
+
+  systemd.timers.nix-clean-generations = {
+    description = "Timer hebdomadaire de nettoyage des générations NixOS (> 10)";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
   };
 
   # Shell aliases for system rebuild and updates
