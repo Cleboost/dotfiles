@@ -29,9 +29,9 @@
     auto-optimise-store = true;
   };
 
-  # Nettoyage automatique : ne conserver que les 10 dernières versions du système
+  # Automatic cleanup: retain only the last 10 generations of the system
   systemd.services.nix-clean-generations = {
-    description = "Garder uniquement les 10 dernières générations NixOS et nettoyer le store";
+    description = "Retain only the last 10 NixOS generations and garbage collect unreferenced store paths";
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.writeShellScript "nix-keep-10-generations" ''
@@ -42,7 +42,7 @@
   };
 
   systemd.timers.nix-clean-generations = {
-    description = "Timer hebdomadaire de nettoyage des générations NixOS (> 10)";
+    description = "Weekly timer to clean NixOS generations beyond the latest 10";
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnCalendar = "weekly";
