@@ -43,9 +43,11 @@
 
   # User applications and packages
   home.packages = with pkgs; [
-    # ── Screens & Editors ───────────────────────────
+    # ── Dev IA / IDE ───────────────────────────
     zed-editor
     code-cursor
+    jetbrains.idea
+    jetbrains.rust-rover
     inputs.antigravity.packages.${pkgs.system}.google-antigravity-cli
     inputs.antigravity.packages.${pkgs.system}.google-antigravity-ide
 
