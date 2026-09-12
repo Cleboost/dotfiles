@@ -44,19 +44,19 @@
   # User applications and packages
   home.packages = with pkgs; [
     # ── Dev IA / IDE ───────────────────────────
-    inputs.chatgpt-desktop.packages.${pkgs.system}.default
+    inputs.chatgpt-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
     zed-editor
     code-cursor
     jetbrains.idea
     jetbrains.rust-rover
-    inputs.antigravity.packages.${pkgs.system}.google-antigravity-cli
-    inputs.antigravity.packages.${pkgs.system}.google-antigravity-ide
+    inputs.antigravity.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
+    inputs.antigravity.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
 
     # ── Daily Applications ──────────────────────────
     google-chrome
     discord
     nautilus
-    inputs.fastpotify.packages.${pkgs.system}.default
+    inputs.fastpotify.packages.${pkgs.stdenv.hostPlatform.system}.default
     bitwarden-desktop
     qbittorrent
     evince
