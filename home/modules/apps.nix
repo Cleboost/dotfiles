@@ -64,6 +64,7 @@
     scrcpy
     android-tools
     prismlauncher
+    blockbench
 
     # ── Developer Tools & Runtimes ──────────────────
     bun
