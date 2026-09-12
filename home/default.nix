@@ -9,6 +9,7 @@
     ./modules/shell.nix
     ./modules/hyprland.nix
     ./modules/apps.nix
+    ./modules/dev.nix
   ];
 
   # Let Home Manager install and manage itself

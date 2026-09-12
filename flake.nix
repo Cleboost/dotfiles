@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Noctalia v5 Shell
+    # Noctalia v5 Shell (Uses noctalia.cachix.org binary cache)
     noctalia = {
       url = "github:noctalia-dev/noctalia";
     };
