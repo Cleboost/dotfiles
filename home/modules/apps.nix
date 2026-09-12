@@ -44,6 +44,7 @@
   # User applications and packages
   home.packages = with pkgs; [
     # ── Dev IA / IDE ───────────────────────────
+    inputs.chatgpt-desktop.packages.${pkgs.system}.default
     zed-editor
     code-cursor
     jetbrains.idea
