@@ -117,6 +117,9 @@
     extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" ];
   };
 
+  # Enable running unpatched dynamic binaries (useful for IDE runtimes/tools)
+  programs.nix-ld.enable = true;
+
   # NixOS state version
   system.stateVersion = "25.05";
 }
