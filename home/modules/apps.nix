@@ -58,6 +58,7 @@
     inputs.fastpotify.packages.${pkgs.system}.default
     bitwarden-desktop
     qbittorrent
+    evince
     feh
     mpv
     scrcpy
