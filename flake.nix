@@ -30,9 +30,15 @@
     fastpotify = {
       url = "github:crmne/fastpotify";
     };
+
+    # ChatGPT Desktop (Official OpenAI Linux desktop app repackaged for NixOS/Wayland)
+    chatgpt-desktop = {
+      url = "github:ilysenko/codex-desktop-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, chatgpt-desktop, ... }@inputs: {
     nixosConfigurations.cleboost-brain = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
