@@ -11,9 +11,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Noctalia v5 Shell (Official stable release v5.1.0 with guaranteed binary cache)
+    # Noctalia v5 Shell (Latest commit tracking)
     noctalia = {
-      url = "github:noctalia-dev/noctalia/v5.1.0";
+      url = "github:noctalia-dev/noctalia";
     };
 
     # Noctalia Greeter (Lock screen / display manager)
