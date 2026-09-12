@@ -30,8 +30,6 @@
       '';
     };
     shellAliases = {
-      check-updates = "nix flake update --flake /home/cleboost/dotfiles && nixos-rebuild build --flake /home/cleboost/dotfiles#cleboost-brain && nvd diff /run/current-system ./result && rm -f ./result";
-      check-diff    = "nvd diff (ls -dv /nix/var/nix/profiles/system-*-link | tail -n 2 | head -n 1) /run/current-system";
       clean-generations = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
       please        = "sudo";
       ls            = "eza --icons --group-directories-first";
