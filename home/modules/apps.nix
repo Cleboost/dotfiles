@@ -67,16 +67,6 @@
     prismlauncher
     blockbench
 
-    # ── Developer Tools & Runtimes ──────────────────
-    jdk21
-    maven
-    gradle
-    bun
-    nodejs_22
-    rustup
-    gcc
-    gnumake
-
     # ── CLI & Terminal Utilities ────────────────────
     gh
     eza

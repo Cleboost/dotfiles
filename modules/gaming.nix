@@ -18,6 +18,13 @@
     };
   };
 
+  # Ananicy-cpp auto-nice daemon with CachyOS community gaming & desktop rules
+  services.ananicy = {
+    enable = true;
+    package = pkgs.ananicy-cpp;
+    rulesProvider = pkgs.ananicy-rules-cachyos;
+  };
+
   # Steam & Proton gaming support
   programs.steam = {
     enable = true;

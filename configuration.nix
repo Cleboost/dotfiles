@@ -29,13 +29,23 @@
     auto-optimise-store = true;
   };
 
-  # Automatic cleanup: retain only the last 10 generations of the system
+  # Periodic background optimisation of Nix store
+  nix.optimise.automatic = true;
+
+  # SSD TRIM maintenance
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
+
+  # Automatic cleanup: retain only the last 10 generations of the system and home-manager
   systemd.services.nix-clean-generations = {
     description = "Retain only the last 10 NixOS generations and garbage collect unreferenced store paths";
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.writeShellScript "nix-keep-10-generations" ''
         ${pkgs.nix}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +10
+        ${pkgs.su}/bin/su - cleboost -c '${pkgs.nix}/bin/nix-env --delete-generations +10' || true
         ${pkgs.nix}/bin/nix-collect-garbage
       ''}";
     };
@@ -83,6 +93,12 @@
     MaxRetentionSec = "1month";
   };
 
+  # Bound systemd coredump storage (prevents large crash dumps from gaming/apps)
+  systemd.coredump.settings.Coredump = {
+    Storage = "external";
+    MaxUse = "1G";
+  };
+
   # V4L2 Loopback virtual camera (for scrcpy / phone webcam)
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
   boot.kernelModules = [ "v4l2loopback" ];
@@ -90,9 +106,34 @@
     options v4l2loopback video_nr=20 card_label="Phone Camera" exclusive_caps=1
   '';
 
-  # Networking
-  networking.hostName = "cleboost-brain";
-  networking.networkmanager.enable = true;
+  # Networking & DNS
+  networking = {
+    hostName = "cleboost-brain";
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+    };
+    nameservers = [
+      "1.1.1.1#cloudflare-dns.com"
+      "1.0.0.1#cloudflare-dns.com"
+      "2606:4700:4700::1111#cloudflare-dns.com"
+      "2606:4700:4700::1001#cloudflare-dns.com"
+    ];
+    firewall = {
+      enable = true;
+    };
+  };
+
+  # Fast & secure local DNS resolver with DNS-over-TLS (Cloudflare)
+  services.resolved = {
+    enable = true;
+    settings.Resolve = {
+      DNS = "1.1.1.1#cloudflare-dns.com 1.0.0.1#cloudflare-dns.com 2606:4700:4700::1111#cloudflare-dns.com 2606:4700:4700::1001#cloudflare-dns.com";
+      FallbackDNS = "1.1.1.1 8.8.8.8";
+      DNSOverTLS = "opportunistic";
+      DNSSEC = "allow-downgrade";
+    };
+  };
 
   # Localization & Timezone
   time.timeZone = "Europe/Paris";
