@@ -62,6 +62,7 @@
     mpv
     scrcpy
     android-tools
+    prismlauncher
 
     # ── Developer Tools & Runtimes ──────────────────
     bun
@@ -93,7 +94,8 @@
     wl-clipboard
     hyprpicker
     wlsunset
-    gpu-screen-recorder
     libnotify
+
+    beammp-launcher
   ];
 }

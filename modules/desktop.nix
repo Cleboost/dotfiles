@@ -9,6 +9,9 @@
     xwayland.enable = true;
   };
 
+  # GPU Screen Recorder with setuid/cap wrapper for KMS screen capture
+  programs.gpu-screen-recorder.enable = true;
+
   # AZERTY keyboard layout for X11 / Wayland and console
   services.xserver.xkb = {
     layout = "fr";
