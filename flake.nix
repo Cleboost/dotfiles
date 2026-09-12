@@ -11,9 +11,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Noctalia v5 Shell (Uses noctalia.cachix.org binary cache)
+    # Noctalia v5 Shell (Uses guaranteed pre-built cachix branch)
     noctalia = {
-      url = "github:noctalia-dev/noctalia";
+      url = "github:noctalia-dev/noctalia/cachix";
     };
 
     # Noctalia Greeter (Lock screen / display manager)
