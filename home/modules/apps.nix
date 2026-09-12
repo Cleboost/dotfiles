@@ -67,6 +67,9 @@
     blockbench
 
     # ── Developer Tools & Runtimes ──────────────────
+    jdk21
+    maven
+    gradle
     bun
     nodejs_22
     rustup
