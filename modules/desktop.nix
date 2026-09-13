@@ -19,6 +19,17 @@
   };
   console.keyMap = "fr";
 
+  # Removable storage & file manager integration (USB, Nautilus, trash, mtp)
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
+  boot.supportedFilesystems = [ "exfat" "ntfs" ];
+
+  # Nautilus terminal extension (Open in Kitty via right click)
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "kitty";
+  };
+
   # Hardware access & polkit
   security.polkit.enable = true;
 

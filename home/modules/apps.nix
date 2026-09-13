@@ -23,6 +23,10 @@
   # qBittorrent theme
   xdg.configFile."qBittorrent/themes/catppuccin-mocha.qbtheme".source = ../files/qbittorrent/catppuccin-mocha.qbtheme;
 
+  # Nautilus open-any-terminal French translation ("Ouvrir dans le terminal")
+  xdg.dataFile."locale/fr/LC_MESSAGES/nautilus-open-any-terminal.mo".source =
+    ../files/nautilus/nautilus-open-any-terminal.mo;
+
   # GTK Theme & Icons
   gtk = {
     enable = true;
