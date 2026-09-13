@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: nautilus_open_any_terminal\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Execute in Local {}"
+msgstr "Exécuter dans le terminal"
+
+msgid "Execute in Remote {}"
+msgstr "Exécuter à distance {}"
+
+msgid "Execute in {}"
+msgstr "Exécuter dans le terminal"
+
+msgid "Execute {} in Local {}"
+msgstr "Exécuter {} dans le terminal"
+
+msgid "Execute {} in {}"
+msgstr "Exécuter {} dans le terminal"
+
+msgid "Execute {} in {} via SSH"
+msgstr "Exécuter {} dans le terminal via SSH"
+
+msgid "Open Local {} Here"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Open Local {} in This Directory"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Open Local {} in {}"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Open Remote {} Here"
+msgstr "Ouvrir à distance {} ici"
+
+msgid "Open Remote {} in This Directory"
+msgstr "Ouvrir à distance {} dans ce dossier"
+
+msgid "Open Remote {} in {}"
+msgstr "Ouvrir à distance {} dans {}"
+
+msgid "Open in Local {}"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Open in Remote {}"
+msgstr "Ouvrir à distance {}"
+
+msgid "Open in {}"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Open {} Here"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Open {} in This Directory"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Open {} in {}"
+msgstr "Ouvrir dans le terminal"
+
+msgid "Terminal"
+msgstr "le terminal"
