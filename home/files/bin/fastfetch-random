@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+CACHE_CONF="$HOME/.cache/fastfetch/config.jsonc"
+if [ ! -f "$CACHE_CONF" ]; then
+    fastfetch-update-cache 2>/dev/null || true
+fi
+
 IMG_DIR="$HOME/.local/share/fastfetch/images"
 IMG="$(find -L "$IMG_DIR" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) | shuf -n 1)"
-fastfetch --logo "$IMG" --logo-type kitty --logo-height 18
+
+if [ -f "$CACHE_CONF" ]; then
+    fastfetch -c "$CACHE_CONF" --logo "$IMG" --logo-type kitty --logo-height 18
+else
+    fastfetch --logo "$IMG" --logo-type kitty --logo-height 18
+fi

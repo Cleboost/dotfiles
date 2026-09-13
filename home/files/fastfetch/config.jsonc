@@ -68,11 +68,6 @@
       "keyColor": "34",
     },
     {
-      "type": "terminalfont",
-      "key": " ",
-      "keyColor": "34",
-    },
-    {
       "type": "uptime",
       "key": " ",
       "keyColor": "34",
