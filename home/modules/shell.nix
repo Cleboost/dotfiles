@@ -21,12 +21,14 @@
         set -l old (readlink -f /run/current-system)
         sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain
         and nvd diff $old /run/current-system
+        and fastfetch-update-cache
       '';
       update = ''
         set -l old (readlink -f /run/current-system)
         nix flake update --flake /home/cleboost/dotfiles
         and sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain
         and nvd diff $old /run/current-system
+        and fastfetch-update-cache
       '';
     };
     shellAliases = {

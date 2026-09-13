@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+CACHE_DIR="$HOME/.cache/fastfetch"
+mkdir -p "$CACHE_DIR"
+
+kitty_ver=$(kitty --version 2>/dev/null | awk '{print "kitty", $2}')
+[ -z "$kitty_ver" ] && kitty_ver="kitty"
+
+hypr_ver=$(Hyprland --version 2>/dev/null | head -n 1 | awk '{print "Hyprland", $2, "(Wayland)"}')
+[ -z "$hypr_ver" ] && hypr_ver="Hyprland (Wayland)"
+
+pkg_str=$(fastfetch -s packages --format json 2>/dev/null | jq -r '.[0].result | "\(.nixSystem) (nix-system), \(.nixUser) (nix-user)"')
+[ -z "$pkg_str" ] && pkg_str="nix"
+
+cat << EOF > "$CACHE_DIR/config.jsonc"
+{
+  "\$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty",
+    "height": 18,
+    "padding": {
+      "top": 2
+    }
+  },
+  "display": {
+    "separator": " "
+  },
+  "modules": [
+    "break",
+    "break",
+    "break",
+    {
+      "type": "custom",
+      "format": "\\u001b[90m  \\u001b[31m  \\u001b[32m  \\u001b[33m  \\u001b[34m  \\u001b[35m  \\u001b[36m  \\u001b[37m"
+    },
+    "break",
+    {
+      "type": "title",
+      "keyWidth": 10
+    },
+    "break",
+    {
+      "type": "os",
+      "key": " ",
+      "keyColor": "34"
+    },
+    {
+      "type": "kernel",
+      "key": " ",
+      "keyColor": "34"
+    },
+    {
+      "type": "custom",
+      "key": " ",
+      "keyColor": "34",
+      "format": "$pkg_str"
+    },
+    {
+      "type": "shell",
+      "key": " ",
+      "keyColor": "34"
+    },
+    {
+      "type": "custom",
+      "key": " ",
+      "keyColor": "34",
+      "format": "$kitty_ver"
+    },
+    {
+      "type": "custom",
+      "key": " ",
+      "keyColor": "34",
+      "format": "$hypr_ver"
+    },
+    {
+      "type": "cursor",
+      "key": " ",
+      "keyColor": "34"
+    },
+    {
+      "type": "uptime",
+      "key": " ",
+      "keyColor": "34"
+    },
+    {
+      "type": "datetime",
+      "format": "{1}-{3}-{11}",
+      "key": " ",
+      "keyColor": "34"
+    },
+    {
+      "type": "media",
+      "key": "󰝚 ",
+      "keyColor": "34"
+    },
+    {
+      "type": "player",
+      "key": " ",
+      "keyColor": "34"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "\\u001b[90m  \\u001b[31m  \\u001b[32m  \\u001b[33m  \\u001b[34m  \\u001b[35m  \\u001b[36m  \\u001b[37m"
+    },
+    "break",
+    "break"
+  ]
+}
+EOF
