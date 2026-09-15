@@ -10,7 +10,8 @@ focus_on_activate = false
 honor_restored_maximize = false
 
 autostart = [
-    "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS WLR_DRM_DEVICES LIBVA_DRIVER_NAME __GLX_VENDOR_LIBRARY_NAME GBM_BACKEND NVD_BACKEND",
+    "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS",
+    "gpu-import-env",
     "systemctl --user restart xdg-desktop-portal-umbriel.service xdg-desktop-portal.service",
     "systemctl --user start nixos-fake-graphical-session.target",
     "noctalia",

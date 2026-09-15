@@ -20,13 +20,4 @@ hl.env("XCURSOR_SIZE", "18")
 hl.env("HYPRCURSOR_THEME", "cleboost-cursor")
 hl.env("HYPRCURSOR_SIZE", "18")
 
--- Nvidia Specific (Primary RTX GPU)
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-hl.env("GBM_BACKEND", "nvidia-drm")
-hl.env("__GL_GSYNC_ALLOWED", "1")
-hl.env("NVD_BACKEND", "direct")
-
--- Gaming
-hl.env("MANGOHUD", "1")
-hl.env("MANGOHUD_DLSYM", "1")
+-- PRIME / NVIDIA GPU vars: home/modules/gpu-env.nix (gpu-env.lua + sessionVariables)
