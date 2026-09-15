@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG_PATH="$HOME/.config/hypr/workspaces.conf"
+CONFIG_PATH="$HOME/.config/hypr/workspaces.lua"
 
 update_workspaces() {
     monitors_json=$(hyprctl monitors -j)
@@ -13,7 +13,7 @@ update_workspaces() {
     mapfile -t externals < <(echo "$monitors_json" | jq -r '[.[] | select(.name | startswith("eDP") or startswith("LVDS") | not)] | sort_by(.x) | .[].name')
 
     {
-        echo "# Generated dynamically by manage_workspaces.sh"
+        echo "-- Generated dynamically by manage_workspaces.sh"
         
         if (( ${#externals[@]} >= 2 )); then
             # externals[0] = Left monitor (x=0)
@@ -23,36 +23,36 @@ update_workspaces() {
             
             # Central monitor: Workspaces 1 to 10
             for w in {1..10}; do
-                echo "workspace = $w, monitor:$center_monitor, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
+                echo "hl.workspace_rule({ workspace = $w, monitor = \"$center_monitor\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
             done
             # Left monitor: Workspaces 11 to 20
             for w in {11..20}; do
-                echo "workspace = $w, monitor:$left_monitor, default:$([[ $w -eq 11 ]] && echo "true" || echo "false")"
+                echo "hl.workspace_rule({ workspace = $w, monitor = \"$left_monitor\", default = $([[ $w -eq 11 ]] && echo "true" || echo "false") })"
             done
             # Laptop monitor (right): Workspaces 21 to 30
             if [[ -n "$internal" ]]; then
                 for w in {21..30}; do
-                    echo "workspace = $w, monitor:$internal, default:$([[ $w -eq 21 ]] && echo "true" || echo "false")"
+                    echo "hl.workspace_rule({ workspace = $w, monitor = \"$internal\", default = $([[ $w -eq 21 ]] && echo "true" || echo "false") })"
                 done
             fi
             
         elif (( ${#externals[@]} == 1 )); then
             ext="${externals[0]}"
             for w in {1..10}; do
-                echo "workspace = $w, monitor:$ext, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
+                echo "hl.workspace_rule({ workspace = $w, monitor = \"$ext\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
             done
             if [[ -n "$internal" ]]; then
                 for w in {11..20}; do
-                    echo "workspace = $w, monitor:$internal, default:$([[ $w -eq 11 ]] && echo "true" || echo "false")"
+                    echo "hl.workspace_rule({ workspace = $w, monitor = \"$internal\", default = $([[ $w -eq 11 ]] && echo "true" || echo "false") })"
                 done
                 for w in {21..30}; do
-                    echo "workspace = $w, monitor:$ext"
+                    echo "hl.workspace_rule({ workspace = $w, monitor = \"$ext\" })"
                 done
             fi
         else
             target="${internal:-$(echo "$monitors_json" | jq -r '.[0].name')}"
             for w in {1..30}; do
-                echo "workspace = $w, monitor:$target, default:$([[ $w -eq 1 ]] && echo "true" || echo "false")"
+                echo "hl.workspace_rule({ workspace = $w, monitor = \"$target\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
             done
         fi
     } > "$CONFIG_PATH"
@@ -62,37 +62,37 @@ update_workspaces() {
     # Explicitly migrate any already-open workspaces to their assigned monitors
     if (( ${#externals[@]} >= 2 )); then
         for w in {1..10}; do
-            hyprctl dispatch moveworkspacetomonitor "$w $center_monitor" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$center_monitor\" })" >/dev/null 2>&1
         done
         for w in {11..20}; do
-            hyprctl dispatch moveworkspacetomonitor "$w $left_monitor" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$left_monitor\" })" >/dev/null 2>&1
         done
         if [[ -n "$internal" ]]; then
             for w in {21..30}; do
-                hyprctl dispatch moveworkspacetomonitor "$w $internal" >/dev/null 2>&1
+                hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$internal\" })" >/dev/null 2>&1
             done
         fi
         # Ensure default initial workspaces are focused on each screen
         current_active="$(hyprctl activeworkspace -j | jq -r '.id')"
-        hyprctl dispatch focusmonitor "$left_monitor" >/dev/null 2>&1
-        hyprctl dispatch workspace 11 >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.focus({ monitor = \"$left_monitor\" })" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.focus({ workspace = 11 })" >/dev/null 2>&1
         if [[ -n "$internal" ]]; then
-            hyprctl dispatch focusmonitor "$internal" >/dev/null 2>&1
-            hyprctl dispatch workspace 21 >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.focus({ monitor = \"$internal\" })" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.focus({ workspace = 21 })" >/dev/null 2>&1
         fi
-        hyprctl dispatch focusmonitor "$center_monitor" >/dev/null 2>&1
-        hyprctl dispatch workspace "${current_active:-1}" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.focus({ monitor = \"$center_monitor\" })" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.focus({ workspace = ${current_active:-1} })" >/dev/null 2>&1
     elif (( ${#externals[@]} == 1 )); then
         for w in {1..10}; do
-            hyprctl dispatch moveworkspacetomonitor "$w $ext" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$ext\" })" >/dev/null 2>&1
         done
         if [[ -n "$internal" ]]; then
             for w in {11..20}; do
-                hyprctl dispatch moveworkspacetomonitor "$w $internal" >/dev/null 2>&1
+                hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$internal\" })" >/dev/null 2>&1
             done
-            hyprctl dispatch focusmonitor "$internal" >/dev/null 2>&1
-            hyprctl dispatch workspace 11 >/dev/null 2>&1
-            hyprctl dispatch focusmonitor "$ext" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.focus({ monitor = \"$internal\" })" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.focus({ workspace = 11 })" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.focus({ monitor = \"$ext\" })" >/dev/null 2>&1
         fi
     fi
 

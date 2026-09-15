@@ -11,7 +11,7 @@ move() {
     ' | head -n1)"
 
     if [[ -n "${addr:-}" && "$addr" != "null" ]]; then
-      hyprctl dispatch movetoworkspacesilent "special:${target},address:${addr}"
+      hyprctl dispatch "hl.dsp.window.move({ workspace = \"special:${target}\", window = \"address:${addr}\", follow = false })"
       return 0
     fi
     sleep 0.25
