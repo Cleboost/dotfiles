@@ -1,0 +1,115 @@
+# #######################################################################################
+# 📏  WINDOW & LAYER RULES
+# Equivalent to Hyprland's rules/rules.conf & rules/specialwork.conf
+# #######################################################################################
+
+# ── Base Blur Opt-in ────────────────────────────────────────────────────────
+[[window_rule]]
+blur = true
+blur_optimized = true
+
+# ── File Chooser & Dialogs Floating ─────────────────────────────────────────
+[[window_rule]]
+match.title = "^(Open File|Select a File|Open Folder|Save As)(.*)$"
+default_floating = true
+
+# ── Bitwarden Extension Popup ───────────────────────────────────────────────
+[[window_rule]]
+match.app_id = "^(chrome-nngceckbapebfimnlniiiahkandclblb-Default)$"
+default_floating = true
+default_size = [400, 600]
+
+# ── Transparency & App Opacity ──────────────────────────────────────────────
+[[window_rule]]
+match.app_id = "^(kitty)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^(org.gnome.Nautilus)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^([Ss]potify|fastpotify)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^(discord)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^(firefox)$"
+opacity = 0.95
+
+[[window_rule]]
+match.app_id = "^(dev.zed.Zed)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^(rustdesk)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^(cursor)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^(claude)$"
+opacity = 0.85
+
+[[window_rule]]
+match.app_id = "^(dev.noctalia.Noctalia.Settings|dev.noctalia.Noctalia)$"
+opacity = 0.85
+default_floating = true
+default_size = [1020, 900]
+
+[[window_rule]]
+match.app_id = "^(dev.faetalize.waytator)$"
+opacity = 0.85
+default_floating = true
+
+# ── System Apps ─────────────────────────────────────────────────────────────
+[[window_rule]]
+match.app_id = "^(pavucontrol)$"
+default_floating = true
+default_width = 0.45
+default_height = 0.45
+
+# ── Tiling Workarounds ──────────────────────────────────────────────────────
+[[window_rule]]
+match.app_id = "^dev[.]warp[.]Warp$"
+default_floating = false
+
+# ── Gaming & Tearing Opt-in ─────────────────────────────────────────────────
+[[window_rule]]
+match.title = ".*(\\.exe|minecraft).*"
+tearing = true
+vrr = "always"
+
+[[window_rule]]
+match.app_id = "^(steam_app.*|cs2)$"
+tearing = true
+vrr = "always"
+
+[[window_rule]]
+match.content_type = "game"
+tearing = true
+vrr = "always"
+
+# ── Special Scratchpads (Comm & Music) ──────────────────────────────────────
+[[window_rule]]
+match.app_id = "^(discord)$"
+default_scratchpad = "comm"
+default_focused = false
+
+[[window_rule]]
+match.app_id = "^([Ss]potify|fastpotify)$"
+default_scratchpad = "music"
+default_focused = false
+
+# ── Layer Rules (Noctalia Shell UI blur) ─────────────────────────────────────
+[[layer_rule]]
+match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
+blur = true
+blur_ignore_alpha = 0.5
+blur_popups = true
+blur_optimized = true

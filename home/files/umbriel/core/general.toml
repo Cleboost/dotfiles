@@ -1,0 +1,82 @@
+# #######################################################################################
+#   GENERAL CONFIGURATION, AUTOSTART, INPUT & LAYOUT
+# #######################################################################################
+
+[general]
+mod_key = "Super"
+xwayland = true
+show_cheatsheet = false
+focus_on_activate = false
+honor_restored_maximize = false
+
+autostart = [
+    "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS",
+    "systemctl --user start nixos-fake-graphical-session.target",
+    "noctalia",
+    "systemctl --user start localsearch-3.service",
+    "nautilus --gapplication-service",
+    "steam -silent",
+    "jetbrain-fix",
+    "google-chrome-stable",
+    "discord",
+    "fastpotify",
+]
+
+# ── Layout ──────────────────────────────────────────────────────────────────
+# Hyprland uses dwindle by default, but Umbriel also supports dynamic scrolling layout
+[layout]
+mode = "dwindle"
+gap = 8
+width_presets = [0.333, 0.5, 0.667]
+
+[layout.dwindle]
+preserve_split = true
+new_exits_fullscreen = false
+
+[layout.scrolling]
+default_width_fraction = 0.5
+center_underfull_strip = true
+center_focused = "never"
+
+# ── Input ───────────────────────────────────────────────────────────────────
+[input]
+middle_click_paste = false
+window_drag_toggle = "floating"
+
+[input.keyboard]
+layout = "fr,us"
+variant = ""
+options = ""
+repeat_rate = 35
+repeat_delay = 250
+numlock_toggle = true
+track_layout = "global"
+
+[input.touchpad]
+tap = true
+natural_scroll = true
+disable_while_typing = true
+click_method = "clickfinger"
+scroll_factor = 0.7
+
+[input.cursor]
+theme = "cleboost-cursor"
+size = 18
+hardware_cursor = false
+follows_focus = false
+hide_when_typing = false
+
+[input.focus]
+follows_mouse = true
+
+# ── Overview ────────────────────────────────────────────────────────────────
+[overview]
+zoom = 0.5
+scroll_factor_horizontal = 1.0
+scroll_factor_vertical = 1.0
+shortcuts = true
+
+[hot_corners.top_left]
+enabled = false
+delay_ms = 500
+action = "overview-open"

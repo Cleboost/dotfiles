@@ -31,6 +31,12 @@
       url = "github:crmne/fastpotify";
     };
 
+    # Umbriel (Wayland compositor by Noctalia)
+    umbriel = {
+      url = "github:noctalia-dev/umbriel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # ChatGPT Desktop (Official OpenAI Linux desktop app repackaged for NixOS/Wayland)
     chatgpt-desktop = {
       url = "github:ilysenko/codex-desktop-linux";
@@ -38,7 +44,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, chatgpt-desktop, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, umbriel, chatgpt-desktop, ... }@inputs: {
     nixosConfigurations.cleboost-brain = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -46,6 +52,7 @@
         ./configuration.nix
         noctalia.nixosModules.default
         noctalia-greeter.nixosModules.default
+        umbriel.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

@@ -233,7 +233,8 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",
-        "noctalia-greeter": "noctalia-greeter"
+        "noctalia-greeter": "noctalia-greeter",
+        "umbriel": "umbriel"
       }
     },
     "rust-overlay": {
@@ -284,6 +285,48 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "umbriel": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "xdg-desktop-portal-umbriel": "xdg-desktop-portal-umbriel"
+      },
+      "locked": {
+        "lastModified": 1789438928,
+        "narHash": "sha256-d/QycjvF+AOmCNHw69sCxGbFfdkOhNbPYeT0WVllqNA=",
+        "owner": "noctalia-dev",
+        "repo": "umbriel",
+        "rev": "186ce23cd8f48e16e8e1e3dabc49527a38c12b84",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "umbriel",
+        "type": "github"
+      }
+    },
+    "xdg-desktop-portal-umbriel": {
+      "inputs": {
+        "nixpkgs": [
+          "umbriel",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788800127,
+        "narHash": "sha256-x2D1TiCn0rTwbA8darNxthxOWOCoZLwefptsUM7587I=",
+        "owner": "noctalia-dev",
+        "repo": "xdg-desktop-portal-umbriel",
+        "rev": "d7a1bc386c2a6dfaecaa953165f9f373735c9ee0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "xdg-desktop-portal-umbriel",
         "type": "github"
       }
     }

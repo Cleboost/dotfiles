@@ -1,0 +1,80 @@
+# #######################################################################################
+#  WORKSPACES MANAGEMENT
+# Keybinds matching Hyprland's binds/workspaces.conf & custom.conf
+# #######################################################################################
+
+[keybinds]
+
+# ── AZERTY Number Row Navigation (Focus) ────────────────────────────────────
+# In XKB 'fr' (AZERTY), the number row generates symbols unless shifted or pressed with Super
+# On Wayland/XKB, code:10..19 corresponds to the top row keys (ampersand, eacute, quotedbl, etc.)
+# We bind numbers directly for standard layouts and numeric chords
+"Mod+1" = "workspace-switch:1"
+"Mod+2" = "workspace-switch:2"
+"Mod+3" = "workspace-switch:3"
+"Mod+4" = "workspace-switch:4"
+"Mod+5" = "workspace-switch:5"
+"Mod+6" = "workspace-switch:6"
+"Mod+7" = "workspace-switch:7"
+"Mod+8" = "workspace-switch:8"
+"Mod+9" = "workspace-switch:9"
+"Mod+0" = "workspace-switch:10"
+
+# AZERTY direct key symbols for the number row
+"Mod+ampersand" = "workspace-switch:1"
+"Mod+eacute" = "workspace-switch:2"
+"Mod+quotedbl" = "workspace-switch:3"
+"Mod+apostrophe" = "workspace-switch:4"
+"Mod+parenleft" = "workspace-switch:5"
+"Mod+minus" = "workspace-switch:6"
+"Mod+egrave" = "workspace-switch:7"
+"Mod+underscore" = "workspace-switch:8"
+"Mod+ccedilla" = "workspace-switch:9"
+"Mod+agrave" = "workspace-switch:10"
+
+# ── Directional & Page Navigation ───────────────────────────────────────────
+"Ctrl+Mod+Right" = "workspace-next"
+"Ctrl+Mod+Left" = "workspace-previous"
+"Mod+Page_Down" = "workspace-next"
+"Mod+Page_Up" = "workspace-previous"
+
+# ── Mouse Wheel Workspace Navigation (from custom.conf) ─────────────────────
+"Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 100 }
+"Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 100 }
+"Ctrl+Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 100 }
+"Ctrl+Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 100 }
+
+# ── Move Windows to Workspace (Super + Alt + 1..9) ──────────────────────────
+"Mod+Alt+1" = "window-move-to-workspace:1"
+"Mod+Alt+2" = "window-move-to-workspace:2"
+"Mod+Alt+3" = "window-move-to-workspace:3"
+"Mod+Alt+4" = "window-move-to-workspace:4"
+"Mod+Alt+5" = "window-move-to-workspace:5"
+"Mod+Alt+6" = "window-move-to-workspace:6"
+"Mod+Alt+7" = "window-move-to-workspace:7"
+"Mod+Alt+8" = "window-move-to-workspace:8"
+"Mod+Alt+9" = "window-move-to-workspace:9"
+"Mod+Alt+0" = "window-move-to-workspace:10"
+
+"Mod+Alt+ampersand" = "window-move-to-workspace:1"
+"Mod+Alt+eacute" = "window-move-to-workspace:2"
+"Mod+Alt+quotedbl" = "window-move-to-workspace:3"
+"Mod+Alt+apostrophe" = "window-move-to-workspace:4"
+"Mod+Alt+parenleft" = "window-move-to-workspace:5"
+"Mod+Alt+minus" = "window-move-to-workspace:6"
+"Mod+Alt+egrave" = "window-move-to-workspace:7"
+"Mod+Alt+underscore" = "window-move-to-workspace:8"
+"Mod+Alt+ccedilla" = "window-move-to-workspace:9"
+"Mod+Alt+agrave" = "window-move-to-workspace:10"
+
+# Also allow Super+Shift+1..9
+"Mod+Shift+1" = "window-move-to-workspace:1"
+"Mod+Shift+2" = "window-move-to-workspace:2"
+"Mod+Shift+3" = "window-move-to-workspace:3"
+"Mod+Shift+4" = "window-move-to-workspace:4"
+"Mod+Shift+5" = "window-move-to-workspace:5"
+"Mod+Shift+6" = "window-move-to-workspace:6"
+"Mod+Shift+7" = "window-move-to-workspace:7"
+"Mod+Shift+8" = "window-move-to-workspace:8"
+"Mod+Shift+9" = "window-move-to-workspace:9"
+"Mod+Shift+0" = "window-move-to-workspace:10"
