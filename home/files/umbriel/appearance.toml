@@ -75,8 +75,9 @@ workspace_curve = "spring:1,1000"
 
 [animation.scratchpad]
 enabled = true
-duration_ms = 250
-curve = "easeOutQuint"
-dim = 0.2
+duration_ms = 300
+curve = "emphasizedDecel"
+dim = 0.28
 blur = true
-scale = 0.95
+scale = 0
+shader = "shaders/scratchpad-slidevert.glsl"

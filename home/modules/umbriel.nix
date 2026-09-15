@@ -9,6 +9,7 @@
   };
   xdg.configFile."umbriel/custom.toml".source = ../files/umbriel/custom.toml;
   xdg.configFile."umbriel/appearance.toml".source = ../files/umbriel/appearance.toml;
+  xdg.configFile."umbriel/shaders".source = ../files/umbriel/shaders;
   xdg.configFile."umbriel/scratchpads.toml".source = ../files/umbriel/scratchpads.toml;
   xdg.configFile."umbriel/core" = {
     source = ../files/umbriel/core;
