@@ -79,3 +79,4 @@ duration_ms = 250
 curve = "easeOutQuint"
 dim = 0.2
 blur = true
+scale = 0.95
