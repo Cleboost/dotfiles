@@ -49,7 +49,7 @@ enabled = true
 duration_ms = 200
 curve = "easeOutQuint"
 style = "popin"
-scale = 0.05
+scale = 0.1
 
 [animation.windows_out]
 enabled = true
