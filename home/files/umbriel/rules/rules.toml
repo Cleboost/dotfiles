@@ -21,19 +21,7 @@ default_size = [400, 600]
 
 # ── Transparency & App Opacity ──────────────────────────────────────────────
 [[window_rule]]
-match.app_id = "^(kitty)$"
-opacity = 0.85
-
-[[window_rule]]
-match.app_id = "^(org.gnome.Nautilus)$"
-opacity = 0.85
-
-[[window_rule]]
-match.app_id = "^([Ss]potify|fastpotify)$"
-opacity = 0.85
-
-[[window_rule]]
-match.app_id = "^(discord)$"
+match.app_id = "^(kitty|org.gnome.Nautilus|[Ss]potify|fastpotify|discord|dev.zed.Zed|rustdesk|cursor|claude|dev.noctalia.Noctalia|dev.noctalia.Noctalia.Settings|dev.faetalize.waytator)$"
 opacity = 0.85
 
 [[window_rule]]
@@ -41,30 +29,12 @@ match.app_id = "^(firefox)$"
 opacity = 0.95
 
 [[window_rule]]
-match.app_id = "^(dev.zed.Zed)$"
-opacity = 0.85
-
-[[window_rule]]
-match.app_id = "^(rustdesk)$"
-opacity = 0.85
-
-[[window_rule]]
-match.app_id = "^(cursor)$"
-opacity = 0.85
-
-[[window_rule]]
-match.app_id = "^(claude)$"
-opacity = 0.85
-
-[[window_rule]]
 match.app_id = "^(dev.noctalia.Noctalia.Settings|dev.noctalia.Noctalia)$"
-opacity = 0.85
 default_floating = true
 default_size = [1020, 900]
 
 [[window_rule]]
 match.app_id = "^(dev.faetalize.waytator)$"
-opacity = 0.85
 default_floating = true
 
 # ── System Apps ─────────────────────────────────────────────────────────────
