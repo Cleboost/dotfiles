@@ -5,6 +5,7 @@
 
 [include]
 files = [
+    "gpu-env.toml",
     "core/env.toml",
     "core/general.toml",
     "core/monitors.toml",

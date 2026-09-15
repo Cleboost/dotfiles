@@ -8,10 +8,8 @@ package.path = table.concat({
     package.path,
 }, ";")
 
--- Set graphics devices (from original hyprland.conf)
-hl.env("AQ_DRM_DEVICES", "/dev/dri/card0:/dev/dri/card1")
-
 -- ── Core ──────────────────────────────────────────────────────────────────────
+require("gpu-env")
 require("core.env")
 require("core.execs")
 require("core.general")
