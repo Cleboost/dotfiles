@@ -3,8 +3,18 @@
 # Equivalent to Hyprland's rules/rules.conf & rules/specialwork.conf
 # #######################################################################################
 
-# ── Base Blur Opt-in ────────────────────────────────────────────────────────
+# ── Transparency & blur (paired — blur only visible where opacity < 1) ───────
+# Umbriel docs: blur engine is global, but blur renders only on transparent surfaces.
+# Hyprland tied blur to opacity rules; do NOT opt-in blur on every window.
 [[window_rule]]
+match.app_id = "^(kitty|org.gnome.Nautilus|[Ss]potify|fastpotify|discord|dev.zed.Zed|rustdesk|cursor|claude|dev.noctalia.Noctalia|dev.noctalia.Noctalia.Settings|dev.faetalize.waytator)$"
+opacity = 0.85
+blur = true
+blur_optimized = true
+
+[[window_rule]]
+match.app_id = "^(firefox)$"
+opacity = 0.95
 blur = true
 blur_optimized = true
 
@@ -18,15 +28,6 @@ default_floating = true
 match.app_id = "^(chrome-nngceckbapebfimnlniiiahkandclblb-Default)$"
 default_floating = true
 default_size = [400, 600]
-
-# ── Transparency & App Opacity ──────────────────────────────────────────────
-[[window_rule]]
-match.app_id = "^(kitty|org.gnome.Nautilus|[Ss]potify|fastpotify|discord|dev.zed.Zed|rustdesk|cursor|claude|dev.noctalia.Noctalia|dev.noctalia.Noctalia.Settings|dev.faetalize.waytator)$"
-opacity = 0.85
-
-[[window_rule]]
-match.app_id = "^(firefox)$"
-opacity = 0.95
 
 [[window_rule]]
 match.app_id = "^(dev.noctalia.Noctalia.Settings|dev.noctalia.Noctalia)$"
@@ -50,20 +51,27 @@ match.app_id = "^dev[.]warp[.]Warp$"
 default_floating = false
 
 # ── Gaming & Tearing Opt-in ─────────────────────────────────────────────────
+# ECMAScript regex is case-sensitive: title has "Minecraft", not "minecraft".
+# vrr = fullscreen matches Hyprland monitor vrr,1 (not always — menus feel laggy).
 [[window_rule]]
-match.title = ".*(\\.exe|minecraft).*"
+match.title = ".*[Mm]inecraft.*"
 tearing = true
-vrr = "always"
+vrr = "fullscreen"
+
+[[window_rule]]
+match.title = ".*[.]exe"
+tearing = true
+vrr = "fullscreen"
 
 [[window_rule]]
 match.app_id = "^(steam_app.*|cs2)$"
 tearing = true
-vrr = "always"
+vrr = "fullscreen"
 
 [[window_rule]]
 match.content_type = "game"
 tearing = true
-vrr = "always"
+vrr = "fullscreen"
 
 # ── Special Scratchpads (Comm & Music) ──────────────────────────────────────
 # On Hyprland, special workspaces had gapsout: 50 (~92% width & ~90% height)
