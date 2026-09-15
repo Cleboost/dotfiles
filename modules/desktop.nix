@@ -36,20 +36,18 @@
   # Hardware access & polkit
   security.polkit.enable = true;
 
-  # XDG Desktop Portals (Screensharing, window streaming, file picker)
+  # XDG Desktop Portals (screensharing, window streaming, file picker)
   xdg.portal = {
     enable = true;
     extraPortals = [
+      pkgs.xdg-desktop-portal-umbriel
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-      common = {
-        default = [ "hyprland" "gtk" ];
-      };
-      hyprland = {
-        default = [ "hyprland" "gtk" ];
-      };
+      common.default = [ "umbriel" "gtk" ];
+      umbriel.default = [ "umbriel" "gtk" ];
+      hyprland.default = [ "hyprland" "gtk" ];
     };
   };
 }
