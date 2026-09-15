@@ -1,0 +1,44 @@
+# #######################################################################################
+#  NOCTALIA SHELL & SYSTEM CONTROLS
+# Keybinds matching Hyprland's binds/noctalia.conf exactly
+# #######################################################################################
+
+[keybinds]
+
+# ── Shell Toggles ───────────────────────────────────────────────────────────
+"Mod" = "spawn:noctalia msg panel-toggle launcher"
+"Ctrl+Mod+T" = "spawn:noctalia msg panel-toggle wallpaper"
+"Mod+comma" = "spawn:noctalia msg settings-toggle"
+"Ctrl+Alt+Delete" = "spawn:noctalia msg panel-toggle session"
+"Ctrl+Mod+Delete" = "spawn:noctalia msg panel-toggle session"
+"Mod+V" = "spawn:noctalia msg panel-toggle clipboard"
+"Mod+semicolon" = "spawn:noctalia msg panel-toggle launcher /emo"
+
+# ── Volume & Mic Controls ───────────────────────────────────────────────────
+"XF86AudioRaiseVolume" = { action = "spawn:noctalia msg volume-up", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn:noctalia msg volume-down", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn:noctalia msg volume-mute", allow_when_locked = true }
+"XF86AudioMicMute" = { action = "spawn:noctalia msg mic-mute", allow_when_locked = true }
+
+# ── Brightness Controls ─────────────────────────────────────────────────────
+"XF86MonBrightnessUp" = { action = "spawn:noctalia msg brightness-up", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn:noctalia msg brightness-down", allow_when_locked = true }
+
+# ── Power / Lock ────────────────────────────────────────────────────────────
+"Mod+L" = { action = "spawn:noctalia msg screen-lock", allow_when_locked = true }
+"Mod+F5" = "spawn:noctalia msg power-cycle"
+
+# ── Media (Mouse Specific) ──────────────────────────────────────────────────
+"Mod+MouseBack" = "spawn:noctalia msg media previous"
+"Mod+MouseForward" = "spawn:noctalia msg media next"
+
+# ── Shell Management ────────────────────────────────────────────────────────
+"Ctrl+Mod+Alt+R" = "spawn:pkill noctalia; noctalia"
+"Ctrl+Shift+Mod+Alt+R" = "spawn:pkill noctalia"
+"Ctrl+Mod+Alt+T" = "spawn:noctalia msg wallpaper-random"
+"Mod+R" = "spawn:noctalia msg scripted-widget screen_recorder focused start"
+
+# ── Special Scratchpads Toggle (comm & music) ───────────────────────────────
+# Hyprland used Super+M / Super+C or dedicated scripts; mapped to scratchpads
+"Mod+Ctrl+M" = "scratchpad-toggle:music"
+"Mod+Ctrl+C" = "scratchpad-toggle:comm"

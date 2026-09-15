@@ -1,0 +1,62 @@
+# #######################################################################################
+#  APPLICATIONS, WINDOWS & UTILS
+# Keybinds matching Hyprland's binds/keybinds.conf
+# #######################################################################################
+
+[keybinds]
+
+# ── Applications ────────────────────────────────────────────────────────────
+"Mod+T" = "spawn:kitty -1"
+"Mod+E" = "spawn:nautilus -w"
+"Mod+W" = "spawn:google-chrome-stable"
+"Mod+C" = "spawn:cursor"
+"Mod+O" = "spawn:obsidian"
+"Mod+A" = "spawn:kitty agy"
+"Mod+Shift+A" = "spawn:kitty agy --continue"
+
+# ── Screenshots & Utils ─────────────────────────────────────────────────────
+"Mod+Shift+S" = "spawn:noctalia msg screenshot-region"
+"Mod+Shift+D" = "spawn:noctalia msg screenshot-annotate"
+"Print" = "spawn:noctalia msg screenshot-annotate"
+"Shift+Print" = "spawn:noctalia msg screenshot-fullscreen"
+"Mod+X" = "spawn:dictate"
+"Mod+Shift+C" = "spawn:hyprpicker -a"
+"Mod+H" = "spawn:/home/cleboost/.config/hypr/hyprland/scripts/hotspot.sh"
+
+# ── Window Management ───────────────────────────────────────────────────────
+"Mod+Q" = "window-close"
+"Mod+Alt+Space" = "window-toggle-floating"
+"Mod+F" = "window-toggle-fullscreen"
+"Mod+Shift+Alt+Q" = "window-close"
+
+# ── Keyboard Focus Navigation ───────────────────────────────────────────────
+"Mod+Left" = "window-focus-left"
+"Mod+Right" = "window-focus-right"
+"Mod+Up" = "window-focus-up"
+"Mod+Down" = "window-focus-down"
+"Mod+Bracketleft" = "window-focus-previous"
+"Mod+Bracketright" = "window-focus-next"
+
+# ── Keyboard Window Moving ──────────────────────────────────────────────────
+"Mod+Shift+Left" = "column-move-left"
+"Mod+Shift+Right" = "column-move-right"
+"Mod+Shift+Up" = "window-move-up"
+"Mod+Shift+Down" = "window-move-down"
+
+# ── Media Controls (Playerctl) ──────────────────────────────────────────────
+"Mod+Shift+P" = "spawn:playerctl play-pause"
+"Mod+Shift+N" = "spawn:playerctl next"
+"Mod+Shift+B" = "spawn:playerctl previous"
+
+"XF86AudioPlay" = "spawn:playerctl play-pause"
+"XF86AudioPause" = "spawn:playerctl play-pause"
+"XF86AudioNext" = "spawn:playerctl next"
+"XF86AudioPrev" = "spawn:playerctl previous"
+
+"Mod+Shift+Alt+MouseBack" = "spawn:playerctl previous"
+"Mod+Shift+Alt+MouseForward" = "spawn:playerctl next"
+
+# ── Layout / Overview ───────────────────────────────────────────────────────
+"Mod+I" = { action = "overview-toggle", repeat = false }
+"Mod+Tab" = "output-focus-next"
+"Mod+Shift+Tab" = "window-move-to-output-next"

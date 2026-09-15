@@ -1,0 +1,10 @@
+# #######################################################################################
+#   GLOBAL SCRATCHPADS
+# Equivalent to Hyprland's special:comm and special:music workspaces
+# #######################################################################################
+
+[[scratchpad]]
+name = "comm"
+
+[[scratchpad]]
+name = "music"

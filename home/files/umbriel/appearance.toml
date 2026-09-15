@@ -1,0 +1,81 @@
+# #######################################################################################
+# 🎨  APPEARANCE, BLUR, SHADOWS & ANIMATIONS
+# #######################################################################################
+
+[appearance]
+prefer_no_csd = true
+border_width = 4
+outer_border_width = 0
+corner_radius = 18
+drag_opacity = 0.85
+
+[appearance.blur]
+enabled = true
+optimized = true
+passes = 3
+radius = 10
+noise = 0.0
+brightness = 1.0
+contrast = 0.9
+saturation = 1.0
+
+[appearance.shadow]
+enabled = false
+
+[colors]
+background = "#131314FF"
+backdrop = "#000000FF"
+
+[colors.border]
+focused = "#FFFFFF66"
+unfocused = "#FFFFFF22"
+scratchpad_focused = "#7AA3FFFF"
+scratchpad_unfocused = "#292933FF"
+outer = "#00000000"
+
+# ── Animations ──────────────────────────────────────────────────────────────
+# Smooth bezier curves matching easeOutQuint from Hyprland custom.conf
+[animation]
+enabled = true
+duration_ms = 250
+curve = "easeOutQuint"
+
+[animation.beziers]
+easeOutQuint = [0.22, 1.0, 0.36, 1.0]
+emphasizedDecel = [0.05, 0.7, 0.1, 1.0]
+
+[animation.windows_in]
+enabled = true
+duration_ms = 200
+curve = "easeOutQuint"
+style = "popin"
+scale = 0.05
+
+[animation.windows_out]
+enabled = true
+duration_ms = 200
+curve = "easeOutQuint"
+style = "fade"
+
+[animation.windows_move]
+enabled = true
+duration_ms = 250
+curve = "easeOutQuint"
+
+[animation.workspaces]
+enabled = true
+duration_ms = 280
+curve = "easeOutQuint"
+
+[animation.overview]
+enabled = true
+duration_ms = 250
+curve = "easeOutQuint"
+workspace_curve = "spring:1,1000"
+
+[animation.scratchpad]
+enabled = true
+duration_ms = 250
+curve = "easeOutQuint"
+dim = 0.2
+blur = true

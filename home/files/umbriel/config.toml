@@ -1,0 +1,23 @@
+# #######################################################################################
+# 🪐 UMBRIEL MAIN CONFIGURATION
+# Modular configuration mirroring Hyprland setup with Noctalia ecosystem integration
+# #######################################################################################
+
+[include]
+files = [
+    "core/env.toml",
+    "core/general.toml",
+    "core/monitors.toml",
+    "appearance.toml",
+    "scratchpads.toml",
+    "binds/keybinds.toml",
+    "binds/noctalia.toml",
+    "binds/workspaces.toml",
+    "rules/rules.toml",
+]
+
+[include.optional]
+files = [
+    "~/.config/umbriel/noctalia.toml",
+    "custom.toml",
+]

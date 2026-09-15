@@ -9,6 +9,9 @@
     xwayland.enable = true;
   };
 
+  # Umbriel window manager (Wayland compositor by Noctalia)
+  programs.umbriel.enable = true;
+
   # GPU Screen Recorder with setuid/cap wrapper for KMS screen capture
   programs.gpu-screen-recorder.enable = true;
 

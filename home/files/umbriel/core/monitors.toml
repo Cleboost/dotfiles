@@ -1,0 +1,46 @@
+# #######################################################################################
+# 🖥️  MONITORS CONFIGURATION
+# #######################################################################################
+
+[output."ASUSTek COMPUTER INC VY279HGE S7LMQS001610"]
+mode = "1920x1080@144"
+position = [0, 0]
+scale = 1.0
+vrr = "always"
+tearing = true
+
+[output."ASUSTek COMPUTER INC VG2791R S3LMDW006158"]
+mode = "1920x1080@144"
+position = [1920, 0]
+scale = 1.0
+vrr = "always"
+tearing = true
+
+[output.eDP-1]
+mode = "1920x1080@144"
+position = [3840, 0]
+scale = 1.0
+vrr = "always"
+tearing = true
+
+# Fallback by connector port names
+[output.DP-2]
+mode = "1920x1080@144"
+position = [0, 0]
+scale = 1.0
+vrr = "always"
+tearing = true
+
+[output.DP-3]
+mode = "1920x1080@144"
+position = [1920, 0]
+scale = 1.0
+vrr = "always"
+tearing = true
+
+[output.DP-4]
+mode = "1920x1080@144"
+position = [1920, 0]
+scale = 1.0
+vrr = "always"
+tearing = true

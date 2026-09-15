@@ -8,6 +8,7 @@
   imports = [
     ./modules/shell.nix
     ./modules/hyprland.nix
+    ./modules/umbriel.nix
     ./modules/apps.nix
     ./modules/dev.nix
   ];
