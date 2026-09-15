@@ -96,14 +96,21 @@ tearing = true
 vrr = "always"
 
 # ── Special Scratchpads (Comm & Music) ──────────────────────────────────────
+# On Hyprland, special workspaces had gapsout: 50 (~92% width & ~90% height)
 [[window_rule]]
 match.app_id = "^(discord)$"
 default_scratchpad = "comm"
+default_floating = true
+default_width = 0.92
+default_height = 0.90
 default_focused = false
 
 [[window_rule]]
 match.app_id = "^([Ss]potify|fastpotify)$"
 default_scratchpad = "music"
+default_floating = true
+default_width = 0.92
+default_height = 0.90
 default_focused = false
 
 # ── Layer Rules (Noctalia Shell UI blur) ─────────────────────────────────────
