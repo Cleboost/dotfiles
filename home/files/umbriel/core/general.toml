@@ -11,6 +11,7 @@ honor_restored_maximize = false
 
 autostart = [
     "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS",
+    "systemctl --user restart xdg-desktop-portal-umbriel.service xdg-desktop-portal.service",
     "systemctl --user start nixos-fake-graphical-session.target",
     "noctalia",
     "systemctl --user start localsearch-3.service",

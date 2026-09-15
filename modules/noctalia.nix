@@ -13,7 +13,7 @@
     enable = true;
     passwordless-sync-users = [ "cleboost" ];
     settings = {
-      session.default = "hyprland";
+      session.default = "umbriel";
       keyboard.layout = "fr";
     };
   };
