@@ -13,8 +13,8 @@ socat -U - "UNIX-CONNECT:${SOCKET}" | while read -r line; do
         title="${data#*,}"
 
         if [[ "$title" == "Bitwarden" ]]; then
-            hyprctl dispatch setfloating "address:${addr}"
-            hyprctl dispatch resizewindowpixel "exact 400 600,address:${addr}"
+            hyprctl dispatch "hl.dsp.window.float({ action = \"set\", window = \"address:${addr}\" })"
+            hyprctl dispatch "hl.dsp.window.resize({ x = 400, y = 600, window = \"address:${addr}\" })"
             # Get the monitor where the browser (firefox or chrome) is running
             BROWSER_MONITOR=$(hyprctl clients -j | jq -r '.[] | select(.class == "firefox" or .class == "google-chrome") | .monitor' | head -1)
             MONITOR_INFO=$(hyprctl monitors -j | jq ".[] | select(.id == ${BROWSER_MONITOR:-0})")
@@ -23,7 +23,7 @@ socat -U - "UNIX-CONNECT:${SOCKET}" | while read -r line; do
             MONITOR_W=$(echo "$MONITOR_INFO" | jq '.width')
             POS_X=$(( MONITOR_X + MONITOR_W - 410 - 10 ))
             POS_Y=$(( MONITOR_Y + 150 ))
-            hyprctl dispatch movewindowpixel "exact ${POS_X} ${POS_Y},address:${addr}"
+            hyprctl dispatch "hl.dsp.window.move({ x = ${POS_X}, y = ${POS_Y}, window = \"address:${addr}\" })"
         fi
     fi
 done
