@@ -42,9 +42,15 @@
       url = "github:ilysenko/codex-desktop-linux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Codex CLI (Official OpenAI Codex CLI terminal agent)
+    codex-cli = {
+      url = "github:SecBear/codex-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, umbriel, chatgpt-desktop, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, umbriel, chatgpt-desktop, codex-cli, ... }@inputs: {
     nixosConfigurations.cleboost-brain = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
