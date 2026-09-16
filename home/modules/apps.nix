@@ -49,6 +49,7 @@
   home.packages = with pkgs; [
     # ── Dev IA / IDE ───────────────────────────
     inputs.chatgpt-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.codex-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     zed-editor
     code-cursor
     jetbrains.idea
