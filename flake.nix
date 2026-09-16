@@ -48,6 +48,11 @@
       url = "github:SecBear/codex-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # RustDesk nightly / v1.5 PR (https://github.com/NixOS/nixpkgs/pull/561724)
+    nixpkgs-rustdesk-pr = {
+      url = "github:telometto/nixpkgs/86fb8aca9dcd694480c58b087dc73f8b1ed5d38b";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, fastpotify, umbriel, chatgpt-desktop, codex-cli, ... }@inputs: {
