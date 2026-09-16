@@ -185,6 +185,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-rustdesk-pr": {
+      "locked": {
+        "lastModified": 1788957731,
+        "narHash": "sha256-1UghzK91fwI2sUW3uAfkX8t5SJdeCLeQrsO3G+g4fHQ=",
+        "owner": "telometto",
+        "repo": "nixpkgs",
+        "rev": "86fb8aca9dcd694480c58b087dc73f8b1ed5d38b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "telometto",
+        "repo": "nixpkgs",
+        "rev": "86fb8aca9dcd694480c58b087dc73f8b1ed5d38b",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1787736819,
@@ -287,6 +303,7 @@
         "fastpotify": "fastpotify",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-rustdesk-pr": "nixpkgs-rustdesk-pr",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",
         "umbriel": "umbriel"

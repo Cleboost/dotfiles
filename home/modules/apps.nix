@@ -71,6 +71,7 @@
     android-tools
     prismlauncher
     blockbench
+    inputs.nixpkgs-rustdesk-pr.legacyPackages.${pkgs.stdenv.hostPlatform.system}.rustdesk-flutter-nightly
 
     # ── CLI & Terminal Utilities ────────────────────
     gh
