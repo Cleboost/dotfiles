@@ -44,7 +44,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-      common.default = [ "umbriel" "gtk" ];
+      common.default = [ "hyprland" "gtk" ];
       umbriel.default = [ "umbriel" "gtk" ];
       hyprland.default = [ "hyprland" "gtk" ];
     };
