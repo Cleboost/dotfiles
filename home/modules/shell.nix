@@ -33,7 +33,7 @@
     };
     interactiveShellInit = ''
       set -g fish_greeting
-      set -gx PATH "$HOME/.local/bin" $PATH
+      fish_add_path "$HOME/.local/bin"
       set -gx SSH_AUTH_SOCK "$HOME/.bitwarden-ssh-agent.sock"
       fastfetch-random
     '';
