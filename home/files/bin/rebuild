@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Clean rebuild script for Cleboost NixOS
+echo -e "\033[1;36m Rebuilding NixOS configuration...\033[0m"
+
+# Execute nh os switch and filter out internal systemd activation noise
+nh os switch /home/cleboost/dotfiles 2>&1 | grep -v -E '(Checking switch inhibitors|Skipping "/boot|activating the configuration|setting up /etc|reloading user units|restarting user units|restarting sysinit|the following new units)'
+
+exit_code=${PIPESTATUS[0]}
+
+if [ $exit_code -eq 0 ]; then
+    fastfetch-update-cache 2>/dev/null || true
+    echo -e "\033[1;32m✔ System switch completed successfully!\033[0m"
+else
+    echo -e "\033[1;31m✖ Rebuild failed with exit code $exit_code\033[0m"
+    exit $exit_code
+fi
