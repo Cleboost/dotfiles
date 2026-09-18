@@ -24,21 +24,16 @@
     enable = true;
     functions = {
       rebuild = ''
-        set -l old (readlink -f /run/current-system)
-        sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain
-        and nvd diff $old /run/current-system
+        nh os switch /home/cleboost/dotfiles
         and fastfetch-update-cache
       '';
       update = ''
-        set -l old (readlink -f /run/current-system)
-        nix flake update --flake /home/cleboost/dotfiles
-        and sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain
-        and nvd diff $old /run/current-system
+        nh os switch -u /home/cleboost/dotfiles
         and fastfetch-update-cache
       '';
     };
     shellAliases = {
-      clean-generations = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
+      clean-generations = "nh clean all --keep 10";
       please        = "sudo";
       ls            = "eza --icons --group-directories-first";
       ll            = "eza -alF --icons --group-directories-first";
