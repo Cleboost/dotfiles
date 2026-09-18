@@ -24,12 +24,16 @@
     enable = true;
     functions = {
       rebuild = ''
-        nh os switch --diff always /home/cleboost/dotfiles
+        echo (set_color cyan)" Rebuilding NixOS configuration..."(set_color normal)
+        nh os switch -q --diff always /home/cleboost/dotfiles
         and fastfetch-update-cache
+        and echo (set_color green)"✔ System switch completed successfully!"(set_color normal)
       '';
       update = ''
-        nh os switch -u --diff always /home/cleboost/dotfiles
+        echo (set_color cyan)" Updating flake inputs and rebuilding NixOS..."(set_color normal)
+        nh os switch -u -q --diff always /home/cleboost/dotfiles
         and fastfetch-update-cache
+        and echo (set_color green)"✔ System update completed successfully!"(set_color normal)
       '';
     };
     shellAliases = {
