@@ -76,7 +76,7 @@
   # Boot optimizations & /tmp cleanup
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Low-latency desktop & gaming kernel
   boot.tmp.cleanOnBoot = true;
 
   # ZRAM swap (compressed in-RAM swap, prevents out-of-memory stalls without wearing SSD)
@@ -86,12 +86,31 @@
     memoryPercent = 50;
   };
 
-  # Kernel memory & gaming responsiveness tuning
+  # EarlyOOM daemon: prevents system freeze on RAM/Swap exhaustion
+  services.earlyoom = {
+    enable = true;
+    enableNotifications = true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 10;
+    extraArgs = [
+      "-r" "60"
+      "--avoid" "^(Hyprland|umbriel|kitty|Xwayland|wireplumber|pipewire)$"
+      "--prefer" "^(java|Isolated Web Co|Web Content|chrome|electron)$"
+    ];
+  };
+
+  # Kernel memory, low-latency networking (BBR + FQ) & gaming responsiveness tuning
   boot.kernel.sysctl = {
+    # Memory & responsiveness
     "vm.swappiness" = 180;             # Optimal with zram to favor compressed RAM over disk cache eviction
     "vm.watermark_boost_factor" = 0;   # Reduces stuttering and latency spikes under memory pressure
     "vm.watermark_scale_factor" = 125; # Proactively reclaim memory to prevent sudden drops
     "vm.max_map_count" = 2147483642;   # Required for modern high-performance games and Proton
+
+    # Low-latency TCP networking (Google BBR + Fair Queueing scheduler)
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.ipv4.tcp_fastopen" = 3;       # Enable TCP Fast Open for client and server
   };
 
   # Bound systemd journal logs to prevent disk bloat
