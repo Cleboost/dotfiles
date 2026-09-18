@@ -71,11 +71,7 @@
     };
   };
 
-  # Shell aliases for system rebuild and updates
-  environment.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
-    update  = "nix flake update --flake /home/cleboost/dotfiles && sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain";
-  };
+
 
   # Boot optimizations & /tmp cleanup
   boot.loader.systemd-boot.enable = true;
