@@ -79,6 +79,7 @@
     fastfetch
     btop
     nvd
+    nix-output-monitor
     ripgrep
     fd
     jq
