@@ -59,7 +59,7 @@ Both Hyprland and Umbriel configs live in this repo. Hyprland is the default gre
 Besides `nixpkgs` and `home-manager`, this config pulls in:
 
 - `noctalia`, `noctalia-greeter`
-- `antigravity`, `chatgpt-desktop`, `codex-cli`
+- `chatgpt-desktop`, `codex-cli`
 
 ## Usage (on my machine)
 
