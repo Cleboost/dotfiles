@@ -61,7 +61,7 @@
     google-chrome
     discord
     nautilus
-    inputs.fastpotify.packages.${pkgs.stdenv.hostPlatform.system}.default
+    fastpotify
     bitwarden-desktop
     qbittorrent
     evince
