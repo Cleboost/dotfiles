@@ -13,6 +13,12 @@
     nix-direnv.enable = true;
   };
 
+  # Zoxide (smart cd directory jumper with fzf support)
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   # Fish shell
   programs.fish = {
     enable = true;
