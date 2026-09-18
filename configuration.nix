@@ -32,6 +32,17 @@
   # Periodic background optimisation of Nix store
   nix.optimise.automatic = true;
 
+  # NH (Nix Helper) - Clean, fast, and visual CLI for NixOS/Flakes
+  programs.nh = {
+    enable = true;
+    flake = "/home/cleboost/dotfiles";
+    clean = {
+      enable = true;
+      extraArgs = "--keep 10";
+      dates = "weekly";
+    };
+  };
+
   # SSD TRIM maintenance
   services.fstrim = {
     enable = true;
