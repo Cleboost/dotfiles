@@ -9,7 +9,7 @@
   };
 
   # Noctalia Greeter (graphical login screen via Greetd)
-  programs.noctalia-greeter = {
+  services.displayManager.noctalia-greeter = {
     enable = true;
     passwordless-sync-users = [ "cleboost" ];
     settings = {
