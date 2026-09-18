@@ -21,11 +21,6 @@
       url = "github:noctalia-dev/noctalia-greeter";
     };
 
-    # Antigravity (IDE & CLI)
-    antigravity = {
-      url = "github:jacopone/antigravity-nix";
-    };
-
     # ChatGPT Desktop (Official OpenAI Linux desktop app repackaged for NixOS/Wayland)
     chatgpt-desktop = {
       url = "github:ilysenko/codex-desktop-linux";
@@ -44,7 +39,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, antigravity, chatgpt-desktop, codex-cli, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, chatgpt-desktop, codex-cli, ... }@inputs: {
     nixosConfigurations.cleboost-brain = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
