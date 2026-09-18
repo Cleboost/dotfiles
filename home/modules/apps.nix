@@ -54,8 +54,8 @@
     code-cursor
     jetbrains.idea
     jetbrains.rust-rover
-    inputs.antigravity.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
-    inputs.antigravity.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-ide
+    antigravity-cli
+    antigravity-ide
 
     # ── Daily Applications ──────────────────────────
     google-chrome
