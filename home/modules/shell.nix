@@ -24,11 +24,11 @@
     enable = true;
     functions = {
       rebuild = ''
-        nh os switch /home/cleboost/dotfiles
+        nh os switch --diff always /home/cleboost/dotfiles
         and fastfetch-update-cache
       '';
       update = ''
-        nh os switch -u /home/cleboost/dotfiles
+        nh os switch -u --diff always /home/cleboost/dotfiles
         and fastfetch-update-cache
       '';
     };
