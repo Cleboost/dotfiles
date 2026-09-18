@@ -7,6 +7,7 @@
 
   imports = [
     ./modules/gpu-env.nix
+    ./modules/theme.nix
     ./modules/shell.nix
     ./modules/hyprland.nix
     ./modules/umbriel.nix

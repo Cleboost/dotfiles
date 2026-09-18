@@ -9,6 +9,10 @@ let
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     __GL_GSYNC_ALLOWED = "1";
     __GL_MaxFramesAllowed = "1";
+    __GL_SHADER_DISK_CACHE = "1";
+    __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1"; # Keep compiled shaders across launches to eliminate stutters
+    RADV_PERFTEST = "aco";                     # Fast ACO compiler for AMD Vulkan
+    DXVK_ASYNC = "1";                          # Async pipeline compilation where supported
     NVD_BACKEND = "direct";
     MANGOHUD = "1";
     MANGOHUD_DLSYM = "1";
