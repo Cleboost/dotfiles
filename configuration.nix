@@ -184,6 +184,9 @@
     extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" ];
   };
 
+  # Passwordless sudo for wheel group (seamless rebuilds & CLI tools without password prompt)
+  security.sudo.wheelNeedsPassword = false;
+
   # Enable running unpatched dynamic binaries (useful for IDE runtimes/tools)
   programs.nix-ld.enable = true;
 
