@@ -16,5 +16,8 @@
     rustup
     gcc
     gnumake
+
+    # Game Development
+    godot_4
   ];
 }
