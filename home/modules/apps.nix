@@ -60,6 +60,7 @@
     # ── Daily Applications ──────────────────────────
     google-chrome
     discord
+    telegram-desktop
     nautilus
     fastpotify
     bitwarden-desktop
