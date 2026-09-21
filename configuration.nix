@@ -9,6 +9,7 @@
     ./modules/noctalia.nix
     ./modules/packages.nix
     ./modules/gaming.nix
+    ./modules/docker.nix
   ];
 
   # Nix package manager settings and Flakes configuration
@@ -181,7 +182,7 @@
     isNormalUser = true;
     description = "Cleboost";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" "docker" ];
   };
 
   # Passwordless sudo for wheel group (seamless rebuilds & CLI tools without password prompt)
