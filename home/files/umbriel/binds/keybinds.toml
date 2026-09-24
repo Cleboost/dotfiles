@@ -19,7 +19,6 @@
 "Mod+Shift+D" = "spawn:noctalia msg screenshot-annotate"
 "Print" = "spawn:noctalia msg screenshot-annotate"
 "Shift+Print" = "spawn:noctalia msg screenshot-fullscreen"
-"Mod+X" = "spawn:dictate"
 "Mod+Shift+C" = "spawn:hyprpicker -a"
 "Mod+H" = "spawn:/home/cleboost/.config/hypr/hyprland/scripts/hotspot.sh"
 

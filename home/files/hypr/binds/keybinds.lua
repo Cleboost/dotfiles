@@ -14,7 +14,6 @@ hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"))
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("noctalia msg screenshot-annotate"))
 hl.bind("Print", hl.dsp.exec_cmd("noctalia msg screenshot-annotate"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("noctalia msg screenshot-fullscreen"))
-hl.bind("SUPER + X", hl.dsp.exec_cmd("dictate"))
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a"), { desc = "Color picker" })
 hl.bind("SUPER + H", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/hotspot.sh"), { desc = "Launch Hotspot" })
 

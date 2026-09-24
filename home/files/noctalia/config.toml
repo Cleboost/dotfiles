@@ -310,9 +310,6 @@ type = "notification"
 [[control_center.shortcuts]]
 type = "power_profile"
 
-[hooks]
-power_profile_changed = "~/.local/bin/asus-perf-keyboard-color"
-
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║  9. PLUGINS & EXTENSIONS                                                     ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
