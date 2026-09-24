@@ -27,9 +27,8 @@ hl.window_rule({
 local opacity_rules = {
     { class = "^(kitty)$", opacity = "0.85 0.85" },
     { class = "^(org.gnome.Nautilus)$", opacity = "0.85 0.85" },
-    { class = "^([Ss]potify|fastpotify)$", opacity = "0.85 0.85" },
+    { class = "^(fastpotify)$", opacity = "0.85 0.85" },
     { class = "^(discord)$", opacity = "0.85 0.85" },
-    { class = "^(firefox)$", opacity = "0.95 0.95" },
     { class = "^(dev.zed.Zed)$", opacity = "0.85 0.85" },
     { class = "^(rustdesk)$", opacity = "0.85 0.85" },
     { class = "^(cursor)$", opacity = "0.85 0.85" },
@@ -67,11 +66,6 @@ hl.window_rule({
 })
 
 -- Tiling & Special
-hl.window_rule({
-    match = { class = "^dev\\.warp\\.Warp$" },
-    tile = true,
-})
-
 hl.window_rule({
     match = { float = false },
     no_shadow = true,

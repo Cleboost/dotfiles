@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # User custom scripts into ~/.local/bin
-  home.file.".local/bin".source = ../files/bin;
-  home.file.".local/bin".recursive = true;
-
   # Wallpapers and profile pictures
   home.file."Pictures/Wallpapers".source = ../files/Pictures/Wallpapers;
   home.file."Pictures/profile.png".source = ../files/Pictures/profile.png;
