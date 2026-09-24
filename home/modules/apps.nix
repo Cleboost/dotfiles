@@ -11,9 +11,6 @@
   xdg.configFile."Kvantum".source = ../files/qt/Kvantum;
   xdg.configFile."qt6ct".source = ../files/qt/qt6ct;
 
-  # Spotify Wayland flags
-  xdg.configFile."spotify-flags.conf".source = ../files/spotify-flags.conf;
-
   # Mime applications association
   xdg.configFile."mimeapps.list".source = ../files/mimeapps.list;
 
