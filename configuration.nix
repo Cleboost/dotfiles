@@ -50,28 +50,6 @@
     interval = "weekly";
   };
 
-  # Automatic cleanup: retain only the last 10 generations of the system and home-manager
-  systemd.services.nix-clean-generations = {
-    description = "Retain only the last 10 NixOS generations and garbage collect unreferenced store paths";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.writeShellScript "nix-keep-10-generations" ''
-        ${pkgs.nix}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +10
-        ${pkgs.su}/bin/su - cleboost -c '${pkgs.nix}/bin/nix-env --delete-generations +10' || true
-        ${pkgs.nix}/bin/nix-collect-garbage
-      ''}";
-    };
-  };
-
-  systemd.timers.nix-clean-generations = {
-    description = "Weekly timer to clean NixOS generations beyond the latest 10";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "weekly";
-      Persistent = true;
-    };
-  };
-
 
 
   # Boot optimizations & /tmp cleanup

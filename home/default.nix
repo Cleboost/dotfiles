@@ -23,6 +23,12 @@
     "$HOME/.local/bin"
   ];
 
+  # User custom scripts into ~/.local/bin
+  home.file.".local/bin" = {
+    source = ./files/bin;
+    recursive = true;
+  };
+
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 }
