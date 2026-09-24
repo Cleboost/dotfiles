@@ -35,6 +35,19 @@
 
   # Hardware access & polkit
   security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        action.id.indexOf("org.freedesktop.UPower.PowerProfiles.") === 0 ||
+        action.id.indexOf("net.hadess.PowerProfiles.") === 0 ||
+        action.id.indexOf("org.freedesktop.upower.") === 0
+      ) {
+        if (subject.isInGroup("users") || subject.isInGroup("wheel")) {
+          return polkit.Result.YES;
+        }
+      }
+    });
+  '';
 
   # XDG Desktop Portals (screensharing, window streaming, file picker)
   xdg.portal = {
