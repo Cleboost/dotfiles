@@ -21,7 +21,7 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia msg brightness-up"), { 
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down"), { locked = true, repeating = true })
 
 -- Power / Lock
-hl.bind("SUPER + L", hl.dsp.exec_cmd("noctalia msg screen-lock"), { desc = "Lock" })
+hl.bind("SUPER + L", hl.dsp.exec_cmd("noctalia msg session lock"), { desc = "Lock" })
 hl.bind("SUPER + F5", hl.dsp.exec_cmd("noctalia msg power-cycle"))
 
 -- Media (Mouse Specific)
