@@ -25,7 +25,7 @@
 "XF86MonBrightnessDown" = { action = "spawn:noctalia msg brightness-down", allow_when_locked = true }
 
 # ── Power / Lock ────────────────────────────────────────────────────────────
-"Mod+L" = { action = "spawn:noctalia msg screen-lock", allow_when_locked = true }
+"Mod+L" = { action = "spawn:noctalia msg session lock", allow_when_locked = true }
 "Mod+F5" = "spawn:noctalia msg power-cycle"
 
 # ── Media (Mouse Specific) ──────────────────────────────────────────────────
