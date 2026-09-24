@@ -1,5 +1,0 @@
-#!/bin/bash
-exec cursor \
-  --user-data-dir "$HOME/.config/cursor-work" \
-  --extensions-dir "$HOME/.cursor-work/extensions" \
-  "$@"
