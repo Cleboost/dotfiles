@@ -194,8 +194,8 @@ show_value    = true
 [widget.tray]
 capsule = true
 drawer  = true
-hidden  = ["spotify", "discord"]
-pinned  = ["MP-wLD5ZvD"]
+hidden  = ["discord"]
+pinned  = []
 
 [widget.workspaces]
 capsule      = true
