@@ -19,6 +19,13 @@
     enableFishIntegration = true;
   };
 
+  # Yazi terminal file manager
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
+    shellWrapperName = "y";
+  };
+
   # Fish shell
   programs.fish = {
     enable = true;
