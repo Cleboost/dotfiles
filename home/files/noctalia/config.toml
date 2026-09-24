@@ -320,13 +320,7 @@ power_profile_changed = "~/.local/bin/asus-perf-keyboard-color"
 enabled = [
     "noctalia/bongocat",
     "noctalia/screen_recorder",
-    "noctalia/translator",
     "cleboost/anilist",
-    "cleboost/ssh-launcher",
-    "cleboost/bitwarden",
-    "radimous/prismlauncher-instances",
-    "cleboost/zed-provider",
-    "cleboost/jetbrains-provider",
     "cleboost/asus-fans-controller-ec"
 ]
 
