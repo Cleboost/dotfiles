@@ -20,5 +20,5 @@ move() {
 }
 
 move discord comm &
-move spotify music &
+move fastpotify music &
 wait
