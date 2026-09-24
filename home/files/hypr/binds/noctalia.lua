@@ -34,4 +34,4 @@ hl.bind("CTRL + SHIFT + SUPER + ALT + R", hl.dsp.exec_cmd("pkill noctalia"), { d
 hl.bind("CTRL + SUPER + ALT + T", hl.dsp.exec_cmd("noctalia msg wallpaper-random"))
 
 -- Screen Recorder
-hl.bind("SUPER + R", hl.dsp.exec_cmd("noctalia msg scripted-widget screen_recorder focused start"))
+hl.bind("SUPER + R", hl.dsp.exec_cmd("noctalia msg plugin noctalia/screen_recorder:service all toggle"))
