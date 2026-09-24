@@ -40,5 +40,6 @@
     nano
     pciutils
     usbutils
+    evtest
   ];
 }
