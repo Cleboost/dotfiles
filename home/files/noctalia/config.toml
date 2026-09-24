@@ -322,7 +322,8 @@ enabled = [
     "noctalia/bongocat",
     "noctalia/screen_recorder",
     "cleboost/anilist",
-    "cleboost/asus-fans-controller-ec"
+    "cleboost/asus-fans-controller-ec",
+    "cleboost/librelinkup"
 ]
 
 [[plugins.source]]
