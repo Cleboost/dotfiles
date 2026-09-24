@@ -39,6 +39,9 @@ enabled = true
 [shell.greeter_sync]
 auto_sync = true
 
+[shell.screenshot]
+directory = "/home/cleboost/Pictures/Screenshots"
+
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║  2. WALLPAPER & THEME                                                        ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -328,21 +331,22 @@ enabled = [
 ]
 
 [[plugins.source]]
-name     = "official"
-kind     = "git"
+kind = "git"
 location = "https://github.com/noctalia-dev/official-plugins"
+name = "official"
 
 [[plugins.source]]
-name     = "community"
-kind     = "git"
+kind = "git"
 location = "https://github.com/noctalia-dev/community-plugins"
+name = "community"
 
 [[plugins.source]]
-name     = "community-local"
-kind     = "path"
+enabled = false
+kind = "path"
 location = "/home/cleboost/Projects/noctalia/community-plugins"
+name = "community-local"
 
 [plugin_settings."noctalia/screen_recorder"]
 frame_rate   = 144
 video_codec  = "h264"
-video_source = "portal"
+video_source = "focused"
