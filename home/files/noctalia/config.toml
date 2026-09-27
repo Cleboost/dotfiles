@@ -101,11 +101,6 @@ force                = false
 temperature_day      = 6500         # Kelvin
 temperature_night    = 4000         # Kelvin
 
-[idle.behavior.lock]
-enabled = false
-timeout = 660
-command = "noctalia:lock"
-
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║  4. NOTIFICATIONS & INPUT                                                    ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
