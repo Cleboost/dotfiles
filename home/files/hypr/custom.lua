@@ -4,6 +4,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprctl setcursor cleboost-cursor 18")
 end)
 
+hl.dispatch(hl.dsp.submap("global"))
+
 -- Glass-style borders — uniform semi-transparent, diagonal shimmer
 hl.config({
     general = {
@@ -36,3 +38,5 @@ hl.unbind("mouse_down")
 -- Scroll wheel with SUPER to switch workspaces
 hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { repeating = true })
 hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { repeating = true })
+
+hl.dispatch(hl.dsp.submap("global"))

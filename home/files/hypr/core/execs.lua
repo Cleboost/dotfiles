@@ -9,7 +9,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 2 && nautilus --gapplication-service 2>/dev/null")
 
     -- Input & Hardware
-    hl.exec_cmd("hyprctl setcursor cleboost-cursor 18")
     hl.exec_cmd("steam -silent")
     hl.exec_cmd("jetbrain-fix")
     hl.exec_cmd("~/.config/hypr/scripts/manage_workspaces.sh")
