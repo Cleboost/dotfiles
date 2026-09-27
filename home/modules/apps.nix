@@ -170,6 +170,7 @@
     prismlauncher
     blockbench
     obsidian
+    rquickshare
     inputs.nixpkgs-rustdesk-pr.legacyPackages.${pkgs.stdenv.hostPlatform.system}.rustdesk-flutter-nightly
 
     # ── CLI & Terminal Utilities ────────────────────
