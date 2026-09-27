@@ -59,6 +59,7 @@
     ripgrep
     fd
     jq
+    fastfetch
     socat
     netcat-openbsd
     age

@@ -110,12 +110,12 @@
   xdg.dataFile."locale/fr/LC_MESSAGES/nautilus-open-any-terminal.mo".source =
     ../files/nautilus/nautilus-open-any-terminal.mo;
 
-  # GTK Theme & Icons (full WhiteSur from nixpkgs; folder sidebar overrides in ~/.local/share/icons/WhiteSur-dark)
+  # GTK Theme & Icons (WhiteSur + overlay: custom folder icons in main view; sidebar symbols = Adwaita)
   gtk = {
     enable = true;
     gtk4.theme = null;
     iconTheme = {
-      name = "WhiteSur-dark";
+      name = "WhiteSur-dark-cleboost";
       package = pkgs.whitesur-icon-theme;
     };
     theme = {
