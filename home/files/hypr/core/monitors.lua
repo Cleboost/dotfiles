@@ -29,6 +29,7 @@ hl.monitor({
     mode     = "1920x1080@144",
     position = "3840x0",
     scale    = 1,
+    vrr      = 1,
 })
 
 -- Fallback by port names
