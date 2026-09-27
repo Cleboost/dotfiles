@@ -13,6 +13,7 @@
     ./modules/umbriel.nix
     ./modules/apps.nix
     ./modules/packages.nix
+    ./modules/secrets.nix
   ];
 
   home.sessionVariables = {

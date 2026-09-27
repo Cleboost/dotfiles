@@ -10,6 +10,7 @@
     ./modules/packages.nix
     ./modules/gaming.nix
     ./modules/docker.nix
+    ./modules/keyring.nix
   ];
 
   # Nix package manager settings and Flakes configuration
