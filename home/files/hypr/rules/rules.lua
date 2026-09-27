@@ -39,7 +39,7 @@ local opacity_rules = {
     { class = "^(jetbrains-rustrover)$", opacity = "0.85 0.85" },
     { class = "^(jetbrains-idea)$", opacity = "0.85 0.85" },
     { class = "^(jetbrains-clion)$", opacity = "0.85 0.85" },
-    { class = "^(jetbrains-goland)$", opacity = "0.85 0.85" },
+    { class = "^(jetbrains-goland)$",               opacity = "0.85 0.85" }
 }
 
 for _, rule in ipairs(opacity_rules) do

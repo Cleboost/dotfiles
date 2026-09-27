@@ -87,7 +87,30 @@
       name = "cleboost-cursor";
       size = 18;
     };
+    gtk3.bookmarks = [
+      "file:///home/cleboost/Code Code"
+      "file:///home/cleboost/Downloads Downloads"
+      "file:///home/cleboost/Pictures Pictures"
+      "file:///home/cleboost/Music Music"
+      "file:///home/cleboost/Videos Videos"
+    ];
   };
+
+  # XDG User Directories
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    download = "$HOME/Downloads";
+    pictures = "$HOME/Pictures";
+    music = "$HOME/Music";
+    videos = "$HOME/Videos";
+    documents = "$HOME/Documents";
+  };
+
+  # Hide folders in file manager (Nautilus / GTK)
+  home.file.".hidden".text = ''
+    Games
+  '';
 
   # User applications and packages
   home.packages = with pkgs; [
@@ -136,6 +159,7 @@
     android-tools
     prismlauncher
     blockbench
+    obsidian
     inputs.nixpkgs-rustdesk-pr.legacyPackages.${pkgs.stdenv.hostPlatform.system}.rustdesk-flutter-nightly
 
     # ── CLI & Terminal Utilities ────────────────────
