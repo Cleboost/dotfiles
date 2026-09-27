@@ -5,6 +5,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
     hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland.service xdg-desktop-portal.service")
     hl.exec_cmd("noctalia")
+    hl.exec_cmd("hyprctl dispatch 'hl.dsp.submap(\"global\")'")
     hl.exec_cmd("systemctl --user start localsearch-3.service")
     hl.exec_cmd("sleep 2 && nautilus --gapplication-service 2>/dev/null")
 
