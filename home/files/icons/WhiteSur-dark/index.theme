@@ -1,15 +1,8 @@
 [Icon Theme]
-Name=WhiteSur-dark
-Comment=WhiteSur with clean Adwaita symbolic sidebar icons
-Inherits=WhiteSur-dark,Adwaita,hicolor
-Directories=places/symbolic,places/scalable
-
-[places/symbolic]
-Size=16
-Context=Places
-Type=Threshold
-MinSize=16
-MaxSize=512
+Name=WhiteSur-dark-cleboost
+Comment=Adwaita sidebar symbols + WhiteSur apps; custom scalable folder icons in main view
+Inherits=Adwaita,WhiteSur-dark,hicolor
+Directories=places/scalable
 
 [places/scalable]
 Size=64
