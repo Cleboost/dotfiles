@@ -1,0 +1,12 @@
+[Icon Theme]
+Name=WhiteSur-dark
+Comment=WhiteSur with clean Adwaita symbolic sidebar icons
+Inherits=WhiteSur-dark,Adwaita,hicolor
+Directories=places/symbolic
+
+[places/symbolic]
+Size=16
+Context=Places
+Type=Threshold
+MinSize=16
+MaxSize=512
