@@ -11,8 +11,47 @@
   xdg.configFile."Kvantum".source = ../files/qt/Kvantum;
   xdg.configFile."qt6ct".source = ../files/qt/qt6ct;
 
-  # Mime applications association
-  xdg.configFile."mimeapps.list".source = ../files/mimeapps.list;
+  # Default applications & MIME type associations
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      # Web & Internet
+      "text/html" = "google-chrome.desktop";
+      "x-scheme-handler/http" = "google-chrome.desktop";
+      "x-scheme-handler/https" = "google-chrome.desktop";
+      "x-scheme-handler/about" = "google-chrome.desktop";
+      "x-scheme-handler/unknown" = "google-chrome.desktop";
+      "x-scheme-handler/discord" = "discord.desktop";
+      "x-scheme-handler/jetbrains" = "jetbrainsd.desktop";
+
+      # Documents & Text
+      "application/pdf" = "org.gnome.Evince.desktop";
+      "text/plain" = "dev.zed.Zed.desktop";
+      "application/toml" = "dev.zed.Zed.desktop";
+
+      # File Manager
+      "inode/directory" = "org.gnome.Nautilus.desktop";
+
+      # Audio & Media
+      "audio/mpeg" = "mpv.desktop";
+      "audio/x-mpeg" = "mpv.desktop";
+      "audio/mp3" = "mpv.desktop";
+      "audio/x-mp3" = "mpv.desktop";
+      "audio/ogg" = "mpv.desktop";
+      "audio/flac" = "mpv.desktop";
+      "audio/wav" = "mpv.desktop";
+
+      # Video & Media
+      "video/mp4" = "mpv.desktop";
+      "video/x-matroska" = "mpv.desktop";
+      "video/webm" = "mpv.desktop";
+
+      # Images
+      "image/png" = "feh.desktop";
+      "image/jpeg" = "feh.desktop";
+      "image/webp" = "feh.desktop";
+    };
+  };
 
   # Desktop entries
   xdg.desktopEntries = {
