@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Cursor editor with ACL profile isolation
+exec cursor \
+  --user-data-dir "$HOME/.config/cursor-acl" \
+  --extensions-dir "$HOME/.cursor-acl/extensions" \
+  "$@"

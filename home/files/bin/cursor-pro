@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Alias for cursor-acl
+exec cursor-acl "$@"

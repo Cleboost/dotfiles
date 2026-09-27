@@ -129,26 +129,6 @@
     inputs.codex-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     zed-editor
     code-cursor
-    (pkgs.writeShellScriptBin "cursor-acl" ''
-      exec ${pkgs.code-cursor}/bin/cursor \
-        --user-data-dir "$HOME/.config/cursor-acl" \
-        --extensions-dir "$HOME/.cursor-acl/extensions" \
-        "$@"
-    '')
-    (pkgs.writeShellScriptBin "cursor-pro" ''
-      exec cursor-acl "$@"
-    '')
-    (pkgs.writeShellScriptBin "bluetooth-fix" ''
-      echo "0000:06:00.4" | sudo tee /sys/bus/pci/drivers/xhci_hcd/unbind >/dev/null
-      sleep 1
-      echo "0000:06:00.4" | sudo tee /sys/bus/pci/drivers/xhci_hcd/bind >/dev/null
-      sleep 2
-      sudo systemctl restart bluetooth
-      sleep 1
-      bluetoothctl power on >/dev/null 2>&1
-      sleep 1
-      bluetoothctl connect 88:92:CC:9E:A3:56
-    '')
     jetbrains.idea
     jetbrains.rust-rover
     antigravity-cli
