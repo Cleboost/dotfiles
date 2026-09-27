@@ -155,6 +155,7 @@
     ];
     firewall = {
       enable = true;
+      trustedInterfaces = [ "wlp3s0" ];
     };
   };
 
