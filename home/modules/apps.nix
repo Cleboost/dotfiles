@@ -115,6 +115,12 @@
     Games
   '';
 
+  # Declaratively set custom folder icons for Nautilus / GIO
+  home.activation.setFolderIcons = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD ${pkgs.glib}/bin/gio set "$HOME/Code" metadata::custom-icon-name folder-code || true
+    $DRY_RUN_CMD ${pkgs.glib}/bin/gio set "$HOME/Projects" metadata::custom-icon-name folder-projects || true
+  '';
+
   # User applications and packages
   home.packages = with pkgs; [
     # ── Dev IA / IDE ───────────────────────────
