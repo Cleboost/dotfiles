@@ -33,6 +33,11 @@
     terminal = "kitty";
   };
 
+  # Vignettes / aperçus de fichiers vidéo (WebM, MP4, MKV, etc.) dans Nautilus
+  environment.systemPackages = with pkgs; [
+    ffmpegthumbnailer
+  ];
+
   # Hardware access & polkit
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
