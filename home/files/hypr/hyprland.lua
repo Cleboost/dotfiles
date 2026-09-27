@@ -18,11 +18,6 @@ require("core.execs")
 -- ── Appearance ────────────────────────────────────────────────────────────────
 require("theme.colors")
 
--- ── Binds ─────────────────────────────────────────────────────────────────────
-require("binds.noctalia")
-require("binds.workspaces")
-require("binds.keybinds")
-
 -- ── Rules ─────────────────────────────────────────────────────────────────────
 require("rules.rules")
 require("rules.specialwork")
@@ -35,5 +30,11 @@ end)
 -- ── Personal overrides (last) ─────────────────────────────────────────────────
 require("custom")
 
--- Noctalia catch-all submap — required for keybinds to work
+-- ── Keybinds (Noctalia global submap — same as legacy `submap = global`) ──────
+hl.define_submap("global", function()
+    require("binds.noctalia")
+    require("binds.workspaces")
+    require("binds.keybinds")
+end)
+
 hl.dispatch(hl.dsp.submap("global"))

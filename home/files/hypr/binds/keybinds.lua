@@ -60,3 +60,16 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 -- Extra Mouse Media
 hl.bind("SUPER + SHIFT + ALT + mouse:275", hl.dsp.exec_cmd("playerctl previous"))
 hl.bind("SUPER + SHIFT + ALT + mouse:276", hl.dsp.exec_cmd("playerctl next"))
+
+-- Mouse overrides (must load after binds.workspaces)
+hl.unbind("mouse:275")
+hl.unbind("mouse:276")
+hl.unbind("SUPER + mouse:275")
+hl.unbind("SUPER + mouse:276")
+hl.unbind("SUPER + mouse_up")
+hl.unbind("SUPER + mouse_down")
+hl.unbind("mouse_up")
+hl.unbind("mouse_down")
+
+hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { repeating = true })
+hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { repeating = true })
