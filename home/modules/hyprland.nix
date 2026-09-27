@@ -14,7 +14,6 @@
   xdg.configFile."hypr/binds".source = ../files/hypr/binds;
   xdg.configFile."hypr/rules".source = ../files/hypr/rules;
   xdg.configFile."hypr/theme".source = ../files/hypr/theme;
-  xdg.configFile."hypr/hyprland".source = ../files/hypr/hyprland;
   xdg.configFile."hypr/scripts".source = ../files/hypr/scripts;
   xdg.configFile."hypr/move-special.sh".source = ../files/hypr/move-special.sh;
 }

@@ -63,16 +63,22 @@ Besides `nixpkgs` and `home-manager`, this config pulls in:
 
 ## Usage (on my machine)
 
-```bash
-# Apply system + home config
-sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain
+This config uses **[NH](https://github.com/viperML/nh)** (`programs.nh` in `configuration.nix`, flake path `/home/cleboost/dotfiles`).
 
-# Update inputs and rebuild
-nix flake update --flake /home/cleboost/dotfiles
-sudo nixos-rebuild switch --flake /home/cleboost/dotfiles#cleboost-brain
+Scripts in `~/.local/bin` (from `home/files/bin/`):
+
+```bash
+rebuild          # Fast Home Manager-only switch (~seconds, no sudo)
+rebuild -s       # Full NixOS switch via `nh os switch`
+update           # `nh os switch -u` — update flake inputs + system switch
 ```
 
-Fish aliases `rebuild` and `update` wrap the same commands.
+Equivalent NH commands:
+
+```bash
+nh os switch /home/cleboost/dotfiles
+nh os switch -u /home/cleboost/dotfiles
+```
 
 The flake also exposes `nixosConfigurations.nixos` as an alias to `cleboost-brain`.
 

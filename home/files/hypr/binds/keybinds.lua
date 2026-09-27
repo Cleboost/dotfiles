@@ -15,11 +15,11 @@ hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("noctalia msg screenshot-annotate")
 hl.bind("Print", hl.dsp.exec_cmd("noctalia msg screenshot-annotate"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("noctalia msg screenshot-fullscreen"))
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a"), { desc = "Color picker" })
-hl.bind("SUPER + H", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/hotspot.sh"), { desc = "Launch Hotspot" })
+hl.bind("SUPER + H", hl.dsp.exec_cmd("~/.config/hypr/scripts/hotspot.sh"), { desc = "Launch Hotspot" })
 
 -- Zoom & Screen
-hl.bind("SUPER + Z", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/cursor_zoom.sh up"))
-hl.bind("SUPER + SHIFT + Z", hl.dsp.exec_cmd("~/.config/hypr/hyprland/scripts/cursor_zoom.sh reset"))
+hl.bind("SUPER + Z", hl.dsp.exec_cmd("~/.config/hypr/scripts/cursor_zoom.sh up"))
+hl.bind("SUPER + SHIFT + Z", hl.dsp.exec_cmd("~/.config/hypr/scripts/cursor_zoom.sh reset"))
 
 -- Window Actions
 hl.bind("SUPER + Q", hl.dsp.window.close())

@@ -20,7 +20,7 @@
 "Print" = "spawn:noctalia msg screenshot-annotate"
 "Shift+Print" = "spawn:noctalia msg screenshot-fullscreen"
 "Mod+Shift+C" = "spawn:hyprpicker -a"
-"Mod+H" = "spawn:/home/cleboost/.config/hypr/hyprland/scripts/hotspot.sh"
+"Mod+H" = "spawn:/home/cleboost/.config/hypr/scripts/hotspot.sh"
 
 # ── Window Management ───────────────────────────────────────────────────────
 "Mod+Q" = "window-close"

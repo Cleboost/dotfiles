@@ -6,10 +6,13 @@ RED="\033[1;31m"
 RESET="\033[0m"
 DIM="\033[2m"
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/spinner.sh
+source "$SCRIPT_DIR/lib/spinner.sh"
+
 DOTFILES_DIR="/home/cleboost/dotfiles"
 MODE="user"
 
-# Parse arguments
 for arg in "$@"; do
   case "$arg" in
     -s|--system)
@@ -27,51 +30,20 @@ for arg in "$@"; do
   esac
 done
 
-# Braille spinner frames
-SPINNER_FRAMES=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
-
-run_spinner() {
-  local pid=$1
-  local msg=$2
-  local log_file=$3
-  local start_time=$(date +%s)
-  
-  tput civis 2>/dev/null || true
-
-  while kill -0 "$pid" 2>/dev/null; do
-    local now=$(date +%s)
-    local elapsed=$((now - start_time))
-    local frame_idx=$(( (now * 10 + $(date +%N | cut -c1-2 | sed 's/^0//')) / 10 % 10 ))
-    local frame=${SPINNER_FRAMES[$frame_idx]:-⠋}
-
-    if grep -q -E "(Mot de passe|Password|sudo)" "$log_file" 2>/dev/null; then
-      break
-    fi
-
-    printf "\r${CYAN}${frame}${RESET} ${DIM}${msg}...${RESET} ${CYAN}[${elapsed}s]${RESET}  "
-    sleep 0.08
-  done
-
-  tput cnorm 2>/dev/null || true
-  printf "\r\033[K"
-}
-
 TMP_LOG=$(mktemp /tmp/rebuild-XXXXXX.log)
 
 if [ "$MODE" = "system" ]; then
   echo -e "${CYAN} Rebuilding full NixOS system configuration...${RESET}"
-  
-  nh os switch "$DOTFILES_DIR" 2>&1 \
-    | grep -v -E '(Checking switch inhibitors|Skipping "/boot|activating the configuration|setting up /etc|reloading user units|restarting user units|restarting sysinit|the following new units)' \
-    > "$TMP_LOG" &
-  
+
+  nh os switch "$DOTFILES_DIR" 2>&1 | nh_quiet_filter > "$TMP_LOG" &
+
   CMD_PID=$!
   run_spinner "$CMD_PID" "Evaluating and building full system" "$TMP_LOG"
   wait "$CMD_PID"
   exit_code=$?
 else
   echo -e "${CYAN}⚡ Rebuilding Home Manager configuration (fast mode)...${RESET}"
-  
+
   (
     BUILD_ERR=$(mktemp /tmp/rebuild-build-err-XXXXXX.log)
     OUT_PATH=$(nix build "$DOTFILES_DIR#nixosConfigurations.cleboost-brain.config.home-manager.users.cleboost.home.activationPackage" --no-link --print-out-paths 2>"$BUILD_ERR")
@@ -83,7 +55,7 @@ else
     fi
     "$OUT_PATH/activate"
   ) > "$TMP_LOG" 2>&1 &
-  
+
   CMD_PID=$!
   run_spinner "$CMD_PID" "Building and activating user environment" "$TMP_LOG"
   wait "$CMD_PID"
