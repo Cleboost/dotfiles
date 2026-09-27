@@ -100,6 +100,7 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = false;
     download = "$HOME/Downloads";
     pictures = "$HOME/Pictures";
     music = "$HOME/Musics";
