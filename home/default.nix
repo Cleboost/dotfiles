@@ -12,7 +12,7 @@
     ./modules/hyprland.nix
     ./modules/umbriel.nix
     ./modules/apps.nix
-    ./modules/dev.nix
+    ./modules/packages.nix
   ];
 
   home.sessionVariables = {
