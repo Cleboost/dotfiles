@@ -91,7 +91,7 @@
       "file:///home/cleboost/Code Code"
       "file:///home/cleboost/Downloads Downloads"
       "file:///home/cleboost/Pictures Pictures"
-      "file:///home/cleboost/Music Music"
+      "file:///home/cleboost/Musics Musics"
       "file:///home/cleboost/Videos Videos"
     ];
   };
@@ -102,9 +102,12 @@
     createDirectories = true;
     download = "$HOME/Downloads";
     pictures = "$HOME/Pictures";
-    music = "$HOME/Music";
+    music = "$HOME/Musics";
     videos = "$HOME/Videos";
     documents = "$HOME/Documents";
+    desktop = null;
+    publicShare = null;
+    templates = null;
   };
 
   # Hide folders in file manager (Nautilus / GTK)
