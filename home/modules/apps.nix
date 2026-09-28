@@ -59,7 +59,7 @@
       name = "Cursor (ACL)";
       genericName = "Text Editor";
       comment = "Code Editing. Redefined. (ACL Environment)";
-      exec = "cursor-acl %F";
+      exec = "${config.home.homeDirectory}/.local/bin/cursor-acl %F";
       icon = "cursor";
       terminal = false;
       type = "Application";
@@ -68,7 +68,7 @@
       actions = {
         "new-empty-window" = {
           name = "New Empty Window";
-          exec = "cursor-acl --new-window %F";
+          exec = "${config.home.homeDirectory}/.local/bin/cursor-acl --new-window %F";
           icon = "cursor";
         };
       };

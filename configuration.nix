@@ -125,6 +125,9 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="13d3", ATTR{idProduct}=="3563", ATTR{power/control}="on"
   '';
 
+  # Flipper Zero: udev rules & qFlipper software
+  hardware.flipperzero.enable = true;
+
   # Bluetooth daemon configuration & stability
   hardware.bluetooth = {
     enable = true;
@@ -185,7 +188,7 @@
     isNormalUser = true;
     description = "Cleboost";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" "docker" "dialout" ];
   };
 
   # Passwordless sudo for wheel group (seamless rebuilds & CLI tools without password prompt)
