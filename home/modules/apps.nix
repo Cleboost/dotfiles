@@ -32,14 +32,16 @@
       # File Manager
       "inode/directory" = "org.gnome.Nautilus.desktop";
 
-      # Audio & Media
-      "audio/mpeg" = "mpv.desktop";
-      "audio/x-mpeg" = "mpv.desktop";
-      "audio/mp3" = "mpv.desktop";
-      "audio/x-mp3" = "mpv.desktop";
-      "audio/ogg" = "mpv.desktop";
-      "audio/flac" = "mpv.desktop";
-      "audio/wav" = "mpv.desktop";
+      # Audio (local library via Lollypop; mpv stays default for video)
+      "audio/mpeg" = "org.gnome.Lollypop.desktop";
+      "audio/x-mpeg" = "org.gnome.Lollypop.desktop";
+      "audio/mp3" = "org.gnome.Lollypop.desktop";
+      "audio/x-mp3" = "org.gnome.Lollypop.desktop";
+      "audio/ogg" = "org.gnome.Lollypop.desktop";
+      "audio/flac" = "org.gnome.Lollypop.desktop";
+      "audio/wav" = "org.gnome.Lollypop.desktop";
+      "audio/x-vorbis+ogg" = "org.gnome.Lollypop.desktop";
+      "audio/opus" = "org.gnome.Lollypop.desktop";
 
       # Video & Media
       "video/mp4" = "mpv.desktop";

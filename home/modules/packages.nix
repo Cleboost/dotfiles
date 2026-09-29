@@ -11,6 +11,7 @@
 
     # Multimédia, Documents & Partage
     nautilus
+    lollypop
     mpv
     feh
     evince
