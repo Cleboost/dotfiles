@@ -7,7 +7,7 @@
 # Umbriel docs: blur engine is global, but blur renders only on transparent surfaces.
 # Hyprland tied blur to opacity rules; do NOT opt-in blur on every window.
 [[window_rule]]
-match.app_id = "^(kitty|org.gnome.Nautilus|[Ss]potify|fastpotify|discord|dev.zed.Zed|rustdesk|cursor|claude|dev.noctalia.Noctalia|dev.noctalia.Noctalia.Settings|dev.faetalize.waytator)$"
+match.app_id = "^(kitty|org.gnome.Nautilus|[Ss]potify|spotifast|fastpotify|discord|dev.zed.Zed|rustdesk|cursor|claude|dev.noctalia.Noctalia|dev.noctalia.Noctalia.Settings|dev.faetalize.waytator)$"
 opacity = 0.85
 blur = true
 blur_optimized = true
@@ -82,7 +82,7 @@ default_floating = false
 default_focused = false
 
 [[window_rule]]
-match.app_id = "^([Ss]potify|fastpotify)$"
+match.app_id = "^([Ss]potify|spotifast|fastpotify)$"
 default_scratchpad = "music"
 default_floating = false
 default_focused = false

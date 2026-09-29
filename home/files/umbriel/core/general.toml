@@ -21,7 +21,7 @@ autostart = [
     "jetbrain-fix",
     "google-chrome-stable",
     "discord",
-    "fastpotify",
+    "spotifast",
 ]
 
 # ── Layout ──────────────────────────────────────────────────────────────────

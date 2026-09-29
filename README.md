@@ -31,7 +31,7 @@ Both Hyprland and Umbriel configs live in this repo. Hyprland is the default gre
 - **Flakes-based** NixOS + Home Manager setup (`nixos-unstable`)
 - **Gaming:** Steam, GameMode, MangoHud, ananicy-cpp, Proton-GE, gamescope session
 - **Dev tooling:** JDK, Maven, Gradle, Bun, Node.js, Rust, GCC
-- **Apps:** Chrome, Discord, fastpotify, Zed, Cursor, JetBrains IDEs, Bitwarden, and more
+- **Apps:** Chrome, Discord, spotifast, Zed, Cursor, JetBrains IDEs, Bitwarden, and more
 - **Custom scripts** in `home/files/bin/` (fastfetch helpers, JetBrains fix, SSH menu, etc.)
 - **ASUS laptop extras:** fan control EC tool + Noctalia plugin integration
 

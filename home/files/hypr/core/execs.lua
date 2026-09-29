@@ -18,5 +18,5 @@ hl.on("hyprland.start", function()
 
     -- Special apps (from specialwork)
     hl.exec_cmd("discord")
-    hl.exec_cmd("fastpotify")
+    hl.exec_cmd("spotifast")
 end)
