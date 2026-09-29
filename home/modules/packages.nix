@@ -14,7 +14,7 @@
     mpv
     feh
     evince
-    fastpotify
+    spotifast
     qbittorrent
     rquickshare
 

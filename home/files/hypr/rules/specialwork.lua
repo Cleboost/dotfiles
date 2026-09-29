@@ -8,7 +8,7 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    match = { class = "^([Ss]potify|fastpotify)$" },
+    match = { class = "^([Ss]potify|spotifast|fastpotify)$" },
     workspace = "special:music silent",
     no_initial_focus = true,
 })
