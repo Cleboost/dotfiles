@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hostName, ... }:
 
 {
   home.username = "cleboost";
@@ -6,7 +6,7 @@
   home.stateVersion = "25.05";
 
   imports = [
-    ./modules/gpu-env.nix
+    (import (./hosts + "/${hostName}.nix"))
     ./modules/theme.nix
     ./modules/shell.nix
     ./modules/hyprland.nix
