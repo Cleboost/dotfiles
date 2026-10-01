@@ -3,7 +3,7 @@
 
 {
   imports = [
-    ../modules/nvidia.nix
+    ../../modules/nvidia.nix
     ./asus-fan-control.nix
   ];
 

@@ -10,7 +10,7 @@ hl.env("NAUTILUS_4_EXTENSION_DIR", "/run/current-system/sw/lib/nautilus/extensio
 hl.env("QT_QPA_PLATFORM", "wayland")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("QT_STYLE_OVERRIDE", "kvantum")
-hl.env("GTK_ICON_THEME", "WhiteSur-dark-cleboost")
+hl.env("GTK_ICON_THEME", "cleboost-icons")
 hl.env("GTK_USE_PORTAL", "0")
 hl.env("GSK_RENDERER", "gl")
 

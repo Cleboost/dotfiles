@@ -1,22 +1,20 @@
 { config, pkgs, ... }:
 
+let
+  cleboostIcons = import ./lib/cleboost-icon-theme.nix { inherit pkgs; };
+in
 {
   # Wallpapers and profile pictures
   home.file."Pictures/Wallpapers".source = ../files/Pictures/Wallpapers;
   home.file."Pictures/profile.png".source = ../files/Pictures/profile.png;
   home.file."Pictures/banner.png".source = ../files/Pictures/banner.png;
 
-  # Icons (see home/modules/apps.nix gtk.iconTheme — full theme from nixpkgs)
-  #
-  # - cleboost-cursor: custom Hypr/Wayland cursor (~19M, only thing we vendor at full size)
-  # - WhiteSur-dark-cleboost: overlay (places/scalable only) — sidebar = Adwaita; apps = WhiteSur
+  # cleboost-icons: Adwaita + WhiteSur apps only (see lib/cleboost-icon-theme.nix)
+  home.packages = [ cleboostIcons pkgs.adwaita-icon-theme ];
+
+  # cleboost-cursor: custom Hypr/Wayland cursor
   home.file.".local/share/icons/cleboost-cursor" = {
     source = ../files/icons/cleboost-cursor;
-    recursive = true;
-    force = true;
-  };
-  home.file.".local/share/icons/WhiteSur-dark-cleboost" = {
-    source = ../files/icons/WhiteSur-dark;
     recursive = true;
     force = true;
   };
@@ -24,6 +22,7 @@
   # ~/.icons: one symlink for Steam/X11 (do not recursive-link into store — read-only)
   home.activation.removeLegacyIconOverlay = config.lib.dag.entryAfter [ "linkGeneration" ] ''
     $DRY_RUN_CMD rm -rf "$HOME/.local/share/icons/WhiteSur-dark"
+    $DRY_RUN_CMD rm -rf "$HOME/.local/share/icons/WhiteSur-dark-cleboost"
   '';
 
   home.activation.iconsLegacyCursor = config.lib.dag.entryAfter [ "linkGeneration" ] ''
