@@ -23,6 +23,16 @@ hl.window_rule({
     size = "400 600",
 })
 
+-- Kitty: always tile; ignore stray maximize/fullscreen requests from single-instance spawns
+hl.window_rule({
+    name = "kitty-tiled-terminal",
+    match = { class = "^(kitty)$" },
+    float = false,
+    tile = true,
+    fullscreen_state = "0 0",
+    suppress_event = "fullscreen maximize",
+})
+
 -- Transparency + Blur
 local opacity_rules = {
     { class = "^(kitty)$", opacity = "0.85 0.85" },

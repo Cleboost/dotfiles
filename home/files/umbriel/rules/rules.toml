@@ -18,6 +18,11 @@ opacity = 0.95
 blur = true
 blur_optimized = true
 
+# ── Terminal (always tiled; avoid float/fullscreen glitches with kitty -1) ───
+[[window_rule]]
+match.app_id = "^kitty$"
+default_floating = false
+
 # ── File Chooser & Dialogs Floating ─────────────────────────────────────────
 [[window_rule]]
 match.title = "^(Open File|Select a File|Open Folder|Save As)(.*)$"
