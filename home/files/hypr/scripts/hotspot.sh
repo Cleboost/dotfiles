@@ -10,11 +10,12 @@ if [ -z "$WIFI_IFACE" ]; then
 fi
 
 HOTSPOT_CON_NAME="Hotspot"
+HOST_SSID="$(hostname)"
 
 # Check if Hotspot connection is currently active
 ACTIVE_HOTSPOT=$(nmcli -t -f NAME,TYPE,DEVICE connection show --active | grep ":wifi:${WIFI_IFACE}" | cut -d: -f1)
 
-if [ -n "$ACTIVE_HOTSPOT" ] && [[ "$ACTIVE_HOTSPOT" =~ ^(Hotspot|cleboost-brain)$ ]]; then
+if [ -n "$ACTIVE_HOTSPOT" ] && [[ "$ACTIVE_HOTSPOT" =~ ^(Hotspot|${HOST_SSID})$ ]]; then
     # Hotspot is active, turn it off
     nmcli connection down "$ACTIVE_HOTSPOT" >/dev/null 2>&1
     notify-send -a "Wifi" "Hotspot Disabled" "Wi-Fi hotspot has been stopped." -i "network-wireless-symbolic"
@@ -24,12 +25,12 @@ else
         nmcli connection up "Hotspot" >/dev/null 2>&1
         STATUS=$?
     else
-        nmcli device wifi hotspot ifname "$WIFI_IFACE" con-name "Hotspot" ssid "cleboost-brain" password "coucoubb" >/dev/null 2>&1
+        nmcli device wifi hotspot ifname "$WIFI_IFACE" con-name "Hotspot" ssid "$HOST_SSID" password "coucoubb" >/dev/null 2>&1
         STATUS=$?
     fi
 
     if [ $STATUS -eq 0 ]; then
-        notify-send -a "Wifi" "Hotspot Activated" "SSID: cleboost-brain\nPassword: coucoubb" -i "network-wireless-hotspot-symbolic"
+        notify-send -a "Wifi" "Hotspot Activated" "SSID: ${HOST_SSID}\nPassword: coucoubb" -i "network-wireless-hotspot-symbolic"
     else
         notify-send -a "Wifi" -u critical "Hotspot Failed" "Could not start hotspot on $WIFI_IFACE." -i "network-wireless-offline-symbolic"
     fi

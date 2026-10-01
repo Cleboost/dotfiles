@@ -1,19 +1,16 @@
-# Main NixOS system configuration for Cleboost
-{ config, pkgs, ... }:
+# Shared NixOS settings for all hosts (cleboost-sage, cleboost-brain, …)
+{ pkgs, ... }:
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./modules/nvidia.nix
-    ./modules/desktop.nix
-    ./modules/noctalia.nix
-    ./modules/packages.nix
-    ./modules/gaming.nix
-    ./modules/docker.nix
-    ./modules/keyring.nix
+    ../modules/desktop.nix
+    ../modules/packages.nix
+    ../modules/gaming.nix
+    ../modules/docker.nix
+    ../modules/keyring.nix
+    ../modules/noctalia.nix
   ];
 
-  # Nix package manager settings and Flakes configuration
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
@@ -31,10 +28,8 @@
     auto-optimise-store = true;
   };
 
-  # Periodic background optimisation of Nix store
   nix.optimise.automatic = true;
 
-  # NH (Nix Helper) - Clean, fast, and visual CLI for NixOS/Flakes
   programs.nh = {
     enable = true;
     flake = "/home/cleboost/dotfiles";
@@ -45,34 +40,22 @@
     };
   };
 
-  # SSD TRIM maintenance
   services.fstrim = {
     enable = true;
     interval = "weekly";
   };
 
-
-
-  # Boot optimizations & /tmp cleanup
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest; # Low-latency desktop & gaming kernel
-  boot.kernelParams = [
-    "btusb.enable_autosuspend=0"
-    "usbcore.autosuspend=-1"
-    "mt7921e.disable_aspm=1"
-    "pcie_aspm.policy=performance"
-  ];
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.tmp.cleanOnBoot = true;
 
-  # ZRAM swap (compressed in-RAM swap, prevents out-of-memory stalls without wearing SSD)
   zramSwap = {
     enable = true;
     algorithm = "zstd";
     memoryPercent = 50;
   };
 
-  # EarlyOOM daemon: prevents system freeze on RAM/Swap exhaustion
   services.earlyoom = {
     enable = true;
     enableNotifications = true;
@@ -85,50 +68,26 @@
     ];
   };
 
-  # Kernel memory, low-latency networking (BBR + FQ) & gaming responsiveness tuning
   boot.kernel.sysctl = {
-    # Memory & responsiveness
-    "vm.swappiness" = 180;             # Optimal with zram to favor compressed RAM over disk cache eviction
-    "vm.watermark_boost_factor" = 0;   # Reduces stuttering and latency spikes under memory pressure
-    "vm.watermark_scale_factor" = 125; # Proactively reclaim memory to prevent sudden drops
-    "vm.max_map_count" = 2147483642;   # Required for modern high-performance games and Proton
-
-    # Low-latency TCP networking (Google BBR + Fair Queueing scheduler)
+    "vm.swappiness" = 180;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.max_map_count" = 2147483642;
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_congestion_control" = "bbr";
-    "net.ipv4.tcp_fastopen" = 3;       # Enable TCP Fast Open for client and server
+    "net.ipv4.tcp_fastopen" = 3;
   };
 
-  # Bound systemd journal logs to prevent disk bloat
   services.journald.settings.Journal = {
     SystemMaxUse = "500M";
     MaxRetentionSec = "1month";
   };
 
-  # Bound systemd coredump storage (prevents large crash dumps from gaming/apps)
   systemd.coredump.settings.Coredump = {
     Storage = "external";
     MaxUse = "1G";
   };
 
-  # V4L2 Loopback virtual camera (for scrcpy / phone webcam)
-  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-  boot.kernelModules = [ "v4l2loopback" ];
-  boot.extraModprobeConfig = ''
-    options v4l2loopback video_nr=20 card_label="Phone Camera" exclusive_caps=1
-    options btusb enable_autosuspend=0 reset=1
-    options mt7921e disable_aspm=1
-  '';
-
-  # Disable USB autosuspend for MediaTek Bluetooth to prevent disconnect/reconnect loop
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="13d3", ATTR{idProduct}=="3563", ATTR{power/control}="on"
-  '';
-
-  # Flipper Zero: udev rules & qFlipper software
-  hardware.flipperzero.enable = true;
-
-  # Bluetooth daemon configuration & stability
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -144,20 +103,14 @@
     };
   };
 
-  # Networking & DNS
   networking = {
-    hostName = "cleboost-brain";
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
     };
-    firewall = {
-      enable = true;
-      trustedInterfaces = [ "wlp3s0" ];
-    };
+    firewall.enable = true;
   };
 
-  # DNS: single source of truth (NM uses systemd-resolved; Cloudflare 1.1.1.1 + DoT)
   services.resolved = {
     enable = true;
     settings.Resolve = {
@@ -168,7 +121,6 @@
     };
   };
 
-  # Localization & Timezone
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "fr_FR.UTF-8";
   i18n.extraLocaleSettings = {
@@ -183,7 +135,6 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # Primary user account
   users.users.cleboost = {
     isNormalUser = true;
     description = "Cleboost";
@@ -191,12 +142,7 @@
     extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" "docker" "dialout" ];
   };
 
-  # Passwordless sudo for wheel group (seamless rebuilds & CLI tools without password prompt)
   security.sudo.wheelNeedsPassword = false;
-
-  # Enable running unpatched dynamic binaries (useful for IDE runtimes/tools)
   programs.nix-ld.enable = true;
-
-  # NixOS state version
   system.stateVersion = "25.05";
 }

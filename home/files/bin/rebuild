@@ -11,6 +11,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/lib/spinner.sh"
 
 DOTFILES_DIR="/home/cleboost/dotfiles"
+NIXOS_HOST="$(hostname)"
 MODE="user"
 
 for arg in "$@"; do
@@ -46,7 +47,7 @@ else
 
   (
     BUILD_ERR=$(mktemp /tmp/rebuild-build-err-XXXXXX.log)
-    OUT_PATH=$(nix build "$DOTFILES_DIR#nixosConfigurations.cleboost-brain.config.home-manager.users.cleboost.home.activationPackage" --no-link --print-out-paths 2>"$BUILD_ERR")
+    OUT_PATH=$(nix build "$DOTFILES_DIR#nixosConfigurations.${NIXOS_HOST}.config.home-manager.users.cleboost.home.activationPackage" --no-link --print-out-paths 2>"$BUILD_ERR")
     BUILD_STATUS=$?
     cat "$BUILD_ERR"
     rm -f "$BUILD_ERR"

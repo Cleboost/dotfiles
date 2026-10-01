@@ -2,63 +2,61 @@
   description = "Cleboost's modular NixOS and Home Manager configuration";
 
   inputs = {
-    # Nixpkgs unstable (rolling release)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Noctalia v5 Shell (Latest commit tracking)
     noctalia = {
       url = "github:noctalia-dev/noctalia";
     };
 
-    # Noctalia Greeter (Lock screen / display manager)
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
     };
 
-    # ChatGPT Desktop (Official OpenAI Linux desktop app repackaged for NixOS/Wayland)
     chatgpt-desktop = {
       url = "github:ilysenko/codex-desktop-linux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Codex CLI (Official OpenAI Codex CLI terminal agent)
     codex-cli = {
       url = "github:SecBear/codex-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # RustDesk nightly / v1.5 PR (https://github.com/NixOS/nixpkgs/pull/561724)
     nixpkgs-rustdesk-pr = {
       url = "github:telometto/nixpkgs/86fb8aca9dcd694480c58b087dc73f8b1ed5d38b";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, chatgpt-desktop, codex-cli, ... }@inputs: {
-    nixosConfigurations.cleboost-brain = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./configuration.nix
-        noctalia.nixosModules.default
-        noctalia-greeter.nixosModules.default
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.cleboost = import ./home;
-        }
-      ];
-    };
+  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, ... }@inputs:
+    let
+      hosts = (import ./lib/hosts.nix).all;
 
-    # Alias nixos -> cleboost-brain for compatibility
-    nixosConfigurations.nixos = self.nixosConfigurations.cleboost-brain;
-  };
+      mkHost = hostName: nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs hostName; };
+        modules = [
+          ./hosts/common.nix
+          ./hosts/${hostName}/default.nix
+          ./hosts/${hostName}/hardware-configuration.nix
+          noctalia.nixosModules.default
+          noctalia-greeter.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = { inherit inputs hostName; };
+            home-manager.users.cleboost = import ./home;
+          }
+        ];
+      };
+    in
+    {
+      nixosConfigurations = nixpkgs.lib.genAttrs hosts mkHost;
+    };
 }

@@ -1,87 +1,96 @@
 # cleboost's NixOS dotfiles
 
-Personal NixOS and Home Manager configuration for my daily driver, **cleboost-brain**.
+Un seul dépôt, plusieurs machines NixOS + Home Manager.
 
-This repo is not a generic template. It is tuned for my hardware, workflow, and preferences. Feel free to browse for ideas, but expect hard-coded paths, machine-specific settings, and opinionated defaults.
-
-## Machine
-
-- **Host:** `cleboost-brain` (`x86_64-linux`)
-- **CPU:** AMD (with microcode updates)
-- **GPU:** NVIDIA dGPU + AMD iGPU via **PRIME sync**
-- **Displays:** laptop panel + dual 1080p144 external monitors (VRR/tearing enabled)
-- **Storage:** root on ext4, dedicated `/mnt/games` SSD, zram swap (no disk swap)
-- **Locale:** French (`fr_FR`), timezone `Europe/Paris`, AZERTY keyboard
-
-## Desktop stack
-
-| Layer | Tools |
+| Hôte | Rôle |
 | --- | --- |
-| Compositor | [Hyprland](https://hyprland.org/) and [Umbriel](https://github.com/noctalia-dev/umbriel) (Noctalia compositor) |
-| Shell / UI | [Noctalia](https://github.com/noctalia-dev/noctalia) bar, widgets, control center |
-| Login | [Noctalia Greeter](https://github.com/noctalia-dev/noctalia-greeter) via greetd |
-| Terminal | Kitty |
-| Shell | Fish + Starship + direnv/nix-direnv |
-| Theme | GTK Adwaita-dark, WhiteSur icons, custom cursor, Qt/Kvantum |
-
-Both Hyprland and Umbriel configs live in this repo. Hyprland is the default greeter session; Umbriel is available as an alternative Wayland compositor with a matching modular TOML setup.
-
-## Notable features
-
-- **Flakes-based** NixOS + Home Manager setup (`nixos-unstable`)
-- **Gaming:** Steam, GameMode, MangoHud, ananicy-cpp, Proton-GE, gamescope session
-- **Dev tooling:** JDK, Maven, Gradle, Bun, Node.js, Rust, GCC
-- **Apps:** Chrome, Discord, spotifast, Lollypop (local music), Zed, Cursor, JetBrains IDEs, Bitwarden, and more
-- **Custom scripts** in `home/files/bin/` (fastfetch helpers, JetBrains fix, SSH menu, etc.)
-- **ASUS laptop extras:** fan control EC tool + Noctalia plugin integration
+| **cleboost-sage** | Laptop actuel (AMD + NVIDIA PRIME, ASUS fans, Flipper, …) |
+| **cleboost-brain** | Futur PC (config matérielle à générer à l’install) |
 
 ## Repo layout
 
 ```
 .
-├── flake.nix                 # Flake inputs and nixosConfigurations
-├── configuration.nix         # Main system config
-├── hardware-configuration.nix
-├── modules/                  # System modules
-│   ├── desktop.nix           # Hyprland, Umbriel, portals, AZERTY
-│   ├── gaming.nix            # Steam, GameMode, ananicy
-│   ├── nvidia.nix            # NVIDIA + AMD PRIME
-│   ├── noctalia.nix          # Shell, greeter, ASUS fan control
-│   └── packages.nix          # Fonts, system packages
-└── home/                     # Home Manager config
-    ├── default.nix
-    ├── files/                # Dotfiles (hypr, umbriel, noctalia, kitty, etc.)
-    └── modules/              # shell, hyprland, umbriel, apps, dev
+├── flake.nix                      # nixosConfigurations.<hostname> pour chaque hôte
+├── lib/hosts.nix                # Liste des hôtes connus
+├── hosts/
+│   ├── common.nix               # Système partagé (desktop, gaming, NH, locale, …)
+│   ├── cleboost-sage/
+│   │   ├── default.nix          # Options propres au laptop
+│   │   ├── hardware-configuration.nix
+│   │   └── asus-fan-control.nix
+│   └── cleboost-brain/
+│       ├── default.nix          # Options propres au futur PC
+│       └── hardware-configuration.nix  # Placeholder → remplacer après install
+├── modules/                     # Modules système réutilisables
+└── home/
+    ├── default.nix              # Home Manager commun
+    ├── hosts/
+    │   ├── cleboost-sage.nix    # Ex. gpu-env NVIDIA/PRIME
+    │   └── cleboost-brain.nix   # Extensions brain (vide pour l’instant)
+    └── modules/                 # shell, hyprland, apps, …
 ```
 
-## Flake inputs
+## Global vs par machine
 
-Besides `nixpkgs` and `home-manager`, this config pulls in:
+- **Global (tous les PC)** : `hosts/common.nix`, `modules/*` importés depuis common, et la plupart de `home/modules/*` + `home/default.nix`.
+- **Système par hôte** : `hosts/<hostname>/default.nix` (+ `hardware-configuration.nix`).
+- **Home par hôte** : `home/hosts/<hostname>.nix` (importé via `hostName` passé par le flake).
 
-- `noctalia`, `noctalia-greeter`
-- `chatgpt-desktop`, `codex-cli`
+Pour une option NixOS uniquement sur sage :
 
-## Usage (on my machine)
-
-This config uses **[NH](https://github.com/viperML/nh)** (`programs.nh` in `configuration.nix`, flake path `/home/cleboost/dotfiles`).
-
-Scripts in `~/.local/bin` (from `home/files/bin/`):
-
-```bash
-rebuild          # Fast Home Manager-only switch (~seconds, no sudo)
-rebuild -s       # Full NixOS switch via `nh os switch`
-update           # `nh os switch -u` — update flake inputs + system switch
+```nix
+# hosts/cleboost-sage/default.nix
+hardware.flipperzero.enable = true;
 ```
 
-Equivalent NH commands:
+Pour Home Manager uniquement sur brain :
+
+```nix
+# home/hosts/cleboost-brain.nix
+{ pkgs, ... }: {
+  home.packages = [ pkgs.some-tool ];
+}
+```
+
+Ajouter une machine : entrer le hostname dans `lib/hosts.nix`, créer `hosts/<name>/` et `home/hosts/<name>.nix`.
+
+## Usage
+
+Le hostname système doit correspondre à une entrée du flake (`cleboost-sage` ou `cleboost-brain`).
 
 ```bash
 nh os switch /home/cleboost/dotfiles
-nh os switch -u /home/cleboost/dotfiles
+rebuild          # Home Manager (rapide)
+rebuild -s       # NixOS complet
 ```
 
-The flake also exposes `nixosConfigurations.nixos` as an alias to `cleboost-brain`.
+Build explicite :
+
+```bash
+nix build .#nixosConfigurations.cleboost-sage.config.system.build.toplevel
+```
+
+## Migration cleboost-sage (ce PC)
+
+1. `sudo hostnamectl set-hostname cleboost-sage`
+2. `nh os switch /home/cleboost/dotfiles` (ou `rebuild -s`)
+3. Redémarrer si besoin (greeter, réseau, etc.)
+
+## Migration cleboost-brain (nouveau PC)
+
+1. Installer NixOS, cloner ce repo.
+2. `sudo nixos-generate-config --show-hardware-config` → remplacer `hosts/cleboost-brain/hardware-configuration.nix`.
+3. Ajuster `hosts/cleboost-brain/default.nix` (GPU, disques, packages système, …).
+4. `home/hosts/cleboost-brain.nix` pour le user (GPU env, apps, etc.).
+5. `sudo hostnamectl set-hostname cleboost-brain` puis `nh os switch /home/cleboost/dotfiles`.
+
+## Desktop stack (commun)
+
+Hyprland + Umbriel, Noctalia, greetd, Kitty, Fish, flakes `nixos-unstable`.
+
+Voir les modules dans `modules/desktop.nix`, `home/modules/hyprland.nix`, etc.
 
 ## License
 
-Personal configuration. No license specified — use at your own risk.
+Config perso — à tes risques.
