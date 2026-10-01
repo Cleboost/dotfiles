@@ -6,7 +6,7 @@
 [keybinds]
 
 # ── Applications ────────────────────────────────────────────────────────────
-"Mod+T" = "spawn:kitty -1"
+"Mod+T" = "spawn:/home/cleboost/.config/hypr/scripts/open-terminal.sh"
 "Mod+E" = "spawn:nautilus -w"
 "Mod+W" = "spawn:google-chrome-stable"
 "Mod+C" = "spawn:cursor"

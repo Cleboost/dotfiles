@@ -3,7 +3,7 @@ hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 -- XDG & Applications
 hl.env("XDG_DATA_DIRS", "/home/cleboost/.local/share:/etc/profiles/per-user/cleboost/share:/run/current-system/sw/share:/usr/share")
-hl.env("TERMINAL", "kitty -1")
+hl.env("TERMINAL", os.getenv("HOME") .. "/.config/hypr/scripts/open-terminal.sh")
 hl.env("NAUTILUS_4_EXTENSION_DIR", "/run/current-system/sw/lib/nautilus/extensions-4")
 
 -- Toolkit Themes (QT/GTK)
