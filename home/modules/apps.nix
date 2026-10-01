@@ -1,5 +1,8 @@
 { config, pkgs, inputs, ... }:
 
+let
+  cleboostIcons = import ./lib/cleboost-icon-theme.nix { inherit pkgs; };
+in
 {
   # Zed editor configuration
   xdg.configFile."zed/settings.json".source = ../files/zed/settings.json;
@@ -112,13 +115,13 @@
   xdg.dataFile."locale/fr/LC_MESSAGES/nautilus-open-any-terminal.mo".source =
     ../files/nautilus/nautilus-open-any-terminal.mo;
 
-  # GTK Theme & Icons (WhiteSur + overlay: custom folder icons in main view; sidebar symbols = Adwaita)
+  # GTK: Adwaita-dark + cleboost-icons (Adwaita UI, WhiteSur app icons in launchers only)
   gtk = {
     enable = true;
     gtk4.theme = null;
     iconTheme = {
-      name = "WhiteSur-dark-cleboost";
-      package = pkgs.whitesur-icon-theme;
+      name = "cleboost-icons";
+      package = cleboostIcons;
     };
     theme = {
       name = "Adwaita-dark";
@@ -157,9 +160,4 @@
     Games
   '';
 
-  # Declaratively set custom folder icons for Nautilus / GIO
-  home.activation.setFolderIcons = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD ${pkgs.glib}/bin/gio set "$HOME/Code" metadata::custom-icon-name folder-code || true
-    $DRY_RUN_CMD ${pkgs.glib}/bin/gio set "$HOME/Projects" metadata::custom-icon-name folder-projects || true
-  '';
 }
