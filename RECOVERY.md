@@ -27,6 +27,6 @@
 
 ## Réappliquer proprement (ordre suggéré)
 
-1. Cherry-pick ou merge depuis `backup/2026-10-01` (`modules/nvidia.nix`, `modules/noctalia.nix`, qt6ct `force`).
+1. Cherry-pick ou merge depuis `backup/2026-10-01` (`nixos/nvidia.nix`, `nixos/noctalia.nix`, qt6ct `force`).
 2. `nh os switch` → reboot → greeter OK.
 3. Ensuite seulement : morceaux de `backup/desktop-env-refactor`.

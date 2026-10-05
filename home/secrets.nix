@@ -4,7 +4,7 @@
 {
   services.gnome-keyring = {
     enable = true;
-    # No "ssh" component — Bitwarden owns SSH (home/modules/shell.nix)
+    # No "ssh" component — Bitwarden owns SSH (home/shell/default.nix)
     components = [ "secrets" "pkcs11" ];
   };
 

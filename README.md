@@ -7,71 +7,66 @@ Un seul dépôt, plusieurs machines NixOS + Home Manager.
 | **cleboost-sage** | Laptop actuel (AMD + NVIDIA PRIME, ASUS fans, Flipper, …) |
 | **cleboost-brain** | Futur PC (config matérielle à générer à l’install) |
 
-## Repo layout
+## Organisation
+
+Trois dossiers, une seule règle : **chaque `.nix` est rangé avec les fichiers de config qu’il utilise.**
 
 ```
 .
-├── flake.nix                      # nixosConfigurations.<hostname> pour chaque hôte
-├── lib/hosts.nix                # Liste des hôtes connus
-├── hosts/
-│   ├── common.nix               # Système partagé (desktop, gaming, NH, locale, …)
+├── flake.nix                  # Liste des machines + inputs
+│
+├── hosts/                     # Ce qui est propre à UNE machine
 │   ├── cleboost-sage/
-│   │   ├── default.nix          # Options propres au laptop
+│   │   ├── default.nix        # Système (kernel, nvidia, flipper, …)
+│   │   ├── home.nix           # Utilisateur (apps en plus, …)
 │   │   ├── hardware-configuration.nix
-│   │   └── asus-fan-control.nix
+│   │   ├── asus-fan-control.nix
+│   │   └── gpu-env.nix        # Variables PRIME NVIDIA/AMD
 │   └── cleboost-brain/
-│       ├── default.nix          # Options propres au futur PC
-│       └── hardware-configuration.nix  # Placeholder → remplacer après install
-├── modules/                     # Modules système réutilisables
-└── home/
-    ├── default.nix              # Home Manager commun
-    ├── hosts/
-    │   ├── cleboost-sage.nix    # Ex. gpu-env NVIDIA/PRIME
-    │   └── cleboost-brain.nix   # Extensions brain (vide pour l’instant)
-    └── modules/                 # shell, hyprland, apps, …
+│       ├── default.nix
+│       ├── home.nix
+│       └── hardware-configuration.nix
+│
+├── nixos/                     # Système commun à toutes les machines
+│   ├── default.nix            # Nix, boot, locale, user, …
+│   ├── desktop.nix  gaming.nix  docker.nix
+│   ├── keyring.nix  noctalia.nix  packages.nix
+│   └── nvidia.nix             # Importé seulement par les machines NVIDIA
+│
+└── home/                      # Utilisateur commun à toutes les machines
+    ├── default.nix            # Point d’entrée, dossiers XDG
+    ├── packages/              # Apps : gui, dev, cli, wayland
+    ├── shell/                 # fish, git, starship, btop, fastfetch
+    ├── kitty/
+    ├── hyprland/
+    ├── umbriel/
+    ├── theme/                 # GTK, Qt, icônes, curseur, fonds d’écran
+    ├── apps/                  # Apps par défaut (MIME) + configs zed, noctalia, mangohud, …
+    ├── secrets.nix            # gnome-keyring
+    └── bin/                   # Scripts → ~/.local/bin
 ```
 
-## Global vs par machine
+## Où mettre quoi
 
-- **Global (tous les PC)** : `hosts/common.nix`, `modules/*` importés depuis common, et la plupart de `home/modules/*` + `home/default.nix`.
-- **Système par hôte** : `hosts/<hostname>/default.nix` (+ `hardware-configuration.nix`).
-- **Home par hôte** : `home/hosts/<hostname>.nix` (importé via `hostName` passé par le flake).
-
-Pour une option NixOS uniquement sur sage :
-
-```nix
-# hosts/cleboost-sage/default.nix
-hardware.flipperzero.enable = true;
-```
-
-Pour Home Manager uniquement sur brain :
-
-```nix
-# home/hosts/cleboost-brain.nix
-{ pkgs, ... }: {
-  home.packages = [ pkgs.some-tool ];
-}
-```
-
-### Apps utilisateur (paquets Home Manager)
-
-Dans `home/modules/packages.nix`, chaque app a un champ `hosts` :
-
-| `hosts` | Effet |
+| Je veux… | Fichier |
 | --- | --- |
-| `"all"` | sage **et** brain |
-| `[ "cleboost-sage" ]` | laptop seulement |
-| `[ "cleboost-brain" ]` | tour seulement |
+| Une app sur les deux machines | `home/packages/gui.nix` (ou `dev`, `cli`, `wayland`) |
+| Une app sur une seule machine | `home.packages` dans `hosts/<machine>/home.nix` |
+| Une option système partout | `nixos/default.nix` ou le module qui correspond |
+| Une option système sur une machine | `hosts/<machine>/default.nix` |
+| Modifier la config d’un programme | son dossier dans `home/` (ex. `home/hyprland/`) |
+| Ajouter un script perso | `home/bin/` |
 
-Exemple : `scrcpy` uniquement sur le laptop (téléphone branché en USB) :
+Exemple, une app uniquement sur le laptop :
 
 ```nix
-{ hosts = sage; package = scrcpy; }
+# hosts/cleboost-sage/home.nix
+home.packages = with pkgs; [
+  scrcpy
+];
 ```
 
-Filtre : `lib/home-packages.nix` (`pickForHost`). Pour du one-shot, `home/hosts/<hostname>.nix` reste ok.
-
-Ajouter une machine : entrer le hostname dans `lib/hosts.nix`, créer `hosts/<name>/` et `home/hosts/<name>.nix`.
+Ajouter une machine : ajouter son nom dans `hosts` de `flake.nix`, puis créer `hosts/<nom>/` avec `default.nix`, `home.nix` et `hardware-configuration.nix`.
 
 ## Usage
 
@@ -100,14 +95,12 @@ nix build .#nixosConfigurations.cleboost-sage.config.system.build.toplevel
 1. Installer NixOS, cloner ce repo.
 2. `sudo nixos-generate-config --show-hardware-config` → remplacer `hosts/cleboost-brain/hardware-configuration.nix`.
 3. Ajuster `hosts/cleboost-brain/default.nix` (GPU, disques, packages système, …).
-4. `home/hosts/cleboost-brain.nix` pour le user (GPU env, apps, etc.).
+4. `hosts/cleboost-brain/home.nix` pour le user (GPU env, apps, …).
 5. `sudo hostnamectl set-hostname cleboost-brain` puis `nh os switch /home/cleboost/dotfiles`.
 
 ## Desktop stack (commun)
 
 Hyprland + Umbriel, Noctalia, greetd, Kitty, Fish, flakes `nixos-unstable`.
-
-Voir les modules dans `modules/desktop.nix`, `home/modules/hyprland.nix`, etc.
 
 ## License
 

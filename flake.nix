@@ -39,13 +39,17 @@
 
   outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, ... }@inputs:
     let
-      hosts = (import ./lib/hosts.nix).all;
+      # Each name must match a folder in hosts/
+      hosts = [
+        "cleboost-sage"
+        "cleboost-brain"
+      ];
 
       mkHost = hostName: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs hostName; };
         modules = [
-          ./hosts/common.nix
+          ./nixos
           ./hosts/${hostName}/default.nix
           ./hosts/${hostName}/hardware-configuration.nix
           noctalia.nixosModules.default

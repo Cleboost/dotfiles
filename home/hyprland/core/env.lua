@@ -20,4 +20,4 @@ hl.env("XCURSOR_SIZE", "18")
 hl.env("HYPRCURSOR_THEME", "cleboost-cursor")
 hl.env("HYPRCURSOR_SIZE", "18")
 
--- PRIME / NVIDIA GPU vars: home/modules/gpu-env.nix (gpu-env.lua + sessionVariables)
+-- PRIME / NVIDIA GPU vars: hosts/cleboost-sage/gpu-env.nix (gpu-env.lua + sessionVariables)
