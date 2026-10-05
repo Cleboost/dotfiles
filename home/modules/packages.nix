@@ -41,6 +41,7 @@
     antigravity-ide
     inputs.chatgpt-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.codex-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.grok-bot.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Compilateurs, Runtimes & Moteurs
     jdk21
