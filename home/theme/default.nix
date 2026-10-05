@@ -1,19 +1,20 @@
-# Look & feel: GTK, Qt, icons, cursor, wallpapers.
+# ──────────────────────────────────────────────────────────────────────────────
+# home/theme/default.nix — GTK, Qt, icons, cursor, wallpapers
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 let
   cleboostIcons = import ./icon-theme.nix { inherit pkgs; };
 in
 {
-  # Wallpapers and profile pictures
+  # ── Wallpapers & profile images ─────────────────────────────────────────────
   home.file."Pictures/Wallpapers".source = ./wallpapers;
   home.file."Pictures/profile.png".source = ./profile.png;
   home.file."Pictures/banner.png".source = ./banner.png;
 
-  # cleboost-icons: Adwaita + WhiteSur apps only (see icon-theme.nix)
   home.packages = [ cleboostIcons pkgs.adwaita-icon-theme ];
 
-  # GTK: Adwaita-dark + cleboost-icons (Adwaita UI, WhiteSur app icons in launchers only)
+  # ── GTK ─────────────────────────────────────────────────────────────────────
   gtk = {
     enable = true;
     gtk4.theme = null;
@@ -38,18 +39,17 @@ in
     ];
   };
 
-  # Qt & Kvantum theming
+  # ── Qt & Kvantum ────────────────────────────────────────────────────────────
   xdg.configFile."Kvantum".source = ./qt/Kvantum;
   xdg.configFile."qt6ct".source = ./qt/qt6ct;
 
-  # cleboost-cursor: custom Hypr/Wayland cursor
+  # ── Cursor theme ────────────────────────────────────────────────────────────
   home.file.".local/share/icons/cleboost-cursor" = {
     source = ./cursor;
     recursive = true;
     force = true;
   };
 
-  # ~/.icons: one symlink for Steam/X11 (do not recursive-link into store — read-only)
   home.activation.removeLegacyIconOverlay = config.lib.dag.entryAfter [ "linkGeneration" ] ''
     $DRY_RUN_CMD rm -rf "$HOME/.local/share/icons/WhiteSur-dark"
     $DRY_RUN_CMD rm -rf "$HOME/.local/share/icons/WhiteSur-dark-cleboost"

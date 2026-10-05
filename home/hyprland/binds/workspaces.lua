@@ -61,4 +61,4 @@ hl.bind("CTRL + SUPER + bracketleft", hl.dsp.focus({ workspace = "-1" }))
 hl.bind("CTRL + SUPER + bracketright", hl.dsp.focus({ workspace = "+1" }))
 
 -- Workspace Reorganization (Force Refresh)
-hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/manage_workspaces.sh --once"), { desc = "Réorganiser les workspaces" })
+hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/manage_workspaces.sh --once"), { desc = "Reorganize workspaces" })

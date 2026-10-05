@@ -1,44 +1,43 @@
-# Hyprland & Desktop Environment Module
+# ──────────────────────────────────────────────────────────────────────────────
+# nixos/desktop.nix — Hyprland, Umbriel, portals, storage, keyboard
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
-  # Hyprland window manager
+  # ── Window managers ─────────────────────────────────────────────────────────
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
 
-  # Umbriel window manager (Wayland compositor by Noctalia)
   programs.umbriel.enable = true;
 
-  # GPU Screen Recorder with setuid/cap wrapper for KMS screen capture
   programs.gpu-screen-recorder.enable = true;
 
-  # AZERTY keyboard layout for X11 / Wayland and console
+  # ── Keyboard (AZERTY) ───────────────────────────────────────────────────────
   services.xserver.xkb = {
     layout = "fr";
     variant = "";
   };
   console.keyMap = "fr";
 
-  # Removable storage & file manager integration (USB, Nautilus, trash, mtp)
+  # ── Removable storage & file manager integration ────────────────────────────
   services.udisks2.enable = true;
   services.gvfs.enable = true;
   boot.supportedFilesystems = [ "exfat" "ntfs" ];
 
-  # Nautilus terminal extension (Open in Kitty via right click)
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "kitty";
   };
 
-  # Vignettes / aperçus de fichiers vidéo (WebM, MP4, MKV, etc.) dans Nautilus
+  # Video thumbnails in Nautilus (WebM, MP4, MKV, …)
   environment.systemPackages = with pkgs; [
     ffmpegthumbnailer
   ];
 
-  # Hardware access & polkit
+  # ── Polkit ──────────────────────────────────────────────────────────────────
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
@@ -54,7 +53,7 @@
     });
   '';
 
-  # XDG Desktop Portals (screensharing, window streaming, file picker)
+  # ── XDG desktop portals ─────────────────────────────────────────────────────
   xdg.portal = {
     enable = true;
     extraPortals = [

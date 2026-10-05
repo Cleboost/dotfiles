@@ -1,28 +1,24 @@
-# App settings: default apps (MIME), desktop entries, per-app config files.
+# ──────────────────────────────────────────────────────────────────────────────
+# home/apps/default.nix — default apps (MIME), desktop entries, app config files
+# ──────────────────────────────────────────────────────────────────────────────
 { config, ... }:
 
 {
-  # Zed editor configuration
+  # ── Per-app config ──────────────────────────────────────────────────────────
   xdg.configFile."zed/settings.json".source = ./zed/settings.json;
-
-  # Noctalia configuration
   xdg.configFile."noctalia/config.toml".source = ./noctalia/config.toml;
-
-  # MangoHud configuration
   xdg.configFile."MangoHud/MangoHud.conf".source = ./mangohud/MangoHud.conf;
-
-  # qBittorrent theme
   xdg.configFile."qBittorrent/themes/catppuccin-mocha.qbtheme".source = ./qbittorrent/catppuccin-mocha.qbtheme;
 
-  # Nautilus open-any-terminal French translation ("Ouvrir dans le terminal")
+  # French locale for nautilus-open-any-terminal (.mo built from .po in this folder)
   xdg.dataFile."locale/fr/LC_MESSAGES/nautilus-open-any-terminal.mo".source =
     ./nautilus/nautilus-open-any-terminal.mo;
 
-  # Default applications & MIME type associations
+  # ── Default applications (MIME) ─────────────────────────────────────────────
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      # Web & Internet
+      # Web & internet
       "text/html" = "google-chrome.desktop";
       "x-scheme-handler/http" = "google-chrome.desktop";
       "x-scheme-handler/https" = "google-chrome.desktop";
@@ -31,15 +27,15 @@
       "x-scheme-handler/discord" = "discord.desktop";
       "x-scheme-handler/jetbrains" = "jetbrainsd.desktop";
 
-      # Documents & Text
+      # Documents & text
       "application/pdf" = "org.gnome.Evince.desktop";
       "text/plain" = "dev.zed.Zed.desktop";
       "application/toml" = "dev.zed.Zed.desktop";
 
-      # File Manager
+      # File manager
       "inode/directory" = "org.gnome.Nautilus.desktop";
 
-      # Audio (local library via Lollypop; mpv stays default for video)
+      # Audio (Lollypop for library; mpv for video)
       "audio/mpeg" = "org.gnome.Lollypop.desktop";
       "audio/x-mpeg" = "org.gnome.Lollypop.desktop";
       "audio/mp3" = "org.gnome.Lollypop.desktop";
@@ -50,7 +46,7 @@
       "audio/x-vorbis+ogg" = "org.gnome.Lollypop.desktop";
       "audio/opus" = "org.gnome.Lollypop.desktop";
 
-      # Video & Media
+      # Video
       "video/mp4" = "mpv.desktop";
       "video/x-matroska" = "mpv.desktop";
       "video/webm" = "mpv.desktop";
@@ -62,7 +58,7 @@
     };
   };
 
-  # Desktop entries
+  # ── Custom desktop entries ──────────────────────────────────────────────────
   xdg.desktopEntries = {
     cursor-acl = {
       name = "Cursor (ACL)";
@@ -84,7 +80,7 @@
     };
   };
 
-  # WirePlumber Bluetooth audio stability (disable HFP profile auto-switching)
+  # ── WirePlumber (Bluetooth: disable HFP auto-switch) ────────────────────────
   xdg.configFile."wireplumber/wireplumber.conf.d/10-bluetooth.conf".text = ''
     monitor.bluez.properties = {
       bluez5.enable-sbc-xq = true

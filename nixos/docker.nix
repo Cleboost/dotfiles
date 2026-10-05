@@ -1,4 +1,6 @@
-# Docker containerization module
+# ──────────────────────────────────────────────────────────────────────────────
+# nixos/docker.nix — Docker daemon and compose
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
@@ -10,7 +12,6 @@
     };
   };
 
-  # Docker compose and container utilities
   environment.systemPackages = with pkgs; [
     docker-compose
   ];

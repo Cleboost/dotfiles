@@ -1,20 +1,18 @@
-# Graphics configuration module: NVIDIA + AMD PRIME
+# ──────────────────────────────────────────────────────────────────────────────
+# nixos/nvidia.nix — NVIDIA + AMD PRIME (import on NVIDIA hosts only)
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
-  # Early KMS for AMD iGPU to ensure display is ready before greetd (avoids race condition with dock stations)
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  # Display driver
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # OpenGL / Vulkan hardware acceleration
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  # Proprietary NVIDIA driver configuration
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;

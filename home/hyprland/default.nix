@@ -1,7 +1,9 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# home/hyprland/default.nix — Hyprland config (Lua); per-file links for Noctalia
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
-  # Hyprland: Lua-only config. Individual links keep ~/.config/hypr writable for Noctalia.
   xdg.configFile."hypr/hyprland.lua" = {
     source = ./hyprland.lua;
     force = true;

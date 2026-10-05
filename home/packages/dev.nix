@@ -1,9 +1,11 @@
-# IDEs, AI tools, compilers, runtimes.
+# ──────────────────────────────────────────────────────────────────────────────
+# home/packages/dev.nix — IDEs, AI tools, compilers, runtimes
+# ──────────────────────────────────────────────────────────────────────────────
 { pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
-    # Éditeurs & Agents IA
+    # Editors & AI agents
     zed-editor
     code-cursor
     jetbrains.idea
@@ -14,7 +16,7 @@
     inputs.codex-cli.packages.${stdenv.hostPlatform.system}.default
     inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
 
-    # Compilateurs, Runtimes & Moteurs
+    # Compilers, runtimes & engines
     jdk21
     maven
     gradle

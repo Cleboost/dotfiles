@@ -1,4 +1,4 @@
-# Remplacer ce fichier après install : sudo nixos-generate-config --show-hardware-config > hosts/cleboost-brain/hardware-configuration.nix
+# Replace after install: sudo nixos-generate-config --show-hardware-config > hosts/cleboost-brain/hardware-configuration.nix
 { lib, modulesPath, ... }:
 
 {

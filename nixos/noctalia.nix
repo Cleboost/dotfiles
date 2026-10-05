@@ -1,14 +1,16 @@
-# Noctalia Shell & Noctalia Greeter (Login / Display Manager) Module
+# ──────────────────────────────────────────────────────────────────────────────
+# nixos/noctalia.nix — Noctalia shell, greeter (greetd), greeter user
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
-  # Noctalia Shell v5
+  # ── Noctalia shell ──────────────────────────────────────────────────────────
   programs.noctalia = {
     enable = true;
     recommendedServices.enable = true; # NetworkManager, Bluetooth, UPower, power-profiles
   };
 
-  # Noctalia Greeter (graphical login screen via Greetd)
+  # ── Noctalia greeter (login screen) ─────────────────────────────────────────
   services.displayManager.noctalia-greeter = {
     enable = true;
     passwordless-sync-users = [ "cleboost" ];
@@ -18,7 +20,7 @@
     };
   };
 
-  # Greetd session service
+  # ── Greetd ────────────────────────────────────────────────────────────────────
   services.greetd = {
     enable = true;
     settings = {
@@ -28,14 +30,11 @@
     };
   };
 
-  # Prevent greetd from instantly failing with start-limit-hit if display isn't ready
   systemd.services.greetd.serviceConfig.RestartSec = "1s";
 
-  # Greeter system user
   users.users.greeter = {
     isSystemUser = true;
     group = "greeter";
   };
   users.groups.greeter = {};
-
 }

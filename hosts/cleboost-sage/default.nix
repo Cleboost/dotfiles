@@ -1,4 +1,6 @@
-# cleboost-sage — laptop actuel (AMD + NVIDIA PRIME, ASUS, Wi-Fi MediaTek, …)
+# ──────────────────────────────────────────────────────────────────────────────
+# hosts/cleboost-sage/default.nix — laptop (AMD + NVIDIA PRIME, MediaTek Wi-Fi, …)
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
@@ -10,6 +12,7 @@
   networking.hostName = "cleboost-sage";
   networking.firewall.trustedInterfaces = [ "wlp3s0" ];
 
+  # ── Kernel & USB / Wi-Fi stability ──────────────────────────────────────────
   boot.kernelParams = [
     "btusb.enable_autosuspend=0"
     "usbcore.autosuspend=-1"
@@ -29,5 +32,6 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="13d3", ATTR{idProduct}=="3563", ATTR{power/control}="on"
   '';
 
+  # ── Hardware features ───────────────────────────────────────────────────────
   hardware.flipperzero.enable = true;
 }
