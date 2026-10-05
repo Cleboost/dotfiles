@@ -1,8 +1,10 @@
-# Gaming optimizations module
+# ──────────────────────────────────────────────────────────────────────────────
+# nixos/gaming.nix — GameMode, Ananicy, Steam, performance tools
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
-  # GameMode (Feral Interactive) - dynamic CPU, GPU and process priority tuning for games
+  # ── GameMode ────────────────────────────────────────────────────────────────
   programs.gamemode = {
     enable = true;
     enableRenice = true;
@@ -13,19 +15,19 @@
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
         gpu_device = 1;
-        nv_powermizer_mode = 1; # Prefer Maximum Performance
+        nv_powermizer_mode = 1; # Prefer maximum performance
       };
     };
   };
 
-  # Ananicy-cpp auto-nice daemon with CachyOS community gaming & desktop rules
+  # ── Ananicy (process priority rules) ────────────────────────────────────────
   services.ananicy = {
     enable = true;
     package = pkgs.ananicy-cpp;
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
 
-  # Steam & Proton gaming support
+  # ── Steam & Proton ──────────────────────────────────────────────────────────
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -36,7 +38,7 @@
       mangohud
     ];
     extraCompatPackages = with pkgs; [
-      proton-ge-bin # Custom GloriousEggroll Proton build for wide game compatibility
+      proton-ge-bin
     ];
     package = pkgs.steam.override (prev: {
       extraLibraries = pkgs: [
@@ -48,9 +50,9 @@
     });
   };
 
-  # Gaming performance utilities
+  # ── Extra gaming packages ───────────────────────────────────────────────────
   environment.systemPackages = with pkgs; [
-    mangohud # On-screen FPS, GPU/CPU monitoring HUD
-    gamescope # Micro-compositor for resolution scaling and HDR/FSR
+    mangohud
+    gamescope
   ];
 }

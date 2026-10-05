@@ -1,6 +1,7 @@
 {
   description = "Cleboost's modular NixOS and Home Manager configuration";
 
+  # ── Flake inputs ────────────────────────────────────────────────────────────
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -37,9 +38,9 @@
     };
   };
 
+  # ── NixOS configurations (one per hosts/<name>/ folder) ───────────────────
   outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, ... }@inputs:
     let
-      # Each name must match a folder in hosts/
       hosts = [
         "cleboost-sage"
         "cleboost-brain"

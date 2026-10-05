@@ -1,10 +1,11 @@
-# cleboost-brain — futur PC fixe / second poste
-# Ajoute ici modules ou options propres à brain (GPU, disques, réseau, …).
+# ──────────────────────────────────────────────────────────────────────────────
+# hosts/cleboost-brain/default.nix — desktop tower (GPU, disks, network, …)
+# ──────────────────────────────────────────────────────────────────────────────
 { ... }:
 
 {
   networking.hostName = "cleboost-brain";
 
-  # Exemple pour activer plus tard :
+  # Example when ready:
   # imports = [ ../../nixos/nvidia.nix ];
 }

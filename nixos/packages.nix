@@ -1,11 +1,12 @@
-# System packages and software module
+# ──────────────────────────────────────────────────────────────────────────────
+# nixos/packages.nix — fonts, fish, netbird, base system packages
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, inputs, ... }:
 
 {
-  # Allow proprietary packages (e.g. nvidia drivers, cursor, discord, etc.)
   nixpkgs.config.allowUnfree = true;
 
-  # System fonts
+  # ── Fonts ─────────────────────────────────────────────────────────────────────
   fonts = {
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
@@ -15,7 +16,7 @@
       noto-fonts-color-emoji
       roboto
       liberation_ttf
-      corefonts # Microsoft TrueType core fonts (Arial, Times New Roman, etc.)
+      corefonts # Microsoft TrueType core fonts (Arial, Times New Roman, …)
     ];
     fontconfig = {
       enable = true;
@@ -28,13 +29,11 @@
     };
   };
 
-  # Enable Fish shell system-wide for completions and vendor functions
+  # ── Shell & services ────────────────────────────────────────────────────────
   programs.fish.enable = true;
-
-  # Netbird & Services
   services.netbird.enable = true;
 
-  # Base administrative tools and system utilities
+  # ── Base CLI tools ──────────────────────────────────────────────────────────
   environment.systemPackages = with pkgs; [
     git
     nano

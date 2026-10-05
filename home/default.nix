@@ -1,4 +1,7 @@
-# Home Manager shared by every host. Host-only settings: hosts/<hostname>/home.nix
+# ──────────────────────────────────────────────────────────────────────────────
+# home/default.nix — shared Home Manager entry (all hosts)
+# Host overrides: hosts/<hostname>/home.nix
+# ──────────────────────────────────────────────────────────────────────────────
 { pkgs, hostName, ... }:
 
 {
@@ -6,6 +9,7 @@
   home.homeDirectory = "/home/cleboost";
   home.stateVersion = "25.05";
 
+  # ── Module imports ────────────────────────────────────────────────────────
   imports = [
     ../hosts/${hostName}/home.nix
     ./packages
@@ -18,6 +22,7 @@
     ./secrets.nix
   ];
 
+  # ── Session ─────────────────────────────────────────────────────────────────
   home.sessionVariables = {
     NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
   };
@@ -26,13 +31,12 @@
     "$HOME/.local/bin"
   ];
 
-  # User custom scripts into ~/.local/bin
   home.file.".local/bin" = {
     source = ./bin;
     recursive = true;
   };
 
-  # XDG User Directories
+  # ── XDG user directories ────────────────────────────────────────────────────
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
@@ -47,11 +51,9 @@
     templates = null;
   };
 
-  # Hide folders in file manager (Nautilus / GTK)
   home.file.".hidden".text = ''
     Games
   '';
 
-  # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 }

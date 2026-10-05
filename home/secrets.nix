@@ -1,10 +1,11 @@
-# User secret service (libsecret / org.freedesktop.secrets)
+# ──────────────────────────────────────────────────────────────────────────────
+# home/secrets.nix — user Secret Service (libsecret); Bitwarden owns SSH
+# ──────────────────────────────────────────────────────────────────────────────
 { pkgs, ... }:
 
 {
   services.gnome-keyring = {
     enable = true;
-    # No "ssh" component — Bitwarden owns SSH (home/shell/default.nix)
     components = [ "secrets" "pkcs11" ];
   };
 

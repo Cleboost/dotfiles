@@ -1,5 +1,7 @@
-# User packages installed on every host.
-# Host-only apps go in hosts/<hostname>/home.nix.
+# ──────────────────────────────────────────────────────────────────────────────
+# home/packages/default.nix — user packages on every host
+# Host-only packages: hosts/<hostname>/home.nix
+# ──────────────────────────────────────────────────────────────────────────────
 {
   imports = [
     ./gui.nix

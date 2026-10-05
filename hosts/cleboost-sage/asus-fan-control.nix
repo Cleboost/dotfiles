@@ -1,4 +1,6 @@
-# ASUS laptop fan EC — cleboost-sage only (Noctalia plugin)
+# ──────────────────────────────────────────────────────────────────────────────
+# hosts/cleboost-sage/asus-fan-control.nix — ASUS EC fan control (Noctalia plugin)
+# ──────────────────────────────────────────────────────────────────────────────
 { pkgs, ... }:
 
 {

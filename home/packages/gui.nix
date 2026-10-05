@@ -1,14 +1,16 @@
-# GUI apps — browser, media, gaming, remote desktop.
+# ──────────────────────────────────────────────────────────────────────────────
+# home/packages/gui.nix — GUI apps (browser, media, gaming, remote desktop)
+# ──────────────────────────────────────────────────────────────────────────────
 { pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
-    # Navigateur & Communication
+    # Browser & communication
     google-chrome
     discord
     telegram-desktop
 
-    # Multimédia, Documents & Partage
+    # Media, documents & sharing
     nautilus
     lollypop
     mpv
@@ -18,7 +20,7 @@
     qbittorrent
     rquickshare
 
-    # Productivité, Notes & Bureau à distance
+    # Productivity, notes & remote desktop
     bitwarden-desktop
     obsidian
     scrcpy

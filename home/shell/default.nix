@@ -1,32 +1,31 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# home/shell/default.nix — Fish, Git, Starship, terminal tooling
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
-  # Starship prompt
+  # ── Prompt & navigation ─────────────────────────────────────────────────────
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
   };
 
-  # Direnv with nix-direnv integration (instant dev environments per project)
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
 
-  # Zoxide (smart cd directory jumper with fzf support)
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
   };
 
-  # Yazi terminal file manager
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
     shellWrapperName = "y";
   };
 
-  # Eza (modern ls replacement)
   programs.eza = {
     enable = true;
     enableFishIntegration = true;
@@ -37,7 +36,7 @@
     ];
   };
 
-  # Fish shell
+  # ── Fish shell ──────────────────────────────────────────────────────────────
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -54,7 +53,7 @@
     '';
   };
 
-  # Bat (cat clone with syntax highlighting and git integration)
+  # ── CLI helpers ─────────────────────────────────────────────────────────────
   programs.bat = {
     enable = true;
     config = {
@@ -63,13 +62,12 @@
     };
   };
 
-  # Fzf
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
   };
 
-  # Git
+  # ── Git ─────────────────────────────────────────────────────────────────────
   programs.git = {
     enable = true;
     settings = {
@@ -83,13 +81,9 @@
     };
   };
 
-  # Starship config file symlink
+  # ── Static config files ─────────────────────────────────────────────────────
   xdg.configFile."starship.toml".source = ./starship.toml;
-
-  # Btop config
   xdg.configFile."btop/btop.conf".source = ./btop.conf;
-
-  # Fastfetch config & images
   xdg.configFile."fastfetch/config.jsonc".source = ./fastfetch/config.jsonc;
   xdg.dataFile."fastfetch/images".source = ./fastfetch/images;
 }

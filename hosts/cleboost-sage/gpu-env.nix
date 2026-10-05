@@ -1,32 +1,33 @@
-# Single source of truth for PRIME / NVIDIA session environment.
+# ──────────────────────────────────────────────────────────────────────────────
+# hosts/cleboost-sage/gpu-env.nix — PRIME / NVIDIA session environment
 # card0 = NVIDIA RTX (PCI:1:0:0), card1 = AMD iGPU (PCI:6:0:0) — see nixos/nvidia.nix
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, lib, ... }:
 
 let
-  # Apps (Chrome, games, etc.) — always prefer NVIDIA.
+  # Desktop apps (Chrome, games, …) — prefer NVIDIA
   appGpuEnv = {
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     __GL_GSYNC_ALLOWED = "1";
     __GL_MaxFramesAllowed = "1";
     __GL_SHADER_DISK_CACHE = "1";
-    __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1"; # Keep compiled shaders across launches to eliminate stutters
-    RADV_PERFTEST = "aco";                     # Fast ACO compiler for AMD Vulkan
-    DXVK_ASYNC = "1";                          # Async pipeline compilation where supported
+    __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
+    RADV_PERFTEST = "aco";
+    DXVK_ASYNC = "1";
     NVD_BACKEND = "direct";
     MANGOHUD = "1";
     MANGOHUD_DLSYM = "1";
   };
 
-  # Hyprland / Aquamarine: dGPU primary, handles PRIME cross-GPU differently than wlroots.
+  # Hyprland / Aquamarine: dGPU primary
   hyprGpuEnv = appGpuEnv // {
     WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
     AQ_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
     GBM_BACKEND = "nvidia-drm";
   };
 
-  # Umbriel / wlroots: render on AMD (eDP), scan out externals on NVIDIA via PRIME copy.
-  # GBM_BACKEND=nvidia-drm here breaks eDP with "Failed to pick primary buffer format".
+  # Umbriel / wlroots: render on AMD (eDP), PRIME copy for external outputs
   umbrielCompositorEnv = {
     WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
   };

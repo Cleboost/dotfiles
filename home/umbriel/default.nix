@@ -1,8 +1,9 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# home/umbriel/default.nix — Umbriel compositor config (per-file links for Noctalia)
+# ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
 {
-  # Link individual umbriel files so ~/.config/umbriel remains writable
-  # (Noctalia generates noctalia.toml automatically in ~/.config/umbriel/noctalia.toml)
   xdg.configFile."umbriel/config.toml" = {
     source = ./config.toml;
     force = true;

@@ -1,4 +1,6 @@
-# Wayland / Hyprland session utilities.
+# ──────────────────────────────────────────────────────────────────────────────
+# home/packages/wayland.nix — Wayland / Hyprland session utilities
+# ──────────────────────────────────────────────────────────────────────────────
 { pkgs, ... }:
 
 {

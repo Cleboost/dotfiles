@@ -1,4 +1,6 @@
-# Adwaita for UI/places/mimes; WhiteSur application icons only (symlinked at build time).
+# ──────────────────────────────────────────────────────────────────────────────
+# home/theme/icon-theme.nix — Adwaita UI + WhiteSur app icons only (build-time symlinks)
+# ──────────────────────────────────────────────────────────────────────────────
 { pkgs }:
 
 pkgs.runCommand "cleboost-icon-theme" { } ''
