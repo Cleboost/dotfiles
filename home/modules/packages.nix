@@ -56,6 +56,7 @@
     # ── Utilitaires CLI & Système ───────────────────────────────
     gh
     nvd
+    nixpkgs-review
     nix-output-monitor
     ripgrep
     fd
