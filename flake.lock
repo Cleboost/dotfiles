@@ -78,6 +78,26 @@
         "type": "github"
       }
     },
+    "grok-bot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790934884,
+        "narHash": "sha256-rr5UXZemZxE2u9EFt6KSl1TT5hdDFuWLQuox/4oMLCE=",
+        "owner": "jordangarrison",
+        "repo": "grok-bot-flake",
+        "rev": "df80932444e87f03087f99fa071662a26ea76a5d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jordangarrison",
+        "repo": "grok-bot-flake",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -211,6 +231,7 @@
       "inputs": {
         "chatgpt-desktop": "chatgpt-desktop",
         "codex-cli": "codex-cli",
+        "grok-bot": "grok-bot",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-rustdesk-pr": "nixpkgs-rustdesk-pr",
