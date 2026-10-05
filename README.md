@@ -53,6 +53,24 @@ Pour Home Manager uniquement sur brain :
 }
 ```
 
+### Apps utilisateur (paquets Home Manager)
+
+Dans `home/modules/packages.nix`, chaque app a un champ `hosts` :
+
+| `hosts` | Effet |
+| --- | --- |
+| `"all"` | sage **et** brain |
+| `[ "cleboost-sage" ]` | laptop seulement |
+| `[ "cleboost-brain" ]` | tour seulement |
+
+Exemple : `scrcpy` uniquement sur le laptop (téléphone branché en USB) :
+
+```nix
+{ hosts = sage; package = scrcpy; }
+```
+
+Filtre : `lib/home-packages.nix` (`pickForHost`). Pour du one-shot, `home/hosts/<hostname>.nix` reste ok.
+
 Ajouter une machine : entrer le hostname dans `lib/hosts.nix`, créer `hosts/<name>/` et `home/hosts/<name>.nix`.
 
 ## Usage
