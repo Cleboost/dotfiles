@@ -6,5 +6,5 @@
   networking.hostName = "cleboost-brain";
 
   # Exemple pour activer plus tard :
-  # imports = [ ../modules/nvidia.nix ];
+  # imports = [ ../../nixos/nvidia.nix ];
 }

@@ -1,18 +1,22 @@
-{ config, pkgs, inputs, ... }:
+# App settings: default apps (MIME), desktop entries, per-app config files.
+{ config, ... }:
 
-let
-  cleboostIcons = import ./lib/cleboost-icon-theme.nix { inherit pkgs; };
-in
 {
   # Zed editor configuration
-  xdg.configFile."zed/settings.json".source = ../files/zed/settings.json;
+  xdg.configFile."zed/settings.json".source = ./zed/settings.json;
 
   # Noctalia configuration
-  xdg.configFile."noctalia/config.toml".source = ../files/noctalia/config.toml;
+  xdg.configFile."noctalia/config.toml".source = ./noctalia/config.toml;
 
-  # Qt & Kvantum theming
-  xdg.configFile."Kvantum".source = ../files/qt/Kvantum;
-  xdg.configFile."qt6ct".source = ../files/qt/qt6ct;
+  # MangoHud configuration
+  xdg.configFile."MangoHud/MangoHud.conf".source = ./mangohud/MangoHud.conf;
+
+  # qBittorrent theme
+  xdg.configFile."qBittorrent/themes/catppuccin-mocha.qbtheme".source = ./qbittorrent/catppuccin-mocha.qbtheme;
+
+  # Nautilus open-any-terminal French translation ("Ouvrir dans le terminal")
+  xdg.dataFile."locale/fr/LC_MESSAGES/nautilus-open-any-terminal.mo".source =
+    ./nautilus/nautilus-open-any-terminal.mo;
 
   # Default applications & MIME type associations
   xdg.mimeApps = {
@@ -104,60 +108,4 @@ in
       }
     ]
   '';
-
-  # MangoHud configuration
-  xdg.configFile."MangoHud/MangoHud.conf".source = ../files/mangohud/MangoHud.conf;
-
-  # qBittorrent theme
-  xdg.configFile."qBittorrent/themes/catppuccin-mocha.qbtheme".source = ../files/qbittorrent/catppuccin-mocha.qbtheme;
-
-  # Nautilus open-any-terminal French translation ("Ouvrir dans le terminal")
-  xdg.dataFile."locale/fr/LC_MESSAGES/nautilus-open-any-terminal.mo".source =
-    ../files/nautilus/nautilus-open-any-terminal.mo;
-
-  # GTK: Adwaita-dark + cleboost-icons (Adwaita UI, WhiteSur app icons in launchers only)
-  gtk = {
-    enable = true;
-    gtk4.theme = null;
-    iconTheme = {
-      name = "cleboost-icons";
-      package = cleboostIcons;
-    };
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-    cursorTheme = {
-      name = "cleboost-cursor";
-      size = 18;
-    };
-    gtk3.bookmarks = [
-      "file:///home/cleboost/Code Code"
-      "file:///home/cleboost/Downloads Downloads"
-      "file:///home/cleboost/Pictures Pictures"
-      "file:///home/cleboost/Musics Musics"
-      "file:///home/cleboost/Videos Videos"
-    ];
-  };
-
-  # XDG User Directories
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-    setSessionVariables = false;
-    download = "$HOME/Downloads";
-    pictures = "$HOME/Pictures";
-    music = "$HOME/Musics";
-    videos = "$HOME/Videos";
-    documents = "$HOME/Documents";
-    desktop = null;
-    publicShare = null;
-    templates = null;
-  };
-
-  # Hide folders in file manager (Nautilus / GTK)
-  home.file.".hidden".text = ''
-    Games
-  '';
-
 }

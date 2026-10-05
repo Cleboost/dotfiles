@@ -3,12 +3,12 @@
 
 {
   imports = [
-    ../modules/desktop.nix
-    ../modules/packages.nix
-    ../modules/gaming.nix
-    ../modules/docker.nix
-    ../modules/keyring.nix
-    ../modules/noctalia.nix
+    ./desktop.nix
+    ./packages.nix
+    ./gaming.nix
+    ./docker.nix
+    ./keyring.nix
+    ./noctalia.nix
   ];
 
   nix.settings = {

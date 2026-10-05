@@ -63,12 +63,6 @@
     };
   };
 
-  # Kitty terminal
-  programs.kitty = {
-    enable = true;
-    extraConfig = builtins.readFile ../files/kitty/kitty.conf;
-  };
-
   # Fzf
   programs.fzf = {
     enable = true;
@@ -90,16 +84,12 @@
   };
 
   # Starship config file symlink
-  xdg.configFile."starship.toml".source = ../files/starship.toml;
+  xdg.configFile."starship.toml".source = ./starship.toml;
 
   # Btop config
-  xdg.configFile."btop/btop.conf".source = ../files/btop/btop.conf;
+  xdg.configFile."btop/btop.conf".source = ./btop.conf;
 
   # Fastfetch config & images
-  xdg.configFile."fastfetch/config.jsonc".source = ../files/fastfetch/config.jsonc;
-  xdg.dataFile."fastfetch/images".source = ../files/fastfetch/images;
-
-  # Kitty extra files (search scripts)
-  xdg.configFile."kitty/search.py".source = ../files/kitty/search.py;
-  xdg.configFile."kitty/scroll_mark.py".source = ../files/kitty/scroll_mark.py;
+  xdg.configFile."fastfetch/config.jsonc".source = ./fastfetch/config.jsonc;
+  xdg.dataFile."fastfetch/images".source = ./fastfetch/images;
 }

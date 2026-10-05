@@ -1,4 +1,5 @@
-{ config, pkgs, hostName, ... }:
+# Home Manager shared by every host. Host-only settings: hosts/<hostname>/home.nix
+{ pkgs, hostName, ... }:
 
 {
   home.username = "cleboost";
@@ -6,14 +7,15 @@
   home.stateVersion = "25.05";
 
   imports = [
-    (import (./hosts + "/${hostName}.nix"))
-    ./modules/theme.nix
-    ./modules/shell.nix
-    ./modules/hyprland.nix
-    ./modules/umbriel.nix
-    ./modules/apps.nix
-    ./modules/packages.nix
-    ./modules/secrets.nix
+    ../hosts/${hostName}/home.nix
+    ./packages
+    ./shell
+    ./kitty
+    ./hyprland
+    ./umbriel
+    ./theme
+    ./apps
+    ./secrets.nix
   ];
 
   home.sessionVariables = {
@@ -26,9 +28,29 @@
 
   # User custom scripts into ~/.local/bin
   home.file.".local/bin" = {
-    source = ./files/bin;
+    source = ./bin;
     recursive = true;
   };
+
+  # XDG User Directories
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    setSessionVariables = false;
+    download = "$HOME/Downloads";
+    pictures = "$HOME/Pictures";
+    music = "$HOME/Musics";
+    videos = "$HOME/Videos";
+    documents = "$HOME/Documents";
+    desktop = null;
+    publicShare = null;
+    templates = null;
+  };
+
+  # Hide folders in file manager (Nautilus / GTK)
+  home.file.".hidden".text = ''
+    Games
+  '';
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
