@@ -13,7 +13,7 @@
     antigravity-cli
     antigravity-ide
     inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
-    inputs.codex-cli.packages.${stdenv.hostPlatform.system}.default
+    codex
     inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
 
     # Compilers, runtimes & engines
