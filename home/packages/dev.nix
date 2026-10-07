@@ -10,6 +10,7 @@
     code-cursor
     jetbrains.idea
     jetbrains.rust-rover
+    jetbrains.webstorm
     antigravity-cli
     antigravity-ide
     inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
