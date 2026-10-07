@@ -1,35 +1,18 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# home/packages/gui.nix — GUI apps (browser, media, gaming, remote desktop)
+# home/packages/groups/gaming.nix — launchers & helpers (Steam/GameMode: nixos/gaming.nix)
 # ──────────────────────────────────────────────────────────────────────────────
-{ pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
+lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
   home.packages = with pkgs; [
-    # Browser & communication
-    google-chrome
-    discord
-    telegram-desktop
-
-    # Media, documents & sharing
-    nautilus
-    lollypop
-    mpv
-    feh
-    evince
-    spotifast
-    qbittorrent
-    rquickshare
-
-    # Productivity, notes & remote desktop
-    bitwarden-desktop
-    obsidian
-    scrcpy
-    android-tools
-    inputs.nixpkgs-rustdesk-pr.legacyPackages.${stdenv.hostPlatform.system}.rustdesk-flutter-nightly
-
-    # Gaming & 3D
     prismlauncher
     blockbench
     beammp-launcher
+
+    mangohud
+    gamescope
+    protontricks
+    vkbasalt
   ];
+};
 }

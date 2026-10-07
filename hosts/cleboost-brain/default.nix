@@ -4,6 +4,10 @@
 { ... }:
 
 {
+  imports = [
+    ./profile.nix
+  ];
+
   networking.hostName = "cleboost-brain";
 
   # Example when ready:

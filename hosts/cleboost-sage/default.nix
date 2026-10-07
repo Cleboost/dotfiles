@@ -5,6 +5,7 @@
 
 {
   imports = [
+    ./profile.nix
     ../../nixos/nvidia.nix
     ./asus-fan-control.nix
   ];

@@ -1,12 +1,10 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# home/packages/dev.nix — IDEs, AI tools, compilers, runtimes
+# home/packages/groups/dev.nix — IDEs, AI agents, compilers, runtimes
 # ──────────────────────────────────────────────────────────────────────────────
-{ pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
-{
+lib.mkIf (lib.elem "dev" config.cleboost.groups) {
   home.packages = with pkgs; [
-    # Editors & AI agents
-    zed-editor
     code-cursor
     jetbrains.idea
     jetbrains.rust-rover
@@ -17,7 +15,6 @@
     codex
     inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
 
-    # Compilers, runtimes & engines
     jdk21
     maven
     gradle
@@ -28,4 +25,5 @@
     gnumake
     godot_4
   ];
+};
 }

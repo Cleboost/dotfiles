@@ -6,6 +6,7 @@
 {
   # ── Module imports ────────────────────────────────────────────────────────
   imports = [
+    ../modules/cleboost
     ./desktop.nix
     ./packages.nix
     ./gaming.nix
