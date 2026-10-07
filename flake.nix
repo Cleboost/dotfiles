@@ -23,11 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    codex-cli = {
-      url = "github:SecBear/codex-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     grok-bot = {
       url = "github:jordangarrison/grok-bot-flake";
       inputs.nixpkgs.follows = "nixpkgs";
