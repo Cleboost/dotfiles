@@ -1,10 +1,11 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# home/packages/groups/base.nix — CLI + Wayland session utilities (every host)
+# home/packages/groups/base-apps.nix — CLI toolbox & everyday desktop apps
 # ──────────────────────────────────────────────────────────────────────────────
 { config, lib, pkgs, ... }:
 
-lib.mkIf (lib.elem "base" config.cleboost.groups) {
+lib.mkIf (lib.elem "base-apps" config.cleboost.groups) {
   home.packages = with pkgs; [
+    # ── CLI ───────────────────────────────────────────────────────────────────
     gh
     nvd
     nixpkgs-review
@@ -20,18 +21,11 @@ lib.mkIf (lib.elem "base" config.cleboost.groups) {
     unzip
     rsync
 
-    brightnessctl
-    playerctl
-    wl-clipboard
-    hyprpicker
-    wlsunset
-    libnotify
-
+    # ── Desktop apps ────────────────────────────────────────────────────────────
     rquickshare
     bitwarden-desktop
     spotifast
     discord
-
     google-chrome
     nautilus
   ];

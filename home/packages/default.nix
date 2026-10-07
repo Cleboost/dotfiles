@@ -3,7 +3,8 @@
 # ──────────────────────────────────────────────────────────────────────────────
 {
   imports = [
-    ./groups/base.nix
+    ./groups/base-shell.nix
+    ./groups/base-apps.nix
     ./groups/dev.nix
     ./groups/gui.nix
     ./groups/social.nix
