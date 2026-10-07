@@ -1,15 +1,16 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-sage/profile.nix — package/feature groups for this host
+# home/packages/groups/base-shell.nix — Wayland session & desktop layer helpers
+# Hyprland / Umbriel / Noctalia configs live under home/hyprland, home/umbriel, nixos/
 # ──────────────────────────────────────────────────────────────────────────────
-{
-  cleboost.groups = [
-    "base-shell"
-    "base-apps"
-    "dev"
-    "gui"
-    "social"
-    "media"
-    "other"
-    "gaming"
+{ config, lib, pkgs, ... }:
+
+lib.mkIf (lib.elem "base-shell" config.cleboost.groups) {
+  home.packages = with pkgs; [
+    brightnessctl
+    playerctl
+    wl-clipboard
+    hyprpicker
+    wlsunset
+    libnotify
   ];
 }
