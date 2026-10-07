@@ -11,6 +11,8 @@
 
   # ── Module imports ────────────────────────────────────────────────────────
   imports = [
+    ../modules/cleboost
+    ../hosts/${hostName}/profile.nix
     ../hosts/${hostName}/home.nix
     ./packages
     ./shell

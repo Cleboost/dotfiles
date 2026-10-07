@@ -1,10 +1,25 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# home/packages/wayland.nix — Wayland / Hyprland session utilities
+# home/packages/groups/base.nix — CLI + Wayland session utilities (every host)
 # ──────────────────────────────────────────────────────────────────────────────
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
+lib.mkIf (lib.elem "base" config.cleboost.groups) {
   home.packages = with pkgs; [
+    gh
+    nvd
+    nixpkgs-review
+    nix-output-monitor
+    ripgrep
+    fd
+    jq
+    fastfetch
+    socat
+    netcat-openbsd
+    age
+    p7zip
+    unzip
+    rsync
+
     brightnessctl
     playerctl
     wl-clipboard
@@ -12,4 +27,5 @@
     wlsunset
     libnotify
   ];
+};
 }

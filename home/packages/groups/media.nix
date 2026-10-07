@@ -1,15 +1,12 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-brain/default.nix — desktop tower (GPU, disks, network, …)
+# home/packages/groups/media.nix — playback & downloads
 # ──────────────────────────────────────────────────────────────────────────────
-{ ... }:
+{ config, lib, pkgs, ... }:
 
-{
-  imports = [
-    ./profile.nix
+lib.mkIf (lib.elem "media" config.cleboost.groups) {
+  home.packages = with pkgs; [
+    qbittorrent
+    mpv
+    feh
   ];
-
-  networking.hostName = "cleboost-brain";
-
-  # Example when ready:
-  # imports = [ ../../nixos/nvidia.nix ];
 }

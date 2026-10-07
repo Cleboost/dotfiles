@@ -1,15 +1,15 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-brain/default.nix — desktop tower (GPU, disks, network, …)
+# home/packages/groups/code.nix — minimal editor (pulled in with dev group)
 # ──────────────────────────────────────────────────────────────────────────────
-{ ... }:
+{ config, lib, pkgs, ... }:
 
-{
-  imports = [
-    ./profile.nix
+let
+  enabled =
+    lib.elem "code" config.cleboost.groups
+    || lib.elem "dev" config.cleboost.groups;
+in
+lib.mkIf enabled {
+  home.packages = with pkgs; [
+    zed-editor
   ];
-
-  networking.hostName = "cleboost-brain";
-
-  # Example when ready:
-  # imports = [ ../../nixos/nvidia.nix ];
 }

@@ -1,15 +1,11 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-brain/default.nix — desktop tower (GPU, disks, network, …)
+# hosts/cleboost-sage/profile.nix — package/feature groups for this host
 # ──────────────────────────────────────────────────────────────────────────────
-{ ... }:
-
 {
-  imports = [
-    ./profile.nix
+  cleboost.groups = [
+    "base"
+    "dev"
+    "gui"
+    "gaming"
   ];
-
-  networking.hostName = "cleboost-brain";
-
-  # Example when ready:
-  # imports = [ ../../nixos/nvidia.nix ];
 }

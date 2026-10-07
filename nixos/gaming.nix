@@ -1,10 +1,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# nixos/gaming.nix — GameMode, Ananicy, Steam, performance tools
+# nixos/gaming.nix — Steam, GameMode, Ananicy (cleboost.groups + "gaming")
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
-  # ── GameMode ────────────────────────────────────────────────────────────────
+lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
   programs.gamemode = {
     enable = true;
     enableRenice = true;
@@ -15,19 +14,17 @@
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
         gpu_device = 1;
-        nv_powermizer_mode = 1; # Prefer maximum performance
+        nv_powermizer_mode = 1;
       };
     };
   };
 
-  # ── Ananicy (process priority rules) ────────────────────────────────────────
   services.ananicy = {
     enable = true;
     package = pkgs.ananicy-cpp;
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
 
-  # ── Steam & Proton ──────────────────────────────────────────────────────────
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -49,10 +46,4 @@
       ] ++ (if prev ? extraLibraries then prev.extraLibraries pkgs else [ ]);
     });
   };
-
-  # ── Extra gaming packages ───────────────────────────────────────────────────
-  environment.systemPackages = with pkgs; [
-    mangohud
-    gamescope
-  ];
 }

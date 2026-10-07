@@ -1,15 +1,12 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-brain/default.nix — desktop tower (GPU, disks, network, …)
+# home/packages/groups/social.nix — chat & messaging
 # ──────────────────────────────────────────────────────────────────────────────
-{ ... }:
+{ config, lib, pkgs, ... }:
 
-{
-  imports = [
-    ./profile.nix
+lib.mkIf (lib.elem "social" config.cleboost.groups) {
+  home.packages = with pkgs; [
+    discord
+    telegram-desktop
+    zapfast
   ];
-
-  networking.hostName = "cleboost-brain";
-
-  # Example when ready:
-  # imports = [ ../../nixos/nvidia.nix ];
 }
