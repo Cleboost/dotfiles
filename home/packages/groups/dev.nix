@@ -5,16 +5,21 @@
 
 lib.mkIf (lib.elem "dev" config.cleboost.groups) {
   home.packages = with pkgs; [
+    # ── IDEs ──────────────────────────────────────────────────────────────────
+    zed-editor
     code-cursor
     jetbrains.idea
     jetbrains.rust-rover
     jetbrains.webstorm
+
+    # ── IA ────────────────────────────────────────────────────────────────────
     antigravity-cli
     antigravity-ide
     inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
     codex
     inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
 
+    # ── Runtimes & build ──────────────────────────────────────────────────────
     jdk21
     maven
     gradle
@@ -23,7 +28,8 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
     rustup
     gcc
     gnumake
+
+    # ── Other ─────────────────────────────────────────────────────────────────
     godot_4
   ];
-};
 }

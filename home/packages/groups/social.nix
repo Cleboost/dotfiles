@@ -5,7 +5,6 @@
 
 lib.mkIf (lib.elem "social" config.cleboost.groups) {
   home.packages = with pkgs; [
-    discord
     telegram-desktop
     zapfast
   ];

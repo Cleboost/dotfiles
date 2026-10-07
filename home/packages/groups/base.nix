@@ -26,6 +26,13 @@ lib.mkIf (lib.elem "base" config.cleboost.groups) {
     hyprpicker
     wlsunset
     libnotify
+
+    rquickshare
+    bitwarden-desktop
+    spotifast
+    discord
+
+    google-chrome
+    nautilus
   ];
-};
 }
