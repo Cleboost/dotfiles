@@ -81,12 +81,6 @@ hl.window_rule({
     no_shadow = true,
 })
 
--- Fixes & Workarounds: Tearing for games
-hl.window_rule({ match = { title = ".*\\.exe" }, immediate = true })
-hl.window_rule({ match = { title = ".*minecraft.*" }, immediate = true })
-hl.window_rule({ match = { class = "^(steam_app).*" }, immediate = true })
-hl.window_rule({ match = { class = "^(cs2)$" }, immediate = true })
-
 -- Jetbrains Focus Fix
 hl.window_rule({
     match = {

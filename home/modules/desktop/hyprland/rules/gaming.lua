@@ -1,0 +1,5 @@
+-- Loaded when cleboost.groups contains "gaming" (see hyprland/default.nix)
+hl.window_rule({ match = { title = ".*\\.exe" }, immediate = true })
+hl.window_rule({ match = { title = ".*minecraft.*" }, immediate = true })
+hl.window_rule({ match = { class = "^(steam_app).*" }, immediate = true })
+hl.window_rule({ match = { class = "^(cs2)$" }, immediate = true })

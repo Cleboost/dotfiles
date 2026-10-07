@@ -20,6 +20,7 @@ require("theme.colors")
 
 -- ── Rules ─────────────────────────────────────────────────────────────────────
 require("rules.rules")
+pcall(require, "rules.gaming")
 require("rules.specialwork")
 
 -- ── Noctalia theme (writes ~/.config/hypr/noctalia.lua) ───────────────────────
