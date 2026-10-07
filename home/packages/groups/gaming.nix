@@ -6,7 +6,6 @@
 lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
   home.packages = with pkgs; [
     prismlauncher
-    blockbench
     beammp-launcher
 
     mangohud
@@ -14,5 +13,4 @@ lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
     protontricks
     vkbasalt
   ];
-};
 }

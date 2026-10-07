@@ -4,9 +4,11 @@
 {
   imports = [
     ./groups/base.nix
-    ./groups/code.nix
     ./groups/dev.nix
     ./groups/gui.nix
+    ./groups/social.nix
+    ./groups/media.nix
+    ./groups/other.nix
     ./groups/gaming.nix
   ];
 }

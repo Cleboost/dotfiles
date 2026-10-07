@@ -6,6 +6,9 @@
     "base"
     "dev"
     "gui"
+    "social"
+    "media"
+    "other"
     "gaming"
   ];
 }
