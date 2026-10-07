@@ -8,7 +8,7 @@
     ./gpu-env.nix
   ];
 
-  # Host-only packages (shared lists live in home/packages/)
+  # Host-only packages (shared groups live in home/groups/)
   home.packages = with pkgs; [
   ];
 }

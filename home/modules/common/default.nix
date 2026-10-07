@@ -1,16 +1,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# home/packages/groups/gaming.nix — launchers & helpers (Steam/GameMode: nixos/gaming.nix)
+# home/modules/common — shell, secrets (all hosts using this home tree)
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, lib, pkgs, ... }:
-
-lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
-  home.packages = with pkgs; [
-    prismlauncher
-    beammp-launcher
-
-    mangohud
-    gamescope
-    protontricks
-    vkbasalt
+{
+  imports = [
+    ./shell
+    ./secrets.nix
   ];
 }
