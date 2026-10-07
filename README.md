@@ -39,7 +39,6 @@ Each `.nix` file lives next to the config files it deploys.
     ├── shell/                 # fish, git, starship, btop, fastfetch
     ├── kitty/
     ├── hyprland/
-    ├── umbriel/
     ├── theme/                 # GTK, Qt, icons, cursor, wallpapers
     ├── apps/                  # Default apps (MIME) + zed, noctalia, mangohud, …
     ├── secrets.nix            # gnome-keyring (user)
@@ -100,7 +99,7 @@ nix build .#nixosConfigurations.cleboost-sage.config.system.build.toplevel
 
 ## Desktop stack (shared)
 
-Hyprland + Umbriel, Noctalia, greetd, Kitty, Fish, `nixos-unstable` flake.
+Hyprland, Noctalia, greetd, Kitty, Fish, `nixos-unstable` flake.
 
 ## License
 

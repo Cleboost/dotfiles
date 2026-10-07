@@ -18,7 +18,6 @@
     ./shell
     ./kitty
     ./hyprland
-    ./umbriel
     ./theme
     ./apps
     ./secrets.nix

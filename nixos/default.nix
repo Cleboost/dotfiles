@@ -80,7 +80,7 @@
     freeSwapThreshold = 10;
     extraArgs = [
       "-r" "60"
-      "--avoid" "^(Hyprland|umbriel|kitty|Xwayland|wireplumber|pipewire)$"
+      "--avoid" "^(Hyprland|kitty|Xwayland|wireplumber|pipewire)$"
       "--prefer" "^(java|Isolated Web Co|Web Content|chrome|electron)$"
     ];
   };
