@@ -7,11 +7,6 @@
   home.packages = with pkgs; [
   ];
 
-  # GPU stubs until PRIME is configured (Hypr & Umbriel read these paths)
+  # GPU stub until PRIME is configured (Hyprland reads this path)
   xdg.configFile."hypr/gpu-env.lua".text = "-- cleboost-brain: set GPU vars here (see hosts/cleboost-sage/gpu-env.nix)\n";
-
-  xdg.configFile."umbriel/gpu-env.toml".text = ''
-    # cleboost-brain — generated stub
-    [environment]
-  '';
 }

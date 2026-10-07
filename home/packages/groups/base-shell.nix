@@ -1,6 +1,6 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # home/packages/groups/base-shell.nix — Wayland session & desktop layer helpers
-# Hyprland / Umbriel / Noctalia configs live under home/hyprland, home/umbriel, nixos/
+# Hyprland / Noctalia configs live under home/hyprland, home/apps/noctalia, nixos/
 # ──────────────────────────────────────────────────────────────────────────────
 { config, lib, pkgs, ... }:
 

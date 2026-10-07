@@ -1,8 +1,0 @@
-# #######################################################################################
-#   PERSONAL OVERRIDES & TEST TWEAKS
-# Loaded last by ~/.config/umbriel/config.toml
-# #######################################################################################
-
-# You can override anything here, for example:
-# [layout]
-# mode = "scrolling" # test scrolling mode vs dwindle

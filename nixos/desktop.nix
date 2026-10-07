@@ -1,5 +1,5 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# nixos/desktop.nix — Hyprland, Umbriel, portals, storage, keyboard
+# nixos/desktop.nix — Hyprland, portals, storage, keyboard
 # ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, ... }:
 
@@ -10,8 +10,6 @@
     withUWSM = true;
     xwayland.enable = true;
   };
-
-  programs.umbriel.enable = true;
 
   programs.gpu-screen-recorder.enable = true;
 
@@ -62,7 +60,6 @@
     ];
     config = {
       common.default = [ "hyprland" "gtk" ];
-      umbriel.default = [ "umbriel" "gtk" ];
       hyprland.default = [ "hyprland" "gtk" ];
     };
   };
