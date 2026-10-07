@@ -14,15 +14,19 @@ Each `.nix` file lives next to the config files it deploys.
 ```
 .
 ├── flake.nix                  # Host list + flake inputs
+├── modules/
+│   └── cleboost/              # Shared options (cleboost.groups, …)
 │
 ├── hosts/                     # Per-machine only
 │   ├── cleboost-sage/
+│   │   ├── profile.nix        # Package/feature groups for this host
 │   │   ├── default.nix        # System (kernel, NVIDIA, Flipper, …)
-│   │   ├── home.nix           # User (extra packages, …)
+│   │   ├── home.nix           # User overrides (extra packages, GPU stub, …)
 │   │   ├── hardware-configuration.nix
 │   │   ├── asus-fan-control.nix
-│   │   └── gpu-env.nix        # PRIME / NVIDIA session vars
+│   │   └── gpu-env.nix        # PRIME / NVIDIA session vars (Hyprland)
 │   └── cleboost-brain/
+│       ├── profile.nix
 │       ├── default.nix
 │       ├── home.nix
 │       └── hardware-configuration.nix
@@ -34,26 +38,73 @@ Each `.nix` file lives next to the config files it deploys.
 │   └── nvidia.nix             # Imported only on NVIDIA hosts
 │
 └── home/                      # Shared user config (all hosts)
-    ├── default.nix            # Entry point, XDG dirs
-    ├── packages/              # Apps: gui, dev, cli, wayland
+    ├── default.nix            # Entry point, imports host profile + packages
+    ├── packages/
+    │   ├── default.nix        # Imports group modules
+    │   └── groups/            # One file per cleboost.groups entry
     ├── shell/                 # fish, git, starship, btop, fastfetch
     ├── kitty/
     ├── hyprland/
     ├── theme/                 # GTK, Qt, icons, cursor, wallpapers
-    ├── apps/                  # Default apps (MIME) + zed, noctalia, mangohud, …
+    ├── apps/                  # MIME defaults, app configs (zed, noctalia, …)
     ├── secrets.nix            # gnome-keyring (user)
     └── bin/                   # Scripts → ~/.local/bin
 ```
 
+## Package groups (`cleboost.groups`)
+
+Hosts choose which **groups** are enabled in `hosts/<hostname>/profile.nix`. The option is defined in `modules/cleboost/default.nix` and is read by both **NixOS** (e.g. Steam when `gaming` is on) and **Home Manager** (user packages).
+
+`profile.nix` is imported from:
+
+- `hosts/<hostname>/default.nix` (system)
+- `home/default.nix` via `../hosts/${hostName}/profile.nix` (user)
+
+| Group | Home packages (`home/packages/groups/`) | NixOS (if any) |
+| --- | --- | --- |
+| `base-shell` | Wayland session tools (brightness, wl-clipboard, …) | — |
+| `base-apps` | CLI toolbox + everyday apps (Chrome, Nautilus, Bitwarden, …) | — |
+| `dev` | IDEs, AI tools, JDK, Node, Rust, … | — |
+| `gui` | Lollypop, Obsidian, RustDesk, … | — |
+| `social` | Telegram, Zapfast | — |
+| `media` | mpv, feh, qBittorrent | — |
+| `other` | Misc (e.g. Blockbench) | — |
+| `gaming` | Launchers, MangoHud, gamescope, … | `nixos/gaming.nix` (Steam, GameMode, Ananicy) |
+
+Hyprland, Noctalia shell/greeter, and dotfiles under `home/hyprland/` and `home/apps/` are **not** tied to groups today — they apply on every host that uses this `home/` tree.
+
+Example — enable groups on the laptop:
+
+```nix
+# hosts/cleboost-sage/profile.nix
+{
+  cleboost.groups = [
+    "base-shell"
+    "base-apps"
+    "dev"
+    "gui"
+    "social"
+    "media"
+    "other"
+    "gaming"
+  ];
+}
+```
+
+A minimal host might use only `base-shell` + `base-apps` and skip `dev` / `gaming`.
+
+**Important:** New files under `home/packages/groups/` must be **tracked by git** before `nix build` / `nh os switch` will see them (flake source filter).
+
 ## Where to change things
 
-| Goal | File |
+| Goal | Where |
 | --- | --- |
-| App on every host | `home/packages/gui.nix` (or `dev`, `cli`, `wayland`) |
-| App on one host only | `home.packages` in `hosts/<hostname>/home.nix` |
-| System option everywhere | `nixos/default.nix` or the matching module |
-| System option on one host | `hosts/<hostname>/default.nix` |
-| Program config | its folder under `home/` (e.g. `home/hyprland/`) |
+| Add a package on **all hosts that use a group** | Edit the matching file in `home/packages/groups/<group>.nix` |
+| Enable/disable a **set** of packages on a host | Edit `cleboost.groups` in `hosts/<hostname>/profile.nix` |
+| Package on **one host only** | `home.packages` in `hosts/<hostname>/home.nix` |
+| System service / Steam / Docker | `nixos/*.nix` (gaming module respects `gaming` in `cleboost.groups`) |
+| System option on one host | `hosts/<hostname>/default.nix` (+ optional `imports`) |
+| Program config (not the package itself) | Folder under `home/` (e.g. `home/hyprland/`, `home/apps/`) |
 | Personal script | `home/bin/` |
 
 Example — laptop-only package:
@@ -61,11 +112,11 @@ Example — laptop-only package:
 ```nix
 # hosts/cleboost-sage/home.nix
 home.packages = with pkgs; [
-  scrcpy
+  powertop
 ];
 ```
 
-New host: add the name to `hosts` in `flake.nix`, then create `hosts/<name>/` with `default.nix`, `home.nix`, and `hardware-configuration.nix`.
+New host: add the name to `hosts` in `flake.nix`, then create `hosts/<name>/` with `profile.nix`, `default.nix`, `home.nix`, and `hardware-configuration.nix`.
 
 ## Usage
 
@@ -93,9 +144,10 @@ nix build .#nixosConfigurations.cleboost-sage.config.system.build.toplevel
 
 1. Install NixOS, clone this repo.
 2. `sudo nixos-generate-config --show-hardware-config` → replace `hosts/cleboost-brain/hardware-configuration.nix`.
-3. Edit `hosts/cleboost-brain/default.nix` (GPU, disks, system packages, …).
-4. Edit `hosts/cleboost-brain/home.nix` (GPU env, apps, …).
-5. `sudo hostnamectl set-hostname cleboost-brain` then `nh os switch /home/cleboost/dotfiles`.
+3. Edit `hosts/cleboost-brain/profile.nix` (which package groups).
+4. Edit `hosts/cleboost-brain/default.nix` (GPU, disks, system imports, …).
+5. Edit `hosts/cleboost-brain/home.nix` (GPU env stub, extra packages, …).
+6. `sudo hostnamectl set-hostname cleboost-brain` then `nh os switch /home/cleboost/dotfiles`.
 
 ## Desktop stack (shared)
 
