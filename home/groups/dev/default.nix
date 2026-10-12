@@ -16,6 +16,7 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
     maven
     gradle
     bun
+    nix-update
     nodejs_22
     rustup
     gcc
