@@ -20,6 +20,7 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
     rustup
     gcc
     gnumake
+    just
     godot_4
   ];
 
