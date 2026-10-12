@@ -10,5 +10,7 @@
 
   # Host-only packages (shared groups live in home/groups/)
   home.packages = with pkgs; [
+    (callPackage ../../pkgs/codex-chatgpt-web.nix { })
   ];
 }
+

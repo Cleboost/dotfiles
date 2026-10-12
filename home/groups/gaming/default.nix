@@ -5,6 +5,7 @@ lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
     prismlauncher
     beammp-launcher
     mangohud
+    mindustry-wayland
     gamescope
     protontricks
     vkbasalt

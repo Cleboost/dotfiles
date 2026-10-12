@@ -46,4 +46,6 @@ lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
       ] ++ (if prev ? extraLibraries then prev.extraLibraries pkgs else [ ]);
     });
   };
+
+  hardware.xpadneo.enable = true;
 }
