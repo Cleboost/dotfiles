@@ -11,5 +11,5 @@
   networking.hostName = "cleboost-brain";
 
   # Example when ready:
-  # imports = [ ../../nixos/nvidia.nix ];
+  # drivers.nvidia.enable = true;
 }

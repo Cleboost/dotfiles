@@ -1,18 +1,24 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# nixos/default.nix — shared NixOS configuration (all hosts)
+# modules/core/default.nix — NixOS system core modules
 # ──────────────────────────────────────────────────────────────────────────────
 { pkgs, ... }:
 
 {
-  # ── Module imports ────────────────────────────────────────────────────────
   imports = [
-    ../modules/cleboost
+    ./options.nix
     ./desktop.nix
     ./packages.nix
-    ./gaming.nix
-    ./docker.nix
-    ./keyring.nix
-    ./noctalia.nix
+
+    # System core configuration
+    ./system/boot.nix
+    ./system/network.nix
+    ./system/user.nix
+
+    # Services
+    ./services/docker.nix
+    ./services/gaming.nix
+    ./services/keyring.nix
+    ./services/noctalia.nix
   ];
 
   # ── Nix & flakes ────────────────────────────────────────────────────────────
@@ -43,22 +49,6 @@
       extraArgs = "--keep 10";
       dates = "weekly";
     };
-  };
-
-  # ── Boot & kernel ───────────────────────────────────────────────────────────
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.tmp.cleanOnBoot = true;
-
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 180;
-    "vm.watermark_boost_factor" = 0;
-    "vm.watermark_scale_factor" = 125;
-    "vm.max_map_count" = 2147483642;
-    "net.core.default_qdisc" = "fq";
-    "net.ipv4.tcp_congestion_control" = "bbr";
-    "net.ipv4.tcp_fastopen" = 3;
   };
 
   # ── Memory & swap ───────────────────────────────────────────────────────────
@@ -96,45 +86,6 @@
     MaxUse = "1G";
   };
 
-  # ── Bluetooth ─────────────────────────────────────────────────────────────
-  boot.extraModprobeConfig = ''
-    options bluetooth disable_ertm=1
-  '';
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
-        FastConnectable = true;
-        JustWorksRepairing = "always";
-      };
-      Policy = {
-        AutoEnable = true;
-      };
-    };
-  };
-
-  # ── Networking & DNS ────────────────────────────────────────────────────────
-  networking = {
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-    };
-    firewall.enable = true;
-  };
-
-  services.resolved = {
-    enable = true;
-    settings.Resolve = {
-      DNS = "1.1.1.1#cloudflare-dns.com 1.0.0.1#cloudflare-dns.com 2606:4700:4700::1111#cloudflare-dns.com 2606:4700:4700::1001#cloudflare-dns.com";
-      FallbackDNS = "1.0.0.1 1.1.1.1";
-      DNSOverTLS = "opportunistic";
-      DNSSEC = "allow-downgrade";
-    };
-  };
-
   # ── Locale & timezone ───────────────────────────────────────────────────────
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "fr_FR.UTF-8";
@@ -150,15 +101,6 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # ── Users & security ────────────────────────────────────────────────────────
-  users.users.cleboost = {
-    isNormalUser = true;
-    description = "Cleboost";
-    shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" "input" "adbusers" "docker" "dialout" ];
-  };
-
-  security.sudo.wheelNeedsPassword = false;
   programs.nix-ld.enable = true;
   system.stateVersion = "25.05";
 }

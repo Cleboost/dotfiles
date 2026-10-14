@@ -6,7 +6,7 @@ let
   # module, so replace the directory as a whole to avoid overlapping targets.
   demoCore = pkgs.runCommand "cleboost-demo-hypr-core" { } ''
     mkdir -p "$out"
-    cp -r ${../../home/modules/desktop/hyprland/core}/. "$out/"
+    cp -r ${../../modules/home/modules/desktop/hyprland/core}/. "$out/"
     rm -f "$out/monitors.lua"
     cat > "$out/monitors.lua" <<'EOF'
     -- Hardware-independent layout: native resolution, automatic arrangement.
@@ -19,7 +19,7 @@ let
     EOF
   '';
 
-  noctaliaConfig = builtins.readFile ../../home/modules/desktop/noctalia/config.toml;
+  noctaliaConfig = builtins.readFile ../../modules/home/modules/desktop/noctalia/config.toml;
   demoNoctalia = builtins.replaceStrings
     [
       ''center = ["media", "fan-control"]''
