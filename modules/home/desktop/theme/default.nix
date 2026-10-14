@@ -8,7 +8,7 @@ let
 in
 {
   # ── Wallpapers & profile images ─────────────────────────────────────────────
-  home.file."Pictures/Wallpapers".source = ./wallpapers;
+  home.file."Pictures/Wallpapers".source = ../../../../wallpapers;
   home.file."Pictures/profile.png".source = ./profile.png;
   home.file."Pictures/banner.png".source = ./banner.png;
 
