@@ -55,7 +55,7 @@ Defined in `hosts/<hostname>/profile.nix`. Same list drives:
 | `dev` | IDEs, SDKs, AI CLIs | Zed settings, Cursor `.desktop`, JetBrains MIME |
 | `gui` | Obsidian, RustDesk, scrcpy, … | — |
 | `social` | Telegram, Zapfast, Discord, Spotifast | Discord MIME, Hypr autostart |
-| `media` | mpv, feh, qBittorrent, Evince, Lollypop | MIME audio/video/PDF/images, qBittorrent theme |
+| `media` | mpv, feh, qBittorrent, PdfCraft, Lollypop | MIME audio/video/PDF/images, qBittorrent theme |
 | `other` | Blockbench | — |
 | `gaming` | MangoHud, launchers, … | MangoHud conf, Hypr rules & Steam autostart |
 

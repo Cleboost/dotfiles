@@ -5,7 +5,7 @@ lib.mkIf (lib.elem "media" config.cleboost.groups) {
     qbittorrent
     mpv
     feh
-    evince
+    (callPackage ../../../../pkgs/pdfcraft.nix { })
     lollypop
   ];
 
@@ -13,7 +13,7 @@ lib.mkIf (lib.elem "media" config.cleboost.groups) {
     ./qbittorrent/catppuccin-mocha.qbtheme;
 
   xdg.mimeApps.defaultApplications = {
-    "application/pdf" = "org.gnome.Evince.desktop";
+    "application/pdf" = "ai.storyteller.pdfcraft.desktop";
     "audio/mpeg" = "org.gnome.Lollypop.desktop";
     "audio/x-mpeg" = "org.gnome.Lollypop.desktop";
     "audio/mp3" = "org.gnome.Lollypop.desktop";
