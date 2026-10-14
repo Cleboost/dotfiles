@@ -6,13 +6,10 @@
 {
   imports = [
     ./secrets.nix
+    ./starship.nix
   ];
 
-  # ── Prompt & navigation ─────────────────────────────────────────────────────
-  programs.starship = {
-    enable = true;
-    enableFishIntegration = true;
-  };
+  # ── Navigation & shell tooling ──────────────────────────────────────────────
 
   programs.direnv = {
     enable = true;
@@ -86,7 +83,6 @@
   };
 
   # ── Static config files ─────────────────────────────────────────────────────
-  xdg.configFile."starship.toml".source = ./starship.toml;
   xdg.configFile."btop/btop.conf".source = ./btop.conf;
   xdg.configFile."fastfetch/config.jsonc".source = ./fastfetch/config.jsonc;
   xdg.dataFile."fastfetch/images".source = ./fastfetch/images;
