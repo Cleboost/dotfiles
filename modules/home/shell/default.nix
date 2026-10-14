@@ -4,6 +4,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./secrets.nix
+  ];
+
   # ── Prompt & navigation ─────────────────────────────────────────────────────
   programs.starship = {
     enable = true;

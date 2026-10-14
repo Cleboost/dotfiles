@@ -2,7 +2,7 @@
   home.sessionPath = [ "$HOME/.local/bin" ];
 
   home.file.".local/bin" = {
-    source = ../scripts;
+    source = ./scripts;
     recursive = true;
   };
 

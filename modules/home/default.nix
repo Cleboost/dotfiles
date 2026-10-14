@@ -9,7 +9,9 @@
     ../core/options.nix
     ../../hosts/${hostName}/profile.nix
     ../../hosts/${hostName}/home.nix
-    ./groups
-    ./modules
+    ./session.nix
+    ./shell
+    ./desktop
+    ./apps
   ];
 }
