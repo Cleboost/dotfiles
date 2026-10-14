@@ -73,8 +73,14 @@
         cleboost-demo-live = mkHost "cleboost-demo" { live = true; };
       };
 
-      # nix build .#demo-iso -> result/iso/*.iso (bootable USB / VM).
-      packages.x86_64-linux.demo-iso =
-        self.nixosConfigurations.cleboost-demo-live.config.system.build.isoImage;
+      packages.x86_64-linux = {
+        # nix build .#demo-iso -> result/iso/*.iso (bootable USB / VM).
+        demo-iso =
+          self.nixosConfigurations.cleboost-demo-live.config.system.build.isoImage;
+        pdfcraft =
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/pdfcraft.nix { };
+        codex-chatgpt-web =
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/codex-chatgpt-web.nix { };
+      };
     };
 }
