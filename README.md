@@ -83,8 +83,6 @@ New paths must be **git-tracked** before `nix build` / `nh os switch`.
 
 ```bash
 nh os switch /home/cleboost/dotfiles
-rebuild          # Home Manager only
-rebuild -s       # Full NixOS
 ```
 
 Hostname must match flake host (`cleboost-sage`, `cleboost-brain`, or `cleboost-demo`).
@@ -96,7 +94,7 @@ Hyprland, Noctalia (bar + greeter on NixOS), Kitty, Fish, `nixos-unstable`.
 ## Migrate cleboost-sage
 
 1. `sudo hostnamectl set-hostname cleboost-sage`
-2. `nh os switch /home/cleboost/dotfiles` (or `rebuild -s`)
+2. `nh os switch /home/cleboost/dotfiles`
 3. Reboot if needed
 
 ## Migrate cleboost-brain
