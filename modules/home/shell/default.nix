@@ -16,6 +16,25 @@
     nix-direnv.enable = true;
   };
 
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "noctalia";
+      theme_background = true;
+      truecolor = true;
+      force_tty = false;
+      vim_keys = false;
+      rounded_corners = true;
+      graph_symbol = "braille";
+      shown_boxes = "cpu mem net proc";
+      update_ms = 1000;
+      proc_sorting = "cpu lazy";
+      proc_reversed = false;
+      proc_tree = false;
+      proc_colors = true;
+    };
+  };
+
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
@@ -83,7 +102,6 @@
   };
 
   # ── Static config files ─────────────────────────────────────────────────────
-  xdg.configFile."btop/btop.conf".source = ./btop.conf;
   xdg.configFile."fastfetch/config.jsonc".source = ./fastfetch/config.jsonc;
   xdg.dataFile."fastfetch/images".source = ./fastfetch/images;
 }
