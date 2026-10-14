@@ -59,9 +59,9 @@ Defined in `hosts/<hostname>/profile.nix`. Same list drives:
 | `other` | Blockbench | — |
 | `gaming` | MangoHud, launchers, … | MangoHud conf, Hypr rules & Steam autostart |
 
-**Always on** (not gated by groups): `modules/home/modules/common/` (Fish, Starship, keyring), `modules/home/modules/desktop/` (Hyprland, Kitty, theme, Noctalia, WirePlumber). Hypr autostart scripts are generated from `cleboost.groups` via `hypr/autostart/_groups.lua`.
+**Always on** (not gated by groups): `modules/home/shell/` (Fish, Starship, Git, secrets), `modules/home/desktop/` (Hyprland, Kitty, theme, Noctalia, WirePlumber). Hypr autostart scripts are generated from `cleboost.groups` via `hypr/autostart/_groups.lua`.
 
-MIME: `xdg.mimeApps.enable` is set once in `modules/home/groups/default.nix`; each group only adds `defaultApplications` entries.
+MIME: `xdg.mimeApps.enable` is set once in `modules/home/apps/default.nix`; each app category only adds `defaultApplications` entries.
 
 New paths must be **git-tracked** before `nix build` / `nh os switch`.
 
@@ -69,12 +69,13 @@ New paths must be **git-tracked** before `nix build` / `nh os switch`.
 
 | Goal | Where |
 | --- | --- |
-| Add **packages or config** for a group | `modules/home/groups/<group>/` |
+| Add **packages or config** for an app group | `modules/home/apps/<group>/` |
 | Enable/disable a group on a host | `hosts/<hostname>/profile.nix` |
 | Package on **one host only** | `hosts/<hostname>/home.nix` → `home.packages` |
-| Hyprland / session (shared) | `modules/home/modules/desktop/hyprland/` |
+| Hyprland / desktop theme / session | `modules/home/desktop/` |
+| Shell, git, secrets | `modules/home/shell/` |
 | System core & services | `modules/core/` (`system/`, `services/`, etc.) |
-| Hardware drivers (GPU, Asus, ...) | `modules/drivers/` |
+| Hardware drivers (GPU AMD/Intel/Nvidia, Asus, VM...) | `modules/drivers/` |
 | Personal script | `modules/home/scripts/` |
 
 ## Usage
