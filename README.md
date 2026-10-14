@@ -77,6 +77,7 @@ New paths must be **git-tracked** before `nix build` / `nh os switch`.
 | System core & services | `modules/core/` (`system/`, `services/`, etc.) |
 | Hardware drivers (GPU AMD/Intel/Nvidia, Asus, VM...) | `modules/drivers/` |
 | Personal script | `modules/home/scripts/` |
+| Wallpapers | `wallpapers/` |
 
 ## Usage
 
