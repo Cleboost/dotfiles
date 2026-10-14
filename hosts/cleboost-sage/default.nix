@@ -6,9 +6,11 @@
 {
   imports = [
     ./profile.nix
-    ../../nixos/nvidia.nix
-    ./asus-fan-control.nix
   ];
+
+  # ── Hardware Drivers ────────────────────────────────────────────────────────
+  drivers.nvidia.enable = true;
+  drivers.asus-fan-control.enable = true;
 
   networking.hostName = "cleboost-sage";
   networking.firewall.trustedInterfaces = [ "wlp3s0" ];

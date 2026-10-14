@@ -46,7 +46,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs hostName; };
         modules = [
-          ./nixos
+          ./modules/core
+          ./modules/drivers
           ./hosts/${hostName}/default.nix
           noctalia.nixosModules.default
           noctalia-greeter.nixosModules.default
@@ -56,10 +57,10 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = { inherit inputs hostName; };
-            home-manager.users.cleboost = import ./home;
+            home-manager.users.cleboost = import ./modules/home;
           }
         ] ++ (if live then [
-          ./nixos/demo-live.nix
+          ./modules/core/demo-live.nix
         ] else [
           ./hosts/${hostName}/hardware-configuration.nix
         ]);

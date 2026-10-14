@@ -1,9 +1,17 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # nixos/nvidia.nix — NVIDIA + AMD PRIME (import on NVIDIA hosts only)
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+  cfg = config.drivers.nvidia;
+in
 {
+  options.drivers.nvidia = {
+    enable = lib.mkEnableOption "NVIDIA + AMD PRIME driver configuration";
+  };
+
+  config = lib.mkIf cfg.enable {
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -28,4 +36,5 @@
       sync.enable = true;
     };
   };
+};
 }

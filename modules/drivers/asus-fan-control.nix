@@ -1,9 +1,17 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # hosts/cleboost-sage/asus-fan-control.nix — ASUS EC fan control (Noctalia plugin)
 # ──────────────────────────────────────────────────────────────────────────────
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+  cfg = config.drivers.asus-fan-control;
+in
 {
+  options.drivers.asus-fan-control = {
+    enable = lib.mkEnableOption "ASUS EC fan control";
+  };
+
+  config = lib.mkIf cfg.enable {
   environment.systemPackages = [
     (pkgs.stdenv.mkDerivation rec {
       pname = "asus-fan-control-ec";
@@ -32,4 +40,5 @@
       ];
     }
   ];
+};
 }
