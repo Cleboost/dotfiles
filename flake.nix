@@ -81,6 +81,8 @@
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/pdfcraft.nix { };
         codex-chatgpt-web =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/codex-chatgpt-web.nix { };
+        antigravity-cli =
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/antigravity-cli.nix { };
       };
     };
 }

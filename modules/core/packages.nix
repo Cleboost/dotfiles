@@ -6,6 +6,14 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      antigravity-cli = final.callPackage ../../pkgs/antigravity-cli.nix {
+        antigravity-cli = prev.antigravity-cli;
+      };
+    })
+  ];
+
   # ── Fonts ─────────────────────────────────────────────────────────────────────
   fonts = {
     packages = with pkgs; [
