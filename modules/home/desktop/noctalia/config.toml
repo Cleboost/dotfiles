@@ -42,6 +42,12 @@ auto_sync = true
 [shell.screenshot]
 directory = "/home/cleboost/Pictures/Screenshots"
 
+[shell.session.power]
+reboot   = "systemctl reboot"
+shutdown = "systemctl poweroff"
+suspend  = "systemctl suspend"
+
+
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║  2. WALLPAPER & THEME                                                        ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
