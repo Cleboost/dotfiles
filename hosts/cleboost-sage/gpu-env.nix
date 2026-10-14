@@ -16,8 +16,6 @@ let
     RADV_PERFTEST = "aco";
     DXVK_ASYNC = "1";
     NVD_BACKEND = "direct";
-    MANGOHUD = "1";
-    MANGOHUD_DLSYM = "1";
   };
 
   # Hyprland / Aquamarine: dGPU primary
