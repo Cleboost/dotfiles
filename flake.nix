@@ -36,6 +36,8 @@
   # ── NixOS configurations (one per hosts/<name>/ folder) ───────────────────
   outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, ... }@inputs:
     let
+      username = "cleboost";
+
       hosts = [
         "cleboost-sage"
         "cleboost-brain"
@@ -44,7 +46,7 @@
 
       mkHost = hostName: { live ? false }: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs hostName; };
+        specialArgs = { inherit inputs hostName username; };
         modules = [
           ./modules/core
           ./modules/drivers
@@ -56,8 +58,8 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = { inherit inputs hostName; };
-            home-manager.users.cleboost = import ./modules/home;
+            home-manager.extraSpecialArgs = { inherit inputs hostName username; };
+            home-manager.users.${username} = import ./modules/home;
           }
         ] ++ (if live then [
           ./modules/core/demo-live.nix

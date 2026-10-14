@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, username ? "cleboost", ... }:
 
 {
-  users.users.cleboost = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Cleboost";
     shell = pkgs.fish;

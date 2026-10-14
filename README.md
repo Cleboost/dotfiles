@@ -70,7 +70,7 @@ New paths must be **git-tracked** before `nix build` / `nh os switch`.
 | Goal | Where |
 | --- | --- |
 | Add **packages or config** for an app group | `modules/home/apps/<group>/` |
-| Enable/disable a group on a host | `hosts/<hostname>/profile.nix` |
+| Enable/disable a group on a host | `hosts/<hostname>/default.nix` (`cleboost.groups`) |
 | Package on **one host only** | `hosts/<hostname>/home.nix` → `home.packages` |
 | Hyprland / desktop theme / session | `modules/home/desktop/` |
 | Shell, git, secrets | `modules/home/shell/` |
