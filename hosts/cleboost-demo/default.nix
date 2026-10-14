@@ -17,5 +17,5 @@
 
   # On a persistent installation, require the local user's password for sudo.
   # The disposable live ISO overrides this for its ephemeral account.
-  security.sudo.wheelNeedsPassword = lib.mkForce true;
+  security.sudo.wheelNeedsPassword = lib.mkOverride 80 true;
 }

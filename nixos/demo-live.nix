@@ -8,13 +8,14 @@
 
   isoImage = {
     edition = "cleboost-demo";
-    isoName = "cleboost-demo.iso";
   };
+  image.fileName = "cleboost-demo.iso";
 
   # The ISO supplies its own EFI/BIOS boot path and an in-memory root filesystem.
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+  boot.zfs.forceImportRoot = false;
 
   hardware.enableAllHardware = true;
 

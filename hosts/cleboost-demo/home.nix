@@ -7,6 +7,7 @@ let
   demoCore = pkgs.runCommand "cleboost-demo-hypr-core" { } ''
     mkdir -p "$out"
     cp -r ${../../home/modules/desktop/hyprland/core}/. "$out/"
+    rm -f "$out/monitors.lua"
     cat > "$out/monitors.lua" <<'EOF'
     -- Hardware-independent layout: native resolution, automatic arrangement.
     hl.monitor({
