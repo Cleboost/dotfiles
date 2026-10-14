@@ -40,6 +40,12 @@ in
   };
 
   # ── Qt & Kvantum ────────────────────────────────────────────────────────────
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style.name = "kvantum";
+  };
+
   xdg.configFile."Kvantum".source = ./qt/Kvantum;
   xdg.configFile."qt6ct".source = ./qt/qt6ct;
 
