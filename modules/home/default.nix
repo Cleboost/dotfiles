@@ -1,13 +1,15 @@
-{ hostName, ... }:
+{ config, osConfig ? null, hostName, username ? "cleboost", ... }:
 
 {
-  home.username = "cleboost";
-  home.homeDirectory = "/home/cleboost";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   home.stateVersion = "25.05";
+
+  # Synchronize group selections from the host's NixOS config
+  cleboost.groups = if (osConfig != null && osConfig ? cleboost.groups) then osConfig.cleboost.groups else [ "base-shell" "base-apps" ];
 
   imports = [
     ../core/options.nix
-    ../../hosts/${hostName}/profile.nix
     ../../hosts/${hostName}/home.nix
     ./session.nix
     ./shell

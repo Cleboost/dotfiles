@@ -4,8 +4,16 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./profile.nix
+  # ── Feature & Application groups ────────────────────────────────────────────
+  cleboost.groups = [
+    "base-shell"
+    "base-apps"
+    "dev"
+    "gui"
+    "social"
+    "media"
+    "other"
+    "gaming"
   ];
 
   # ── Hardware Drivers ────────────────────────────────────────────────────────

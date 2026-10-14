@@ -4,8 +4,16 @@
 { ... }:
 
 {
-  imports = [
-    ./profile.nix
+  # ── Feature & Application groups ────────────────────────────────────────────
+  cleboost.groups = [
+    "base-shell"
+    "base-apps"
+    "dev"
+    "gui"
+    "social"
+    "media"
+    "other"
+    "gaming"
   ];
 
   networking.hostName = "cleboost-brain";
