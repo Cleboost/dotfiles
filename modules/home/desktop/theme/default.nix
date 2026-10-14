@@ -31,11 +31,11 @@ in
       size = 18;
     };
     gtk3.bookmarks = [
-      "file:///home/cleboost/Code Code"
-      "file:///home/cleboost/Downloads Downloads"
-      "file:///home/cleboost/Pictures Pictures"
-      "file:///home/cleboost/Musics Musics"
-      "file:///home/cleboost/Videos Videos"
+      "file://${config.home.homeDirectory}/Code Code"
+      "file://${config.home.homeDirectory}/Downloads Downloads"
+      "file://${config.home.homeDirectory}/Pictures Pictures"
+      "file://${config.home.homeDirectory}/Musics Musics"
+      "file://${config.home.homeDirectory}/Videos Videos"
     ];
   };
 
