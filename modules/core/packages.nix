@@ -37,6 +37,7 @@
   environment.systemPackages = with pkgs; [
     git
     nano
+    btop
     pciutils
     usbutils
     evtest
