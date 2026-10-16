@@ -23,17 +23,20 @@ in
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
 
-    # PRIME: AMD iGPU (laptop panel) + NVIDIA dGPU (external monitors)
+    # PRIME: AMD iGPU default (power-saving) + NVIDIA dGPU on-demand (offload)
     prime = {
       amdgpuBusId = "PCI:6:0:0";
       nvidiaBusId = "PCI:1:0:0";
-      sync.enable = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
     };
   };
 };
