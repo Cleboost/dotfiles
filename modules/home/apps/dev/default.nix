@@ -195,4 +195,14 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
       };
     };
   };
+
+  # Antigravity CLI configuration
+  home.file.".gemini/antigravity-cli/settings.json".text = builtins.toJSON {
+    model = "Gemini 3.8 Flash (Low)";
+    toolPermission = "always-proceed";
+    trustedWorkspaces = [
+      config.home.homeDirectory
+      "${config.home.homeDirectory}/dotfiles"
+    ];
+  };
 }
