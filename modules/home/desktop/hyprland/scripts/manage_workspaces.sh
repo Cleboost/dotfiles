@@ -12,22 +12,37 @@ update_workspaces() {
     # Sort external monitors by physical horizontal position (X coordinate)
     mapfile -t externals < <(echo "$monitors_json" | jq -r '[.[] | select(.name | startswith("eDP") or startswith("LVDS") | not)] | sort_by(.x) | .[].name')
 
+    left_monitor=""
+    center_monitor=""
+    main_monitor=""
+    secondary_monitor=""
+    main_default_ws=1
+    secondary_default_ws=11
+    ext=""
+
+    if (( ${#externals[@]} >= 2 )); then
+        left_monitor="${externals[0]}"
+        center_monitor="${externals[1]}"
+        if [[ -z "$internal" ]]; then
+            main_monitor="$left_monitor"
+            secondary_monitor="$center_monitor"
+        else
+            main_monitor="$center_monitor"
+            secondary_monitor="$left_monitor"
+        fi
+    elif (( ${#externals[@]} == 1 )); then
+        ext="${externals[0]}"
+    fi
+
     {
         echo "-- Generated dynamically by manage_workspaces.sh"
         
         if (( ${#externals[@]} >= 2 )); then
-            # externals[0] = Left monitor (x=0)
-            # externals[1] = Central/Main monitor (x=1920)
-            left_monitor="${externals[0]}"
-            center_monitor="${externals[1]}"
-            
-            # Central monitor: Workspaces 1 to 10
             for w in {1..10}; do
-                echo "hl.workspace_rule({ workspace = $w, monitor = \"$center_monitor\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
+                echo "hl.workspace_rule({ workspace = $w, monitor = \"$main_monitor\", default = $([[ $w -eq $main_default_ws ]] && echo "true" || echo "false") })"
             done
-            # Left monitor: Workspaces 11 to 20
             for w in {11..20}; do
-                echo "hl.workspace_rule({ workspace = $w, monitor = \"$left_monitor\", default = $([[ $w -eq 11 ]] && echo "true" || echo "false") })"
+                echo "hl.workspace_rule({ workspace = $w, monitor = \"$secondary_monitor\", default = $([[ $w -eq $secondary_default_ws ]] && echo "true" || echo "false") })"
             done
             # Laptop monitor (right): Workspaces 21 to 30
             if [[ -n "$internal" ]]; then
@@ -37,7 +52,6 @@ update_workspaces() {
             fi
             
         elif (( ${#externals[@]} == 1 )); then
-            ext="${externals[0]}"
             for w in {1..10}; do
                 echo "hl.workspace_rule({ workspace = $w, monitor = \"$ext\", default = $([[ $w -eq 1 ]] && echo "true" || echo "false") })"
             done
@@ -62,25 +76,24 @@ update_workspaces() {
     # Explicitly migrate any already-open workspaces to their assigned monitors
     if (( ${#externals[@]} >= 2 )); then
         for w in {1..10}; do
-            hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$center_monitor\" })" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$main_monitor\" })" >/dev/null 2>&1
         done
         for w in {11..20}; do
-            hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$left_monitor\" })" >/dev/null 2>&1
+            hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$secondary_monitor\" })" >/dev/null 2>&1
         done
         if [[ -n "$internal" ]]; then
             for w in {21..30}; do
                 hyprctl dispatch "hl.dsp.workspace.move({ workspace = $w, monitor = \"$internal\" })" >/dev/null 2>&1
             done
         fi
-        # Ensure default initial workspaces are focused on each screen
         current_active="$(hyprctl activeworkspace -j | jq -r '.id')"
-        hyprctl dispatch "hl.dsp.focus({ monitor = \"$left_monitor\" })" >/dev/null 2>&1
-        hyprctl dispatch "hl.dsp.focus({ workspace = 11 })" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.focus({ monitor = \"$secondary_monitor\" })" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.focus({ workspace = $secondary_default_ws })" >/dev/null 2>&1
         if [[ -n "$internal" ]]; then
             hyprctl dispatch "hl.dsp.focus({ monitor = \"$internal\" })" >/dev/null 2>&1
             hyprctl dispatch "hl.dsp.focus({ workspace = 21 })" >/dev/null 2>&1
         fi
-        hyprctl dispatch "hl.dsp.focus({ monitor = \"$center_monitor\" })" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.focus({ monitor = \"$main_monitor\" })" >/dev/null 2>&1
         hyprctl dispatch "hl.dsp.focus({ workspace = ${current_active:-1} })" >/dev/null 2>&1
     elif (( ${#externals[@]} == 1 )); then
         for w in {1..10}; do
@@ -96,7 +109,11 @@ update_workspaces() {
         fi
     fi
 
-    notify-send -a "Hyprland" -i "display" "Workspaces réorganisés" "Centre (1-10) • Gauche (11-20) • Portable (21-30)" -t 3000
+    if (( ${#externals[@]} >= 2 )) && [[ -z "$internal" ]]; then
+        notify-send -a "Hyprland" -i "display" "Workspaces réorganisés" "Gauche (1-10) • Droite (11-20)" -t 3000
+    else
+        notify-send -a "Hyprland" -i "display" "Workspaces réorganisés" "Centre (1-10) • Gauche (11-20) • Portable (21-30)" -t 3000
+    fi
 }
 
 if [[ "$1" == "--once" ]]; then
