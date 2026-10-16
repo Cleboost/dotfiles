@@ -5,7 +5,7 @@ One repo, multiple NixOS hosts + Home Manager.
 | Host | Role |
 | --- | --- |
 | **cleboost-sage** | Current laptop (AMD + NVIDIA PRIME, ASUS fans, Flipper, …) |
-| **cleboost-brain** | Future desktop (hardware config generated at install) |
+| **cleboost-brain** | Primary desktop (Ryzen 5950X, Titan X Pascal, ASUS board) |
 | **cleboost-demo** | Generic full desktop for an installed NixOS demo PC |
 | **cleboost-demo-live** | Disposable, bootable ISO/USB: no target disk installation |
 

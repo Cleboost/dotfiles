@@ -13,7 +13,7 @@ lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
       };
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
-        gpu_device = 1;
+        gpu_device = config.cleboost.gaming.gpuDevice;
         nv_powermizer_mode = 1;
       };
     };

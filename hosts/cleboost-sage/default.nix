@@ -17,8 +17,13 @@
   ];
 
   # ── Hardware Drivers ────────────────────────────────────────────────────────
-  drivers.nvidia.enable = true;
+  drivers.nvidia = {
+    enable = true;
+    prime.enable = true;
+  };
   drivers.asus-fan-control.enable = true;
+
+  cleboost.gaming.gpuDevice = 1;
 
   networking.hostName = "cleboost-sage";
   networking.firewall.trustedInterfaces = [ "wlp3s0" ];
