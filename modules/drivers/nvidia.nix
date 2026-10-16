@@ -1,43 +1,73 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# nixos/nvidia.nix — NVIDIA + AMD PRIME (import on NVIDIA hosts only)
+# modules/drivers/nvidia.nix — NVIDIA (single GPU or AMD PRIME on laptops)
 # ──────────────────────────────────────────────────────────────────────────────
 { config, lib, pkgs, ... }:
 
 let
   cfg = config.drivers.nvidia;
+  primeCfg = cfg.prime;
 in
 {
   options.drivers.nvidia = {
-    enable = lib.mkEnableOption "NVIDIA + AMD PRIME driver configuration";
-  };
+    enable = lib.mkEnableOption "Proprietary NVIDIA driver stack";
 
-  config = lib.mkIf cfg.enable {
-  boot.initrd.kernelModules = [ "amdgpu" ];
+    packageFlavour = lib.mkOption {
+      type = lib.types.enum [
+        "latest"
+        "production"
+        "stable"
+        "legacy_580"
+        "legacy_535"
+        "legacy_470"
+      ];
+      default = "latest";
+      description = ''
+        NVIDIA driver branch from boot.kernelPackages.nvidiaPackages.
+        Pascal (ex. Titan X) needs legacy_580 — latest 6xx ignores the GPU.
+      '';
+    };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-
-    # PRIME: AMD iGPU default (power-saving) + NVIDIA dGPU on-demand (offload)
     prime = {
-      amdgpuBusId = "PCI:6:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
+      enable = lib.mkEnableOption "AMD iGPU + NVIDIA dGPU PRIME offload (laptop)";
+      amdgpuBusId = lib.mkOption {
+        type = lib.types.str;
+        default = "PCI:6:0:0";
+        description = "AMD integrated GPU bus ID for PRIME.";
+      };
+      nvidiaBusId = lib.mkOption {
+        type = lib.types.str;
+        default = "PCI:1:0:0";
+        description = "NVIDIA discrete GPU bus ID for PRIME.";
       };
     };
   };
-};
+
+  config = lib.mkIf cfg.enable {
+    boot.initrd.kernelModules = lib.mkIf primeCfg.enable [ "amdgpu" ];
+
+    services.xserver.videoDrivers = [ "nvidia" ];
+
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
+    hardware.nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = primeCfg.enable;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.${cfg.packageFlavour};
+    } // lib.optionalAttrs primeCfg.enable {
+      prime = {
+        amdgpuBusId = primeCfg.amdgpuBusId;
+        nvidiaBusId = primeCfg.nvidiaBusId;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+      };
+    };
+  };
 }

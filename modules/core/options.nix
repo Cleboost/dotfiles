@@ -14,4 +14,12 @@
       NixOS modules (e.g. Steam, GameMode) use the same list.
     '';
   };
+
+  options.cleboost.gaming.gpuDevice = lib.mkOption {
+    type = lib.types.int;
+    default = 0;
+    description = ''
+      DRM render node index for GameMode GPU tweaks (cleboost-sage uses 1 for PRIME dGPU).
+    '';
+  };
 }

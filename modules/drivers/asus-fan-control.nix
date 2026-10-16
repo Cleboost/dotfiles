@@ -20,7 +20,7 @@ in
         owner = "Keyitdev";
         repo = "asus-fan-control-ec";
         rev = "master";
-        sha256 = "1brfc7q09z0vvypqdzl9a9rwpm81pmwssh1djdiwx20l8nr6vxkd";
+        sha256 = "0bmcnbpsj5zir3g2y6xb723bzv49bpp7hvgysivahfrxb3zi2ahg";
       };
       installPhase = ''
         mkdir -p $out/bin
