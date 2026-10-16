@@ -4,6 +4,13 @@
 { pkgs, ... }:
 
 {
+  cleboost.beamng.cheatMenu = {
+    enable = true;
+    installPaths = [
+      "/home/cleboost/.local/share/Steam/steamapps/common/BeamNG.drive"
+    ];
+  };
+
   home.packages = with pkgs; [
   ];
 
