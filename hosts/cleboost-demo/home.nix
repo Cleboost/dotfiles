@@ -2,13 +2,7 @@
 { lib, pkgs, ... }:
 
 let
-  # A directory is already managed as "hypr/core" by the shared Home Manager
-  # module, so replace the directory as a whole to avoid overlapping targets.
-  demoCore = pkgs.runCommand "cleboost-demo-hypr-core" { } ''
-    mkdir -p "$out"
-    cp -r ${../../modules/home/desktop/hyprland/core}/. "$out/"
-    rm -f "$out/monitors.lua"
-    cat > "$out/monitors.lua" <<'EOF'
+  demoMonitors = ''
     -- Hardware-independent layout: native resolution, automatic arrangement.
     hl.monitor({
         output = "",
@@ -16,7 +10,6 @@ let
         position = "auto",
         scale = 1,
     })
-    EOF
   '';
 
   noctaliaConfig = builtins.readFile ../../modules/home/desktop/noctalia/config.toml;
@@ -41,8 +34,7 @@ schema_version = 1''
     ] noctaliaConfig;
 in
 {
-  # The original machine's hard-coded monitor port names never reach the demo.
-  xdg.configFile."hypr/core".source = lib.mkForce demoCore;
+  xdg.configFile."hypr/core/monitors.lua".text = lib.mkForce demoMonitors;
 
   # GPU variables must come from the running hardware/drivers, not the ASUS.
   xdg.configFile."hypr/gpu-env.lua".text = "-- Generic GPU: use compositor autodetection\n";

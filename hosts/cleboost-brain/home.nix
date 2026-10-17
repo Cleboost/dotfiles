@@ -13,7 +13,7 @@ let
     "hl.workspace_rule({ workspace = ${toString workspace}, monitor = \"${monitor}\", default = ${if default then "true" else "false"} }})";
 
   brainWorkspaces = lib.concatStringsSep "\n" (
-    [ "-- cleboost-brain: workspaces fixes (pas de manage_workspaces.sh)" ]
+    [ "-- cleboost-brain: workspaces fixes (cleboost.hypr.dynamicWorkspaces = false)" ]
     ++ map (w: mkWorkspaceRule {
       workspace = w;
       monitor = brainLeftMonitor;
@@ -26,11 +26,7 @@ let
     }) (lib.range 11 20)
   );
 
-  brainHyprCore = pkgs.runCommand "cleboost-brain-hypr-core" { } ''
-    mkdir -p "$out"
-    cp -r ${../../modules/home/desktop/hyprland/core}/. "$out/"
-    rm -f "$out/monitors.lua"
-    cat > "$out/monitors.lua" <<'EOF'
+  brainMonitors = ''
     -- cleboost-brain: dual Eizo EV2216W
     hl.monitor({
         output   = "",
@@ -52,26 +48,6 @@ let
         position = "1680x0",
         scale    = 1,
     })
-    EOF
-
-    rm -f "$out/execs.lua"
-    cat > "$out/execs.lua" <<'EOF'
-    hl.on("hyprland.start", function()
-        hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS")
-        hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
-        hl.exec_cmd("systemctl --user restart xdg-desktop-portal-hyprland.service xdg-desktop-portal.service")
-        hl.exec_cmd("noctalia")
-        hl.exec_cmd("hyprctl dispatch 'hl.dsp.submap(\"global\")'")
-        hl.exec_cmd("systemctl --user start localsearch-3.service")
-    end)
-
-    local ok, groups = pcall(require, "autostart._groups")
-    if ok and type(groups) == "table" then
-        for _, group in ipairs(groups) do
-            pcall(require, "autostart." .. group)
-        end
-    end
-    EOF
   '';
 
   noctaliaConfig = builtins.readFile ../../modules/home/desktop/noctalia/config.toml;
@@ -106,7 +82,7 @@ in
     (callPackage ../../pkgs/codex-chatgpt-web.nix { })
   ];
 
-  xdg.configFile."hypr/core".source = lib.mkForce brainHyprCore;
+  xdg.configFile."hypr/core/monitors.lua".text = lib.mkForce brainMonitors;
 
   xdg.configFile."hypr/workspaces.lua".text = brainWorkspaces;
 

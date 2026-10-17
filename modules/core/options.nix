@@ -15,6 +15,17 @@
     '';
   };
 
+  options.cleboost.hypr = {
+    dynamicWorkspaces = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        At Hyprland start, run manage_workspaces.sh to map workspaces to monitors.
+        Disable on fixed multi-monitor desktops (cleboost-brain).
+      '';
+    };
+  };
+
   options.cleboost.gaming.gpuDevice = lib.mkOption {
     type = lib.types.int;
     default = 0;

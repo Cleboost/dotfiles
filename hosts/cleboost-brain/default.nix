@@ -18,6 +18,8 @@
 
   networking.hostName = "cleboost-brain";
 
+  cleboost.hypr.dynamicWorkspaces = false;
+
   # Intel I211 — primary Ethernet when câble branché
   networking.firewall.trustedInterfaces = [ "enp5s0" ];
 
