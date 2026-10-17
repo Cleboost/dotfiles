@@ -7,6 +7,7 @@ let
   cleboostIcons = import ./icon-theme.nix { inherit pkgs; };
 in
 {
+  imports = [ ./dotfiles-folder.nix ];
   # ── Wallpapers & profile images ─────────────────────────────────────────────
   home.file."Pictures/Wallpapers".source = ../../../../wallpapers;
   home.file."Pictures/profile.png".source = ./profile.png;
