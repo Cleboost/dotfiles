@@ -10,7 +10,7 @@ let
 
   mkWorkspaceRule =
     { workspace, monitor, default ? false }:
-    "hl.workspace_rule({ workspace = ${toString workspace}, monitor = \"${monitor}\", default = ${if default then "true" else "false"} }})";
+    "hl.workspace_rule({ workspace = ${toString workspace}, monitor = \"${monitor}\", default = ${if default then "true" else "false"} })";
 
   brainWorkspaces = lib.concatStringsSep "\n" (
     [ "-- cleboost-brain: workspaces fixes (cleboost.hypr.dynamicWorkspaces = false)" ]
