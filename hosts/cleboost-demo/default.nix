@@ -1,7 +1,16 @@
-# Portable demo: shared desktop with generic drivers, no host-specific overrides.
-{ lib, ... }:
+# Portable demo. live=true builds the ISO (no hardware-configuration.nix).
+{ lib, live ? false, ... }:
 
 {
+  imports = [
+    ../../modules/core
+    ../../modules/drivers
+  ] ++ lib.optionals (!live) [
+    ./hardware-configuration.nix
+  ] ++ lib.optionals live [
+    ../../modules/core/demo-live.nix
+  ];
+
   # ── Feature & Application groups ────────────────────────────────────────────
   cleboost.groups = [
     "base-shell"

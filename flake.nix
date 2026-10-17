@@ -1,7 +1,6 @@
 {
-  description = "Cleboost's modular NixOS and Home Manager configuration";
+  description = "Cleboost's NixOS and Home Manager configuration";
 
-  # ── Flake inputs ────────────────────────────────────────────────────────────
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -33,7 +32,6 @@
     };
   };
 
-  # ── NixOS configurations (one per hosts/<name>/ folder) ───────────────────
   outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, ... }@inputs:
     let
       username = "cleboost";
@@ -44,13 +42,12 @@
         "cleboost-demo"
       ];
 
+      # Each hosts/<name>/default.nix imports shared modules + its hardware.
       mkHost = hostName: { live ? false }: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs hostName username; };
+        specialArgs = { inherit inputs hostName username live; };
         modules = [
-          ./modules/core
-          ./modules/drivers
-          ./hosts/${hostName}/default.nix
+          ./hosts/${hostName}
           noctalia.nixosModules.default
           noctalia-greeter.nixosModules.default
           home-manager.nixosModules.home-manager
@@ -61,11 +58,7 @@
             home-manager.extraSpecialArgs = { inherit inputs hostName username; };
             home-manager.users.${username} = import ./modules/home;
           }
-        ] ++ (if live then [
-          ./modules/core/demo-live.nix
-        ] else [
-          ./hosts/${hostName}/hardware-configuration.nix
-        ]);
+        ];
       };
     in
     {
@@ -74,7 +67,6 @@
       };
 
       packages.x86_64-linux = {
-        # nix build .#demo-iso -> result/iso/*.iso (bootable USB / VM).
         demo-iso =
           self.nixosConfigurations.cleboost-demo-live.config.system.build.isoImage;
         pdfcraft =

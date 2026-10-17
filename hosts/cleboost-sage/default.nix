@@ -1,9 +1,13 @@
-# ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-sage/default.nix — laptop (AMD + NVIDIA PRIME, MediaTek Wi-Fi, …)
-# ──────────────────────────────────────────────────────────────────────────────
+# Laptop. Knobs for this machine live here. Shared system: modules/core, modules/drivers.
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../../modules/core
+    ../../modules/drivers
+    ./hardware-configuration.nix
+  ];
+
   # ── Feature & Application groups ────────────────────────────────────────────
   cleboost.groups = [
     "base-shell"

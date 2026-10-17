@@ -1,12 +1,20 @@
-# Shared Noctalia config + per-host overrides (cleboost.noctalia).
-{ config, lib, pkgs, ... }:
+# Shared Noctalia config. Machine diffs: hosts/<hostname>/noctalia.nix (optional).
+{ config, lib, pkgs, hostName, ... }:
 
 let
-  cfg = config.cleboost.noctalia;
-  base = builtins.readFile ./config.toml;
-  rendered = import ./render.nix { inherit lib cfg base; };
+  home = config.home.homeDirectory;
+  base = import ./settings.nix { inherit home; };
+
+  hostFile = ../../../../hosts/${hostName}/noctalia.nix;
+  settings =
+    if builtins.pathExists hostFile then
+      import hostFile { inherit lib base home; }
+    else
+      base;
+
+  toml = pkgs.formats.toml { };
 in
 {
   xdg.configFile."noctalia/config.toml".source =
-    pkgs.writeText "noctalia-config.toml" rendered;
+    toml.generate "noctalia-config.toml" settings;
 }

@@ -1,6 +1,6 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # hosts/cleboost-sage/gpu-env.nix — PRIME / NVIDIA session environment
-# card0 = NVIDIA RTX (PCI:1:0:0), card1 = AMD iGPU (PCI:6:0:0) — see nixos/nvidia.nix
+# card0 = NVIDIA RTX (PCI:1:0:0), card1 = AMD iGPU (PCI:6:0:0) — see modules/drivers/nvidia.nix
 # ──────────────────────────────────────────────────────────────────────────────
 { config, pkgs, lib, ... }:
 
