@@ -10,6 +10,7 @@ in
   imports = [
     ./dotfiles-folder.nix
     ./code-folder.nix
+    ./projects-folder.nix
   ];
   # ── Wallpapers & profile images ─────────────────────────────────────────────
   home.file."Pictures/Wallpapers".source = ../../../../wallpapers;
