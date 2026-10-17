@@ -13,7 +13,6 @@
   # ── Noctalia greeter (login screen) ─────────────────────────────────────────
   services.displayManager.noctalia-greeter = {
     enable = true;
-    passwordless-sync-users = [ "cleboost" ];
     settings = {
       session.default = "hyprland";
       keyboard.layout = "fr";
