@@ -1,6 +1,4 @@
-# ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-sage/home.nix — Home Manager overrides (laptop only)
-# ──────────────────────────────────────────────────────────────────────────────
+# Paquets et diffs Home Manager du laptop. Noctalia = settings.nix (pas de noctalia.nix ici).
 { pkgs, ... }:
 
 {
@@ -15,9 +13,7 @@
     ];
   };
 
-  # Host-only packages (shared groups live in home/groups/)
   home.packages = with pkgs; [
     (callPackage ../../pkgs/codex-chatgpt-web.nix { })
   ];
 }
-

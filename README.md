@@ -11,42 +11,34 @@ One repo, multiple NixOS hosts + Home Manager.
 
 ## Layout
 
-Each `.nix` file lives next to the config files it deploys.
+```
+flake.nix                      # liste des machines, rien d'autre
+hosts/<hostname>/
+  default.nix                  # boutons NixOS : groupes, drivers, hostname
+  hardware-configuration.nix
+  home.nix                     # paquets en plus pour ce PC
+  gpu-env.nix                  # si le GPU a besoin d'un env
+  hypr.nix                     # écrans / workspaces, seulement si différent
+  noctalia.nix                 # diff Noctalia, seulement si différent
+modules/core/                  # système commun
+modules/drivers/               # nvidia, amd, intel, asus, vm
+modules/home/
+  default.nix                  # entrée Home Manager
+  shell/  desktop/  apps/<groupe>/
+pkgs/                          # paquets locaux
+```
 
-```
-.
-├── flake.nix
-├── modules/cleboost/          # Shared options (cleboost.groups)
-│
-├── hosts/<hostname>/
-│   ├── profile.nix            # cleboost.groups for this machine
-│   ├── default.nix            # NixOS overrides
-│   ├── home.nix               # HM overrides (extra packages, GPU stub)
-│   └── hardware-configuration.nix
-│
-├── nixos/                     # Shared system config
-│
-└── home/
-    ├── default.nix            # HM entry (thin)
-    ├── bin/                   # Scripts → ~/.local/bin
-    ├── groups/                # One folder per cleboost.groups (packages + dotfiles)
-    │   ├── base-apps/
-    │   ├── dev/
-    │   └── …
-    └── modules/
-        ├── session.nix        # XDG dirs, ~/.local/bin
-        ├── common/            # shell, secrets (always)
-        └── desktop/           # Hyprland, Kitty, theme, Noctalia, WirePlumber
-```
+Un PC sans `noctalia.nix` utilise `modules/home/desktop/noctalia/settings.nix` (sage).
+Un PC sans `hypr.nix` utilise les écrans partagés.
 
 ## Package groups (`cleboost.groups`)
 
-Defined in `hosts/<hostname>/profile.nix`. Same list drives:
+Définis dans `hosts/<hostname>/default.nix`. La même liste active :
 
-| Layer | Path |
+| Couche | Chemin |
 | --- | --- |
-| **Packages + dotfiles** | `home/groups/<group>/default.nix` (+ assets in same folder) |
-| **NixOS** (e.g. Steam) | `nixos/gaming.nix` when group is `gaming` |
+| Paquets + fichiers | `modules/home/apps/<groupe>/` |
+| NixOS (Steam, GameMode) | `modules/core/services/gaming.nix` si `gaming` |
 
 | Group | Packages | Dotfiles (examples) |
 | --- | --- | --- |
@@ -69,15 +61,15 @@ New paths must be **git-tracked** before `nix build` / `nh os switch`.
 
 | Goal | Where |
 | --- | --- |
-| Add **packages or config** for an app group | `modules/home/apps/<group>/` |
-| Enable/disable a group on a host | `hosts/<hostname>/default.nix` (`cleboost.groups`) |
-| Package on **one host only** | `hosts/<hostname>/home.nix` → `home.packages` |
-| Hyprland / desktop theme / session | `modules/home/desktop/` |
+| Paquets ou config d’un groupe | `modules/home/apps/<groupe>/` |
+| Activer un groupe, un driver, le hostname | `hosts/<hostname>/default.nix` |
+| Paquet sur un seul PC | `hosts/<hostname>/home.nix` |
+| Écrans / workspaces d’un PC | `hosts/<hostname>/hypr.nix` |
+| Hyprland, thème, kitty, noctalia partagés | `modules/home/desktop/` |
+| Noctalia d’un PC | `hosts/<hostname>/noctalia.nix` |
 | Shell, git, secrets | `modules/home/shell/` |
-| System core & services | `modules/core/` (`system/`, `services/`, etc.) |
-| Hardware drivers (GPU AMD/Intel/Nvidia, Asus, VM...) | `modules/drivers/` |
-| Personal script | `modules/home/scripts/` |
-| Wallpapers | `wallpapers/` |
+| Système | `modules/core/` |
+| Drivers | `modules/drivers/` |
 
 ## Usage
 
@@ -101,7 +93,7 @@ Hyprland, Noctalia (bar + greeter on NixOS), Kitty, Fish, `nixos-unstable`.
 
 1. Install NixOS, clone repo.
 2. `sudo nixos-generate-config --show-hardware-config` → `hosts/cleboost-brain/hardware-configuration.nix`
-3. Edit `profile.nix`, `default.nix`, `home.nix`
+3. Edit `default.nix` and `home.nix`
 4. `sudo hostnamectl set-hostname cleboost-brain` then `nh os switch`
 
 ## Portable demo: same desktop on other hardware
@@ -178,7 +170,7 @@ depend on the target's installer-generated hardware configuration.
   the remaining Nix store closure unless it is already cached.
 - Keep the base profiles (`cleboost-sage`, `cleboost-brain`) unchanged; all
   demo-specific adjustments live under `hosts/cleboost-demo/` or
-  `nixos/demo-live.nix`.
+  `modules/core/demo-live.nix`.
 
 ## License
 

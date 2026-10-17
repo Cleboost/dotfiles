@@ -1,9 +1,13 @@
-# ──────────────────────────────────────────────────────────────────────────────
-# hosts/cleboost-brain/default.nix — desktop tower (Ryzen 5950X + Titan X Pascal)
-# ──────────────────────────────────────────────────────────────────────────────
-{ config, lib, ... }:
+# Tower. Knobs for this machine live here. Shared system: modules/core, modules/drivers.
+{ lib, ... }:
 
 {
+  imports = [
+    ../../modules/core
+    ../../modules/drivers
+    ./hardware-configuration.nix
+  ];
+
   # ── Feature & Application groups ────────────────────────────────────────────
   cleboost.groups = [
     "base-shell"
