@@ -15,6 +15,9 @@
   };
 
   systemd.tmpfiles.rules = [
+    # ext4 racine = root après mkfs ; z = owner/mode si le chemin existe (après mount)
+    "z /mnt/games 0775 cleboost users -"
+    "z /mnt/data 0775 cleboost users -"
     "d /mnt/games/SteamLibrary 0755 cleboost users -"
     "d /mnt/data/Downloads 0755 cleboost users -"
     "d /mnt/data/Media 0755 cleboost users -"
