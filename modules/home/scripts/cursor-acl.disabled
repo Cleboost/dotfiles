@@ -1,0 +1,9 @@
+# Cursor (ACL) — disabled: ACL no longer ships Cursor. Restore by renaming to cursor-acl
+# and uncommenting xdg.desktopEntries.cursor-acl in modules/home/apps/ia/default.nix.
+#
+# #!/usr/bin/env bash
+# # Cursor editor with ACL profile isolation
+# exec cursor \
+#   --user-data-dir "$HOME/.config/cursor-acl" \
+#   --extensions-dir "$HOME/.cursor-acl/extensions" \
+#   "$@"

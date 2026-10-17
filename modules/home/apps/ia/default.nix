@@ -5,30 +5,31 @@ lib.mkIf (lib.elem "ia" config.cleboost.groups) {
     antigravity-cli
     antigravity-ide
     code-cursor
-    claude-code
+    claude-desktop
     codex
     inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
     inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
   ];
 
-  xdg.desktopEntries.cursor-acl = {
-    name = "Cursor (ACL)";
-    genericName = "Text Editor";
-    comment = "Code Editing. Redefined. (ACL Environment)";
-    exec = "${config.home.homeDirectory}/.local/bin/cursor-acl %F";
-    icon = "cursor";
-    terminal = false;
-    type = "Application";
-    categories = [ "Utility" "TextEditor" "Development" "IDE" ];
-    mimeType = [ "text/plain" "inode/directory" ];
-    actions = {
-      "new-empty-window" = {
-        name = "New Empty Window";
-        exec = "${config.home.homeDirectory}/.local/bin/cursor-acl --new-window %F";
-        icon = "cursor";
-      };
-    };
-  };
+  # Cursor (ACL) — disabled: ACL no longer ships Cursor; restore block below when needed.
+  # xdg.desktopEntries.cursor-acl = {
+  #   name = "Cursor (ACL)";
+  #   genericName = "Text Editor";
+  #   comment = "Code Editing. Redefined. (ACL Environment)";
+  #   exec = "${config.home.homeDirectory}/.local/bin/cursor-acl %F";
+  #   icon = "cursor";
+  #   terminal = false;
+  #   type = "Application";
+  #   categories = [ "Utility" "TextEditor" "Development" "IDE" ];
+  #   mimeType = [ "text/plain" "inode/directory" ];
+  #   actions = {
+  #     "new-empty-window" = {
+  #       name = "New Empty Window";
+  #       exec = "${config.home.homeDirectory}/.local/bin/cursor-acl --new-window %F";
+  #       icon = "cursor";
+  #     };
+  #   };
+  # };
 
   home.activation.antigravityCliSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     settings="${config.home.homeDirectory}/.gemini/antigravity-cli/settings.json"

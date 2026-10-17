@@ -15,10 +15,8 @@ in
       $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${dotfilesDir}" metadata::custom-icon-name
       $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${dotfilesDir}" metadata::custom-icon
       $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t string "${dotfilesDir}" metadata::custom-icon "file://${iconFile}"
-      if [ -z "$DRY_RUN" ]; then
-        rm -rf "$thumb_cache"
-        ${pkgs.util-linux}/bin/killall -q nautilus 2>/dev/null || true
-      fi
+      $DRY_RUN_CMD rm -rf "$thumb_cache"
+      $DRY_RUN_CMD ${pkgs.util-linux}/bin/killall -q nautilus 2>/dev/null || true
     fi
   '';
 }

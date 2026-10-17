@@ -7,6 +7,7 @@
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [
+    inputs.claude-desktop.overlays.default
     (final: prev: {
       antigravity-cli = final.callPackage ../../pkgs/antigravity-cli.nix {
         antigravity-cli = prev.antigravity-cli;

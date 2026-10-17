@@ -5,7 +5,7 @@
   options.cleboost.groups = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [ "base-shell" "base-apps" ];
-    example = [ "base-shell" "base-apps" "dev" "gui" "gaming" ];
+    example = [ "base-shell" "base-apps" "dev" "ia" "gui" "gaming" ];
     description = ''
       Package and feature groups for this host.
       Home Manager loads modules/home/apps/<name>/.
