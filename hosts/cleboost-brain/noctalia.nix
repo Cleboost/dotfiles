@@ -3,7 +3,7 @@
 
 {
   cleboost.noctalia = {
-    bar.center = [ "media" ];
+    bar.center = [ "media" "anilist" "glucose" ];
     fanControl.enable = false;
     bongocat.inputDevices = [ ];
     desktopWidgets.output = "DP-1";

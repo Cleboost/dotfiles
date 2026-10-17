@@ -181,6 +181,12 @@ stat = "cpu_usage"
 capsule      = true
 title_scroll = "always"
 
+[widget.anilist]
+type = "cleboost/anilist:tracker"
+
+[widget.glucose]
+type = "cleboost/librelinkup:glucose"
+
 [widget.ram]
 visualization = "gauge"
 show_value    = true
