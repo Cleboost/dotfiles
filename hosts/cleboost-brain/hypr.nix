@@ -2,8 +2,8 @@
 { lib, ... }:
 
 let
-  left = "DP-3";
-  right = "DP-1";
+  left = "DP-2";
+  right = "DP-3";
 
   workspaceRule = { workspace, monitor, default ? false }:
     "hl.workspace_rule({ workspace = ${toString workspace}, monitor = \"${monitor}\", default = ${if default then "true" else "false"} })";
