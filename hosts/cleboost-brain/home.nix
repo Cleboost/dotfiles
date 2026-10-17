@@ -4,12 +4,34 @@
 { lib, pkgs, ... }:
 
 let
+  # Gauche = DP-3 (66312076), droite = DP-1 (70457074) — ports fixes sur la tour
+  brainLeftMonitor = "DP-3";
+  brainRightMonitor = "DP-1";
+
+  mkWorkspaceRule =
+    { workspace, monitor, default ? false }:
+    "hl.workspace_rule({ workspace = ${toString workspace}, monitor = \"${monitor}\", default = ${if default then "true" else "false"} }})";
+
+  brainWorkspaces = lib.concatStringsSep "\n" (
+    [ "-- cleboost-brain: workspaces fixes (pas de manage_workspaces.sh)" ]
+    ++ map (w: mkWorkspaceRule {
+      workspace = w;
+      monitor = brainLeftMonitor;
+      default = w == 1;
+    }) (lib.range 1 10)
+    ++ map (w: mkWorkspaceRule {
+      workspace = w;
+      monitor = brainRightMonitor;
+      default = w == 11;
+    }) (lib.range 11 20)
+  );
+
   brainHyprCore = pkgs.runCommand "cleboost-brain-hypr-core" { } ''
     mkdir -p "$out"
     cp -r ${../../modules/home/desktop/hyprland/core}/. "$out/"
     rm -f "$out/monitors.lua"
     cat > "$out/monitors.lua" <<'EOF'
-    -- cleboost-brain: dual Eizo EV2216W (pas les règles laptop / ASUS)
+    -- cleboost-brain: dual Eizo EV2216W
     hl.monitor({
         output   = "",
         mode     = "preferred",
@@ -33,7 +55,6 @@ let
     EOF
 
     rm -f "$out/execs.lua"
-    # Attendre monitors.lua puis recalcul workspaces (évite DP-1/DP-3 inversés)
     cat > "$out/execs.lua" <<'EOF'
     hl.on("hyprland.start", function()
         hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_CLASS")
@@ -42,7 +63,6 @@ let
         hl.exec_cmd("noctalia")
         hl.exec_cmd("hyprctl dispatch 'hl.dsp.submap(\"global\")'")
         hl.exec_cmd("systemctl --user start localsearch-3.service")
-        hl.exec_cmd("bash -c 'sleep 0.8; $HOME/.config/hypr/scripts/manage_workspaces.sh --once'")
     end)
 
     local ok, groups = pcall(require, "autostart._groups")
@@ -87,6 +107,8 @@ in
   ];
 
   xdg.configFile."hypr/core".source = lib.mkForce brainHyprCore;
+
+  xdg.configFile."hypr/workspaces.lua".text = brainWorkspaces;
 
   xdg.configFile."noctalia/config.toml".source =
     lib.mkForce (pkgs.writeText "noctalia-brain.toml" brainNoctalia);
