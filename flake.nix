@@ -27,6 +27,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    claude-desktop = {
+      url = "github:GoByeBye/claude-desktop-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs-rustdesk-pr = {
       url = "github:telometto/nixpkgs/86fb8aca9dcd694480c58b087dc73f8b1ed5d38b";
     };

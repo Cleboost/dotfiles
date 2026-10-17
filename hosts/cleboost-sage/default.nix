@@ -13,6 +13,7 @@
     "base-shell"
     "base-apps"
     "dev"
+    "ia"
     "gui"
     "social"
     "media"

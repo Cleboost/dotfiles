@@ -1,16 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 lib.mkIf (lib.elem "dev" config.cleboost.groups) {
   home.packages = with pkgs; [
-    code-cursor
     jetbrains.idea
     jetbrains.rust-rover
     jetbrains.webstorm
-    antigravity-cli
-    antigravity-ide
-    inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
-    codex
-    inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
     jdk21
     maven
     gradle
@@ -177,38 +171,4 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
     "application/toml" = "dev.zed.Zed.desktop";
   };
 
-  xdg.desktopEntries.cursor-acl = {
-    name = "Cursor (ACL)";
-    genericName = "Text Editor";
-    comment = "Code Editing. Redefined. (ACL Environment)";
-    exec = "${config.home.homeDirectory}/.local/bin/cursor-acl %F";
-    icon = "cursor";
-    terminal = false;
-    type = "Application";
-    categories = [ "Utility" "TextEditor" "Development" "IDE" ];
-    mimeType = [ "text/plain" "inode/directory" ];
-    actions = {
-      "new-empty-window" = {
-        name = "New Empty Window";
-        exec = "${config.home.homeDirectory}/.local/bin/cursor-acl --new-window %F";
-        icon = "cursor";
-      };
-    };
-  };
-
-  # Antigravity CLI mutates settings.json — only seed defaults if missing (no HM backup fights).
-  home.activation.antigravityCliSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    settings="${config.home.homeDirectory}/.gemini/antigravity-cli/settings.json"
-    if [ ! -e "$settings" ]; then
-      $DRY_RUN_CMD mkdir -p "$(dirname "$settings")"
-      $DRY_RUN_CMD ${pkgs.jq}/bin/jq -n \
-        --arg home "${config.home.homeDirectory}" \
-        '{
-          model: "Gemini 3.8 Flash (Low)",
-          toolPermission: "always-proceed",
-          trustedWorkspaces: [ $home, ($home + "/dotfiles") ]
-        }' > "$settings"
-      $DRY_RUN_CMD chmod 600 "$settings"
-    fi
-  '';
 }

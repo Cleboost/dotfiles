@@ -44,7 +44,8 @@ Définis dans `hosts/<hostname>/default.nix`. La même liste active :
 | --- | --- | --- |
 | `base-shell` | Wayland CLI tools | — |
 | `base-apps` | Chrome, Nautilus, Bitwarden, CLI, … | MIME web/files, Nautilus `.mo`, Hypr autostart |
-| `dev` | IDEs, SDKs, AI CLIs | Zed settings, Cursor `.desktop`, JetBrains MIME |
+| `dev` | IDEs, SDKs | Zed settings, JetBrains MIME |
+| `ia` | Cursor, Claude Desktop, Codex, Antigravity, ChatGPT desktop, Grok bot | Antigravity CLI seed (Cursor ACL disabled) |
 | `gui` | Obsidian, RustDesk, scrcpy, … | — |
 | `social` | Telegram, Zapfast, Discord, Spotifast | Discord MIME, Hypr autostart |
 | `media` | mpv, feh, qBittorrent, PdfCraft, Lollypop | MIME audio/video/PDF/images, qBittorrent theme |
