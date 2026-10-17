@@ -20,7 +20,7 @@
     templates = null;
   };
 
-  home.file.".hidden".text = "Games\n";
+  home.file.".hidden".text = "Games\nLauncher.cfg\nLauncher.log\n";
 
   programs.home-manager.enable = true;
 }
