@@ -4,9 +4,8 @@
     ./hypr-autostart.nix
     ./kitty
     ./theme
+    ./noctalia
   ];
-
-  xdg.configFile."noctalia/config.toml".source = ./noctalia/config.toml;
 
   xdg.configFile."wireplumber/wireplumber.conf.d/10-bluetooth.conf".text = ''
     monitor.bluez.properties = {

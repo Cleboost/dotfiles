@@ -50,23 +50,11 @@ let
     })
   '';
 
-  noctaliaConfig = builtins.readFile ../../modules/home/desktop/noctalia/config.toml;
-  brainNoctalia = builtins.replaceStrings
-    [
-      ''center = ["media", "fan-control"]''
-      ''    "cleboost/asus-fans-controller-ec",''
-      ''output     = "DP-2"'' # widgets bureau → DP-1 (Eizo)
-    ]
-    [
-      ''center = ["media"]''
-      ""
-      ''output     = "DP-1"''
-    ]
-    noctaliaConfig;
 in
 {
   imports = [
     ./gpu-env.nix
+    ./noctalia.nix
   ];
 
   cleboost.beamng.cheatMenu = {
@@ -85,7 +73,4 @@ in
   xdg.configFile."hypr/core/monitors.lua".text = lib.mkForce brainMonitors;
 
   xdg.configFile."hypr/workspaces.lua".text = brainWorkspaces;
-
-  xdg.configFile."noctalia/config.toml".source =
-    lib.mkForce (pkgs.writeText "noctalia-brain.toml" brainNoctalia);
 }
