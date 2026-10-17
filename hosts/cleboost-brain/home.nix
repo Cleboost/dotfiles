@@ -11,6 +11,7 @@
     enable = true;
     installPaths = [
       "/home/cleboost/.local/share/Steam/steamapps/common/BeamNG.drive"
+      "/mnt/games/SteamLibrary/steamapps/common/BeamNG.drive"
     ];
   };
 
