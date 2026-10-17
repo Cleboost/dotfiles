@@ -30,21 +30,6 @@ let
         position = "1680x0",
         scale    = 1,
     })
-
-    -- DP-1 = 70457074, DP-3 = 66312076 (ports ≠ ordre bureau)
-    hl.monitor({
-        output   = "DP-1",
-        mode     = "1680x1050@59.88",
-        position = "1680x0",
-        scale    = 1,
-    })
-
-    hl.monitor({
-        output   = "DP-3",
-        mode     = "1680x1050@59.88",
-        position = "0x0",
-        scale    = 1,
-    })
     EOF
 
     rm -f "$out/execs.lua"
@@ -79,7 +64,7 @@ let
     [
       ''center = ["media"]''
       ""
-      ''output     = "DP-1"'' 
+      ''output     = "DP-1"''
     ]
     noctaliaConfig;
 in
