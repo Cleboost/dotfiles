@@ -67,6 +67,7 @@ New paths must be **git-tracked** before `nix build` / `nh os switch`.
 | Écrans / workspaces d’un PC | `hosts/<hostname>/hypr.nix` |
 | Hyprland, thème, kitty, noctalia partagés | `modules/home/desktop/` |
 | Noctalia d’un PC | `hosts/<hostname>/noctalia.nix` |
+| Disques extra (brain) | `hosts/cleboost-brain/storage.nix` → `/mnt/games`, `/mnt/data` |
 | Shell, git, secrets | `modules/home/shell/` |
 | Système | `modules/core/` |
 | Drivers | `modules/drivers/` |

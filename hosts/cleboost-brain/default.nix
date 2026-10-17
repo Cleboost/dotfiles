@@ -6,6 +6,7 @@
     ../../modules/core
     ../../modules/drivers
     ./hardware-configuration.nix
+    ./storage.nix
   ];
 
   # ── Feature & Application groups ────────────────────────────────────────────
