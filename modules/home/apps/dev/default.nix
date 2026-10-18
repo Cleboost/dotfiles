@@ -16,6 +16,7 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
     gnumake
     just
     godot_4
+    kicad
   ];
 
   programs.zed-editor = {
