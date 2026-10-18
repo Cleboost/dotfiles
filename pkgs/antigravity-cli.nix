@@ -6,14 +6,14 @@
 }:
 
 let
-  version = "1.3.5";
-  buildId = "6164039479459840";
+  version = "1.4.2";
+  buildId = "4835981233356800";
   wholeVersion = "${version}-${buildId}";
 
   hashes = {
-    x86_64-linux = "sha256-AHpaRNuvHK6kZMPZhIxjsvaZRbAai/iFLFbEd6ZDdM8=";
-    aarch64-linux = "sha256-BlUFq0aG7HETt8zYf86HeVqP1Ld3b3cdpNU5QCBuNMw=";
-    aarch64-darwin = "sha256-YLRnE9DnIXt5ZWD/wcPFafTgszVwdu5rYNRkgy1tQQU=";
+    x86_64-linux = "sha256-Y5WDesDhk90/5Q8SKOHErqNFypljbVRASrfnQ5fUCRw=";
+    aarch64-linux = "sha256-CN1KLKUtUx/vHfrk7C+6/NVjQr+mlMgZOmDaKyb7GJg=";
+    aarch64-darwin = "sha256-T+0kdNoxTxCc9QXxMl64QwevzVhiQua2kfB0/Rpz5qo=";
   };
 
   urlMap = {
