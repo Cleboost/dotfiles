@@ -29,6 +29,16 @@ in
       fi
       srcGe="$menuDir/cheatMenuu.lua"
       srcVe="$menuDir/codeCheatMenu.lua"
+      srcModScript="$menuDir/modScript.lua"
+
+      # Also deploy to BeamNG user folder if present
+      userBeamNG="${config.home.homeDirectory}/.local/share/BeamNG/BeamNG.drive/current"
+      if [ -d "$userBeamNG" ]; then
+        mkdir -p "$userBeamNG/scripts"
+        ln -sfn "$srcModScript" "$userBeamNG/scripts/modScript.lua"
+        echo "beamng cheat menu: linked modScript → $userBeamNG/scripts/modScript.lua"
+      fi
+
       for root in ${lib.concatStringsSep " " (map (p: "\"${p}\"") cfg.installPaths)}; do
         if [ ! -d "$root/lua" ]; then
           echo "beamng cheat menu: skip (no lua): $root"
@@ -36,9 +46,11 @@ in
         fi
         geDir="$root/lua/ge/extensions"
         veDir="$root/lua/vehicle/extensions/auto"
-        mkdir -p "$geDir" "$veDir"
+        scriptsDir="$root/scripts"
+        mkdir -p "$geDir" "$veDir" "$scriptsDir"
         ln -sfn "$srcGe" "$geDir/cheatMenuu.lua"
         ln -sfn "$srcVe" "$veDir/codeCheatMenu.lua"
+        ln -sfn "$srcModScript" "$scriptsDir/modScript.lua"
         echo "beamng cheat menu: linked → $root"
       done
     '';

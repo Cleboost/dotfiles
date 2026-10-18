@@ -1,4 +1,4 @@
-﻿-- BeamNG.drive\lua\vehicle\extensions\auto\codeCheatMenu.lua (RADIAL MENU)
+-- BeamNG.drive\lua\vehicle\extensions\auto\codeCheatMenu.lua (RADIAL MENU)
 log('W', 'CheatMenu', '========== RADIAL CHEAT MENU = starting... ==========')
 
 local M = {}
@@ -5072,6 +5072,9 @@ local function registerQuickAccessMenu()
   menuRegistered = true
 
   extensions.core_quickAccess.addEntry({ level = "/root/playerVehicle/", generator = addRootCategory })
+  extensions.core_quickAccess.addEntry({ level = "/root/playerVehicle/general/", generator = addRootCategory })
+  extensions.core_quickAccess.addEntry({ level = "/root/sandbox/", generator = addRootCategory })
+  extensions.core_quickAccess.addEntry({ level = "/root/", generator = addRootCategory })
   extensions.core_quickAccess.addEntry({ level = CHEAT.ROOT, generator = addCheatEntries })
   extensions.core_quickAccess.addEntry({ level = CHEAT.VISUALS, generator = addVisualEntries })
   extensions.core_quickAccess.addEntry({ level = CHEAT.POWER, generator = addPowerEntries })
@@ -5194,7 +5197,7 @@ local function onExtensionLoaded()
   needsPowerBaseRefresh = true
   log('W', 'CheatMenu', '========== RADIAL CHEAT MENU = Final onExtensionLoaded ==========')
   -- Автозапуск cheatMenuu
-  -- obj:queueGameEngineLua("_G.CheatMenu_NeedsCollapseTrigger = true; extensions.reload('cheatMenuu')")
+  obj:queueGameEngineLua("_G.CheatMenu_NeedsCollapseTrigger = true; extensions.load('cheatMenuu')")
 end
 
 local function onVehicleLoaded()
