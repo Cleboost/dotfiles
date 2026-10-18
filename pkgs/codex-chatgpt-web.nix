@@ -2,11 +2,11 @@
 
 let
   pname = "codex-chatgpt-web";
-  version = "6.1.9";
+  version = "6.1.10";
 
   src = fetchurl {
     url = "https://github.com/miuuyy/codex-chatgpt-web/releases/download/v${version}/codex-web-gpt-${version}-linux-x64.AppImage";
-    hash = "sha256-YOmW9Lu7fNxUqjCtyv2LBYbLMjoPs8peidVqsRoXLw4=";
+    hash = "sha256-zbbnnk4XhO0v/DJxOcwVXD/ZEY6gxqrAzYpSI1ZnbpQ=";
   };
 
   appimageContents = appimageTools.extract {
