@@ -33,4 +33,12 @@ base // {
       "cleboost/librelinkup"
     ];
   };
+
+  # Titan X + legacy_580 : NVENC API 13.0 vs FFmpeg 13.1 → encode GPU mort, CPU OK.
+  plugin_settings = base.plugin_settings // {
+    "noctalia/screen_recorder" =
+      base.plugin_settings."noctalia/screen_recorder" // {
+        video_encoder = "cpu";
+      };
+  };
 }
