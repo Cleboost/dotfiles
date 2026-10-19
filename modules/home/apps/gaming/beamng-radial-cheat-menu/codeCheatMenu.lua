@@ -1,4 +1,4 @@
--- BeamNG.drive\lua\vehicle\extensions\auto\codeCheatMenu.lua (RADIAL MENU)
+﻿-- BeamNG.drive\lua\vehicle\extensions\auto\codeCheatMenu.lua (RADIAL MENU)
 log('W', 'CheatMenu', '========== RADIAL CHEAT MENU = starting... ==========')
 
 local M = {}
@@ -5196,7 +5196,6 @@ local function onExtensionLoaded()
   log('W', 'CheatMenu', '========== RADIAL CHEAT MENU = Finished injectStandaloneCarscaler ==========')
   needsPowerBaseRefresh = true
   log('W', 'CheatMenu', '========== RADIAL CHEAT MENU = Final onExtensionLoaded ==========')
-  -- Автозапуск cheatMenuu
   obj:queueGameEngineLua("_G.CheatMenu_NeedsCollapseTrigger = true; extensions.load('cheatMenuu')")
 end
 

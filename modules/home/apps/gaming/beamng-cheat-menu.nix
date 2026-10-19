@@ -1,4 +1,6 @@
-# Symlink Radial Cheat Menu (GE + vehicle) into each BeamNG.drive install root.
+# Deploy Radial Cheat Menu (GE + vehicle) into BeamNG installs.
+# Symlinks into the Steam game tree are invisible to the VFS when they point outside
+# the install; we copy lua files instead. modScript stays a symlink in the user folder.
 { config, lib, ... }:
 
 let
@@ -31,12 +33,22 @@ in
       srcVe="$menuDir/codeCheatMenu.lua"
       srcModScript="$menuDir/modScript.lua"
 
-      # Also deploy to BeamNG user folder if present
+      deploy_lua() {
+        src="$1"
+        dest="$2"
+        mkdir -p "$(dirname "$dest")"
+        if [ -L "$dest" ]; then
+          $DRY_RUN_CMD rm -f "$dest"
+        fi
+        $DRY_RUN_CMD cp -f "$src" "$dest"
+      }
+
       userBeamNG="${config.home.homeDirectory}/.local/share/BeamNG/BeamNG.drive/current"
       if [ -d "$userBeamNG" ]; then
         mkdir -p "$userBeamNG/scripts"
-        ln -sfn "$srcModScript" "$userBeamNG/scripts/modScript.lua"
-        echo "beamng cheat menu: linked modScript → $userBeamNG/scripts/modScript.lua"
+        $DRY_RUN_CMD ln -sfn "$srcModScript" "$userBeamNG/scripts/modScript.lua"
+        deploy_lua "$srcGe" "$userBeamNG/lua/ge/extensions/cheatMenuu.lua"
+        echo "beamng cheat menu: deployed GE lua + modScript → user folder"
       fi
 
       for root in ${lib.concatStringsSep " " (map (p: "\"${p}\"") cfg.installPaths)}; do
@@ -44,14 +56,12 @@ in
           echo "beamng cheat menu: skip (no lua): $root"
           continue
         fi
-        geDir="$root/lua/ge/extensions"
-        veDir="$root/lua/vehicle/extensions/auto"
-        scriptsDir="$root/scripts"
-        mkdir -p "$geDir" "$veDir" "$scriptsDir"
-        ln -sfn "$srcGe" "$geDir/cheatMenuu.lua"
-        ln -sfn "$srcVe" "$veDir/codeCheatMenu.lua"
-        ln -sfn "$srcModScript" "$scriptsDir/modScript.lua"
-        echo "beamng cheat menu: linked → $root"
+        deploy_lua "$srcGe" "$root/lua/ge/extensions/cheatMenuu.lua"
+        deploy_lua "$srcVe" "$root/lua/vehicle/extensions/auto/codeCheatMenu.lua"
+        if [ -d "$root/scripts" ] || mkdir -p "$root/scripts"; then
+          deploy_lua "$srcModScript" "$root/scripts/modScript.lua"
+        fi
+        echo "beamng cheat menu: copied lua → $root"
       done
     '';
   };
