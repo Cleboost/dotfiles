@@ -6,6 +6,7 @@
     ./ia
     ./gui
     ./social
+    ./social/zapfast
     ./media
     ./other
     ./gaming
