@@ -7311,7 +7311,7 @@ function M.applyDrivePreset(cfgJson)
   M._drivePresetLastCfgId = cfg.presetId
   M._drivePresetBrakeExtraMult = tonumber(cfg.brakeExtraMult) or 1
   M._drivePresetBrakePressureGain = tonumber(cfg.brakePressureGain) or 1
-  M._drivePresetBrakeSpringGain = (cfg.presetId == "scintilla") and 1.22 or 1
+  M._drivePresetBrakeSpringGain = (cfg.presetId == "scintilla" or cfg.presetId == "etk_series") and 1.22 or 1
   M._drivePresetHardBrakeThreshold = cfg.hardBrakeThreshold or 0.38
   M._drivePresetHardBrakeGain = cfg.hardBrakeGain
   M._drivePresetHardBrakePressureBoost = cfg.hardBrakePressureBoost
