@@ -1,4 +1,4 @@
-# Paquets et diffs Home Manager du laptop. Noctalia = settings.nix (pas de noctalia.nix ici).
+# Paquets et diffs Home Manager du laptop. Noctalia = hosts/cleboost-sage/noctalia.nix.
 { pkgs, ... }:
 
 {

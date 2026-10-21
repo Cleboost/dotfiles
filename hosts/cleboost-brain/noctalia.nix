@@ -1,9 +1,6 @@
-# Diff Noctalia de la tour. Le reste est dans modules/home/desktop/noctalia/settings.nix.
+# Tour — barre minimaliste, pas de ventilo EC, encodeur screen recorder en CPU.
 { lib, base, ... }:
 
-let
-  noFan = lib.removeAttrs base.widget [ "fan-control" ];
-in
 base // {
   bar = base.bar // {
     main = base.bar.main // {
@@ -23,10 +20,7 @@ base // {
     };
   };
 
-  widget = noFan // {
-    cat = base.widget.cat // {
-      input_devices = [ ];
-    };
+  widget = base.widget // {
     clock = {
       capsule = true;
     };
@@ -46,9 +40,7 @@ base // {
   };
 
   plugins = base.plugins // {
-    enabled = [
-      "noctalia/bongocat"
-      "noctalia/screen_recorder"
+    enabled = base.plugins.enabled ++ [
       "cleboost/anilist"
       "cleboost/librelinkup"
     ];
