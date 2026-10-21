@@ -1,17 +1,18 @@
 # UGREEN AX900 USB Wi-Fi (USB ID a69c:5723 → a69c:8d80 after mode switch).
 #
-# Vendor aic8800 driver does not build on kernel 6.12+ (cfg80211 API). Until upstream
-# catches up, brain stays on 6.1 LTS so the dongle module can load.
+# radxa-pkg/aic8800 builds on 6.1; cfg80211 API on 6.12.101+ / 7.x still breaks
+# with current nixpkgs kernels (xanmod 7.2 tested). Brain stays on 6.1 LTS.
 { config, pkgs, lib, ... }:
 
 let
+  kernelPackages = pkgs.linuxPackages_6_1;
   aic8800-firmware = pkgs.callPackage ../../system/pkgs/aic8800-firmware.nix { };
-  aic8800-usb = config.boot.kernelPackages.callPackage ../../system/pkgs/aic8800.nix {
+  aic8800-usb = kernelPackages.callPackage ../../system/pkgs/aic8800.nix {
     inherit aic8800-firmware;
   };
 in
 {
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_1;
+  boot.kernelPackages = lib.mkForce kernelPackages;
 
   hardware.usb-modeswitch.enable = true;
 

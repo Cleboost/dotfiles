@@ -6,6 +6,10 @@
   kernelModuleMakeFlags,
   aic8800-firmware,
 }:
+
+let
+  driverDir = "src/USB/driver_fw/drivers/aic8800";
+in
 stdenv.mkDerivation {
   pname = "aic8800";
   version = aic8800-firmware.version;
@@ -20,7 +24,9 @@ stdenv.mkDerivation {
   ];
 
   buildPhase = ''
-    make -C src/USB/aic8800 $makeFlags
+    runHook preBuild
+    make -C ${driverDir} $makeFlags
+    runHook postBuild
   '';
 
   installPhase = ''
@@ -28,13 +34,17 @@ stdenv.mkDerivation {
     directory="lib/modules/${kernel.modDirVersion}/kernel/drivers/aic8800_USB"
     mkdir -p "$out/$directory"
     install -Dm444 -t "$out/$directory" \
-      src/USB/aic8800/aic_load_fw/aic_load_fw.ko \
-      src/USB/aic8800/aic8800_fdrv/aic8800_fdrv.ko
+      ${driverDir}/aic_load_fw/aic_load_fw.ko \
+      ${driverDir}/aic8800_fdrv/aic8800_fdrv.ko
+    # nixpkgs #571181: linux-modules merge expects a .ko.cer next to each extra .ko.
+    for ko in "$out/$directory"/*.ko; do
+      : > "$ko.cer"
+    done
     runHook postInstall
   '';
 
   meta = {
-    homepage = "https://github.com/deepin-community/aic8800";
+    homepage = "https://github.com/radxa-pkg/aic8800";
     description = "Aicsemi AIC8800 USB Wi-Fi driver";
     license = lib.licenses.gpl2Only;
     platforms = lib.platforms.linux;
