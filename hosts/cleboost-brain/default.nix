@@ -7,6 +7,7 @@
     ../../modules/drivers
     ./hardware-configuration.nix
     ./storage.nix
+    ./ugreen-wifi.nix
   ];
 
   # ── Feature & Application groups ────────────────────────────────────────────
