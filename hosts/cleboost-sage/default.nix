@@ -1,39 +1,23 @@
-# Laptop. Knobs for this machine live here. Shared system: modules/core, modules/drivers.
+# Laptop — matériel et système uniquement.
 { config, pkgs, ... }:
 
 {
   imports = [
-    ../../modules/core
-    ../../modules/drivers
+    ../../system
+    ../../system/drivers
+    ../../home/hosts/cleboost-sage/groups.nix
     ./hardware-configuration.nix
   ];
 
-  # ── Feature & Application groups ────────────────────────────────────────────
-  cleboost.groups = [
-    "base-shell"
-    "base-apps"
-    "dev"
-    "ia"
-    "gui"
-    "social"
-    "media"
-    "other"
-    "gaming"
-  ];
-
-  # ── Hardware Drivers ────────────────────────────────────────────────────────
   drivers.nvidia = {
     enable = true;
     prime.enable = true;
   };
   drivers.asus-fan-control.enable = true;
 
-  cleboost.gaming.gpuDevice = 1;
-
   networking.hostName = "cleboost-sage";
   networking.firewall.trustedInterfaces = [ "wlp3s0" ];
 
-  # ── Kernel & USB / Wi-Fi stability ──────────────────────────────────────────
   boot.kernelParams = [
     "btusb.enable_autosuspend=0"
     "usbcore.autosuspend=-1"
@@ -53,6 +37,5 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="13d3", ATTR{idProduct}=="3563", ATTR{power/control}="on"
   '';
 
-  # ── Hardware features ───────────────────────────────────────────────────────
   hardware.flipperzero.enable = true;
 }

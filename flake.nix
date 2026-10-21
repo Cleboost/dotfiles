@@ -61,7 +61,7 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = { inherit inputs hostName username; };
-            home-manager.users.${username} = import ./modules/home;
+            home-manager.users.${username} = import ./home/default.nix;
           }
         ];
       };
@@ -75,11 +75,11 @@
         demo-iso =
           self.nixosConfigurations.cleboost-demo-live.config.system.build.isoImage;
         pdfcraft =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/pdfcraft.nix { };
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/pdfcraft.nix { };
         codex-chatgpt-web =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/codex-chatgpt-web.nix { };
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix { };
         antigravity-cli =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/antigravity-cli.nix { };
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix { };
       };
     };
 }
