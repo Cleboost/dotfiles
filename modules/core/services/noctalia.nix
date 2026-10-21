@@ -4,7 +4,7 @@
 { config, pkgs, ... }:
 
 {
-  # ── Noctalia shell ──────────────────────────────────────────────────────────
+  # ── Noctalia shell (package + services; settings → HM programs.noctalia.settings) ──
   programs.noctalia = {
     enable = true;
     recommendedServices.enable = true; # NetworkManager, Bluetooth, UPower, power-profiles
