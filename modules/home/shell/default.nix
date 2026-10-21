@@ -7,6 +7,7 @@
   imports = [
     ./secrets.nix
     ./starship.nix
+    ./phone-mic.nix
   ];
 
   # ── Navigation & shell tooling ──────────────────────────────────────────────
@@ -65,6 +66,8 @@
       cat           = "bat --paging=never";
       clear         = "printf '\\033[2J\\033[3J\\033[1;1H' && fastfetch-random";
       phonecam-start = "scrcpy --video-source=camera --camera-facing=back --camera-size=1920x1080 --camera-fps=30 --v4l2-sink=/dev/video20 --no-video-playback --v4l2-buffer=0";
+      phonemic-start = "phonemic-start";
+      phonemic-stop = "phonemic-stop";
     };
     interactiveShellInit = ''
       set -g fish_greeting
