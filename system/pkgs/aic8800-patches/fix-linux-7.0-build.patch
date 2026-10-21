@@ -1,0 +1,24 @@
+--- a/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c	2026-10-21 22:16:16.735140226 +0200
++++ b/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c	2026-10-21 22:16:16.737682000 +0200
+@@ -4513,9 +4513,21 @@
+ static int rwnx_cfg80211_get_tx_power(struct wiphy *wiphy,
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
+  struct wireless_dev *wdev,
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 0, 0)
++ int radio_idx,
++#endif
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 14, 0)
++ unsigned int link_id,
++#endif
+ #endif
+ 	int *mbm)
+ {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 0, 0)
++	(void)radio_idx;
++#endif
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 14, 0)
++	(void)link_id;
++#endif
+     #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 8, 0)
+     struct wireless_dev *wdev = NULL;
+     #endif

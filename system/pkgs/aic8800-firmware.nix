@@ -1,16 +1,10 @@
 # Firmware for AIC8800 USB Wi-Fi (e.g. UGREEN AX900). Vendor blobs — unfree.
-{ lib, stdenvNoCC, fetchFromGitHub }:
+{ lib, stdenvNoCC, aic8800-src }:
 
-stdenvNoCC.mkDerivation (finalAttrs: {
+stdenvNoCC.mkDerivation {
   pname = "aic8800-firmware";
-  version = "5.0+git20261020";
-
-  src = fetchFromGitHub {
-    owner = "radxa-pkg";
-    repo = "aic8800";
-    rev = "fce88024ed40279def034e203128e0892fdbcac3";
-    hash = "sha256-yJZkesIC5dppsigjFDQe2//6OqsnJ0HPrnHfwTk5bbY=";
-  };
+  version = aic8800-src.version;
+  src = aic8800-src;
 
   dontBuild = true;
 
@@ -27,4 +21,4 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     license = lib.licenses.unfree;
     platforms = lib.platforms.linux;
   };
-})
+}

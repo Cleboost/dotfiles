@@ -4,7 +4,7 @@
   stdenv,
   kernel,
   kernelModuleMakeFlags,
-  aic8800-firmware,
+  aic8800-src,
 }:
 
 let
@@ -12,8 +12,8 @@ let
 in
 stdenv.mkDerivation {
   pname = "aic8800";
-  version = aic8800-firmware.version;
-  src = aic8800-firmware.src;
+  version = aic8800-src.version;
+  src = aic8800-src;
 
   hardeningDisable = [ "pic" ];
 
