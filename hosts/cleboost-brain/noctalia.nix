@@ -7,10 +7,18 @@ in
 base // {
   bar = base.bar // {
     main = base.bar.main // {
+      start = [
+        "control-center"
+        "workspaces"
+      ];
       center = [
-        "media"
-        "anilist"
-        "glucose"
+        "clock"
+      ];
+      end = [
+        "tray"
+        "recorder"
+        "notifications"
+        "session"
       ];
     };
   };
@@ -18,6 +26,18 @@ base // {
   widget = noFan // {
     cat = base.widget.cat // {
       input_devices = [ ];
+    };
+    clock = {
+      capsule = true;
+    };
+    "control-center" = {
+      capsule = true;
+      custom_image = "/run/current-system/sw/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+      custom_image_colorize = true;
+      glyph = "";
+    };
+    recorder = base.widget.recorder // {
+      capsule = true;
     };
   };
 
