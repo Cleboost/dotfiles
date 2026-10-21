@@ -1,5 +1,5 @@
 # Only a placeholder for flake evaluation. Do NOT boot an installed system
-# with this file: scripts/install-demo.sh replaces it with hardware detection
+# with this file: system/scripts/install-demo.sh replaces it with hardware detection
 # performed by NixOS on the actual target PC.
 { lib, ... }:
 

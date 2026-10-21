@@ -5,8 +5,8 @@
 { config, pkgs, lib, ... }:
 
 let
-  aic8800-firmware = pkgs.callPackage ../../pkgs/aic8800-firmware.nix { };
-  aic8800-usb = config.boot.kernelPackages.callPackage ../../pkgs/aic8800.nix {
+  aic8800-firmware = pkgs.callPackage ../../system/pkgs/aic8800-firmware.nix { };
+  aic8800-usb = config.boot.kernelPackages.callPackage ../../system/pkgs/aic8800.nix {
     inherit aic8800-firmware;
   };
 in
