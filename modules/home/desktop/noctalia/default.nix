@@ -1,4 +1,4 @@
-# Shared Noctalia config. Machine diffs: hosts/<hostname>/noctalia.nix (optional).
+# Base Noctalia + overlay host. Chaque machine : hosts/<hostname>/noctalia.nix.
 { config, lib, pkgs, hostName, ... }:
 
 let

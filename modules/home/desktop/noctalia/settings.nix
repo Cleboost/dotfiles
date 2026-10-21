@@ -1,4 +1,4 @@
-# Config Noctalia partagée. Défaut = cleboost-sage (pas de hosts/cleboost-sage/noctalia.nix).
+# Base Noctalia minimale — shell, thème, barre sobre. Chaque host ajoute dans hosts/<hostname>/noctalia.nix.
 { home }:
 {
   shell = {
@@ -153,19 +153,10 @@
       reserve_space = true;
       capsule = false;
       start = [
-        "cpu"
-        "temp"
-        "ram"
         "workspaces"
       ];
-      center = [
-        "media"
-        "fan-control"
-      ];
+      center = [ ];
       end = [
-        "cat"
-        "recorder"
-        "notifications"
         "tray"
         "clock"
         "control-center"
@@ -173,17 +164,6 @@
     };
   };
   widget = {
-    "fan-control" = {
-      type = "cleboost/asus-fans-controller-ec:fan-control";
-      show_label = true;
-    };
-    cat = {
-      type = "noctalia/bongocat:cat";
-      input_devices = [
-        "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-      ];
-      audio_spectrum = false;
-    };
     cpu = {
       type = "sysmon";
       visualization = "gauge";
@@ -195,12 +175,6 @@
     media = {
       capsule = true;
       title_scroll = "always";
-    };
-    anilist = {
-      type = "cleboost/anilist:tracker";
-    };
-    glucose = {
-      type = "cleboost/librelinkup:glucose";
     };
     ram = {
       visualization = "gauge";
@@ -333,9 +307,6 @@
     enabled = [
       "noctalia/bongocat"
       "noctalia/screen_recorder"
-      "cleboost/anilist"
-      "cleboost/asus-fans-controller-ec"
-      "cleboost/librelinkup"
     ];
     source = [
       {
