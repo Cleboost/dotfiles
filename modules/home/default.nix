@@ -1,5 +1,5 @@
 # Home Manager entry. Host knobs are set in hosts/<name>/default.nix and copied here.
-{ lib, osConfig ? null, hostName, username ? "cleboost", ... }:
+{ inputs, lib, osConfig ? null, hostName, username ? "cleboost", ... }:
 
 let
   # Read a value from the NixOS config of this host. Fallback if HM is evaluated alone.
@@ -15,6 +15,7 @@ in
   cleboost.hypr.dynamicWorkspaces = fromHost [ "cleboost" "hypr" "dynamicWorkspaces" ] true;
 
   imports = [
+    inputs.noctalia.homeModules.default
     ../core/options.nix
     ../../hosts/${hostName}/home.nix
     ./session.nix

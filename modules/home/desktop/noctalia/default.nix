@@ -1,5 +1,6 @@
-# Base Noctalia + overlay host. Chaque machine : hosts/<hostname>/noctalia.nix.
-{ config, lib, pkgs, hostName, ... }:
+# Noctalia settings via official homeModules (flake noctalia).
+# Host overlay: hosts/<hostname>/noctalia.nix. Binary + services: NixOS programs.noctalia.
+{ config, lib, hostName, ... }:
 
 let
   home = config.home.homeDirectory;
@@ -11,10 +12,14 @@ let
       import hostFile { inherit lib base home; }
     else
       base;
-
-  toml = pkgs.formats.toml { };
 in
 {
-  xdg.configFile."noctalia/config.toml".source =
-    toml.generate "noctalia-config.toml" settings;
+  programs.noctalia = {
+    enable = true;
+    # Installed system-wide; Hyprland starts noctalia (not systemd user service).
+    package = lib.mkForce null;
+    systemd.enable = false;
+    checkConfig = false;
+    settings = settings;
+  };
 }
