@@ -8,11 +8,6 @@
 
   nixpkgs.overlays = [
     inputs.claude-desktop.overlays.default
-    (final: prev: {
-      antigravity-cli = final.callPackage ../home/pkgs/antigravity-cli.nix {
-        antigravity-cli = prev.antigravity-cli;
-      };
-    })
   ];
 
   # ── Fonts ─────────────────────────────────────────────────────────────────────
@@ -38,15 +33,13 @@
     };
   };
 
-  # ── Shell & services ────────────────────────────────────────────────────────
+  # fish: NixOS enregistre le shell système ; HM (shell/base.nix) porte la config user.
   programs.fish.enable = true;
   services.netbird.enable = true;
 
-  # ── Base CLI tools ──────────────────────────────────────────────────────────
+  # Outils système (root / debug matériel) — apps user → home/groups/
   environment.systemPackages = with pkgs; [
-    git
     nano
-    btop
     pciutils
     usbutils
     evtest
