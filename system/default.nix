@@ -17,6 +17,7 @@
     # Services
     ./services/docker.nix
     ./services/gaming.nix
+    ./services/keychron.nix
     ./services/keyring.nix
     ./services/noctalia.nix
   ];
