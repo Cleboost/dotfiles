@@ -4,8 +4,6 @@
 { config, pkgs, inputs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
   nixpkgs.overlays = [
     inputs.claude-desktop.overlays.default
   ];

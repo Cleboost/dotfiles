@@ -57,6 +57,8 @@
           noctalia-greeter.nixosModules.default
           home-manager.nixosModules.home-manager
           {
+            nixpkgs.config.allowUnfree = true;
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
