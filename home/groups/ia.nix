@@ -5,6 +5,7 @@ lib.mkIf (lib.elem "ia" config.cleboost.groups) {
     (callPackage ../pkgs/antigravity-cli.nix { inherit antigravity-cli; })
     antigravity-ide
     code-cursor
+    cursor-cli
     claude-desktop
     codex
     inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
