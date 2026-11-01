@@ -24,6 +24,9 @@ stdenvNoCC.mkDerivation {
     "${patchesDir}/fix-linux-7.1-build.patch"
     "${patchesDir}/fix-linux-7.2-build.patch"
     "${patchesDir}/fix-sprintf-fw-path-overlap.patch"
+    "${patchesDir}/fix-fw-upload-pacing.patch"
+    "${patchesDir}/mcu1-loader-profile.patch"
+    "${patchesDir}/fdrv-bnuminterfaces.patch"
   ];
 
   dontBuild = true;

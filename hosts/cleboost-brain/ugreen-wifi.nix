@@ -6,9 +6,7 @@
 
 let
   aic8800-src = pkgs.callPackage ../../system/pkgs/aic8800-src.nix { };
-  aic8800-firmware = pkgs.callPackage ../../system/pkgs/aic8800-firmware.nix {
-    inherit aic8800-src;
-  };
+  aic8800-firmware = pkgs.callPackage ../../system/pkgs/aic8800-firmware.nix { };
   aic8800-usb = config.boot.kernelPackages.callPackage ../../system/pkgs/aic8800.nix {
     inherit aic8800-src;
   };
@@ -29,6 +27,12 @@ in
   ];
 
   hardware.firmware = [ aic8800-firmware ];
+
+  # Out-of-tree aic8800 driver expects raw firmware in /lib/firmware via VFS filp_open()
+  system.activationScripts.libFirmware = lib.stringAfter [ "specialfs" ] ''
+    mkdir -p /lib
+    ln -sfn /run/current-system/firmware /lib/firmware
+  '';
 
   # Only Wi-Fi NIC on this host → usually wlan0 after driver load.
   networking.firewall.trustedInterfaces = lib.mkAfter [ "wlan0" ];

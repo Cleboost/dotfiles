@@ -1,0 +1,49 @@
+--- a/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aicbluetooth.c	2026-10-31 17:29:24.511927246 +0100
++++ b/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aicbluetooth.c	2026-10-31 17:29:39.576377174 +0100
+@@ -1,6 +1,8 @@
+ #include <linux/version.h>
+ #include <linux/vmalloc.h>
+ #include "aicbluetooth_cmds.h"
++#include <linux/delay.h>
++#include <linux/sched.h>
+ #include "aicwf_usb.h"
+ #include "aic_txrxif.h"
+ #include "md5.h"
+@@ -474,6 +476,7 @@
+                 printk("bin upload fail: %x, err:%d\r\n", fw_addr + i, err);
+                 break;
+             }
++            udelay(200); cond_resched();
+         }
+     }
+ 
+@@ -782,6 +785,7 @@
+                 printk("bin upload fail: %x, err:%d\r\n", fw_addr + i, err);
+                 break;
+             }
++            udelay(200); cond_resched();
+         }
+     }
+ 
+--- a/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aicbluetooth_cmds.h	2026-10-31 17:29:24.512045610 +0100
++++ b/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aicbluetooth_cmds.h	2026-10-31 17:42:36.092024862 +0100
+@@ -15,7 +15,7 @@
+ #include <linux/completion.h>
+ #include <linux/module.h>
+ 
+-#define RWNX_80211_CMD_TIMEOUT_MS    2000//500//300
++#define RWNX_80211_CMD_TIMEOUT_MS    5000//500//300
+ 
+ #define RWNX_CMD_FLAG_NONBLOCK      BIT(0)
+ #define RWNX_CMD_FLAG_REQ_CFM       BIT(1)
+--- a/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aicbluetooth_cmds.c	2026-10-31 17:29:24.512009098 +0100
++++ b/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aicbluetooth_cmds.c	2026-10-31 17:42:36.088773131 +0100
+@@ -77,7 +77,7 @@
+     if (cmd->flags & RWNX_CMD_FLAG_REQ_CFM)
+         cmd->flags |= RWNX_CMD_FLAG_WAIT_CFM;
+ 
+-    cmd->tkn    = cmd_mgr->next_tkn++;
++    cmd->tkn    = cmd_mgr->next_tkn; cmd_mgr->next_tkn = (cmd_mgr->next_tkn + 1) & 0x1ff;
+     cmd->result = -EINTR;
+ 
+     if (!(cmd->flags & RWNX_CMD_FLAG_NONBLOCK))

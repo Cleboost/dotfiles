@@ -1,0 +1,11 @@
+--- a/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/aicwf_usb.c
++++ b/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/aicwf_usb.c
+@@ -2141,7 +2141,7 @@ static int aicwf_usb_probe(struct usb_interface *intf, const struct usb_device_
+ 
+     /* Check interface number */
+ #ifdef CONFIG_USB_BT
+-    if (usb->actconfig->desc.bNumInterfaces != 3)
++    if (usb->actconfig->desc.bNumInterfaces != 1 && usb->actconfig->desc.bNumInterfaces != 3)
+ #else
+     if (usb->actconfig->desc.bNumInterfaces != 1)
+ #endif
