@@ -85,6 +85,8 @@
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix { };
         horizon-launcher =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/horizon-launcher.nix { };
+        rakazo =
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/rakazo.nix { };
       };
     };
 }

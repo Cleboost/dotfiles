@@ -10,6 +10,8 @@ lib.mkIf (lib.elem "ia" config.cleboost.groups) {
     codex
     inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
     inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
+    # Client Electron : UI locale ; au 1er lancement « Cet ordinateur » l’app gère le stack (Docker déjà sur le host).
+    (callPackage ../pkgs/rakazo.nix { })
   ];
 
   # Cursor (ACL) — disabled: ACL no longer ships Cursor; restore block below when needed.

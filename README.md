@@ -70,7 +70,7 @@ Définis dans `home/hosts/<hostname>/groups.nix`. La même liste active :
 | `base-shell` | Wayland CLI tools | — |
 | `base-apps` | Chrome, Nautilus, Bitwarden, … | MIME, Nautilus, Hypr autostart |
 | `dev` | IDEs, SDKs | Zed |
-| `ia` | Cursor, Claude, Codex, … | Antigravity CLI seed |
+| `ia` | Cursor, Claude, Codex, Rakazo, … | Antigravity CLI seed |
 | `gui` | Obsidian, RustDesk, scrcpy | — |
 | `social` | Telegram, Zapfast, Discord | Zapfast settings |
 | `media` | mpv, qBittorrent, Lollypop | MIME, thème qBittorrent |
