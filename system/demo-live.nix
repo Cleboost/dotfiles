@@ -16,6 +16,21 @@
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
   boot.zfs.forceImportRoot = false;
+  boot.supportedFilesystems = lib.mkForce [
+    "btrfs"
+    "cifs"
+    "ext4"
+    "f2fs"
+    "nfs"
+    "ntfs"
+    "overlay"
+    "squashfs"
+    "vfat"
+    "xfs"
+  ];
+
+  # nixpkgs unstable peut marquer zfs-kernel broken vs kernel latest — inutile sur l'ISO.
+  nixpkgs.config.problems.handlers.zfs.broken = "ignore";
 
   hardware.enableAllHardware = true;
 

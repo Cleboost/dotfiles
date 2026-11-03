@@ -45,6 +45,7 @@
         "cleboost-sage"
         "cleboost-brain"
         "cleboost-demo"
+        "cleboost-usb"
       ];
 
       # Each hosts/<name>/default.nix imports shared modules + its hardware.
@@ -82,6 +83,8 @@
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix { };
         antigravity-cli =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix { };
+        horizon-launcher =
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/horizon-launcher.nix { };
       };
     };
 }
