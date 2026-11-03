@@ -44,14 +44,11 @@
       hosts = [
         "cleboost-sage"
         "cleboost-brain"
-        "cleboost-demo"
-        "cleboost-usb"
       ];
 
-      # Each hosts/<name>/default.nix imports shared modules + its hardware.
-      mkHost = hostName: { live ? false }: nixpkgs.lib.nixosSystem {
+      mkHost = hostName: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs hostName username live; };
+        specialArgs = { inherit inputs hostName username; };
         modules = [
           ./hosts/${hostName}
           noctalia.nixosModules.default
@@ -70,21 +67,15 @@
       };
     in
     {
-      nixosConfigurations = (nixpkgs.lib.genAttrs hosts (host: mkHost host { })) // {
-        cleboost-demo-live = mkHost "cleboost-demo" { live = true; };
-      };
+      nixosConfigurations = nixpkgs.lib.genAttrs hosts mkHost;
 
       packages.x86_64-linux = {
-        demo-iso =
-          self.nixosConfigurations.cleboost-demo-live.config.system.build.isoImage;
         pdfcraft =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/pdfcraft.nix { };
         codex-chatgpt-web =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix { };
         antigravity-cli =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix { };
-        horizon-launcher =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/horizon-launcher.nix { };
         rakazo =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/rakazo.nix { };
       };

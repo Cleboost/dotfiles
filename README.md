@@ -1,14 +1,11 @@
 # cleboost's NixOS dotfiles
 
-One repo, three folders. Multiple NixOS hosts + Home Manager.
+One repo, three folders. Two NixOS hosts + Home Manager.
 
 | Host | Role |
 | --- | --- |
 | **cleboost-sage** | Laptop (AMD + NVIDIA PRIME, ASUS fans, Flipper, …) |
 | **cleboost-brain** | Desktop (Ryzen 5950X, Titan X Pascal) |
-| **cleboost-demo** | Generic full desktop for an installed NixOS demo PC |
-| **cleboost-demo-live** | Disposable bootable ISO/USB |
-| **cleboost-usb** | Persistent NixOS on a USB stick (guest boot, full flake) |
 
 ## Layout
 
@@ -52,8 +49,6 @@ system/
   services/                 # docker, gaming, noctalia, keyring
   drivers/                  # nvidia, amdgpu, intel, asus, vm
   pkgs/                     # drivers out-of-tree (aic8800, …)
-  scripts/                  # install-demo.sh, install-usb.sh
-  usb.nix                   # boot USB sans toucher au NVRAM hôte
 ```
 
 ## Package groups (`cleboost.groups`)
@@ -103,34 +98,6 @@ Nouveaux chemins doivent être **git-trackés** avant `nix build` / `nh os switc
 **Sage** (laptop) : NVIDIA PRIME, ventilateurs ASUS, Flipper Zero, `cleboost.gaming.gpuDevice = 1`.
 
 Noctalia, fonts, icons and wallpapers. Unlike the laptop configuration, the brain bar layout is in `home/config/noctalia/hosts/cleboost-brain.nix`.
-
-## Demo ISO / portable install
-
-Build ISO:
-
-```bash
-nix build .#packages.x86_64-linux.demo-iso
-```
-
-Install demo config on an existing NixOS (no partitioning):
-
-```bash
-bash system/scripts/install-demo.sh --apply
-```
-
-Live ISO uses `system/demo-live.nix` (no `hardware-configuration.nix`).
-
-## cleboost-usb (clé persistante)
-
-1. Partitionner la clé (ESP + `/` ext4 ou btrfs), installer NixOS dessus (live ISO ou autre).
-2. Cloner / copier ce repo sur la clé (ou monter ton `$HOME/dotfiles`).
-3. Depuis le NixOS **sur la clé** :
-
-```bash
-bash system/scripts/install-usb.sh --apply
-```
-
-`system/usb.nix` : pas d’écriture EFI du PC hôte, kernel/firmware génériques. Le script refuse si `/` n’est pas sur un disque amovible.
 
 ## Commands
 
