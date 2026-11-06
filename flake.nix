@@ -17,6 +17,11 @@
       url = "github:noctalia-dev/noctalia-greeter";
     };
 
+    # cachix branch: prebuilt binaries. Do not follow nixpkgs or the cache misses.
+    umbriel = {
+      url = "github:noctalia-dev/umbriel/cachix";
+    };
+
     chatgpt-desktop = {
       url = "github:ilysenko/codex-desktop-linux";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +42,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, umbriel, ... }@inputs:
     let
       username = "cleboost";
 
@@ -53,6 +58,7 @@
           ./hosts/${hostName}
           noctalia.nixosModules.default
           noctalia-greeter.nixosModules.default
+          umbriel.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             nixpkgs.config.allowUnfree = true;

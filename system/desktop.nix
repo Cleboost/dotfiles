@@ -11,6 +11,9 @@
     xwayland.enable = true;
   };
 
+  # Second session. Greeter default stays Hyprland; pick Umbriel at login.
+  programs.umbriel.enable = true;
+
   programs.gpu-screen-recorder.enable = true;
 
   # ── Keyboard (AZERTY) ───────────────────────────────────────────────────────

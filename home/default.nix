@@ -15,6 +15,8 @@ in
 
   imports = [
     inputs.noctalia.homeModules.default
+    inputs.umbriel.homeModules.default
+    ./config/umbriel/module.nix
     ../system/options.nix
     ./module.nix
   ];
