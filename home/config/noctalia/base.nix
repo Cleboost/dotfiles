@@ -77,6 +77,7 @@
         "kitty"
         "qt"
         "starship"
+        "umbriel"
       ];
       community_ids = [ ];
     };
