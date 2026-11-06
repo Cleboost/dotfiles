@@ -5,9 +5,7 @@ base // {
   bar = base.bar // {
     main = base.bar.main // {
       start = [
-        "cpu"
-        "temp"
-        "ram"
+        "control-center"
         "workspaces"
       ];
       center = [
@@ -15,12 +13,11 @@ base // {
         "fan-control"
       ];
       end = [
-        "cat"
-        "recorder"
-        "notifications"
         "tray"
+        "recorder"
+        "battery"
+        "notifications"
         "clock"
-        "control-center"
       ];
     };
   };
@@ -42,6 +39,10 @@ base // {
     };
     glucose = {
       type = "cleboost/librelinkup:glucose";
+    };
+    battery = {
+      display_mode = "graphic";
+      hide_when_plugged = true;
     };
   };
 
