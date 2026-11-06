@@ -16,6 +16,7 @@
         # Même idée que Hyprland : le bureau reste sur l'iGPU AMD.
         ignored_pci_addresses = [ "0000:01:00.0" ];
       };
+      output."eDP-1".workspace_axis = "horizontal";
     } // {
 
       appearance = {
@@ -32,9 +33,16 @@
         shadow.enabled = false;
       };
 
-      input.keyboard = {
-        layout = "fr";
-        numlock_toggle = true;
+      input = {
+        client_window_drag = false;
+        focus = {
+          follows_mouse = true;
+          hover_raises = false;
+        };
+        keyboard = {
+          layout = "fr";
+          numlock_toggle = true;
+        };
       };
 
       layout = {
@@ -66,8 +74,12 @@
         "Ctrl+Super+Alt+T" = "spawn noctalia msg wallpaper-random";
         "Ctrl+Super+Alt+R" = "spawn pkill noctalia; noctalia";
 
+        "Mod+S" = "scratchpad-toggle music";
+        "Mod+D" = "scratchpad-toggle comm";
         "Mod+Left" = "window-focus-left";
         "Mod+Right" = "window-focus-right";
+        "Ctrl+Mod+Left" = "workspace-previous";
+        "Ctrl+Mod+Right" = "workspace-next";
         "Mod+Up" = "window-focus-up";
         "Mod+Down" = "window-focus-down";
         "Mod+Shift+Left" = "column-move-left";
@@ -131,11 +143,61 @@
         "XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down"; allow_when_locked = true; };
       };
 
+      scratchpad = [
+        {
+          name = "music";
+          proportional_size = true;
+          spawn_when_empty = "spotify";
+        }
+        {
+          name = "comm";
+          proportional_size = true;
+          spawn_when_empty = "discord";
+        }
+      ];
+
       window_rule = [
-        { blur = true; }
+        {
+          blur = true;
+          opacity = 0.85;
+        }
+        {
+          # Reste opaque. Ajouter l'app_id ici.
+          match.app_id = "^(google-chrome|chromium|steam|steam_app_.*)$";
+          opacity = 1.0;
+        }
+        {
+          match.content_type = "game";
+          opacity = 1.0;
+        }
+        {
+          match.content_type = "video";
+          opacity = 1.0;
+        }
         {
           match.app_id = "^dev.noctalia.Noctalia$";
           default_floating = true;
+        }
+        {
+          match.app_id = "^[Ss]potify$";
+          default_scratchpad = "music";
+          default_floating_size = {
+            width = 0.92;
+            height = 0.88;
+          };
+        }
+        {
+          match.app_id = "^discord$";
+          default_scratchpad = "comm";
+          default_floating_size = {
+            width = 0.92;
+            height = 0.88;
+          };
+        }
+        {
+          match.app_id = "^cursor$";
+          default_maximize = false;
+          default_maximize_to_edges = false;
         }
       ];
 

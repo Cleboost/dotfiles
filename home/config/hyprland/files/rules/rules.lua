@@ -33,36 +33,20 @@ hl.window_rule({
     suppress_event = "fullscreen maximize",
 })
 
--- Transparency + Blur
-local opacity_rules = {
-    { class = "^(kitty)$", opacity = "0.85 0.85" },
-    { class = "^(org.gnome.Nautilus)$", opacity = "0.85 0.85" },
-    -- { class = "^(spotifast|fastpotify)$", opacity = "0.85 0.85" },
-    { class = "^([Ss]potify)$", opacity = "0.85 0.85" },
-    { class = "^(discord)$", opacity = "0.85 0.85" },
-    { class = "^(dev.zed.Zed)$", opacity = "0.85 0.85" },
-    { class = "^(rustdesk)$", opacity = "0.85 0.85" },
-    { class = "^(cursor)$", opacity = "0.85 0.85" },
-    { class = "^(claude)$", opacity = "0.85 0.85" },
-    { class = "^(dev.noctalia.Noctalia.Settings)$", opacity = "0.85 0.85" },
-    { class = "^(obsidian)$", opacity = "0.85 0.85" },
-    { class = "^(jetbrains-webstorm)$", opacity = "0.85 0.85" },
-    { class = "^(jetbrains-idea)$", opacity = "0.85 0.85" },
-    { class = "^(jetbrains-clion)$", opacity = "0.85 0.85" },
-    { class = "^(jetbrains-goland)$",               opacity = "0.85 0.85" }
-}
+-- Transparence pour toutes les fenêtres. La règle d'après gagne :
+-- ajouter une classe ici pour la laisser opaque.
+hl.window_rule({
+    opacity = "0.85 0.85",
+})
 
-for _, rule in ipairs(opacity_rules) do
-    hl.window_rule({
-        match = { class = rule.class },
-        opacity = rule.opacity,
-    })
-end
+hl.window_rule({
+    match = { class = "^(google-chrome|chromium|steam|steam_app_.*)$" },
+    opacity = "1 1",
+})
 
 -- Waytator
 hl.window_rule({
     match = { class = "^(dev.faetalize.waytator)$" },
-    opacity = "0.85 0.85",
     float = true,
     center = true,
 })
