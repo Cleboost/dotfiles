@@ -1,7 +1,7 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # nixos/noctalia.nix — Noctalia shell, greeter (greetd), greeter user
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
   # ── Noctalia shell (package + services; settings → HM programs.noctalia.settings) ──
@@ -13,6 +13,7 @@
   # ── Noctalia greeter (login screen) ─────────────────────────────────────────
   services.displayManager.noctalia-greeter = {
     enable = true;
+    passwordless-sync-users = [ username ];
     settings = {
       session.default = "hyprland";
       keyboard.layout = "fr";
