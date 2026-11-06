@@ -35,6 +35,11 @@
 
       input = {
         client_window_drag = false;
+        touchpad = {
+          natural_scroll = true;
+          sensitivity = -0.3;
+          scroll_factor = 0.7;
+        };
         focus = {
           follows_mouse = true;
           hover_raises = false;
