@@ -5,7 +5,6 @@ for file in ~/.local/share/applications/jetbrains-*.desktop; do
 
     sed -i \
       -e 's|^Icon=.*webstorm.*|Icon=jetbrains-webstorm|' \
-      -e 's|^Icon=.*rustrover.*|Icon=jetbrains-rustrover|' \
       -e 's|^Icon=.*clion.*|Icon=jetbrains-clion|' \
       -e 's|^Icon=.*idea.*|Icon=jetbrains-intellij-idea|' \
       -e 's|^Icon=.*studio.*|Icon=android-studio|' \

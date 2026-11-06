@@ -46,7 +46,6 @@ local opacity_rules = {
     { class = "^(dev.noctalia.Noctalia.Settings)$", opacity = "0.85 0.85" },
     { class = "^(obsidian)$", opacity = "0.85 0.85" },
     { class = "^(jetbrains-webstorm)$", opacity = "0.85 0.85" },
-    { class = "^(jetbrains-rustrover)$", opacity = "0.85 0.85" },
     { class = "^(jetbrains-idea)$", opacity = "0.85 0.85" },
     { class = "^(jetbrains-clion)$", opacity = "0.85 0.85" },
     { class = "^(jetbrains-goland)$",               opacity = "0.85 0.85" }

@@ -8,7 +8,6 @@
   config = lib.mkIf (lib.elem "dev" config.cleboost.groups) {
     home.packages = with pkgs; [
       jetbrains.idea
-      jetbrains.rust-rover
       jetbrains.webstorm
       jdk21
       maven
