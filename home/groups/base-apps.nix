@@ -30,6 +30,18 @@
     xdg.configFile."hypr/autostart/base-apps.lua".source =
       ../config/hyprland/autostart/base-apps.lua;
 
+    xdg.dataFile."dev.mandre.rquickshare/.settings.json" = {
+      force = true;
+      text = ''
+        {
+          "autostart": false,
+          "visibility": 0,
+          "startminimized": true,
+          "realclose": false
+        }
+      '';
+    };
+
     xdg.mimeApps.defaultApplications = {
       "text/html" = "google-chrome.desktop";
       "x-scheme-handler/http" = "google-chrome.desktop";
