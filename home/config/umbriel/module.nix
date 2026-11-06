@@ -182,16 +182,16 @@
           match.app_id = "^[Ss]potify$";
           default_scratchpad = "music";
           default_floating_size = {
-            width = 0.92;
-            height = 0.88;
+            width = 0.97;
+            height = 0.94;
           };
         }
         {
           match.app_id = "^discord$";
           default_scratchpad = "comm";
           default_floating_size = {
-            width = 0.92;
-            height = 0.88;
+            width = 0.97;
+            height = 0.94;
           };
         }
         {
