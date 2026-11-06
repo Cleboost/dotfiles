@@ -23,6 +23,8 @@
   # ── Removable storage & file manager integration ────────────────────────────
   services.udisks2.enable = true;
   services.gvfs.enable = true;
+  # Google Drive in Nautilus: gnome-control-center online-accounts
+  services.gnome.gnome-online-accounts.enable = true;
   boot.supportedFilesystems = [ "exfat" "ntfs" ];
 
   programs.nautilus-open-any-terminal = {
@@ -33,6 +35,7 @@
   # Video thumbnails in Nautilus (WebM, MP4, MKV, …)
   environment.systemPackages = with pkgs; [
     ffmpegthumbnailer
+    gnome-control-center
   ];
 
   # ── Polkit ──────────────────────────────────────────────────────────────────
