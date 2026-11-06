@@ -80,6 +80,7 @@
         "Ctrl+Super+Alt+R" = "spawn pkill noctalia; noctalia";
 
         "Mod+Tab" = { action = "overview-toggle"; repeat = false; };
+        "Alt+Tab" = { action = "window-focus-last"; repeat = false; };
         "Mod+S" = "scratchpad-toggle music";
         "Mod+D" = "scratchpad-toggle comm";
         "Mod+Left" = "window-focus-left";
