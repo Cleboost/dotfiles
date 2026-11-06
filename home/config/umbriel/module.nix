@@ -7,7 +7,15 @@
     enable = true;
     settings = {
       general = {
-        autostart = [ "noctalia" ];
+        autostart = [
+          "noctalia"
+          "sh -c 'sleep 2 && nautilus --gapplication-service'"
+          "rquickshare"
+          "google-chrome-stable"
+          "discord"
+          "spotify"
+          "steam -silent"
+        ];
         show_cheatsheet = false;
         xwayland = true;
       };
@@ -81,6 +89,15 @@
 
         "Mod+Tab" = { action = "overview-toggle"; repeat = false; };
         "Alt+Tab" = { action = "window-focus-last"; repeat = false; };
+        "Mod+semicolon" = "spawn noctalia msg panel-toggle launcher \"/emo\"";
+        "Mod+H" = "spawn ~/.config/hypr/scripts/hotspot.sh";
+        "Mod+F5" = "spawn noctalia msg power-cycle";
+        "Mod+Shift+M" = "spawn noctalia msg mic-mute";
+        "XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute"; allow_when_locked = true; repeat = false; };
+        "Mod+Alt+Left" = "window-move-to-workspace-previous";
+        "Mod+Alt+Right" = "window-move-to-workspace-next";
+        "Mod+Alt+Prior" = "window-move-to-workspace-previous";
+        "Mod+Alt+Next" = "window-move-to-workspace-next";
         "Mod+S" = "scratchpad-toggle music";
         "Mod+D" = "scratchpad-toggle comm";
         "Mod+Left" = "window-focus-left";
@@ -200,6 +217,11 @@
             width = 0.97;
             height = 0.94;
           };
+        }
+        {
+          match.app_id = "^google-chrome$";
+          default_workspace = "1";
+          default_focused = false;
         }
         {
           match.app_id = "^cursor$";
