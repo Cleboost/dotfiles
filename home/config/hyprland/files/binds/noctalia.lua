@@ -1,8 +1,8 @@
 -- Noctalia Shell & System Binds
 
 -- Shell Toggles
-hl.bind("SUPER + Super_L", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
-hl.bind("SUPER + Super_R", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
+hl.bind("SUPER + Super_L", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), { click = true })
+hl.bind("SUPER + Super_R", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), { click = true })
 hl.bind("CTRL + SUPER + T", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
 hl.bind("SUPER + comma", hl.dsp.exec_cmd("noctalia msg settings-toggle"))
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
