@@ -37,7 +37,8 @@ hl.window_rule({
 local opacity_rules = {
     { class = "^(kitty)$", opacity = "0.85 0.85" },
     { class = "^(org.gnome.Nautilus)$", opacity = "0.85 0.85" },
-    { class = "^(spotifast|fastpotify)$", opacity = "0.85 0.85" },
+    -- { class = "^(spotifast|fastpotify)$", opacity = "0.85 0.85" },
+    { class = "^([Ss]potify)$", opacity = "0.85 0.85" },
     { class = "^(discord)$", opacity = "0.85 0.85" },
     { class = "^(dev.zed.Zed)$", opacity = "0.85 0.85" },
     { class = "^(rustdesk)$", opacity = "0.85 0.85" },

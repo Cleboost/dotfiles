@@ -10,7 +10,8 @@
       telegram-desktop
       zapfast
       discord
-      spotifast
+      # spotifast
+      spotify
     ];
 
     xdg.configFile."hypr/autostart/social.lua".source = ../config/hyprland/autostart/social.lua;
