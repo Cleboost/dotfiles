@@ -79,6 +79,7 @@
         "Ctrl+Super+Alt+T" = "spawn noctalia msg wallpaper-random";
         "Ctrl+Super+Alt+R" = "spawn pkill noctalia; noctalia";
 
+        "Mod+Tab" = { action = "overview-toggle"; repeat = false; };
         "Mod+S" = "scratchpad-toggle music";
         "Mod+D" = "scratchpad-toggle comm";
         "Mod+Left" = "window-focus-left";
