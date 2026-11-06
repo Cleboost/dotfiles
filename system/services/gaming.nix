@@ -16,6 +16,10 @@ lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
         gpu_device = config.cleboost.gaming.gpuDevice;
         nv_powermizer_mode = 1;
       };
+      custom = {
+        start = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
+        end = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver";
+      };
     };
   };
 
