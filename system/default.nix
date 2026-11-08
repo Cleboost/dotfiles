@@ -24,6 +24,7 @@
 
   # ── Nix & flakes ────────────────────────────────────────────────────────────
   nix.settings = {
+    trusted-users = [ "root" "cleboost" ];
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
       "https://cache.nixos.org"
