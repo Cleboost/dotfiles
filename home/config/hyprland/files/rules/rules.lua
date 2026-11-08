@@ -36,6 +36,8 @@ hl.window_rule({
 -- Transparence pour toutes les fenêtres. La règle d'après gagne :
 -- ajouter une classe ici pour la laisser opaque.
 hl.window_rule({
+    name = "default-transparency",
+    match = { class = ".*" },
     opacity = "0.85 0.85",
 })
 
