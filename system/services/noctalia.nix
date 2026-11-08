@@ -15,7 +15,7 @@
     enable = true;
     passwordless-sync-users = [ username ];
     settings = {
-      session.default = "umbriel";
+      session.default = "hyprland-uwsm";
       keyboard.layout = "fr";
     };
   };
