@@ -59,6 +59,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "grok-bot": {
       "inputs": {
         "nixpkgs": [
@@ -99,6 +117,48 @@
         "type": "github"
       }
     },
+    "home-manager-stable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-stable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794251182,
+        "narHash": "sha256-R2sZBXiOJo3HAnvTiVkbbHDJy//JMlAwUKEiPbfqPXk=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "6eb2d33d1d0c95a37ef6443c88e6c1686012ee8b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-26.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nix-dokploy": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs-stable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794101990,
+        "narHash": "sha256-OFS6kF52MPhilwYO7+BvVswrNoLP1fhjC1YWNxAP1qc=",
+        "owner": "el-kurto",
+        "repo": "nix-dokploy",
+        "rev": "4fe7054f69846684166504b603217394e3e06262",
+        "type": "github"
+      },
+      "original": {
+        "owner": "el-kurto",
+        "repo": "nix-dokploy",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1793726008,
@@ -128,6 +188,22 @@
         "owner": "telometto",
         "repo": "nixpkgs",
         "rev": "86fb8aca9dcd694480c58b087dc73f8b1ed5d38b",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1794165970,
+        "narHash": "sha256-XuAV2cUwaod3Bt4XFVqiXz3v1w2ex16W6Sv4S7EWres=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ac588ef1c914865dad517b337ea0eb9694a4021c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -212,14 +288,32 @@
         "claude-desktop": "claude-desktop",
         "grok-bot": "grok-bot",
         "home-manager": "home-manager",
+        "home-manager-stable": "home-manager-stable",
+        "nix-dokploy": "nix-dokploy",
         "nixpkgs": "nixpkgs",
         "nixpkgs-rustdesk-pr": "nixpkgs-rustdesk-pr",
+        "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",
         "umbriel": "umbriel"
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

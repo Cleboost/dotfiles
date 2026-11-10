@@ -3,10 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
+    nix-dokploy = {
+      url = "github:el-kurto/nix-dokploy";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     noctalia = {
@@ -42,16 +53,20 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, noctalia-greeter, umbriel, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, noctalia, noctalia-greeter, umbriel, ... }@inputs:
     let
       username = "cleboost";
 
-      hosts = [
+      desktopHosts = [
         "cleboost-sage"
         "cleboost-brain"
       ];
 
-      mkHost = hostName: nixpkgs.lib.nixosSystem {
+      serverHosts = [
+        "vps-assosite"
+      ];
+
+      mkDesktopHost = hostName: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs hostName username; };
         modules = [
@@ -71,9 +86,30 @@
           }
         ];
       };
+
+      mkServerHost = hostName: nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs hostName username; };
+        modules = [
+          ./hosts/${hostName}
+          inputs.nix-dokploy.nixosModules.default
+          home-manager-stable.nixosModules.home-manager
+          {
+            nixpkgs.config.allowUnfree = true;
+
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = { inherit inputs hostName username; };
+            home-manager.users.${username} = import ./home/server.nix;
+          }
+        ];
+      };
     in
     {
-      nixosConfigurations = nixpkgs.lib.genAttrs hosts mkHost;
+      nixosConfigurations =
+        nixpkgs.lib.genAttrs desktopHosts mkDesktopHost
+        // nixpkgs.lib.genAttrs serverHosts mkServerHost;
 
       packages.x86_64-linux = {
         pdfcraft =

@@ -24,6 +24,14 @@
     };
   };
 
+  options.cleboost.server = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = ''
+      Host headless (VPS). Home Manager minimal, pas de session graphique.
+    '';
+  };
+
   options.cleboost.gaming.gpuDevice = lib.mkOption {
     type = lib.types.int;
     default = 0;

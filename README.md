@@ -1,11 +1,12 @@
 # cleboost's NixOS dotfiles
 
-One repo, three folders. Two NixOS hosts + Home Manager.
+One repo, three folders. PCs en **nixos-unstable**, VPS prod en **nixos-26.05**.
 
-| Host | Role |
-| --- | --- |
-| **cleboost-sage** | Laptop (AMD + NVIDIA PRIME, ASUS fans, Flipper, …) |
-| **cleboost-brain** | Desktop (Ryzen 5950X, Titan X Pascal) |
+| Host | Channel | Role |
+| --- | --- | --- |
+| **cleboost-sage** | unstable | Laptop (AMD + NVIDIA PRIME, ASUS fans, Flipper, …) |
+| **cleboost-brain** | unstable | Desktop (Ryzen 5950X, Titan X Pascal) |
+| **vps-assosite** | 26.05 stable | VPS prod (Docker, Dokploy) |
 
 ## Layout
 
@@ -45,6 +46,7 @@ home/
 ```
 system/
   default.nix               # boot, locale, nh, earlyoom, …
+  server/                   # variante headless (VPS)
   options.nix               # cleboost.groups, cleboost.hypr, …
   services/                 # docker, gaming, noctalia, keyring
   drivers/                  # nvidia, amdgpu, intel, asus, vm
