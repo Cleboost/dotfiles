@@ -20,6 +20,7 @@
   drivers.nvidia = {
     enable = true;
     packageFlavour = "legacy_580";
+    coolbits = 4; # ventilo manuel via nvidia-settings
   };
 
   boot.kernelParams = [

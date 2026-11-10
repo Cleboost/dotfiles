@@ -27,6 +27,16 @@ in
       '';
     };
 
+    coolbits = lib.mkOption {
+      type = lib.types.int;
+      default = 0;
+      description = ''
+        Xorg Device option Coolbits for nvidia-settings / XWayland.
+        4 = manual GPU fan speed; 28 = fan + clock + voltage sliders.
+        Reboot après changement. 0 = défaut pilote (ventilo verrouillé).
+      '';
+    };
+
     prime = {
       enable = lib.mkEnableOption "AMD iGPU + NVIDIA dGPU PRIME offload (laptop)";
       amdgpuBusId = lib.mkOption {
@@ -46,6 +56,14 @@ in
     boot.initrd.kernelModules = lib.mkIf primeCfg.enable [ "amdgpu" ];
 
     services.xserver.videoDrivers = [ "nvidia" ];
+
+    services.xserver.config = lib.mkIf (cfg.coolbits != 0) ''
+      Section "Device"
+        Identifier "cleboost-nvidia-coolbits"
+        Driver "nvidia"
+        Option "Coolbits" "${toString cfg.coolbits}"
+      EndSection
+    '';
 
     hardware.graphics = {
       enable = true;
