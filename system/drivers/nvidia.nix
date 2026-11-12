@@ -34,7 +34,7 @@ in
         Écrit Option Coolbits dans /etc/X11/xorg.conf.d (lu par XWayland).
         Sans services.xserver.enable, services.xserver.config est ignoré.
         4 = ventilo manuel ; 28 = ventilo + clocks. Reboot ou relog XWayland après changement.
-        Commande : gpu-fan 100 | auto | status (Hyprland → xhost + sudo).
+        Commandes : gpu-fan, nvidia-gaming (toggle 100 % + 300 W).
       '';
     };
 
@@ -68,12 +68,21 @@ in
       '';
     };
 
-    environment.systemPackages = lib.mkIf (cfg.coolbits != 0) [
-      pkgs.xorg.xhost
-      (pkgs.callPackage ../pkgs/gpu-fan.nix {
-        nvidiaSmi = config.boot.kernelPackages.nvidiaPackages.${cfg.packageFlavour}.bin;
-      })
-    ];
+    environment.systemPackages = lib.mkIf (cfg.coolbits != 0) (
+      let
+        nvPkg = config.boot.kernelPackages.nvidiaPackages.${cfg.packageFlavour};
+      in
+      [
+        pkgs.xorg.xhost
+        (pkgs.callPackage ../pkgs/gpu-fan.nix {
+          nvidiaSmi = nvPkg.bin;
+          nvidiaSettings = nvPkg.settings;
+        })
+        (pkgs.callPackage ../pkgs/nvidia-gaming.nix {
+          nvidiaSmi = nvPkg.bin;
+        })
+      ]
+    );
 
     hardware.graphics = {
       enable = true;

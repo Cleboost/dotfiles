@@ -1,10 +1,5 @@
 # Ventilo NVIDIA sur Hyprland — Coolbits + xhost + nvidia-settings (root).
-{
-  lib,
-  pkgs,
-  nvidiaSmi,
-  nvidiaSettings ? pkgs.nvidia-settings,
-}:
+{ pkgs, nvidiaSmi, nvidiaSettings }:
 
 pkgs.writeShellScriptBin "gpu-fan" ''
   set -euo pipefail

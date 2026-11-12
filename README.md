@@ -95,7 +95,7 @@ Nouveaux chemins doivent être **git-trackés** avant `nix build` / `nh os switc
 
 ## cleboost-brain vs cleboost-sage
 
-**Brain** (tower) : `cleboost.hypr.dynamicWorkspaces = false`, Titan X en `legacy_580`, disques `/mnt/games` et `/mnt/data` via `storage.nix`, Wi-Fi UGREEN via `ugreen-wifi.nix`.
+**Brain** (tower) : `cleboost.hypr.dynamicWorkspaces = false`, Titan X en `legacy_580`, boost jeu `nvidia-gaming` (toggle ventilo 100 % + PL 300 W), disques `/mnt/games` et `/mnt/data` via `storage.nix`, Wi-Fi UGREEN via `ugreen-wifi.nix`.
 
 **Sage** (laptop) : NVIDIA PRIME, ventilateurs ASUS, Flipper Zero, `cleboost.gaming.gpuDevice = 1`.
 
