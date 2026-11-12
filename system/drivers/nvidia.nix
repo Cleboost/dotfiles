@@ -31,9 +31,10 @@ in
       type = lib.types.int;
       default = 0;
       description = ''
-        Xorg Device option Coolbits for nvidia-settings / XWayland.
-        4 = manual GPU fan speed; 28 = fan + clock + voltage sliders.
-        Reboot après changement. 0 = défaut pilote (ventilo verrouillé).
+        Écrit Option Coolbits dans /etc/X11/xorg.conf.d (lu par XWayland).
+        Sans services.xserver.enable, services.xserver.config est ignoré.
+        4 = ventilo manuel ; 28 = ventilo + clocks. Reboot ou relog XWayland après changement.
+        Commande : gpu-fan 100 | auto | status (Hyprland → xhost + sudo).
       '';
     };
 
@@ -57,13 +58,22 @@ in
 
     services.xserver.videoDrivers = [ "nvidia" ];
 
-    services.xserver.config = lib.mkIf (cfg.coolbits != 0) ''
-      Section "Device"
-        Identifier "cleboost-nvidia-coolbits"
-        Driver "nvidia"
-        Option "Coolbits" "${toString cfg.coolbits}"
-      EndSection
-    '';
+    environment.etc = lib.mkIf (cfg.coolbits != 0) {
+      "X11/xorg.conf.d/21-nvidia-coolbits.conf".text = ''
+        Section "Device"
+          Identifier "cleboost-nvidia-coolbits"
+          Driver "nvidia"
+          Option "Coolbits" "${toString cfg.coolbits}"
+        EndSection
+      '';
+    };
+
+    environment.systemPackages = lib.mkIf (cfg.coolbits != 0) [
+      pkgs.xorg.xhost
+      (pkgs.callPackage ../pkgs/gpu-fan.nix {
+        nvidiaSmi = config.boot.kernelPackages.nvidiaPackages.${cfg.packageFlavour}.bin;
+      })
+    ];
 
     hardware.graphics = {
       enable = true;
