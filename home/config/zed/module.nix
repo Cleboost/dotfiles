@@ -5,6 +5,13 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
     enable = true;
 
     userSettings = {
+      auto_install_extensions = {
+        "discord-presence" = true;
+        html = true;
+        make = true;
+        nix = true;
+      };
+
       language_models = {
         openai_compatible = {
           "NIM Nvidia" = {
