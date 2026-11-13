@@ -62,6 +62,9 @@
         gap = 8;
       };
 
+      # Le fichier est un lien Nix, Noctalia ne peut pas y écrire cet import lui-même.
+      include.optional.files = [ "noctalia.toml" ];
+
       keybinds = {
         "Mod" = "spawn noctalia msg panel-toggle launcher";
         "Mod+T" = "spawn kitty";
