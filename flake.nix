@@ -81,6 +81,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
+            home-manager.overwriteBackup = true;
             home-manager.extraSpecialArgs = { inherit inputs hostName username; };
             home-manager.users.${username} = import ./home/default.nix;
           }
@@ -100,6 +101,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
+            home-manager.overwriteBackup = true;
             home-manager.extraSpecialArgs = { inherit inputs hostName username; };
             home-manager.users.${username} = import ./home/server.nix;
           }
