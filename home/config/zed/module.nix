@@ -1,8 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 lib.mkIf (lib.elem "dev" config.cleboost.groups) {
   programs.zed-editor = {
     enable = true;
+    extraPackages = with pkgs; [ nixd ];
 
     userSettings = {
       auto_install_extensions = {
@@ -10,6 +11,11 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
         html = true;
         make = true;
         nix = true;
+      };
+
+      languages.Nix = {
+        tab_size = 2;
+        language_servers = [ "nixd" "!nil" ];
       };
 
       language_models = {

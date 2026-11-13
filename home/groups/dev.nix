@@ -13,6 +13,7 @@
       maven
       gradle
       bun
+      nixd
       nix-update
       nodejs_22
       rustup
