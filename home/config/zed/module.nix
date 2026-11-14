@@ -11,6 +11,7 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
         "discord-presence" = true;
         emmet = true;
         html = true;
+        just = true;
         make = true;
         nix = true;
       };
