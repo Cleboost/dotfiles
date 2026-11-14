@@ -7,7 +7,9 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
 
     userSettings = {
       auto_install_extensions = {
+        csv = true;
         "discord-presence" = true;
+        emmet = true;
         html = true;
         make = true;
         nix = true;
