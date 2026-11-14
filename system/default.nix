@@ -20,6 +20,7 @@
     ./services/keychron.nix
     ./services/keyring.nix
     ./services/noctalia.nix
+    ./services/platformio.nix
   ];
 
   # ── Nix & flakes ────────────────────────────────────────────────────────────
