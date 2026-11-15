@@ -1,5 +1,4 @@
 {
-  lib,
   stdenv,
   antigravity-cli,
   fetchurl,
