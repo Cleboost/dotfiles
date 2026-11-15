@@ -3,7 +3,7 @@
 lib.mkIf (lib.elem "ia" config.cleboost.groups) {
   home.packages = with pkgs; [
     (callPackage ../pkgs/antigravity-cli.nix { inherit antigravity-cli; })
-    #antigravity-ide
+    antigravity-ide
     code-cursor
     cursor-cli
     claude-desktop
