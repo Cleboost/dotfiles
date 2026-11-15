@@ -1,0 +1,75 @@
+diff --git a/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c b/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c
+--- a/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -3940,7 +3940,12 @@
+ 	   spin_unlock_bh(&rwnx_vif->rwnx_hw->cb_lock);
+ 
+        printk("sta %pM found = %d\n", mac, found);
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 17, 0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
++       if(found)
++               cfg80211_probe_status(rwnx_vif->ndev, mac, (u64)rwnx_vif->sta_probe.probe_id, -1, 1, 0, false, GFP_ATOMIC);
++       else
++               cfg80211_probe_status(rwnx_vif->ndev, mac, (u64)rwnx_vif->sta_probe.probe_id, -1, 0, 0, false, GFP_ATOMIC);
++#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 17, 0)
+        if(found)
+                cfg80211_probe_status(rwnx_vif->ndev, mac, (u64)rwnx_vif->sta_probe.probe_id, 1, 0, false, GFP_ATOMIC);
+        else
+@@ -4863,7 +4868,11 @@
+                             #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 8, 0)
+                                 enum nl80211_channel_type channel_type,
+                             #endif
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
++                                unsigned int duration, u64 cookie
++#else
+                                 unsigned int duration, u64 *cookie
++#endif
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 2, 0)
+                                 /*
+                                  * 7.2 added an optional receive address filter for the off-channel
+@@ -4885,8 +4894,12 @@
+     return rwnx_cfg80211_remain_on_channel_exp(rwnx_hw, rwnx_vif, chan,
+                             #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 8, 0)
+                                 channel_type,
+                             #endif
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
++                                duration, &cookie, false);
++#else
+                                 duration, cookie, false);
++#endif
+ }
+ 
+ /**
+@@ -5066,7 +5079,11 @@
+ #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0))
+ static int rwnx_cfg80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
+                                  struct cfg80211_mgmt_tx_params *params,
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
++                                 u64 cookie)
++#else
+                                  u64 *cookie)
++#endif
+ #else
+ static int rwnx_cfg80211_mgmt_tx(struct wiphy *wiphy, struct wireless_dev *wdev,
+                                  struct ieee80211_channel *channel, bool offchan,
+@@ -5197,6 +5214,10 @@
+ send_frame:
+     #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0))
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
++    return rwnx_start_mgmt_xmit(rwnx_vif, rwnx_sta, params, offchan, &cookie);
++#else
+     return rwnx_start_mgmt_xmit(rwnx_vif, rwnx_sta, params, offchan, cookie);
++#endif
+     #else
+     return rwnx_start_mgmt_xmit(rwnx_vif, rwnx_sta, channel, offchan, wait, buf, len, no_cck, dont_wait_for_ack, cookie);
+     #endif /* LINUX_VERSION_CODE >= KERNEL_VERSION(3, 14, 0) */
+@@ -6558,7 +6579,9 @@
+     .change_beacon = rwnx_cfg80211_change_beacon,
+     .stop_ap = rwnx_cfg80211_stop_ap,
+     .set_monitor_channel = rwnx_cfg80211_set_monitor_channel,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(7, 3, 0)
+     .probe_client = rwnx_cfg80211_probe_client,
++#endif
+ //    .mgmt_frame_register = rwnx_cfg80211_mgmt_frame_register,
+     .set_wiphy_params = rwnx_cfg80211_set_wiphy_params,
+     .set_txq_params = rwnx_cfg80211_set_txq_params,
