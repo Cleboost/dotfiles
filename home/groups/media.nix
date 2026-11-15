@@ -10,7 +10,7 @@
       qbittorrent
       mpv
       feh
-      (callPackage ../pkgs/pdfcraft.nix { })
+      pdfcraft
       lollypop
     ];
 
