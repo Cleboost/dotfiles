@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   home.sessionPath = [ "$HOME/.local/bin" ];
@@ -28,6 +28,15 @@
   };
 
   home.file.".hidden".text = "Games\nLauncher.cfg\nLauncher.log\n";
+
+  home.file."Documents/Tools Torrent/toratio.js" = {
+    source = ../../assets/toratio.js;
+    executable = true;
+  };
+
+  home.activation.toolsTorrentInput = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run mkdir -p "${config.home.homeDirectory}/Documents/Tools Torrent/input"
+  '';
 
   programs.home-manager.enable = true;
 }
