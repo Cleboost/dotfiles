@@ -41,6 +41,7 @@ in
       "file://${config.home.homeDirectory}/Pictures Pictures"
       "file://${config.home.homeDirectory}/Musics Musics"
       "file://${config.home.homeDirectory}/Videos Videos"
+      "sftp://marmotte@10.0.146.147 Media-Center Papa"
     ];
   };
 
