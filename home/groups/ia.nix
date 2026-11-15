@@ -41,7 +41,7 @@ lib.mkIf (lib.elem "ia" config.cleboost.groups) {
       $DRY_RUN_CMD ${pkgs.jq}/bin/jq -n \
         --arg home "${config.home.homeDirectory}" \
         '{
-          model: "Gemini 3.8 Flash (Low)",
+          model: "Gemini 4 Hydrogen (Low)",
           toolPermission: "always-proceed",
           trustedWorkspaces: [ $home, ($home + "/dotfiles") ]
         }' > "$settings"
