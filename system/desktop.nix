@@ -13,6 +13,7 @@
 
   # Second session. Greeter default stays Hyprland; pick Umbriel at login.
   programs.umbriel.enable = true;
+  programs.luciole.enable = true;
 
   programs.gpu-screen-recorder.enable = true;
 

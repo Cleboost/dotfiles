@@ -33,6 +33,10 @@
       url = "github:noctalia-dev/umbriel/cachix";
     };
 
+    luciole = {
+      url = "github:noctalia-dev/luciole";
+    };
+
     chatgpt-desktop = {
       url = "github:ilysenko/codex-desktop-linux";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,7 +57,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, noctalia, noctalia-greeter, umbriel, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, noctalia, noctalia-greeter, umbriel, luciole, ... }@inputs:
     let
       username = "cleboost";
 
@@ -74,6 +78,7 @@
           noctalia.nixosModules.default
           noctalia-greeter.nixosModules.default
           umbriel.nixosModules.default
+          luciole.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             nixpkgs.config.allowUnfree = true;
