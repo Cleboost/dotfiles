@@ -4,7 +4,7 @@
 hl.bind("SUPER + T", hl.dsp.exec_cmd("~/.config/hypr/scripts/open-terminal.sh"), {
     desc = "Terminal (tiled)",
 })
-hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus -w"))
+hl.bind("SUPER + E", hl.dsp.exec_cmd("luciole"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd("google-chrome-stable"))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("cursor"))
 hl.bind("SUPER + O", hl.dsp.exec_cmd("obsidian"))
