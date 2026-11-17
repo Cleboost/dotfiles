@@ -78,6 +78,7 @@
         "qt"
         "starship"
         "umbriel"
+        "luciole"
       ];
       community_ids = [ ];
     };
