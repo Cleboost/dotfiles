@@ -1,7 +1,8 @@
 # Tour — barre minimaliste, pas de ventilo EC, encodeur screen recorder en CPU.
 { lib, base, ... }:
 
-base // {
+base
+// {
   bar = base.bar // {
     main = base.bar.main // {
       start = [
@@ -48,9 +49,8 @@ base // {
 
   # Titan X + legacy_580 : NVENC API 13.0 vs FFmpeg 13.1 → encode GPU mort, CPU OK.
   plugin_settings = base.plugin_settings // {
-    "noctalia/screen_recorder" =
-      base.plugin_settings."noctalia/screen_recorder" // {
-        video_encoder = "cpu";
-      };
+    "noctalia/screen_recorder" = base.plugin_settings."noctalia/screen_recorder" // {
+      video_encoder = "cpu";
+    };
   };
 }

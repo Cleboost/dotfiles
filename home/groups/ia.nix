@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 lib.mkIf (lib.elem "ia" config.cleboost.groups) {
   home.packages = with pkgs; [

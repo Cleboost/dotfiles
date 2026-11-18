@@ -1,5 +1,9 @@
 # Pinned radxa-pkg/aic8800 source with debian kernel-compat patches applied.
-{ lib, stdenvNoCC, fetchFromGitHub }:
+{
+  lib,
+  stdenvNoCC,
+  fetchFromGitHub,
+}:
 
 let
   version = "5.0+git20261020";

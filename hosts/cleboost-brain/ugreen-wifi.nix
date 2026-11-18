@@ -2,7 +2,12 @@
 #
 # radxa-pkg/aic8800 + debian kernel patches in system/pkgs/aic8800-patches/.
 # Temporary until upstream ships xanmod 7.2+ support without local patches.
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   aic8800-src = pkgs.callPackage ../../system/pkgs/aic8800-src.nix { };

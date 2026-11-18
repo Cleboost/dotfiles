@@ -1,4 +1,9 @@
-{ config, lib, hostName, ... }:
+{
+  config,
+  lib,
+  hostName,
+  ...
+}:
 
 let
   home = config.home.homeDirectory;
@@ -11,6 +16,6 @@ in
     package = lib.mkForce null;
     systemd.enable = false;
     checkConfig = false;
-    settings = settings;
+    inherit settings;
   };
 }

@@ -1,5 +1,10 @@
 # ASUS EC fan control (Noctalia plugin on cleboost-sage).
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.drivers.asus-fan-control;

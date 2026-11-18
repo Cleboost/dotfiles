@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -27,8 +32,7 @@
       nautilus
     ];
 
-    xdg.configFile."hypr/autostart/base-apps.lua".source =
-      ../config/hyprland/autostart/base-apps.lua;
+    xdg.configFile."hypr/autostart/base-apps.lua".source = ../config/hyprland/autostart/base-apps.lua;
 
     xdg.dataFile."dev.mandre.rquickshare/.settings.json" = {
       force = true;

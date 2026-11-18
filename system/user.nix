@@ -1,4 +1,8 @@
-{ pkgs, username ? "cleboost", ... }:
+{
+  pkgs,
+  username ? "cleboost",
+  ...
+}:
 
 {
   users.users.${username} = {

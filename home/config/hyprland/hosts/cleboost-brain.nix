@@ -9,13 +9,34 @@ let
   leftDesc = "desc:ASUSTek COMPUTER INC VY279HGE S7LMQS001610";
   rightDesc = "desc:ASUSTek COMPUTER INC VG2791R S3LMDW006158";
 
-  workspaceRule = { workspace, monitor, default ? false }:
-    "hl.workspace_rule({ workspace = ${toString workspace}, monitor = \"${monitor}\", default = ${if default then "true" else "false"} })";
+  workspaceRule =
+    {
+      workspace,
+      monitor,
+      default ? false,
+    }:
+    "hl.workspace_rule({ workspace = ${toString workspace}, monitor = \"${monitor}\", default = ${
+      if default then "true" else "false"
+    } })";
 
   workspaces = lib.concatStringsSep "\n" (
     [ "-- cleboost-brain: workspaces fixes (gauche 11–20, droite 1–10)" ]
-    ++ map (w: workspaceRule { workspace = w; monitor = right; default = w == 1; }) (lib.range 1 10)
-    ++ map (w: workspaceRule { workspace = w; monitor = left; default = w == 11; }) (lib.range 11 20)
+    ++ map (
+      w:
+      workspaceRule {
+        workspace = w;
+        monitor = right;
+        default = w == 1;
+      }
+    ) (lib.range 1 10)
+    ++ map (
+      w:
+      workspaceRule {
+        workspace = w;
+        monitor = left;
+        default = w == 11;
+      }
+    ) (lib.range 11 20)
   );
 
   monitors = ''

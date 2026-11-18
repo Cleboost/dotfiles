@@ -10,6 +10,7 @@ let
   enabled = lib.filter (g: lib.elem g config.cleboost.groups) autostartGroups;
 in
 {
-  xdg.configFile."hypr/autostart/_groups.lua".text =
-    "return { ${lib.concatStringsSep ", " (map (g: "\"${g}\"") enabled)} }\n";
+  xdg.configFile."hypr/autostart/_groups.lua".text = "return { ${
+    lib.concatStringsSep ", " (map (g: "\"${g}\"") enabled)
+  } }\n";
 }

@@ -17,7 +17,10 @@ in
   home.file."Pictures/profile.png".source = ./profile.png;
   home.file."Pictures/banner.png".source = ./banner.png;
 
-  home.packages = [ cleboostIcons pkgs.adwaita-icon-theme ];
+  home.packages = [
+    cleboostIcons
+    pkgs.adwaita-icon-theme
+  ];
 
   # ── GTK ─────────────────────────────────────────────────────────────────────
   gtk = {

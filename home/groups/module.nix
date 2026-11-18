@@ -2,9 +2,9 @@
 { lib, ... }:
 
 let
-  groupFiles =
-    lib.filter (n: n != "module.nix" && lib.hasSuffix ".nix" n)
-      (builtins.attrNames (builtins.readDir ./.));
+  groupFiles = lib.filter (n: n != "module.nix" && lib.hasSuffix ".nix" n) (
+    builtins.attrNames (builtins.readDir ./.)
+  );
 in
 {
   imports = map (name: ./. + "/${name}") groupFiles;

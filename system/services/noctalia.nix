@@ -1,7 +1,12 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # nixos/noctalia.nix — Noctalia shell, greeter (greetd), greeter user
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, pkgs, username, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 {
   # ── Noctalia shell (package + services; settings → HM programs.noctalia.settings) ──
@@ -36,5 +41,5 @@
     isSystemUser = true;
     group = "greeter";
   };
-  users.groups.greeter = {};
+  users.groups.greeter = { };
 }

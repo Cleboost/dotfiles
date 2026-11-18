@@ -12,7 +12,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "aic8800";
-  version = aic8800-src.version;
+  inherit (aic8800-src) version;
   src = aic8800-src;
 
   hardeningDisable = [ "pic" ];

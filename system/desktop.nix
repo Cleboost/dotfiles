@@ -29,7 +29,10 @@
   services.gvfs.enable = true;
   # Google Drive in Nautilus: gnome-control-center online-accounts
   services.gnome.gnome-online-accounts.enable = true;
-  boot.supportedFilesystems = [ "exfat" "ntfs" ];
+  boot.supportedFilesystems = [
+    "exfat"
+    "ntfs"
+  ];
 
   programs.nautilus-open-any-terminal = {
     enable = true;
@@ -66,8 +69,14 @@
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-      common.default = [ "hyprland" "gtk" ];
-      hyprland.default = [ "hyprland" "gtk" ];
+      common.default = [
+        "hyprland"
+        "gtk"
+      ];
+      hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
     };
   };
 }

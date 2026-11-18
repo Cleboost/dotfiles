@@ -23,8 +23,10 @@
 
     keybindings = {
       "ctrl+c" = "copy_or_interrupt";
-      "ctrl+f" = "launch --location=hsplit --allow-remote-control kitty +kitten search.py @active-kitty-window-id";
-      "kitty_mod+f" = "launch --location=hsplit --allow-remote-control kitty +kitten search.py @active-kitty-window-id";
+      "ctrl+f" =
+        "launch --location=hsplit --allow-remote-control kitty +kitten search.py @active-kitty-window-id";
+      "kitty_mod+f" =
+        "launch --location=hsplit --allow-remote-control kitty +kitten search.py @active-kitty-window-id";
       "page_up" = "scroll_page_up";
       "page_down" = "scroll_page_down";
     };

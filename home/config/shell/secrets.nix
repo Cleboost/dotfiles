@@ -6,7 +6,10 @@
 {
   services.gnome-keyring = {
     enable = true;
-    components = [ "secrets" "pkcs11" ];
+    components = [
+      "secrets"
+      "pkcs11"
+    ];
   };
 
   home.packages = [ pkgs.libsecret ];

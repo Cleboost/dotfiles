@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 lib.mkIf (lib.elem "dev" config.cleboost.groups) {
   programs.zed-editor = {
@@ -18,7 +23,10 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
 
       languages.Nix = {
         tab_size = 2;
-        language_servers = [ "nixd" "!nil" ];
+        language_servers = [
+          "nixd"
+          "!nil"
+        ];
       };
 
       language_models = {

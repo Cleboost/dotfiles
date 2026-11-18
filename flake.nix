@@ -57,7 +57,19 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, home-manager-stable, noctalia, noctalia-greeter, umbriel, luciole, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      home-manager-stable,
+      noctalia,
+      noctalia-greeter,
+      umbriel,
+      luciole,
+      ...
+    }@inputs:
     let
       username = "cleboost";
 
@@ -94,7 +106,8 @@
               home-manager.extraSpecialArgs = { inherit inputs hostName username; };
               home-manager.users.${username} = import homeModule;
             }
-          ] ++ extraModules;
+          ]
+          ++ extraModules;
         };
 
       mkDesktopHost = mkHost {
@@ -118,18 +131,18 @@
     in
     {
       nixosConfigurations =
-        nixpkgs.lib.genAttrs desktopHosts mkDesktopHost
-        // nixpkgs.lib.genAttrs serverHosts mkServerHost;
+        nixpkgs.lib.genAttrs desktopHosts mkDesktopHost // nixpkgs.lib.genAttrs serverHosts mkServerHost;
 
       packages.x86_64-linux = {
         codex-chatgpt-web =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix { };
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix
+            { };
         antigravity-cli =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix { };
-        rakazo =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/rakazo.nix { };
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix
+            { };
+        rakazo = nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/rakazo.nix { };
       };
 
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
     };
 }

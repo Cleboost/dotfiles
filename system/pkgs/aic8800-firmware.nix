@@ -2,7 +2,11 @@
 # For MCU1 chips (chip_mcu_id=1, chip_id=7), the firmware must come from the
 # legacy-mcu1 branch (shenmintao/aic8800d80@legacy-mcu1) to fit in hardware SRAM
 # without crashing at 0x170400.
-{ lib, stdenvNoCC, fetchFromGitHub }:
+{
+  lib,
+  stdenvNoCC,
+  fetchFromGitHub,
+}:
 
 stdenvNoCC.mkDerivation {
   pname = "aic8800-firmware";

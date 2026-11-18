@@ -1,5 +1,9 @@
 # Toggle jeu : ventilo 100 % + power limit 300 W ⟷ défaut.
-{ pkgs, nvidiaSmi, powerLimitW ? 300 }:
+{
+  pkgs,
+  nvidiaSmi,
+  powerLimitW ? 300,
+}:
 
 pkgs.writeShellScriptBin "nvidia-gaming" ''
   set -euo pipefail

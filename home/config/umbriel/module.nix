@@ -19,13 +19,15 @@
         show_cheatsheet = false;
         xwayland = true;
       };
-    } // lib.optionalAttrs (hostName == "cleboost-sage") {
+    }
+    // lib.optionalAttrs (hostName == "cleboost-sage") {
       drm = {
         # Même idée que Hyprland : le bureau reste sur l'iGPU AMD.
         ignored_pci_addresses = [ "0000:01:00.0" ];
       };
       output."eDP-1".workspace_axis = "horizontal";
-    } // {
+    }
+    // {
 
       appearance = {
         border_width = 4;
@@ -74,9 +76,18 @@
         "Mod+O" = "spawn obsidian";
         "Mod+A" = "spawn kitty agy";
         "Mod+Shift+A" = "spawn kitty agy --continue";
-        "Mod+Q" = { action = "window-close"; repeat = false; };
-        "Mod+F" = { action = "window-toggle-fullscreen"; repeat = false; };
-        "Mod+Alt+Space" = { action = "window-toggle-floating"; repeat = false; };
+        "Mod+Q" = {
+          action = "window-close";
+          repeat = false;
+        };
+        "Mod+F" = {
+          action = "window-toggle-fullscreen";
+          repeat = false;
+        };
+        "Mod+Alt+Space" = {
+          action = "window-toggle-floating";
+          repeat = false;
+        };
         "Mod+L" = "spawn noctalia msg session lock";
         "Mod+V" = "spawn noctalia msg panel-toggle clipboard";
         "Mod+comma" = "spawn noctalia msg settings-toggle";
@@ -89,13 +100,23 @@
         "Ctrl+Super+Alt+T" = "spawn noctalia msg wallpaper-random";
         "Ctrl+Super+Alt+R" = "spawn pkill noctalia; noctalia";
 
-        "Mod+Tab" = { action = "overview-toggle"; repeat = false; };
-        "Alt+Tab" = { action = "window-focus-last"; repeat = false; };
+        "Mod+Tab" = {
+          action = "overview-toggle";
+          repeat = false;
+        };
+        "Alt+Tab" = {
+          action = "window-focus-last";
+          repeat = false;
+        };
         "Mod+semicolon" = "spawn noctalia msg panel-toggle launcher \"/emo\"";
         "Mod+H" = "spawn ~/.config/hypr/scripts/hotspot.sh";
         "Mod+F5" = "spawn noctalia msg power-cycle";
         "Mod+Shift+M" = "spawn noctalia msg mic-mute";
-        "XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute"; allow_when_locked = true; repeat = false; };
+        "XF86AudioMicMute" = {
+          action = "spawn noctalia msg mic-mute";
+          allow_when_locked = true;
+          repeat = false;
+        };
         "Mod+Alt+Left" = "window-move-to-workspace-previous";
         "Mod+Alt+Right" = "window-move-to-workspace-next";
         "Mod+Alt+Prior" = "window-move-to-workspace-previous";
@@ -159,14 +180,40 @@
         "Mod+Shift+8" = "window-move-to-workspace 8";
         "Mod+Shift+9" = "window-move-to-workspace 9";
 
-        "XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up"; allow_when_locked = true; };
-        "XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down"; allow_when_locked = true; };
-        "XF86AudioMute" = { action = "spawn noctalia msg volume-mute"; allow_when_locked = true; repeat = false; };
-        "XF86AudioPlay" = { action = "spawn noctalia msg media toggle"; allow_when_locked = true; repeat = false; };
-        "XF86AudioNext" = { action = "spawn noctalia msg media next"; allow_when_locked = true; };
-        "XF86AudioPrev" = { action = "spawn noctalia msg media previous"; allow_when_locked = true; };
-        "XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up"; allow_when_locked = true; };
-        "XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down"; allow_when_locked = true; };
+        "XF86AudioRaiseVolume" = {
+          action = "spawn noctalia msg volume-up";
+          allow_when_locked = true;
+        };
+        "XF86AudioLowerVolume" = {
+          action = "spawn noctalia msg volume-down";
+          allow_when_locked = true;
+        };
+        "XF86AudioMute" = {
+          action = "spawn noctalia msg volume-mute";
+          allow_when_locked = true;
+          repeat = false;
+        };
+        "XF86AudioPlay" = {
+          action = "spawn noctalia msg media toggle";
+          allow_when_locked = true;
+          repeat = false;
+        };
+        "XF86AudioNext" = {
+          action = "spawn noctalia msg media next";
+          allow_when_locked = true;
+        };
+        "XF86AudioPrev" = {
+          action = "spawn noctalia msg media previous";
+          allow_when_locked = true;
+        };
+        "XF86MonBrightnessUp" = {
+          action = "spawn noctalia msg brightness-up";
+          allow_when_locked = true;
+        };
+        "XF86MonBrightnessDown" = {
+          action = "spawn noctalia msg brightness-down";
+          allow_when_locked = true;
+        };
       };
 
       scratchpad = [

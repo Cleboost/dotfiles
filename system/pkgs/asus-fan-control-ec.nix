@@ -1,5 +1,9 @@
 # ASUS EC fan control CLI (Noctalia plugin on cleboost-sage).
-{ lib, stdenv, fetchFromGitHub }:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+}:
 
 stdenv.mkDerivation {
   pname = "asus-fan-control-ec";

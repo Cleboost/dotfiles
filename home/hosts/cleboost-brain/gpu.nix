@@ -1,5 +1,10 @@
 # Titan X — single NVIDIA dGPU (PCI:9:0:0).
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   appGpuEnv = {

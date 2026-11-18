@@ -1,7 +1,8 @@
 # Laptop ASUS — ventilos EC, bongocat clavier, trackers perso.
 { base, ... }:
 
-base // {
+base
+// {
   bar = base.bar // {
     main = base.bar.main // {
       start = [

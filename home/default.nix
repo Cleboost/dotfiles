@@ -1,9 +1,16 @@
 # Entrée Home Manager — tout le perso est sous home/.
-{ inputs, lib, osConfig ? null, hostName, username ? "cleboost", ... }:
+{
+  inputs,
+  lib,
+  osConfig ? null,
+  hostName,
+  username ? "cleboost",
+  ...
+}:
 
 let
-  fromHost = path: default:
-    if osConfig == null then default else lib.attrByPath path default osConfig;
+  fromHost =
+    path: default: if osConfig == null then default else lib.attrByPath path default osConfig;
 in
 {
   home.username = username;

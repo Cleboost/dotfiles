@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 lib.mkIf (lib.elem "media" config.cleboost.groups) {
   xdg.configFile."qBittorrent/themes/catppuccin-mocha.qbtheme".source =

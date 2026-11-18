@@ -4,8 +4,18 @@
 {
   options.cleboost.groups = lib.mkOption {
     type = lib.types.listOf lib.types.str;
-    default = [ "base-shell" "base-apps" ];
-    example = [ "base-shell" "base-apps" "dev" "ia" "gui" "gaming" ];
+    default = [
+      "base-shell"
+      "base-apps"
+    ];
+    example = [
+      "base-shell"
+      "base-apps"
+      "dev"
+      "ia"
+      "gui"
+      "gaming"
+    ];
     description = ''
       Package and feature groups for this host.
       Home Manager loads home/groups/<name>.nix (paquets) et home/config/ (configs).

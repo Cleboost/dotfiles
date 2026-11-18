@@ -22,7 +22,10 @@ in
 antigravity-cli.overrideAttrs (_old: {
   inherit version;
   src = fetchurl {
-    url = urlMap.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
-    hash = hashes.${stdenv.hostPlatform.system} or (throw "Missing hash for system: ${stdenv.hostPlatform.system}");
+    url =
+      urlMap.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
+    hash =
+      hashes.${stdenv.hostPlatform.system}
+        or (throw "Missing hash for system: ${stdenv.hostPlatform.system}");
   };
 })

@@ -1,9 +1,15 @@
 # Entrée Home Manager pour VPS (nixpkgs stable).
-{ lib, osConfig ? null, hostName, username ? "cleboost", ... }:
+{
+  lib,
+  osConfig ? null,
+  hostName,
+  username ? "cleboost",
+  ...
+}:
 
 let
-  fromHost = path: default:
-    if osConfig == null then default else lib.attrByPath path default osConfig;
+  fromHost =
+    path: default: if osConfig == null then default else lib.attrByPath path default osConfig;
 in
 {
   home.username = username;

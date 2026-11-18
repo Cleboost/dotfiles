@@ -1,7 +1,12 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # nixos/gaming.nix — Steam, GameMode, Ananicy (cleboost.groups + "gaming")
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
   programs.gamemode = {
@@ -42,12 +47,15 @@ lib.mkIf (lib.elem "gaming" config.cleboost.groups) {
       proton-ge-bin
     ];
     package = pkgs.steam.override (prev: {
-      extraLibraries = pkgs: [
-        pkgs.gamemode.lib
-        pkgs.pkgsi686Linux.gamemode.lib
-        pkgs.mangohud
-        pkgs.pkgsi686Linux.mangohud
-      ] ++ (if prev ? extraLibraries then prev.extraLibraries pkgs else [ ]);
+      extraLibraries =
+        pkgs:
+        [
+          pkgs.gamemode.lib
+          pkgs.pkgsi686Linux.gamemode.lib
+          pkgs.mangohud
+          pkgs.pkgsi686Linux.mangohud
+        ]
+        ++ (if prev ? extraLibraries then prev.extraLibraries pkgs else [ ]);
     });
   };
 

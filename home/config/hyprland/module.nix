@@ -1,4 +1,10 @@
-{ config, lib, pkgs, hostName, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  hostName,
+  ...
+}:
 
 let
   manageWorkspacesLine = lib.optionalString config.cleboost.hypr.dynamicWorkspaces ''
@@ -24,13 +30,16 @@ let
     end
   '';
 
-  hyprCore = pkgs.runCommand "hypr-core" {
-    execs = pkgs.writeText "execs.lua" execsLua;
-  } ''
-    mkdir -p "$out"
-    cp -r ${./files/core}/. "$out/"
-    cp "$execs" "$out/execs.lua"
-  '';
+  hyprCore =
+    pkgs.runCommand "hypr-core"
+      {
+        execs = pkgs.writeText "execs.lua" execsLua;
+      }
+      ''
+        mkdir -p "$out"
+        cp -r ${./files/core}/. "$out/"
+        cp "$execs" "$out/execs.lua"
+      '';
 in
 {
   imports = lib.optionals (builtins.pathExists (./hosts + "/${hostName}.nix")) [

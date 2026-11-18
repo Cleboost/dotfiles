@@ -25,8 +25,14 @@
 
   # ── Nix & flakes ────────────────────────────────────────────────────────────
   nix.settings = {
-    trusted-users = [ "root" "cleboost" ];
-    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [
+      "root"
+      "cleboost"
+    ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     substituters = [
       "https://cache.nixos.org"
       "https://noctalia.cachix.org"
@@ -74,9 +80,12 @@
     freeMemThreshold = 5;
     freeSwapThreshold = 10;
     extraArgs = [
-      "-r" "60"
-      "--avoid" "^(Hyprland|kitty|Xwayland|wireplumber|pipewire)$"
-      "--prefer" "^(java|Isolated Web Co|Web Content|chrome|electron)$"
+      "-r"
+      "60"
+      "--avoid"
+      "^(Hyprland|kitty|Xwayland|wireplumber|pipewire)$"
+      "--prefer"
+      "^(java|Isolated Web Co|Web Content|chrome|electron)$"
     ];
   };
 

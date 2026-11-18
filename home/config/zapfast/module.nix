@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 lib.mkIf (lib.elem "social" config.cleboost.groups) {
   xdg.configFile."zapfast/settings.json" = {

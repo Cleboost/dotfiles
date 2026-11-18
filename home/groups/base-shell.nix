@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 lib.mkIf (lib.elem "base-shell" config.cleboost.groups) {
   home.packages = with pkgs; [

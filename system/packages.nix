@@ -1,7 +1,12 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # nixos/packages.nix — fonts, fish, netbird, base system packages
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   nixpkgs.overlays = [
@@ -23,9 +28,19 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ "Roboto" "Noto Sans" "DejaVu Sans" ];
-        serif = [ "Liberation Serif" "DejaVu Serif" ];
-        monospace = [ "JetBrainsMono Nerd Font" "DejaVu Sans Mono" ];
+        sansSerif = [
+          "Roboto"
+          "Noto Sans"
+          "DejaVu Sans"
+        ];
+        serif = [
+          "Liberation Serif"
+          "DejaVu Serif"
+        ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "DejaVu Sans Mono"
+        ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

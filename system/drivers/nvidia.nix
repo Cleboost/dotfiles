@@ -1,7 +1,12 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # modules/drivers/nvidia.nix — NVIDIA (single GPU or AMD PRIME on laptops)
 # ──────────────────────────────────────────────────────────────────────────────
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.drivers.nvidia;
@@ -96,10 +101,11 @@ in
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.${cfg.packageFlavour};
-    } // lib.optionalAttrs primeCfg.enable {
+    }
+    // lib.optionalAttrs primeCfg.enable {
       prime = {
-        amdgpuBusId = primeCfg.amdgpuBusId;
-        nvidiaBusId = primeCfg.nvidiaBusId;
+        inherit (primeCfg) amdgpuBusId;
+        inherit (primeCfg) nvidiaBusId;
         offload = {
           enable = true;
           enableOffloadCmd = true;
