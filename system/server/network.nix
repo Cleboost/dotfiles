@@ -6,7 +6,7 @@ _:
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 22 ];
-    # Dokploy / Traefik bind via Docker (hors nftables classique) — 80/443 à revoir au déploiement.
+    # Dokploy / Traefik bind via Docker (outside classic nftables) — review 80/443 on deployment.
   };
 
   services.resolved = {

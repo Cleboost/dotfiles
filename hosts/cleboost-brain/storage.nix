@@ -1,4 +1,4 @@
-# SATA SSD (jeux) + HDD (fichiers). Labels set at format: cleboost-games / cleboost-data.
+# SATA SSD (games) + HDD (data). Labels set at format: cleboost-games / cleboost-data.
 _:
 
 {
@@ -21,7 +21,7 @@ _:
   };
 
   systemd.tmpfiles.rules = [
-    # ext4 racine = root après mkfs ; z = owner/mode si le chemin existe (après mount)
+    # ext4 root = root after mkfs; z = owner/mode if path exists (after mount)
     "z /mnt/games 0775 cleboost users -"
     "z /mnt/data 0775 cleboost users -"
     "d /mnt/games/SteamLibrary 0755 cleboost users -"

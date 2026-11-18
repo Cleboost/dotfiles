@@ -22,7 +22,7 @@
     publicShare = null;
     templates = null;
     extraConfig = {
-      # Pas dans le standard xdg-user-dirs, mais géré comme les autres (user-dirs.dirs + mkdir au switch)
+      # Not in the xdg-user-dirs standard, but managed like the others (user-dirs.dirs + mkdir on switch)
       CODE = "${config.home.homeDirectory}/Code";
     };
   };

@@ -1,4 +1,4 @@
-# Entrée Home Manager — tout le perso est sous home/.
+# Home Manager entry point — all personal config lives under home/.
 {
   inputs,
   lib,

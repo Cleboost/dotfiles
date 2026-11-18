@@ -1,4 +1,4 @@
-# Tour — matériel et système uniquement.
+# Tower — hardware and system only.
 { lib, ... }:
 
 {
@@ -13,10 +13,10 @@
 
   networking.hostName = "cleboost-brain";
 
-  # Intel I211 — primary Ethernet when câble branché
+  # Intel I211 — primary Ethernet when cable is plugged in
   networking.firewall.trustedInterfaces = [ "enp5s0" ];
 
-  # Titan X Pascal → branche legacy 580 (driver 6xx refuse la carte)
+  # Titan X Pascal → legacy 580 branch (6xx driver rejects the card)
   drivers.nvidia = {
     enable = true;
     packageFlavour = "legacy_580";

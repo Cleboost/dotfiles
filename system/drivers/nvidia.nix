@@ -36,9 +36,9 @@ in
       type = lib.types.int;
       default = 0;
       description = ''
-        Écrit Option Coolbits dans /etc/X11/xorg.conf.d (lu par XWayland).
-        Sans services.xserver.enable, services.xserver.config est ignoré.
-        4 = ventilo manuel ; 28 = ventilo + clocks. Reboot ou relog XWayland après changement.
+        Writes Option Coolbits in /etc/X11/xorg.conf.d (read by XWayland).
+        Without services.xserver.enable, services.xserver.config is ignored.
+        4 = manual fan; 28 = fan + clocks. Reboot or relog XWayland after changing.
         Commandes : gpu-fan, nvidia-gaming (toggle 100 % + 300 W).
       '';
     };

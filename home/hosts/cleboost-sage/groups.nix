@@ -1,4 +1,4 @@
-# Groupes actifs sur cleboost-sage (importé par hosts/cleboost-sage/default.nix).
+# Active groups on cleboost-sage (imported by hosts/cleboost-sage/default.nix).
 {
   cleboost.groups = [
     "base-shell"

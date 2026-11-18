@@ -1,4 +1,4 @@
-# Toggle jeu : ventilo 100 % + power limit 300 W ⟷ défaut.
+# Game toggle: 100% fan + 300 W power limit ⟷ default.
 {
   pkgs,
   nvidiaSmi,
@@ -27,12 +27,12 @@ pkgs.writeShellScriptBin "nvidia-gaming" ''
     gpu-fan auto
     sudo ${nvidiaSmi}/bin/nvidia-smi -pl "''${saved}" -i 0
     rm -f "''${STATE_FILE}"
-    echo "nvidia-gaming: désactivé — PL ''${saved} W, ventilo auto"
+    echo "nvidia-gaming: disabled — PL ''${saved} W, auto fan"
   else
     saved=$(read_default_pl)
     echo "''${saved}" > "''${STATE_FILE}"
     gpu-fan 100
     sudo ${nvidiaSmi}/bin/nvidia-smi -pl "''${PL_GAME}" -i 0
-    echo "nvidia-gaming: activé — PL ''${PL_GAME} W, ventilo 100 %"
+    echo "nvidia-gaming: enabled — PL ''${PL_GAME} W, 100% fan"
   fi
 ''

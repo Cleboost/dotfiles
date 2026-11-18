@@ -110,9 +110,9 @@ update_workspaces() {
     fi
 
     if (( ${#externals[@]} >= 2 )) && [[ -z "$internal" ]]; then
-        notify-send -a "Hyprland" -i "display" "Workspaces réorganisés" "Gauche (1-10) • Droite (11-20)" -t 3000
+        notify-send -a "Hyprland" -i "display" "Workspaces reorganized" "Left (1-10) • Right (11-20)" -t 3000
     else
-        notify-send -a "Hyprland" -i "display" "Workspaces réorganisés" "Centre (1-10) • Gauche (11-20) • Portable (21-30)" -t 3000
+        notify-send -a "Hyprland" -i "display" "Workspaces reorganized" "Center (1-10) • Left (11-20) • Laptop (21-30)" -t 3000
     fi
 }
 

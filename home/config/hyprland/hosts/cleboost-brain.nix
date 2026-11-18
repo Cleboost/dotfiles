@@ -1,4 +1,4 @@
-# Écrans et workspaces fixes — tour ASUS dual.
+# Fixed monitors and workspaces — ASUS dual tower.
 { lib, ... }:
 
 let

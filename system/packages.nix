@@ -46,11 +46,11 @@
     };
   };
 
-  # fish: NixOS enregistre le shell système ; HM (shell/base.nix) porte la config user.
+  # fish: NixOS registers the system shell; HM (shell/base.nix) holds user config.
   programs.fish.enable = true;
   services.netbird.enable = true;
 
-  # Outils système (root / debug matériel) — apps user → home/groups/
+  # System tools (root / hardware debug) — user apps → home/groups/
   environment.systemPackages = with pkgs; [
     nano
     pciutils

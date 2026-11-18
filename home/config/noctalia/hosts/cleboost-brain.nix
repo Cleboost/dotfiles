@@ -1,4 +1,4 @@
-# Tour — barre minimaliste, pas de ventilo EC, encodeur screen recorder en CPU.
+# Tower — minimalist bar, no EC fan, CPU screen recorder encoder.
 { lib, base, ... }:
 
 base

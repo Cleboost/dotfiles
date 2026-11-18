@@ -1,4 +1,4 @@
-# Génère hypr/autostart/_groups.lua depuis cleboost.groups.
+# Generates hypr/autostart/_groups.lua from cleboost.groups.
 { config, lib, ... }:
 
 let

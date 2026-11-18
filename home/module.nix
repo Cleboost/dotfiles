@@ -1,4 +1,4 @@
-# Home Manager — groups/ = paquets par groupe, config/ = configs app.
+# Home Manager — groups/ = per-group packages, config/ = app configs.
 { hostName, lib, ... }:
 
 {

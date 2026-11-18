@@ -1,4 +1,4 @@
-# Laptop — matériel et système uniquement.
+# Laptop — hardware and system only.
 { ... }:
 
 {

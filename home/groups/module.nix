@@ -1,4 +1,4 @@
-# Un fichier .nix par groupe — paquets + imports config liés au groupe.
+# One .nix file per group — packages + config imports tied to the group.
 { lib, ... }:
 
 let

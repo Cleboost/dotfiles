@@ -1,4 +1,4 @@
-# Placeholder — nixos-anywhere / disko régénèrent en général ce fichier.
+# Placeholder — nixos-anywhere / disko usually regenerate this file.
 { config, lib, pkgs, modulesPath, ... }:
 
 {

@@ -1,4 +1,4 @@
-# Groupes actifs sur cleboost-brain (importé par hosts/cleboost-brain/default.nix).
+# Active groups on cleboost-brain (imported by hosts/cleboost-brain/default.nix).
 {
   cleboost.groups = [
     "base-shell"

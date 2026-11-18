@@ -16,7 +16,7 @@ lib.mkIf (lib.elem "ia" config.cleboost.groups) {
     #codex
     #inputs.chatgpt-desktop.packages.${stdenv.hostPlatform.system}.default
     inputs.grok-bot.packages.${stdenv.hostPlatform.system}.default
-    # Client Electron : UI locale ; au 1er lancement « Cet ordinateur » l’app gère le stack (Docker déjà sur le host).
+    # Electron client: local UI; on 1st launch "This computer" the app manages the stack (Docker already on host).
     (callPackage ../pkgs/rakazo.nix { })
   ];
 

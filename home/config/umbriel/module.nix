@@ -1,5 +1,5 @@
-# Première session Umbriel. Le thème fin se règle une fois dedans.
-# Définir [keybinds] remplace la liste livrée avec Umbriel : tout garder ici.
+# First Umbriel session. Fine-tuning the theme is done once inside.
+# Defining [keybinds] replaces the list shipped with Umbriel: keep everything here.
 { hostName, lib, ... }:
 
 {
@@ -22,7 +22,7 @@
     }
     // lib.optionalAttrs (hostName == "cleboost-sage") {
       drm = {
-        # Même idée que Hyprland : le bureau reste sur l'iGPU AMD.
+        # Same idea as Hyprland: desktop stays on the AMD iGPU.
         ignored_pci_addresses = [ "0000:01:00.0" ];
       };
       output."eDP-1".workspace_axis = "horizontal";
@@ -64,7 +64,7 @@
         gap = 8;
       };
 
-      # Le fichier est un lien Nix, Noctalia ne peut pas y écrire cet import lui-même.
+      # The file is a Nix symlink, Noctalia cannot write this import itself.
       include.optional.files = [ "noctalia.toml" ];
 
       keybinds = {

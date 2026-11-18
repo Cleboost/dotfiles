@@ -1,4 +1,4 @@
-# Config toujours active (shell, desktop, barre, etc.).
+# Always-active config (shell, desktop, bar, etc.).
 {
   imports = [
     ./session/module.nix

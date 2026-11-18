@@ -33,8 +33,8 @@ hl.window_rule({
     suppress_event = "fullscreen maximize",
 })
 
--- Transparence pour toutes les fenêtres. La règle d'après gagne :
--- ajouter une classe ici pour la laisser opaque.
+-- Transparency for all windows. The later rule wins:
+-- add a class here to keep it opaque.
 hl.window_rule({
     name = "default-transparency",
     match = { class = ".*" },

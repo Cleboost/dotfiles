@@ -1,4 +1,4 @@
-# Entrée Home Manager pour VPS (nixpkgs stable).
+# Home Manager entry point for VPS (nixpkgs stable).
 {
   lib,
   osConfig ? null,

@@ -15,7 +15,7 @@ pkgs.writeShellScriptBin "gpu-fan" ''
       cat <<EOF
   Usage: gpu-fan <0-100|auto|status>
 
-    100       ventilo manuel à 100 %
+    100       manual fan at 100%
     50        ventilo manuel (valeur libre 23–100)
     auto      rend la main au pilote
     status    temp + vitesse actuelle

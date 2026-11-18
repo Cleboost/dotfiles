@@ -1,4 +1,4 @@
-# Laptop ASUS — ventilos EC, bongocat clavier, trackers perso.
+# ASUS laptop — EC fans, keyboard bongocat, personal trackers.
 { base, ... }:
 
 base

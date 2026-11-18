@@ -1,4 +1,4 @@
-# Home Manager serveur — shell et rien d'autre.
+# Server Home Manager — shell only.
 { hostName, lib, ... }:
 
 {

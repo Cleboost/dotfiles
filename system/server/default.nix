@@ -1,4 +1,4 @@
-# NixOS commun serveur (VPS prod) — pas de desktop, pas de Hyprland.
+# Shared server NixOS (prod VPS) — no desktop, no Hyprland.
 { pkgs, ... }:
 
 {

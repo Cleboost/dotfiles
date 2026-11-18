@@ -1,68 +1,68 @@
 # cleboost's NixOS dotfiles
 
-One repo, three folders. PCs en **nixos-unstable**, VPS prod en **nixos-26.05**.
+One repo, three folders. Desktops/laptops on **nixos-unstable**, production VPS on **nixos-26.05**.
 
 | Host | Channel | Role |
 | --- | --- | --- |
 | **cleboost-sage** | unstable | Laptop (AMD + NVIDIA PRIME, ASUS fans, Flipper, …) |
 | **cleboost-brain** | unstable | Desktop (Ryzen 5950X, Titan X Pascal) |
-| **vps-assosite** | 26.05 stable | VPS prod (Docker, Dokploy) |
+| **vps-assosite** | 26.05 stable | Production VPS (Docker, Dokploy) |
 
 ## Layout
 
 ```
-flake.nix                 # machines + outputs flake (obligatoire Nix)
-hosts/<hostname>/         # matériel et système par machine
-home/                     # apps, groupes, configs, variantes par machine
-system/                   # NixOS commun : boot, réseau, services, drivers
+flake.nix                 # machines + flake outputs (required by Nix)
+hosts/<hostname>/         # per-machine hardware and system config
+home/                     # apps, groups, configs, per-machine variants
+system/                   # shared NixOS: boot, network, services, drivers
 ```
 
-### `hosts/` — matériel & système
+### `hosts/` — hardware & system
 
 ```
 hosts/cleboost-brain/
-  default.nix               # drivers, kernel, réseau, hostname
+  default.nix               # drivers, kernel, network, hostname
   hardware-configuration.nix
-  storage.nix               # disques extra (brain)
-  ugreen-wifi.nix           # dongle Wi-Fi (brain)
+  storage.nix               # extra drives (brain)
+  ugreen-wifi.nix           # Wi-Fi dongle (brain)
 ```
 
-Les **groupes d'apps** (`cleboost.groups`) vivent dans `home/hosts/<hostname>/groups.nix` et sont importés par le host NixOS.
+**App groups** (`cleboost.groups`) live in `home/hosts/<hostname>/groups.nix` and are imported by the NixOS host.
 
-### `home/` — ton espace principal
+### `home/` — your main workspace
 
 ```
 home/
-  default.nix               # entrée Home Manager
-  groups/                   # un .nix par groupe (paquets + lien config)
-  config/                   # configs app (hyprland, noctalia, kitty, …)
-  hosts/<hostname>/         # variantes HM + groupes
-  pkgs/                     # paquets custom (pdfcraft, codex, …)
+  default.nix               # Home Manager entry point
+  groups/                   # one .nix per group (packages + config link)
+  config/                   # app configs (hyprland, noctalia, kitty, …)
+  hosts/<hostname>/         # HM variants + groups
+  pkgs/                     # custom packages (pdfcraft, codex, …)
   assets/wallpapers/
 ```
 
-### `system/` — NixOS partagé
+### `system/` — shared NixOS
 
 ```
 system/
   default.nix               # boot, locale, nh, earlyoom, …
-  server/                   # variante headless (VPS)
+  server/                   # headless variant (VPS)
   options.nix               # cleboost.groups, cleboost.hypr, …
   services/                 # docker, gaming, noctalia, keyring
   drivers/                  # nvidia, amdgpu, intel, asus, vm
-  pkgs/                     # drivers out-of-tree (aic8800, …)
+  pkgs/                     # out-of-tree drivers (aic8800, …)
 ```
 
 ## Package groups (`cleboost.groups`)
 
-Définis dans `home/hosts/<hostname>/groups.nix`. La même liste active :
+Defined in `home/hosts/<hostname>/groups.nix`. The same active list:
 
-| Couche | Chemin |
+| Layer | Path |
 | --- | --- |
-| Paquets + lien config | `home/groups/<groupe>.nix` |
-| NixOS (Steam, GameMode) | `system/services/gaming.nix` si `gaming` |
+| Packages + config link | `home/groups/<group>.nix` |
+| NixOS (Steam, GameMode) | `system/services/gaming.nix` if `gaming` |
 
-| Group | Packages | Config (exemples) |
+| Group | Packages | Config (examples) |
 | --- | --- | --- |
 | `base-shell` | Wayland CLI tools | — |
 | `base-apps` | Chrome, Nautilus, Bitwarden, … | MIME, Nautilus, Hypr autostart |
@@ -70,34 +70,34 @@ Définis dans `home/hosts/<hostname>/groups.nix`. La même liste active :
 | `ia` | Cursor, Claude, Codex, Rakazo, … | Antigravity CLI seed |
 | `gui` | Obsidian, RustDesk, scrcpy | — |
 | `social` | Telegram, Zapfast, Discord | Zapfast settings |
-| `media` | mpv, qBittorrent, Lollypop | MIME, thème qBittorrent |
+| `media` | mpv, qBittorrent, Lollypop | MIME, qBittorrent theme |
 | `other` | Blockbench, Blender | — |
 | `gaming` | MangoHud, launchers | BeamNG cheat menu, Hypr rules |
 
-**Toujours actif** : `home/config/` (shell, Hyprland, Kitty, thème, Noctalia, WirePlumber).
+**Always active**: `home/config/` (shell, Hyprland, Kitty, theme, Noctalia, WirePlumber).
 
-MIME : `xdg.mimeApps.enable` dans `home/groups/module.nix`.
+MIME: `xdg.mimeApps.enable` in `home/groups/module.nix`.
 
-Nouveaux chemins doivent être **git-trackés** avant `nix build` / `nh os switch`.
+New paths must be **git-tracked** before `nix build` / `nh os switch`.
 
 ## Where to change things
 
 | Goal | Where |
 | --- | --- |
-| Paquets d'un groupe | `home/groups/<groupe>.nix` |
-| Config d'une app | `home/config/<app>/` |
-| Activer des groupes sur un PC | `home/hosts/<hostname>/groups.nix` |
-| Matériel, drivers, kernel | `hosts/<hostname>/default.nix` |
-| Paquets HM par machine | `home/hosts/<hostname>/home.nix` |
-| Hyprland / Noctalia par machine | `home/config/hyprland/hosts/`, `home/config/noctalia/hosts/` |
-| Système commun | `system/` |
+| Packages in a group | `home/groups/<group>.nix` |
+| App config | `home/config/<app>/` |
+| Enable groups on a machine | `home/hosts/<hostname>/groups.nix` |
+| Hardware, drivers, kernel | `hosts/<hostname>/default.nix` |
+| Per-machine HM packages | `home/hosts/<hostname>/home.nix` |
+| Per-machine Hyprland / Noctalia | `home/config/hyprland/hosts/`, `home/config/noctalia/hosts/` |
+| Shared system | `system/` |
 | Drivers | `system/drivers/` |
 
 ## cleboost-brain vs cleboost-sage
 
-**Brain** (tower) : `cleboost.hypr.dynamicWorkspaces = false`, Titan X en `legacy_580`, boost jeu `nvidia-gaming` (toggle ventilo 100 % + PL 300 W), disques `/mnt/games` et `/mnt/data` via `storage.nix`, Wi-Fi UGREEN via `ugreen-wifi.nix`.
+**Brain** (tower): `cleboost.hypr.dynamicWorkspaces = false`, Titan X on `legacy_580`, `nvidia-gaming` game boost (100% fan toggle + 300 W PL), `/mnt/games` and `/mnt/data` drives via `storage.nix`, UGREEN Wi-Fi via `ugreen-wifi.nix`.
 
-**Sage** (laptop) : NVIDIA PRIME, ventilateurs ASUS, Flipper Zero, `cleboost.gaming.gpuDevice = 1`.
+**Sage** (laptop): NVIDIA PRIME, ASUS fans, Flipper Zero, `cleboost.gaming.gpuDevice = 1`.
 
 Noctalia, fonts, icons and wallpapers. Unlike the laptop configuration, the brain bar layout is in `home/config/noctalia/hosts/cleboost-brain.nix`.
 

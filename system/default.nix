@@ -1,5 +1,5 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# system/default.nix — NixOS commun (boot, réseau, services, …)
+# system/default.nix — shared NixOS (boot, network, services, …)
 # ──────────────────────────────────────────────────────────────────────────────
 { pkgs, ... }:
 

@@ -1,4 +1,4 @@
-# Noctalia commun — overlays dans hosts/<hostname>.nix.
+# Shared Noctalia — overlays in hosts/<hostname>.nix.
 { home }:
 {
   shell = {

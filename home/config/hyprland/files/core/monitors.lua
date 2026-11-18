@@ -54,7 +54,7 @@ hl.monitor({
     scale    = 1,
 })
 
--- Eizo dual setup (Père) — après les fallbacks DP-* pour pas se faire écraser
+-- Eizo dual setup (Dad) — after DP-* fallbacks so it doesn't get overridden
 hl.monitor({
     output   = "desc:Eizo Nanao Corporation EV2216W 70457074",
     mode     = "1680x1050@59.88",
