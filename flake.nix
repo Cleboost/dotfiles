@@ -70,46 +70,49 @@
         "vps-assosite"
       ];
 
-      mkDesktopHost = hostName: nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs hostName username; };
-        modules = [
-          ./hosts/${hostName}
+      mkHost =
+        {
+          nixpkgsInput ? nixpkgs,
+          homeManagerInput ? home-manager,
+          homeModule,
+          extraModules ? [ ],
+        }:
+        hostName:
+        nixpkgsInput.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs hostName username; };
+          modules = [
+            ./hosts/${hostName}
+            homeManagerInput.nixosModules.home-manager
+            {
+              nixpkgs.config.allowUnfree = true;
+
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+              home-manager.overwriteBackup = true;
+              home-manager.extraSpecialArgs = { inherit inputs hostName username; };
+              home-manager.users.${username} = import homeModule;
+            }
+          ] ++ extraModules;
+        };
+
+      mkDesktopHost = mkHost {
+        homeModule = ./home/default.nix;
+        extraModules = [
           noctalia.nixosModules.default
           noctalia-greeter.nixosModules.default
           umbriel.nixosModules.default
           luciole.nixosModules.default
-          home-manager.nixosModules.home-manager
-          {
-            nixpkgs.config.allowUnfree = true;
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.overwriteBackup = true;
-            home-manager.extraSpecialArgs = { inherit inputs hostName username; };
-            home-manager.users.${username} = import ./home/default.nix;
-          }
         ];
       };
 
-      mkServerHost = hostName: nixpkgs-stable.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs hostName username; };
-        modules = [
-          ./hosts/${hostName}
+      mkServerHost = mkHost {
+        nixpkgsInput = nixpkgs-stable;
+        homeManagerInput = home-manager-stable;
+        homeModule = ./home/server.nix;
+        extraModules = [
           inputs.nix-dokploy.nixosModules.default
-          home-manager-stable.nixosModules.home-manager
-          {
-            nixpkgs.config.allowUnfree = true;
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.overwriteBackup = true;
-            home-manager.extraSpecialArgs = { inherit inputs hostName username; };
-            home-manager.users.${username} = import ./home/server.nix;
-          }
         ];
       };
     in
@@ -119,8 +122,6 @@
         // nixpkgs.lib.genAttrs serverHosts mkServerHost;
 
       packages.x86_64-linux = {
-        pdfcraft =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/pdfcraft.nix { };
         codex-chatgpt-web =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix { };
         antigravity-cli =
@@ -128,5 +129,7 @@
         rakazo =
           nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/rakazo.nix { };
       };
+
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
 }
