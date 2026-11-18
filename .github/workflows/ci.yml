@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  format:
+    name: CI / Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Check formatting (nixfmt)
+        run: find . -name '*.nix' -not -name 'hardware-configuration.nix' -print0 | xargs -0 nix run .#formatter.x86_64-linux -- --check
+
+  lint:
+    name: CI / Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Run deadnix
+        run: nix shell nixpkgs#deadnix -c deadnix --fail --no-lambda-arg --no-lambda-pattern-names .
+      - name: Run statix
+        run: nix shell nixpkgs#statix -c statix check .
+
+  eval:
+    name: CI / Eval
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Evaluate flake
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
+        run: nix flake check --no-build --impure
