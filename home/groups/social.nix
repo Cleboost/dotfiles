@@ -10,6 +10,7 @@
       telegram-desktop
       zapfast
       discord
+      vesktop
       # spotifast
       spotify
     ];
