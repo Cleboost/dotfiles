@@ -8,7 +8,7 @@ on:
 
 jobs:
   format:
-    name: CI / Format
+    name: Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
         run: find . -name '*.nix' -not -name 'hardware-configuration.nix' -print0 | xargs -0 nix run .#formatter.x86_64-linux -- --check
 
   lint:
-    name: CI / Lint
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
         run: nix shell nixpkgs#statix -c statix check .
 
   eval:
-    name: CI / Eval
+    name: Eval
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
