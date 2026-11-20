@@ -13,7 +13,7 @@ stdenv.mkDerivation {
     owner = "Keyitdev";
     repo = "asus-fan-control-ec";
     rev = "master";
-    sha256 = "0bmcnbpsj5zir3g2y6xb723bzv49bpp7hvgysivahfrxb3zi2ahg";
+    hash = "sha256-Iu+pqRW8baqMfw3dF77b1LU7K5iFQmNedZOF0B9PIxc=";
   };
 
   installPhase = ''
