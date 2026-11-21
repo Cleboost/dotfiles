@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.mpv {
+lib.mkIf osConfig.cleboost.media.mpv {
   home.packages = [ pkgs.mpv ];
 
   xdg.mimeApps.defaultApplications = {

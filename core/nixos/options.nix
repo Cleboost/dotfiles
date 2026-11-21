@@ -60,16 +60,19 @@ in
     # ── Apps (1 app / group = 1 module) ──────────────────────────────────────
     baseApps = mkToggle "Base CLI & browser apps (Chrome, gh, ripgrep, etc.)";
     scrcpy = mkToggle "scrcpy + android-tools (adb/fastboot)";
-    obsidian = mkToggle "Obsidian";
-    rustdesk = mkToggle "RustDesk";
     cursor = mkToggle "Cursor IDE & CLI";
     claude = mkToggle "Claude Desktop";
     grok-bot = mkToggle "Grok Bot";
     rakazo = mkToggle "Rakazo";
-    feh = mkToggle "feh image viewer";
-    mpv = mkToggle "mpv media player";
-    pdfcraft = mkToggle "PDFCraft";
-    lollypop = mkToggle "Lollypop music player";
+    rustdesk = mkToggle "RustDesk";
+    media = mkGroup {
+      qbittorrent = "qBittorrent";
+      mpv = "mpv media player";
+      feh = "feh image viewer";
+      pdfcraft = "PDFCraft";
+      obsidian = "Obsidian";
+      lollypop = "Lollypop music player";
+    } false;
     other = mkToggle "3D / Creative apps (Blender, Blockbench)";
     social = mkGroup {
       discord = "Discord & Vesktop";
@@ -80,7 +83,6 @@ in
     zed = mkToggle "Zed editor";
     antigravity = mkToggle "Antigravity Hub";
     beamng = mkToggle "BeamNG.drive tools";
-    qbittorrent = mkToggle "qBittorrent";
     bitwarden = mkToggle "Bitwarden";
     rquickshare = mkToggle "RQuickShare";
 

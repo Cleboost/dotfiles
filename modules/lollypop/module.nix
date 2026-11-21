@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.lollypop {
+lib.mkIf osConfig.cleboost.media.lollypop {
   home.packages = [ pkgs.lollypop ];
 
   xdg.mimeApps.defaultApplications = {

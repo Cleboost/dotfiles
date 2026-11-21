@@ -39,16 +39,19 @@
     baseApps = true;
     dev = true;
     scrcpy = true;
-    obsidian = true;
     rustdesk = true;
     cursor = true;
     claude = true;
     grok-bot = true;
     rakazo = true;
-    feh = true;
-    mpv = true;
-    pdfcraft = true;
-    lollypop = true;
+    media = {
+      qbittorrent = true;
+      mpv = true;
+      feh = true;
+      pdfcraft = true;
+      obsidian = true;
+      lollypop = true;
+    };
     other = true;
     social = {
       discord = true;
@@ -59,7 +62,6 @@
     zed = true;
     antigravity = true;
     beamng = true;
-    qbittorrent = true;
     bitwarden = true;
     rquickshare = true;
   };

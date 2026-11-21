@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.obsidian {
+lib.mkIf osConfig.cleboost.media.obsidian {
   home.packages = with pkgs; [
     obsidian
   ];

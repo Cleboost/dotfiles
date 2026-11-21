@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.feh {
+lib.mkIf osConfig.cleboost.media.feh {
   home.packages = [ pkgs.feh ];
 
   xdg.mimeApps.defaultApplications = {

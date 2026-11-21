@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.pdfcraft {
+lib.mkIf osConfig.cleboost.media.pdfcraft {
   home.packages = [ pkgs.pdfcraft ];
 
   xdg.mimeApps.defaultApplications = {
