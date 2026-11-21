@@ -59,7 +59,9 @@ in
 
     # ── Apps (1 app / group = 1 module) ──────────────────────────────────────
     baseApps = mkToggle "Base CLI & browser apps (Chrome, gh, ripgrep, etc.)";
-    gui = mkToggle "GUI utilities (Obsidian, scrcpy, RustDesk)";
+    gui = mkToggle "GUI utilities (scrcpy, android-tools)";
+    obsidian = mkToggle "Obsidian";
+    rustdesk = mkToggle "RustDesk";
     ia = mkToggle "AI tools (Cursor, Claude Desktop, Grok, Rakazo)";
     media = mkToggle "Media apps (mpv, feh, pdfcraft, lollypop)";
     other = mkToggle "3D / Creative apps (Blender, Blockbench)";

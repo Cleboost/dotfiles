@@ -39,6 +39,8 @@
     baseApps = true;
     dev = true;
     gui = true;
+    obsidian = true;
+    rustdesk = true;
     ia = true;
     media = true;
     other = true;
