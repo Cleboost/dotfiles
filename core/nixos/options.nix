@@ -71,10 +71,12 @@ in
     pdfcraft = mkToggle "PDFCraft";
     lollypop = mkToggle "Lollypop music player";
     other = mkToggle "3D / Creative apps (Blender, Blockbench)";
-    discord = mkToggle "Discord & Vesktop";
+    social = mkGroup {
+      discord = "Discord & Vesktop";
+      telegram = "Telegram Desktop";
+      zapfast = "ZapFast";
+    } false;
     spotify = mkToggle "Spotify";
-    telegram = mkToggle "Telegram Desktop";
-    zapfast = mkToggle "ZapFast";
     zed = mkToggle "Zed editor";
     antigravity = mkToggle "Antigravity Hub";
     beamng = mkToggle "BeamNG.drive tools";

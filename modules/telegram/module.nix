@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.telegram {
+lib.mkIf osConfig.cleboost.social.telegram {
   home.packages = with pkgs; [
     telegram-desktop
   ];

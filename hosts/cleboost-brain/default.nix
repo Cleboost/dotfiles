@@ -50,10 +50,12 @@
     pdfcraft = true;
     lollypop = true;
     other = true;
-    discord = true;
+    social = {
+      discord = true;
+      telegram = true;
+      zapfast = true;
+    };
     spotify = true;
-    telegram = true;
-    zapfast = true;
     zed = true;
     antigravity = true;
     beamng = true;

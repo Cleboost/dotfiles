@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.discord {
+lib.mkIf osConfig.cleboost.social.discord {
   home.packages = with pkgs; [
     discord
     vesktop

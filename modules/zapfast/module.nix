@@ -10,7 +10,7 @@
     "${inputs.hm-pr-zapfast}/modules/programs/zapfast.nix"
   ];
 
-  config = lib.mkIf osConfig.cleboost.zapfast {
+  config = lib.mkIf osConfig.cleboost.social.zapfast {
     programs.zapfast = {
       enable = true;
       settings = {
