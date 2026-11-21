@@ -2,6 +2,7 @@
   osConfig,
   lib,
   pkgs,
+  username,
   ...
 }:
 
@@ -16,5 +17,8 @@ lib.mkIf (osConfig.cleboost.qbittorrent) {
     $DRY_RUN_CMD mkdir -p "$(dirname "$conf")"
     $DRY_RUN_CMD ${pkgs.crudini}/bin/crudini --set "$conf" Preferences 'General\UseCustomUITheme' true
     $DRY_RUN_CMD ${pkgs.crudini}/bin/crudini --set "$conf" Preferences 'General\CustomUIThemePath' "$theme"
+    $DRY_RUN_CMD ${pkgs.crudini}/bin/crudini --set "$conf" Preferences 'WebUI\Enabled' true
+    $DRY_RUN_CMD ${pkgs.crudini}/bin/crudini --set "$conf" Preferences 'WebUI\Username' "${username}"
+    $DRY_RUN_CMD ${pkgs.crudini}/bin/crudini --set "$conf" Preferences 'WebUI\LocalHostAuth' false
   '';
 }
