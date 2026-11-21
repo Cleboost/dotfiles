@@ -3,7 +3,6 @@
   inputs,
   lib,
   osConfig ? null,
-  hostName,
   username ? "cleboost",
   ...
 }:
