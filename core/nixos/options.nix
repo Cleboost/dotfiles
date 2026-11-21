@@ -14,15 +14,11 @@ let
     description = desc;
   };
   mkGroup = fields: defaultBool: lib.mkOption {
-    type = lib.types.either lib.types.bool (lib.types.submodule {
-      options = lib.mapAttrs (_: desc: mkToggleOn desc) fields;
-    });
-    default = defaultBool;
-    apply = val:
-      if builtins.isBool val then
-        lib.mapAttrs (_: _: val) fields
-      else
-        val;
+    type = lib.types.submodule {
+      options = lib.mapAttrs (_: desc: mkToggle desc) fields;
+    };
+    default = { };
+    description = "Feature group (default: all ${if defaultBool then "enabled" else "disabled"}).";
   };
 in
 {
