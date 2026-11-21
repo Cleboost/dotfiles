@@ -25,6 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
     };
@@ -133,6 +138,7 @@
         homeModule = ./home/server.nix;
         extraModules = [
           inputs.nix-dokploy.nixosModules.default
+          inputs.disko.nixosModules.disko
         ];
       };
     in

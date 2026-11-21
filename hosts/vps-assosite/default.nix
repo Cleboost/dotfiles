@@ -9,7 +9,18 @@ in
     ../../system/server
     ../../home/hosts/vps-assosite/groups.nix
     ./hardware-configuration.nix
+    ./disk-config.nix
   ];
+
+  # SeaBIOS legacy boot (GRUB on /dev/sda, no UEFI)
+  boot.loader = {
+    systemd-boot.enable = lib.mkForce false;
+    efi.canTouchEfiVariables = lib.mkForce false;
+    grub = {
+      enable = true;
+      efiSupport = false;
+    };
+  };
 
   cleboost.server = true;
 
