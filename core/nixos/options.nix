@@ -3,23 +3,29 @@
 { lib, ... }:
 
 let
-  mkToggle = desc: lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = desc;
-  };
-  mkToggleOn = desc: lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = desc;
-  };
-  mkGroup = fields: defaultBool: lib.mkOption {
-    type = lib.types.submodule {
-      options = lib.mapAttrs (_: desc: mkToggle desc) fields;
+  mkToggle =
+    desc:
+    lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = desc;
     };
-    default = { };
-    description = "Feature group (default: all ${if defaultBool then "enabled" else "disabled"}).";
-  };
+  mkToggleOn =
+    desc:
+    lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = desc;
+    };
+  mkGroup =
+    fields: defaultBool:
+    lib.mkOption {
+      type = lib.types.submodule {
+        options = lib.mapAttrs (_: desc: mkToggle desc) fields;
+      };
+      default = { };
+      description = "Feature group (default: all ${if defaultBool then "enabled" else "disabled"}).";
+    };
 in
 {
   options.cleboost = {
@@ -46,7 +52,6 @@ in
       nautilus = "Nautilus file manager";
       luciole = "Luciole file manager";
     } false;
-    theme = mkToggle "GTK/Qt/Cursor theme";
 
     # ── Terminal & CLI ───────────────────────────────────────────────────────
     terminal = mkGroup {

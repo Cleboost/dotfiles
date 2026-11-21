@@ -21,13 +21,16 @@ in
   };
 
   cleboost = {
-    server = true;
     docker = true;
     openssh = true;
-    terminal = {
-      kitty = false;
-    };
+    server = true;
     ssh = true;
+    terminal = {
+      fastfetch = true;
+      kitty = false;
+      starship = true;
+      zsh = true;
+    };
   };
 
   networking.hostName = "vps-assosite";

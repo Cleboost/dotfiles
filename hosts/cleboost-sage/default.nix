@@ -9,62 +9,58 @@
   home-manager.users.${username}.imports = [ ./gpu.nix ];
 
   cleboost = {
+    antigravity = true;
+    baseApps = true;
+    beamng = true;
+    bitwarden = true;
+    claude = true;
+    cursor = true;
     desktop = true;
+    dev = true;
     docker = true;
-    openssh = true;
-    keyring = true;
-    keychron = true;
-    platformio = true;
+    file-manager = {
+      luciole = true;
+      nautilus = true;
+    };
     gaming = true;
     gpuDevice = 1;
-
+    grok-bot = true;
+    keychron = true;
+    keyring = true;
+    media = {
+      feh = true;
+      lollypop = true;
+      mpv = true;
+      obsidian = true;
+      pdfcraft = true;
+      qbittorrent = true;
+    };
+    openssh = true;
+    other = true;
+    platformio = true;
+    rakazo = true;
+    rquickshare = true;
+    rustdesk = true;
+    scrcpy = true;
     shell = {
       hyprland = true;
       noctalia = true;
       umbriel = true;
     };
-    file-manager = {
-      nautilus = true;
-      luciole = true;
-    };
-    theme = true;
-
-    terminal = {
-      zsh = true;
-      kitty = true;
-      starship = true;
-      fastfetch = true;
-    };
-    ssh = true;
-
-    baseApps = true;
-    dev = true;
-    scrcpy = true;
-    rustdesk = true;
-    cursor = true;
-    claude = true;
-    grok-bot = true;
-    rakazo = true;
-    media = {
-      qbittorrent = true;
-      mpv = true;
-      feh = true;
-      pdfcraft = true;
-      obsidian = true;
-      lollypop = true;
-    };
-    other = true;
     social = {
       discord = true;
       telegram = true;
       zapfast = true;
     };
     spotify = true;
+    ssh = true;
+    terminal = {
+      fastfetch = true;
+      kitty = true;
+      starship = true;
+      zsh = true;
+    };
     zed = true;
-    antigravity = true;
-    beamng = true;
-    bitwarden = true;
-    rquickshare = true;
   };
 
   drivers.nvidia = {
