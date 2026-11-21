@@ -96,7 +96,6 @@
         {
           nixpkgsInput ? nixpkgs,
           homeManagerInput ? home-manager,
-          homeModule,
           extraModules ? [ ],
         }:
         hostName:
@@ -105,6 +104,7 @@
           specialArgs = { inherit inputs hostName username; };
           modules = [
             ./hosts/${hostName}
+            ./core/nixos
             homeManagerInput.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
@@ -115,7 +115,7 @@
                 backupFileExtension = "backup";
                 overwriteBackup = true;
                 extraSpecialArgs = { inherit inputs hostName username; };
-                users.${username} = import homeModule;
+                users.${username} = import ./core/home;
               };
             }
           ]
@@ -123,8 +123,9 @@
         };
 
       mkDesktopHost = mkHost {
-        homeModule = ./home/default.nix;
         extraModules = [
+          ./core/nixos/_desktop.nix
+          ./core/nixos/services/_noctalia.nix
           noctalia.nixosModules.default
           noctalia-greeter.nixosModules.default
           umbriel.nixosModules.default
@@ -135,7 +136,6 @@
       mkServerHost = mkHost {
         nixpkgsInput = nixpkgs-stable;
         homeManagerInput = home-manager-stable;
-        homeModule = ./home/server.nix;
         extraModules = [
           inputs.nix-dokploy.nixosModules.default
           inputs.disko.nixosModules.disko
@@ -148,12 +148,12 @@
 
       packages.x86_64-linux = {
         codex-chatgpt-web =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/codex-chatgpt-web.nix
             { };
         antigravity-cli =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix
+          nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/antigravity-cli.nix
             { };
-        rakazo = nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/rakazo.nix { };
+        rakazo = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/rakazo.nix { };
       };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;

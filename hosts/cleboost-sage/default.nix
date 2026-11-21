@@ -1,13 +1,53 @@
 # Laptop — hardware and system only.
-{ ... }:
+{ username, ... }:
 
 {
   imports = [
-    ../../system
-    ../../system/drivers
-    ../../home/hosts/cleboost-sage/groups.nix
     ./hardware-configuration.nix
   ];
+
+  home-manager.users.${username}.imports = [ ./gpu.nix ];
+
+  cleboost = {
+    desktop = true;
+    docker = true;
+    openssh = true;
+    keyring = true;
+    keychron = true;
+    platformio = true;
+    gaming = true;
+    gpuDevice = 1;
+
+    shell = {
+      hyprland = true;
+      noctalia = true;
+
+    };
+    nautilus = true;
+    theme = true;
+
+    terminal = {
+      zsh = true;
+      kitty = true;
+      starship = true;
+      fastfetch = true;
+    };
+    ssh = true;
+
+    baseApps = true;
+    dev = true;
+    gui = true;
+    ia = true;
+    media = true;
+    other = true;
+    social = true;
+    zed = true;
+    antigravity = true;
+    beamng = true;
+    qbittorrent = true;
+    bitwarden = true;
+    rquickshare = true;
+  };
 
   drivers.nvidia = {
     enable = true;

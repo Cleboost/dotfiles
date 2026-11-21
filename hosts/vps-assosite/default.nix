@@ -6,8 +6,6 @@ let
 in
 {
   imports = [
-    ../../system/server
-    ../../home/hosts/vps-assosite/groups.nix
     ./hardware-configuration.nix
     ./disk-config.nix
   ];
@@ -22,7 +20,15 @@ in
     };
   };
 
-  cleboost.server = true;
+  cleboost = {
+    server = true;
+    docker = true;
+    openssh = true;
+    terminal = {
+      kitty = false;
+    };
+    ssh = true;
+  };
 
   networking.hostName = "vps-assosite";
 

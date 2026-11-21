@@ -3,13 +3,50 @@
 
 {
   imports = [
-    ../../system
-    ../../system/drivers
-    ../../home/hosts/cleboost-brain/groups.nix
     ./hardware-configuration.nix
     ./storage.nix
     ./ugreen-wifi.nix
   ];
+
+  cleboost = {
+    desktop = true;
+    docker = true;
+    openssh = true;
+    keyring = true;
+    keychron = true;
+    platformio = true;
+    gaming = true;
+    dynamicWorkspaces = false;
+
+    shell = {
+      hyprland = true;
+      noctalia = true;
+    };
+    nautilus = true;
+    theme = true;
+
+    terminal = {
+      zsh = true;
+      kitty = true;
+      starship = true;
+      fastfetch = true;
+    };
+    ssh = true;
+
+    baseApps = true;
+    dev = true;
+    gui = true;
+    ia = true;
+    media = true;
+    other = true;
+    social = true;
+    zed = true;
+    antigravity = true;
+    beamng = true;
+    qbittorrent = true;
+    bitwarden = true;
+    rquickshare = true;
+  };
 
   networking.hostName = "cleboost-brain";
 
