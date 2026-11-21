@@ -10,5 +10,6 @@ lib.mkIf osConfig.cleboost.nix-dev {
     nvd
     nixpkgs-review
     nix-output-monitor
+    nix-update
   ];
 }
