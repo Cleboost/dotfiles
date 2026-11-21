@@ -23,7 +23,6 @@ lib.mkIf osConfig.cleboost.baseApps {
     rquickshare
     bitwarden-desktop
     google-chrome
-    nautilus
   ];
 
   xdg = {
@@ -35,7 +34,6 @@ lib.mkIf osConfig.cleboost.baseApps {
       "x-scheme-handler/https" = "google-chrome.desktop";
       "x-scheme-handler/about" = "google-chrome.desktop";
       "x-scheme-handler/unknown" = "google-chrome.desktop";
-      "inode/directory" = "org.gnome.Nautilus.desktop";
     };
   };
 }
