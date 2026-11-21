@@ -19,6 +19,7 @@ lib.mkIf (lib.elem "dev" config.cleboost.groups) {
         just = true;
         make = true;
         nix = true;
+        toml = true;
       };
 
       languages.Nix = {
