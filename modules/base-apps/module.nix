@@ -14,7 +14,6 @@ lib.mkIf osConfig.cleboost.baseApps {
     ripgrep
     fd
     jq
-    fastfetch
     socat
     netcat-openbsd
     age

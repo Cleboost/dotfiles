@@ -1,4 +1,13 @@
 {
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
+
+lib.mkIf osConfig.cleboost.terminal.fastfetch {
+  home.packages = [ pkgs.fastfetch ];
+
   home.file.".local/bin/fastfetch-random" = {
     source = ./scripts/fastfetch-random;
     executable = true;
