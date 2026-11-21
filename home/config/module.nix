@@ -4,6 +4,7 @@
     ./session/module.nix
     ./shell/module.nix
     ./ssh/module.nix
+    ./bitwarden/module.nix
     ./fastfetch/module.nix
     ./starship/module.nix
     ./kitty/module.nix
