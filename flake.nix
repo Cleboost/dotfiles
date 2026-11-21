@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    hm-pr-zapfast = {
+      url = "github:nix-community/home-manager/pull/10178/head";
+      flake = false;
+    };
+
     nix-dokploy = {
       url = "github:el-kurto/nix-dokploy";
       inputs.nixpkgs.follows = "nixpkgs-stable";

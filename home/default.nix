@@ -27,6 +27,7 @@ in
   imports = [
     inputs.noctalia.homeModules.default
     inputs.umbriel.homeModules.default
+    "${inputs.hm-pr-zapfast}/modules/programs/zapfast.nix"
     ./config/umbriel/module.nix
     ../system/options.nix
     ./module.nix
