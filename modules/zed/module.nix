@@ -20,6 +20,7 @@ lib.mkIf (osConfig.cleboost.zed) {
         make = true;
         nix = true;
         toml = true;
+        lua = true;
       };
 
       languages.Nix = {
