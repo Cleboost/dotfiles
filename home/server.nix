@@ -1,5 +1,6 @@
 # Home Manager entry point for VPS (nixpkgs stable).
 {
+  inputs,
   lib,
   osConfig ? null,
   hostName,
@@ -24,6 +25,7 @@ in
   };
 
   imports = [
+    "${inputs.hm-pr-zapfast}/modules/programs/zapfast.nix"
     ../system/options.nix
     ./module-server.nix
   ];
