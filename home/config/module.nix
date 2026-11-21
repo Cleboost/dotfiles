@@ -11,5 +11,6 @@
     ./theme/module.nix
     ./wireplumber/module.nix
     ./noctalia/module.nix
+    ./antigravity-hub/module.nix
   ];
 }
