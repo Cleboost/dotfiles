@@ -8,7 +8,7 @@
         .global_desktopSettings_sshAgentEnabled = true
         | with_entries(
             if (.key | test("^user_.*_desktopSettings_sshAgentRememberAuthorizations$"))
-            then .value = "always"
+            then .value = "rememberUntilLock"
             elif (.key | test("^user_.*_vaultTimeoutSettings_vaultTimeout$"))
             then .value = "never"
             else .
