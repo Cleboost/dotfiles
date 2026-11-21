@@ -1,9 +1,14 @@
 _:
 
 {
+  programs.fish.functions.starship_transient_prompt_func = ''
+    printf "\e[1;34m \e[0m"
+  '';
+
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
+    enableTransience = true;
     settings = {
       add_newline = false;
       format = "$cmd_duration 󰜥 $directory $git_branch\n$character";
