@@ -13,12 +13,16 @@ let
     path: default: if osConfig == null then default else lib.attrByPath path default osConfig;
 in
 {
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
-  home.stateVersion = "25.05";
+  home = {
+    inherit username;
+    homeDirectory = "/home/${username}";
+    stateVersion = "25.05";
+  };
 
-  cleboost.groups = fromHost [ "cleboost" "groups" ] [ "base-shell" "base-apps" ];
-  cleboost.hypr.dynamicWorkspaces = fromHost [ "cleboost" "hypr" "dynamicWorkspaces" ] true;
+  cleboost = {
+    groups = fromHost [ "cleboost" "groups" ] [ "base-shell" "base-apps" ];
+    hypr.dynamicWorkspaces = fromHost [ "cleboost" "hypr" "dynamicWorkspaces" ] true;
+  };
 
   imports = [
     inputs.noctalia.homeModules.default

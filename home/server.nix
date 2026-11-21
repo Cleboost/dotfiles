@@ -12,12 +12,16 @@ let
     path: default: if osConfig == null then default else lib.attrByPath path default osConfig;
 in
 {
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
-  home.stateVersion = "26.05";
+  home = {
+    inherit username;
+    homeDirectory = "/home/${username}";
+    stateVersion = "26.05";
+  };
 
-  cleboost.server = true;
-  cleboost.groups = fromHost [ "cleboost" "groups" ] [ "server-shell" ];
+  cleboost = {
+    server = true;
+    groups = fromHost [ "cleboost" "groups" ] [ "server-shell" ];
+  };
 
   imports = [
     ../system/options.nix

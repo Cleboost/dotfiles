@@ -1,11 +1,24 @@
 { config, lib, ... }:
 
 {
-  home.sessionPath = [ "$HOME/.local/bin" ];
+  home = {
+    sessionPath = [ "$HOME/.local/bin" ];
 
-  home.file.".local/bin" = {
-    source = ./scripts;
-    recursive = true;
+    file = {
+      ".local/bin" = {
+        source = ./scripts;
+        recursive = true;
+      };
+      ".hidden".text = "Games\nLauncher.cfg\nLauncher.log\n";
+      "Documents/Tools Torrent/toratio.js" = {
+        source = ../../assets/toratio.js;
+        executable = true;
+      };
+    };
+
+    activation.toolsTorrentInput = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      run mkdir -p "${config.home.homeDirectory}/Documents/Tools Torrent/input"
+    '';
   };
 
   xdg.userDirs = {
@@ -26,17 +39,6 @@
       CODE = "${config.home.homeDirectory}/Code";
     };
   };
-
-  home.file.".hidden".text = "Games\nLauncher.cfg\nLauncher.log\n";
-
-  home.file."Documents/Tools Torrent/toratio.js" = {
-    source = ../../assets/toratio.js;
-    executable = true;
-  };
-
-  home.activation.toolsTorrentInput = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    run mkdir -p "${config.home.homeDirectory}/Documents/Tools Torrent/input"
-  '';
 
   programs.home-manager.enable = true;
 }

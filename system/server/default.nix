@@ -12,36 +12,40 @@
     ./services/openssh.nix
   ];
 
-  nix.settings = {
-    trusted-users = [
-      "root"
-      "cleboost"
-    ];
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    substituters = [
-      "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
-    ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-    auto-optimise-store = true;
+  nix = {
+    settings = {
+      trusted-users = [
+        "root"
+        "cleboost"
+      ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      substituters = [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      auto-optimise-store = true;
+    };
+    optimise.automatic = true;
   };
 
-  nix.optimise.automatic = true;
-
-  programs.nh = {
-    enable = true;
-    flake = "/home/${username}/dotfiles";
-    clean = {
+  programs = {
+    nh = {
       enable = true;
-      extraArgs = "--keep 10";
-      dates = "weekly";
+      flake = "/home/${username}/dotfiles";
+      clean = {
+        enable = true;
+        extraArgs = "--keep 10";
+        dates = "weekly";
+      };
     };
+    nix-ld.enable = true;
   };
 
   zramSwap = {
@@ -50,37 +54,40 @@
     memoryPercent = 25;
   };
 
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
+  services = {
+    fstrim = {
+      enable = true;
+      interval = "weekly";
+    };
 
-  services.earlyoom = {
-    enable = true;
-    enableNotifications = false;
-    freeMemThreshold = 5;
-    freeSwapThreshold = 10;
-  };
+    earlyoom = {
+      enable = true;
+      enableNotifications = false;
+      freeMemThreshold = 5;
+      freeSwapThreshold = 10;
+    };
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=200M
-    MaxRetentionSec=1month
-  '';
+    journald.extraConfig = ''
+      SystemMaxUse=200M
+      MaxRetentionSec=1month
+    '';
+  };
 
   time.timeZone = "Europe/Paris";
-  i18n.defaultLocale = "fr_FR.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
+  i18n = {
+    defaultLocale = "fr_FR.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
   };
 
-  programs.nix-ld.enable = true;
   system.stateVersion = "26.05";
 }

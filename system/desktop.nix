@@ -12,32 +12,38 @@
   };
 
   # Second session. Greeter default stays Hyprland; pick Umbriel at login.
-  programs.umbriel.enable = true;
-  programs.luciole.enable = true;
-
-  programs.gpu-screen-recorder.enable = true;
+  programs = {
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+    umbriel.enable = true;
+    luciole.enable = true;
+    gpu-screen-recorder.enable = true;
+    nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "kitty";
+    };
+  };
 
   # ── Keyboard (AZERTY) ───────────────────────────────────────────────────────
-  services.xserver.xkb = {
-    layout = "fr";
-    variant = "";
+  services = {
+    xserver.xkb = {
+      layout = "fr";
+      variant = "";
+    };
+    udisks2.enable = true;
+    gvfs.enable = true;
+    # Google Drive in Nautilus: gnome-control-center online-accounts
+    gnome.gnome-online-accounts.enable = true;
   };
   console.keyMap = "fr";
 
   # ── Removable storage & file manager integration ────────────────────────────
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
-  # Google Drive in Nautilus: gnome-control-center online-accounts
-  services.gnome.gnome-online-accounts.enable = true;
   boot.supportedFilesystems = [
     "exfat"
     "ntfs"
   ];
-
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "kitty";
-  };
 
   # Video thumbnails in Nautilus (WebM, MP4, MKV, …)
   environment.systemPackages = with pkgs; [

@@ -46,15 +46,17 @@ in
     (./hosts + "/${hostName}.nix")
   ];
 
-  xdg.configFile."hypr/hyprland.lua" = {
-    source = ./files/hyprland.lua;
-    force = true;
+  xdg.configFile = {
+    "hypr/hyprland.lua" = {
+      source = ./files/hyprland.lua;
+      force = true;
+    };
+    "hypr/custom.lua".source = ./files/custom.lua;
+    "hypr/core".source = hyprCore;
+    "hypr/binds".source = ./files/binds;
+    "hypr/rules".source = ./files/rules;
+    "hypr/theme".source = ./files/theme;
+    "hypr/scripts".source = ./files/scripts;
+    "hypr/move-special.sh".source = ./files/move-special.sh;
   };
-  xdg.configFile."hypr/custom.lua".source = ./files/custom.lua;
-  xdg.configFile."hypr/core".source = hyprCore;
-  xdg.configFile."hypr/binds".source = ./files/binds;
-  xdg.configFile."hypr/rules".source = ./files/rules;
-  xdg.configFile."hypr/theme".source = ./files/theme;
-  xdg.configFile."hypr/scripts".source = ./files/scripts;
-  xdg.configFile."hypr/move-special.sh".source = ./files/move-special.sh;
 }

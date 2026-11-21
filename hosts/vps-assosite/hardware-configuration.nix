@@ -4,16 +4,18 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [
-    "ahci"
-    "nvme"
-    "virtio_pci"
-    "virtio_blk"
-    "virtio_scsi"
-    "xhci_pci"
-  ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [
+      "ahci"
+      "nvme"
+      "virtio_pci"
+      "virtio_blk"
+      "virtio_scsi"
+      "xhci_pci"
+    ];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

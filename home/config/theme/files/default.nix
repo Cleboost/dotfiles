@@ -12,15 +12,23 @@ in
     ./code-folder.nix
     ./projects-folder.nix
   ];
-  # ── Wallpapers & profile images ─────────────────────────────────────────────
-  home.file."Pictures/Wallpapers".source = ../../../assets/wallpapers;
-  home.file."Pictures/profile.png".source = ./profile.png;
-  home.file."Pictures/banner.png".source = ./banner.png;
+  home = {
+    file = {
+      "Pictures/Wallpapers".source = ../../../assets/wallpapers;
+      "Pictures/profile.png".source = ./profile.png;
+      "Pictures/banner.png".source = ./banner.png;
+      ".local/share/icons/cleboost-cursor" = {
+        source = ./cursor;
+        recursive = true;
+        force = true;
+      };
+    };
 
-  home.packages = [
-    cleboostIcons
-    pkgs.adwaita-icon-theme
-  ];
+    packages = [
+      cleboostIcons
+      pkgs.adwaita-icon-theme
+    ];
+  };
 
   # ── GTK ─────────────────────────────────────────────────────────────────────
   gtk = {
@@ -55,14 +63,9 @@ in
     style.name = "kvantum";
   };
 
-  xdg.configFile."Kvantum".source = ./qt/Kvantum;
-  xdg.configFile."qt6ct".source = ./qt/qt6ct;
-
-  # ── Cursor theme ────────────────────────────────────────────────────────────
-  home.file.".local/share/icons/cleboost-cursor" = {
-    source = ./cursor;
-    recursive = true;
-    force = true;
+  xdg.configFile = {
+    "Kvantum".source = ./qt/Kvantum;
+    "qt6ct".source = ./qt/qt6ct;
   };
 
   home.activation.removeLegacyIconOverlay = config.lib.dag.entryAfter [ "linkGeneration" ] ''

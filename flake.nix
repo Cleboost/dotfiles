@@ -99,12 +99,14 @@
             {
               nixpkgs.config.allowUnfree = true;
 
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.overwriteBackup = true;
-              home-manager.extraSpecialArgs = { inherit inputs hostName username; };
-              home-manager.users.${username} = import homeModule;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "backup";
+                overwriteBackup = true;
+                extraSpecialArgs = { inherit inputs hostName username; };
+                users.${username} = import homeModule;
+              };
             }
           ]
           ++ extraModules;
