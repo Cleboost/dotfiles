@@ -18,7 +18,7 @@ lib.mkIf config.cleboost.desktop {
       xwayland.enable = true;
     };
     umbriel.enable = true;
-    luciole.enable = true;
+    luciole.enable = config.cleboost.file-manager.luciole;
     gpu-screen-recorder.enable = true;
     nautilus-open-any-terminal = {
       enable = true;

@@ -48,7 +48,10 @@ in
       wireplumber = "WirePlumber audio rules";
       umbriel = "Umbriel";
     } false;
-    nautilus = mkToggle "Nautilus file manager";
+    file-manager = mkGroup {
+      nautilus = "Nautilus file manager";
+      luciole = "Luciole file manager";
+    } false;
     theme = mkToggle "GTK/Qt/Cursor theme";
 
     # ── Terminal & CLI ───────────────────────────────────────────────────────

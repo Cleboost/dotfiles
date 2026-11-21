@@ -22,7 +22,10 @@
       hyprland = true;
       noctalia = true;
     };
-    nautilus = true;
+    file-manager = {
+      nautilus = true;
+      luciole = true;
+    };
     theme = true;
 
     terminal = {

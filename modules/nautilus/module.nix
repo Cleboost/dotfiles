@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.nautilus {
+lib.mkIf osConfig.cleboost.file-manager.nautilus {
   home.packages = [ pkgs.nautilus ];
   xdg.mimeApps.defaultApplications."inode/directory" = "org.gnome.Nautilus.desktop";
   home.sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
