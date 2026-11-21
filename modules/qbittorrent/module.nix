@@ -6,6 +6,7 @@
 }:
 
 lib.mkIf (osConfig.cleboost.qbittorrent) {
+  home.packages = [ pkgs.qbittorrent ];
   xdg.configFile."qBittorrent/themes/catppuccin-mocha.qbtheme".source =
     ./qbittorrent/catppuccin-mocha.qbtheme;
 

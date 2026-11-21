@@ -39,11 +39,14 @@
 
     baseApps = true;
     dev = true;
-    gui = true;
+    scrcpy = true;
     obsidian = true;
     rustdesk = true;
     ia = true;
-    media = true;
+    feh = true;
+    mpv = true;
+    pdfcraft = true;
+    lollypop = true;
     other = true;
     discord = true;
     spotify = true;

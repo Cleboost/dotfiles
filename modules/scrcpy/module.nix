@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.gui {
+lib.mkIf osConfig.cleboost.scrcpy {
   home.packages = with pkgs; [
     scrcpy
     android-tools
