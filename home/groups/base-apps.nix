@@ -8,6 +8,7 @@
 {
   imports = [
     ../config/nautilus/module.nix
+    ../config/rquickshare/module.nix
   ];
 
   config = lib.mkIf (lib.elem "base-apps" config.cleboost.groups) {
@@ -34,18 +35,6 @@
 
     xdg = {
       configFile."hypr/autostart/base-apps.lua".source = ../config/hyprland/autostart/base-apps.lua;
-
-      dataFile."dev.mandre.rquickshare/.settings.json" = {
-        force = true;
-        text = ''
-          {
-            "autostart": false,
-            "visibility": 0,
-            "startminimized": true,
-            "realclose": false
-          }
-        '';
-      };
 
       mimeApps.defaultApplications = {
         "text/html" = "google-chrome.desktop";
