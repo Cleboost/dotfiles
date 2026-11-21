@@ -9,5 +9,6 @@ lib.mkIf osConfig.cleboost.javascript {
   home.packages = with pkgs; [
     bun
     nodejs_22
+    gh
   ];
 }

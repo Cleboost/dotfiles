@@ -13,6 +13,7 @@
     baseApps = true;
     beamng = true;
     bitwarden = true;
+    chrome = true;
     claude = true;
     cpp = true;
     cursor = true;
@@ -39,6 +40,7 @@
       pdfcraft = true;
       qbittorrent = true;
     };
+    nix-dev = true;
     openssh = true;
     other = true;
     platformio = true;

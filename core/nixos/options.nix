@@ -37,6 +37,7 @@ in
     idea = mkToggle "JetBrains IDEA & WebStorm + JDK/Maven/Gradle";
     javascript = mkToggle "JavaScript/TypeScript (bun, nodejs_22)";
     kicad = mkToggle "KiCad";
+    nix-dev = mkToggle "Nix dev tools (nvd, nixpkgs-review, nom)";
     rust = mkToggle "Rust (rustup, just)";
     gaming = mkToggle "Gaming preset";
 
@@ -68,7 +69,8 @@ in
     ssh = mkToggle "SSH client config";
 
     # ── Apps (1 app / group = 1 module) ──────────────────────────────────────
-    baseApps = mkToggle "Base CLI & browser apps (Chrome, gh, ripgrep, etc.)";
+    baseApps = mkToggle "Base network & autostart apps (socat, netcat)";
+    chrome = mkToggle "Google Chrome";
     scrcpy = mkToggle "scrcpy + android-tools (adb/fastboot)";
     cursor = mkToggle "Cursor IDE & CLI";
     claude = mkToggle "Claude Desktop";

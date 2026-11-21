@@ -1,11 +1,17 @@
 {
-  xdg.dataFile."dev.mandre.rquickshare/.settings.json" = {
-    force = true;
-    text = builtins.toJSON {
-      autostart = false;
-      visibility = 0;
-      startminimized = true;
-      realclose = false;
-    };
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
+
+lib.mkIf osConfig.cleboost.rquickshare {
+  home.packages = [ pkgs.rquickshare ];
+
+  xdg.dataFile."dev.mandre.rquickshare/.settings.json".text = builtins.toJSON {
+    autostart = false;
+    realclose = false;
+    startminimized = true;
+    visibility = "visible";
   };
 }
