@@ -47,6 +47,7 @@
       qbittorrent = true;
     };
     nix-dev = true;
+    ollama = true;
     openssh = true;
     other = true;
     platformio = true;

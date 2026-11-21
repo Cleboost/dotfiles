@@ -81,6 +81,7 @@ in
     scrcpy = mkToggle "scrcpy + android-tools (adb/fastboot)";
     cursor = mkToggle "Cursor IDE & CLI";
     claude = mkToggle "Claude Desktop";
+    ollama = mkToggle "Ollama local LLM server";
     grok-bot = mkToggle "Grok Bot";
     rakazo = mkToggle "Rakazo";
     rustdesk = mkToggle "RustDesk";
