@@ -5,17 +5,12 @@
 
 {
   # ── Window managers ─────────────────────────────────────────────────────────
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-  };
-
   # Second session. Greeter default stays Hyprland; pick Umbriel at login.
   programs = {
     hyprland = {
       enable = true;
       withUWSM = true;
+      xwayland.enable = true;
     };
     umbriel.enable = true;
     luciole.enable = true;
