@@ -1,5 +1,5 @@
 # Shared server NixOS (prod VPS) — no desktop, no Hyprland.
-{ pkgs, ... }:
+{ username, ... }:
 
 {
   imports = [
@@ -36,7 +36,7 @@
 
   programs.nh = {
     enable = true;
-    flake = "/home/cleboost/dotfiles";
+    flake = "/home/${username}/dotfiles";
     clean = {
       enable = true;
       extraArgs = "--keep 10";

@@ -1,7 +1,7 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # system/default.nix — shared NixOS (boot, network, services, …)
 # ──────────────────────────────────────────────────────────────────────────────
-{ pkgs, ... }:
+{ username, ... }:
 
 {
   imports = [
@@ -54,7 +54,7 @@
 
   programs.nh = {
     enable = true;
-    flake = "/home/cleboost/dotfiles";
+    flake = "/home/${username}/dotfiles";
     clean = {
       enable = true;
       extraArgs = "--keep 10";
