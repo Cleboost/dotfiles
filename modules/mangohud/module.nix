@@ -1,20 +1,10 @@
 {
   lib,
   osConfig,
-  pkgs,
   ...
 }:
 
-lib.mkIf osConfig.cleboost.gaming {
-  home.packages = with pkgs; [
-    prismlauncher
-    beammp-launcher
-    mindustry-wayland
-    gamescope
-    protontricks
-    vkbasalt
-  ];
-
+lib.mkIf osConfig.cleboost.gaming.mangohud {
   programs.mangohud = {
     enable = true;
     enableSessionWide = false;
@@ -46,6 +36,4 @@ lib.mkIf osConfig.cleboost.gaming {
       reset_fps_metrics = "Shift_R+F9";
     };
   };
-
-  xdg.configFile."hypr/autostart/gaming.lua".source = ../hyprland/autostart/gaming.lua;
 }

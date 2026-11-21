@@ -8,7 +8,7 @@
   ...
 }:
 
-lib.mkIf config.cleboost.gaming {
+lib.mkIf config.cleboost.gaming.steam {
   programs.gamemode = {
     enable = true;
     enableRenice = true;

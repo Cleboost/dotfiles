@@ -22,7 +22,7 @@ in
     };
   };
 
-  config = lib.mkIf (osConfig.cleboost.beamng && cfg.enable) {
+  config = lib.mkIf (osConfig.cleboost.gaming.beamng && cfg.enable) {
     home.activation.beamngRadialCheatMenu = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       set -eu
       menuDir="${menuRepo}"

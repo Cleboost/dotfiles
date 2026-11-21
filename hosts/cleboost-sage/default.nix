@@ -10,8 +10,6 @@
 
   cleboost = {
     antigravity = true;
-    baseApps = true;
-    beamng = true;
     bitwarden = true;
     chrome = true;
     claude = true;
@@ -23,7 +21,15 @@
       luciole = true;
       nautilus = true;
     };
-    gaming = true;
+    gaming = {
+      beammp = true;
+      beamng = true;
+      gamescope = true;
+      mangohud = true;
+      prismlauncher = true;
+      protontricks = true;
+      steam = true;
+    };
     godot = true;
     gpuDevice = 1;
     grok-bot = true;

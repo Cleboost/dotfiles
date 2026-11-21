@@ -46,7 +46,13 @@ in
     (./hosts + "/${hostName}.nix")
   ];
 
+  home.packages = with pkgs; [
+    socat
+    netcat-openbsd
+  ];
+
   xdg.configFile = {
+    "hypr/autostart/base-apps.lua".source = ./autostart/base-apps.lua;
     "hypr/hyprland.lua" = {
       source = ./files/hyprland.lua;
       force = true;

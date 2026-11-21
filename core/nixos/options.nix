@@ -33,13 +33,21 @@ in
     server = mkToggle "Headless server preset (VPS)";
     desktop = mkToggle "Desktop workstation preset";
     cpp = mkToggle "C/C++ toolchain (gcc, gnumake, ninja, just)";
+    gaming = mkGroup {
+      beammp = "BeamMP Launcher";
+      beamng = "BeamNG.drive tools";
+      gamescope = "Gamescope";
+      mangohud = "MangoHud";
+      prismlauncher = "Prism Launcher";
+      protontricks = "Protontricks";
+      steam = "Steam, GameMode & Ananicy";
+    } false;
     godot = mkToggle "Godot 4";
     idea = mkToggle "JetBrains IDEA & WebStorm + JDK/Maven/Gradle";
     javascript = mkToggle "JavaScript/TypeScript (bun, nodejs_22)";
     kicad = mkToggle "KiCad";
     nix-dev = mkToggle "Nix dev tools (nvd, nixpkgs-review, nom)";
     rust = mkToggle "Rust (rustup, just)";
-    gaming = mkToggle "Gaming preset";
 
     # ── System services ──────────────────────────────────────────────────────
     docker = mkToggle "Docker daemon and compose";
@@ -69,7 +77,6 @@ in
     ssh = mkToggle "SSH client config";
 
     # ── Apps (1 app / group = 1 module) ──────────────────────────────────────
-    baseApps = mkToggle "Base network & autostart apps (socat, netcat)";
     chrome = mkToggle "Google Chrome";
     scrcpy = mkToggle "scrcpy + android-tools (adb/fastboot)";
     cursor = mkToggle "Cursor IDE & CLI";
@@ -94,7 +101,6 @@ in
     spotify = mkToggle "Spotify";
     zed = mkToggle "Zed editor";
     antigravity = mkToggle "Antigravity Hub";
-    beamng = mkToggle "BeamNG.drive tools";
     bitwarden = mkToggle "Bitwarden";
     rquickshare = mkToggle "RQuickShare";
 

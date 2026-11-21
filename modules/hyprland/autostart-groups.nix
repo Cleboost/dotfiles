@@ -5,7 +5,7 @@ let
   enabled =
     lib.optional osConfig.cleboost.desktop "base-apps"
     ++ lib.optional (osConfig.cleboost.social.discord || osConfig.cleboost.spotify) "social"
-    ++ lib.optional osConfig.cleboost.gaming "gaming";
+    ++ lib.optional osConfig.cleboost.gaming.steam "gaming";
 in
 {
   xdg.configFile."hypr/autostart/_groups.lua".text = "return { ${
