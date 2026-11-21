@@ -21,11 +21,11 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia";
+      url = "github:noctalia-dev/noctalia/cachix";
     };
 
     noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
+      url = "github:noctalia-dev/noctalia-greeter/cachix";
     };
 
     # cachix branch: prebuilt binaries. Do not follow nixpkgs or the cache misses.
