@@ -40,8 +40,6 @@ in
     shell = mkGroup {
       hyprland = "Hyprland window manager";
       noctalia = "Noctalia shell & greeter";
-      session = "Desktop session scripts & environment";
-      wireplumber = "WirePlumber audio rules";
       umbriel = "Umbriel";
     } false;
     file-manager = mkGroup {

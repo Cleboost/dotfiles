@@ -21,7 +21,7 @@
     shell = {
       hyprland = true;
       noctalia = true;
-
+      umbriel = true;
     };
     file-manager = {
       nautilus = true;
