@@ -32,7 +32,12 @@ in
     # ── Presets (groups) ─────────────────────────────────────────────────────
     server = mkToggle "Headless server preset (VPS)";
     desktop = mkToggle "Desktop workstation preset";
-    dev = mkToggle "Development preset";
+    cpp = mkToggle "C/C++ toolchain (gcc, gnumake, ninja, just)";
+    godot = mkToggle "Godot 4";
+    idea = mkToggle "JetBrains IDEA & WebStorm + JDK/Maven/Gradle";
+    javascript = mkToggle "JavaScript/TypeScript (bun, nodejs_22)";
+    kicad = mkToggle "KiCad";
+    rust = mkToggle "Rust (rustup, just)";
     gaming = mkToggle "Gaming preset";
 
     # ── System services ──────────────────────────────────────────────────────

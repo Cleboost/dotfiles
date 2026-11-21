@@ -14,9 +14,9 @@
     beamng = true;
     bitwarden = true;
     claude = true;
+    cpp = true;
     cursor = true;
     desktop = true;
-    dev = true;
     docker = true;
     dynamicWorkspaces = false;
     file-manager = {
@@ -24,9 +24,13 @@
       nautilus = true;
     };
     gaming = true;
+    godot = true;
     grok-bot = true;
+    idea = true;
+    javascript = true;
     keychron = true;
     keyring = true;
+    kicad = true;
     media = {
       feh = true;
       lollypop = true;
@@ -40,6 +44,7 @@
     platformio = true;
     rakazo = true;
     rquickshare = true;
+    rust = true;
     rustdesk = true;
     scrcpy = true;
     shell = {
