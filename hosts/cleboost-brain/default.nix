@@ -41,7 +41,10 @@
     scrcpy = true;
     obsidian = true;
     rustdesk = true;
-    ia = true;
+    cursor = true;
+    claude = true;
+    grok-bot = true;
+    rakazo = true;
     feh = true;
     mpv = true;
     pdfcraft = true;

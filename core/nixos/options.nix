@@ -62,7 +62,10 @@ in
     scrcpy = mkToggle "scrcpy + android-tools (adb/fastboot)";
     obsidian = mkToggle "Obsidian";
     rustdesk = mkToggle "RustDesk";
-    ia = mkToggle "AI tools (Cursor, Claude Desktop, Grok, Rakazo)";
+    cursor = mkToggle "Cursor IDE & CLI";
+    claude = mkToggle "Claude Desktop";
+    grok-bot = mkToggle "Grok Bot";
+    rakazo = mkToggle "Rakazo";
     feh = mkToggle "feh image viewer";
     mpv = mkToggle "mpv media player";
     pdfcraft = mkToggle "PDFCraft";
