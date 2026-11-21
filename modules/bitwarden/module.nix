@@ -1,5 +1,12 @@
-{ pkgs, lib, ... }:
 {
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
+
+lib.mkIf osConfig.cleboost.bitwarden {
+  home.packages = [ pkgs.bitwarden-desktop ];
   home.activation.bitwardenSshAgent = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     BW_DATA="$HOME/.config/Bitwarden/data.json"
     if [ -f "$BW_DATA" ]; then

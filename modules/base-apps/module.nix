@@ -21,7 +21,6 @@ lib.mkIf osConfig.cleboost.baseApps {
     unzip
     rsync
     rquickshare
-    bitwarden-desktop
     google-chrome
   ];
 
