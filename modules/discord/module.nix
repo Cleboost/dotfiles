@@ -5,13 +5,10 @@
   ...
 }:
 
-lib.mkIf osConfig.cleboost.social {
+lib.mkIf osConfig.cleboost.discord {
   home.packages = with pkgs; [
-    telegram-desktop
-    zapfast
     discord
     vesktop
-    spotify
   ];
 
   xdg = {

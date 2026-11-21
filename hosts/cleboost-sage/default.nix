@@ -40,7 +40,10 @@
     ia = true;
     media = true;
     other = true;
-    social = true;
+    discord = true;
+    spotify = true;
+    telegram = true;
+    zapfast = true;
     zed = true;
     antigravity = true;
     beamng = true;

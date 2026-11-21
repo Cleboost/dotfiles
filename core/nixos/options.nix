@@ -66,7 +66,10 @@ in
     ia = mkToggle "AI tools (Cursor, Claude Desktop, Grok, Rakazo)";
     media = mkToggle "Media apps (mpv, feh, pdfcraft, lollypop)";
     other = mkToggle "3D / Creative apps (Blender, Blockbench)";
-    social = mkToggle "Social apps (Discord, Vesktop, Telegram, Spotify, Zapfast)";
+    discord = mkToggle "Discord & Vesktop";
+    spotify = mkToggle "Spotify";
+    telegram = mkToggle "Telegram Desktop";
+    zapfast = mkToggle "ZapFast";
     zed = mkToggle "Zed editor";
     antigravity = mkToggle "Antigravity Hub";
     beamng = mkToggle "BeamNG.drive tools";
