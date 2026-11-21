@@ -4,7 +4,7 @@
 let
   enabled =
     lib.optional osConfig.cleboost.desktop "base-apps"
-    ++ lib.optional false "social"
+    ++ lib.optional (osConfig.cleboost.social.discord || osConfig.cleboost.spotify) "social"
     ++ lib.optional osConfig.cleboost.gaming "gaming";
 in
 {

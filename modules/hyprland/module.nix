@@ -46,6 +46,8 @@ in
     (./hosts + "/${hostName}.nix")
   ];
 
+  imports = [ ./autostart-groups.nix ];
+
   xdg.configFile = {
     "hypr/hyprland.lua" = {
       source = ./files/hyprland.lua;
