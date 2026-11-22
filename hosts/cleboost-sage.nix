@@ -20,6 +20,33 @@ in {
 
       ({ ... }: {
         networking.hostName = "cleboost-sage";
+        networking.firewall.trustedInterfaces = [ "wlp3s0" ];
+
+        # Aquamarine splits AQ_DRM_DEVICES on ':'. The by-path node contains colons,
+        # so Hyprland gets a colon-free symlink to the AMD iGPU only.
+        systemd.tmpfiles.rules = [
+          "L+ /run/dri/amd-card - - - - /dev/dri/by-path/pci-0000:06:00.0-card"
+        ];
+
+        services.xserver.videoDrivers = [ "nvidia" ];
+        hardware.graphics.enable = true;
+        hardware.nvidia = {
+          modesetting.enable = true;
+          powerManagement.enable = true;
+          powerManagement.finegrained = true;
+          open = false;
+          nvidiaSettings = true;
+          prime = {
+            offload = {
+              enable = true;
+              enableOffloadCmd = true;
+            };
+            amdgpuBusId = "PCI:6:0:0";
+            nvidiaBusId = "PCI:1:0:0";
+          };
+        };
+
+        hardware.flipperzero.enable = true;
         system.stateVersion = "24.11";
       })
     ];
