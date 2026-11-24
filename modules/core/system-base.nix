@@ -1,11 +1,13 @@
 { ... }: {
   flake.modules.nixos.core = { lib, pkgs, username, ... }: {
     hm.home.stateVersion = "24.11";
+    system.stateVersion = "24.11";
 
     users.users.${username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     };
+    security.sudo.wheelNeedsPassword = false;
 
     boot.loader.systemd-boot.enable = lib.mkDefault true;
     boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
