@@ -1,14 +1,17 @@
 # Tower — hardware and system only.
-{ lib, ... }:
+{ lib, m, mod, ... }:
 
 {
   imports = [
-    ../../system
-    ../../system/drivers
-    ../../home/hosts/cleboost-brain/groups.nix
     ./hardware-configuration.nix
     ./storage.nix
     ./ugreen-wifi.nix
+    mod.hardware.cpu-amd
+    mod.hardware.nvidia-desktop
+    m.desktop
+    m.tour
+    m.terminal
+    m.dev
   ];
 
   networking.hostName = "cleboost-brain";
@@ -17,11 +20,6 @@
   networking.firewall.trustedInterfaces = [ "enp5s0" ];
 
   # Titan X Pascal → legacy 580 branch (6xx driver rejects the card)
-  drivers.nvidia = {
-    enable = true;
-    packageFlavour = "legacy_580";
-    coolbits = 4; # ventilo manuel via nvidia-settings
-  };
 
   boot.kernelParams = [
     "pcie_aspm.policy=performance"

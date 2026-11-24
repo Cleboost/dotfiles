@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -38,11 +40,6 @@
       url = "github:noctalia-dev/noctalia-greeter/cachix";
     };
 
-    # cachix branch: prebuilt binaries. Do not follow nixpkgs or the cache misses.
-    umbriel = {
-      url = "github:noctalia-dev/umbriel/cachix";
-    };
-
     luciole = {
       url = "github:noctalia-dev/luciole";
     };
@@ -74,38 +71,38 @@
       nixpkgs-stable,
       home-manager,
       home-manager-stable,
+      flake-parts,
+      import-tree,
       noctalia,
       noctalia-greeter,
-      umbriel,
       luciole,
       ...
     }@inputs:
-    let
-      username = "cleboost";
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { config, ... }:
+      let
+        username = "cleboost";
 
       desktopHosts = [
         "cleboost-sage"
         "cleboost-brain"
       ];
 
-      serverHosts = [
-        "vps-assosite"
-      ];
-
       mkHost =
         {
           nixpkgsInput ? nixpkgs,
           homeManagerInput ? home-manager,
-          homeModule,
           extraModules ? [ ],
         }:
         hostName:
         nixpkgsInput.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs hostName username; };
+          specialArgs = { inherit inputs hostName username; m = config.flake.modules.nixos; mod = config.flake.mod; };
           modules = [
             ./hosts/${hostName}
             homeManagerInput.nixosModules.home-manager
+            config.flake.modules.nixos.core
+            (nixpkgsInput.lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
             {
               nixpkgs.config.allowUnfree = true;
 
@@ -115,7 +112,6 @@
                 backupFileExtension = "backup";
                 overwriteBackup = true;
                 extraSpecialArgs = { inherit inputs hostName username; };
-                users.${username} = import homeModule;
               };
             }
           ]
@@ -123,39 +119,29 @@
         };
 
       mkDesktopHost = mkHost {
-        homeModule = ./home/default.nix;
         extraModules = [
           noctalia.nixosModules.default
-          noctalia-greeter.nixosModules.default
-          umbriel.nixosModules.default
-          luciole.nixosModules.default
-        ];
-      };
-
-      mkServerHost = mkHost {
-        nixpkgsInput = nixpkgs-stable;
-        homeManagerInput = home-manager-stable;
-        homeModule = ./home/server.nix;
-        extraModules = [
-          inputs.nix-dokploy.nixosModules.default
-          inputs.disko.nixosModules.disko
         ];
       };
     in
     {
-      nixosConfigurations =
-        nixpkgs.lib.genAttrs desktopHosts mkDesktopHost // nixpkgs.lib.genAttrs serverHosts mkServerHost;
+      imports = [ (import-tree ./modules) ];
 
-      packages.x86_64-linux = {
-        codex-chatgpt-web =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/codex-chatgpt-web.nix
-            { };
-        antigravity-cli =
-          nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/antigravity-cli.nix
-            { };
-        rakazo = nixpkgs.legacyPackages.x86_64-linux.callPackage ./home/pkgs/rakazo.nix { };
+      flake = {
+        nixosConfigurations = nixpkgs.lib.genAttrs desktopHosts mkDesktopHost;
+
+        packages.x86_64-linux = {
+          codex-chatgpt-web =
+            nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/codex-chatgpt-web.nix
+              { };
+          antigravity-cli =
+            nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/antigravity-cli.nix
+              { };
+          rakazo = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/rakazo.nix { };
+        };
+
+        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
       };
-
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-    };
+    }
+    );
 }
