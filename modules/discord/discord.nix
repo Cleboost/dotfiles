@@ -3,11 +3,7 @@ let
   hosts = [ "tour" "laptop" ];
   mod = { pkgs, ... }: {
     hm = {
-      home.packages = with pkgs; [
-        discord
-        vesktop
-      ];
-
+      home.packages = [ pkgs.discord ];
       xdg.mimeApps.defaultApplications."x-scheme-handler/discord" = "discord.desktop";
     };
   };
