@@ -23,7 +23,7 @@
       '';
 
       environment.systemPackages = [
-        pkgs.xorg.xhost
+        pkgs.xhost
         (pkgs.callPackage ../../pkgs/gpu-fan.nix {
           nvidiaSmi = nvPkg.bin;
           nvidiaSettings = nvPkg.settings;
