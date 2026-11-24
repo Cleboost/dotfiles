@@ -10,7 +10,9 @@ let
         mpv
       ];
 
-      xdg.mimeApps.defaultApplications = {
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
         "audio/mpeg" = "org.gnome.Lollypop.desktop";
         "audio/x-mpeg" = "org.gnome.Lollypop.desktop";
         "audio/mp3" = "org.gnome.Lollypop.desktop";
@@ -29,7 +31,8 @@ let
 
         "video/mp4" = "mpv.desktop";
         "video/x-matroska" = "mpv.desktop";
-        "video/webm" = "mpv.desktop";
+          "video/webm" = "mpv.desktop";
+        };
       };
     };
   };
