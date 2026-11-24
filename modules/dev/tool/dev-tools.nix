@@ -6,6 +6,8 @@ let
       # C/C++ (fournit `cc` pour Cargo/Rust)
       gcc
       gnumake
+      pkg-config
+      openssl.dev
 
       # Nix
       nixd
