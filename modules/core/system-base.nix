@@ -32,6 +32,7 @@
       curl
       wget
       git
+      gh
       htop
       nano
     ];
