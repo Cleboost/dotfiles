@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.desktop = { ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { ... }: {
     hm = {
       programs.kitty = {
         enable = true;
@@ -40,4 +42,6 @@
       xdg.configFile."kitty/scroll_mark.py".source = ./kitty/scroll_mark.py;
     };
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }

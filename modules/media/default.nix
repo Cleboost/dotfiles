@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.desktop = { pkgs, ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { pkgs, ... }: {
     hm = {
       home.packages = with pkgs; [
         lollypop
@@ -31,4 +33,6 @@
       };
     };
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }

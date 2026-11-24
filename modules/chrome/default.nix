@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.dekstop = { pkgs, ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { pkgs, ... }: {
     hm = {
       home.packages = [ pkgs.google-chrome ];
 
@@ -12,4 +14,6 @@
       };
     };
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }

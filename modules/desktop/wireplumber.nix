@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.desktop = { ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { ... }: {
     hm.xdg.configFile."wireplumber/wireplumber.conf.d/10-bluetooth.conf".text = ''
       monitor.bluez.properties = {
         bluez5.enable-sbc-xq = true
@@ -18,4 +20,6 @@
       ]
     '';
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }

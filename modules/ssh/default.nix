@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.ssh = { lib, ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { lib, ... }: {
     services.openssh = {
       enable = true;
       settings = {
@@ -16,4 +18,6 @@
       settings."*".IdentityAgent = "~/.bitwarden-ssh-agent.sock";
     };
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }

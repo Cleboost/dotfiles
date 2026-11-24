@@ -8,10 +8,7 @@
     ./ugreen-wifi.nix
     mod.hardware.cpu-amd
     mod.hardware.nvidia-desktop
-    m.desktop
     m.tour
-    m.terminal
-    m.dev
   ];
 
   networking.hostName = "cleboost-brain";

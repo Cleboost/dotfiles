@@ -6,10 +6,7 @@
     ./hardware-configuration.nix
     mod.hardware.cpu-amd
     mod.hardware.nvidia-hybrid
-    m.desktop
     m.laptop
-    m.terminal
-    m.dev
   ];
 
 

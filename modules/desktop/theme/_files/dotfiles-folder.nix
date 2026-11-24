@@ -17,9 +17,9 @@ in
     thumb_cache="${config.xdg.cacheHome}/thumbnails"
     if [ -d "${dotfilesDir}" ] && [ -e "${iconFile}" ]; then
       $DRY_RUN_CMD rm -f "$legacy_icon"
-      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${dotfilesDir}" metadata::custom-icon-name
-      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${dotfilesDir}" metadata::custom-icon
-      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t string "${dotfilesDir}" metadata::custom-icon "file://${iconFile}"
+      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${dotfilesDir}" metadata::custom-icon-name || true
+      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${dotfilesDir}" metadata::custom-icon || true
+      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t string "${dotfilesDir}" metadata::custom-icon "file://${iconFile}" || true
       $DRY_RUN_CMD rm -rf "$thumb_cache"
       $DRY_RUN_CMD ${pkgs.util-linux}/bin/killall -q nautilus 2>/dev/null || true
     fi

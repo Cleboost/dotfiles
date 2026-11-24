@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.desktop = { pkgs, ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { pkgs, ... }: {
     hm = { lib, ... }: {
       home.packages = [ pkgs.bitwarden-desktop ];
 
@@ -22,4 +24,6 @@
       '';
     };
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }

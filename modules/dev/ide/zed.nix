@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.modules.nixos.dev-ide = { ... }: {
+{ lib, ... }: let hosts = [ "tour" "laptop" ]; mod = 
+  { ... }: {
     hm = { pkgs, ... }: {
         programs.zed-editor = {
           enable = true;
@@ -174,4 +174,4 @@
         };
     };
   };
-}
+in { flake.modules.nixos = lib.genAttrs hosts (_: mod); }

@@ -15,9 +15,9 @@ in
   home.activation.codeNautilusFolderIcon = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     thumb_cache="${config.xdg.cacheHome}/thumbnails"
     if [ -d "${codeDir}" ] && [ -e "${iconFile}" ]; then
-      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${codeDir}" metadata::custom-icon-name
-      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${codeDir}" metadata::custom-icon
-      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t string "${codeDir}" metadata::custom-icon "file://${iconFile}"
+      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${codeDir}" metadata::custom-icon-name || true
+      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t unset "${codeDir}" metadata::custom-icon || true
+      $DRY_RUN_CMD ${pkgs.glib}/bin/gio set -t string "${codeDir}" metadata::custom-icon "file://${iconFile}" || true
       $DRY_RUN_CMD rm -rf "$thumb_cache"
       $DRY_RUN_CMD ${pkgs.util-linux}/bin/killall -q nautilus 2>/dev/null || true
     fi

@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.dev-ia = { ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { ... }: {
     hm = { config, lib, pkgs, ... }: {
       home.packages = with pkgs; [
         (callPackage ../../../pkgs/antigravity-cli.nix { inherit antigravity-cli; })
@@ -21,4 +23,6 @@
       '';
     };
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }

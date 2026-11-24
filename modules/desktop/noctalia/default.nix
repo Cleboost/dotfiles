@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.modules.nixos.desktop = { lib, username, ... }: {
+{ lib, ... }: let hosts = [ "tour" "laptop" ]; mod = 
+  { lib, username, ... }: {
     programs.noctalia = {
       enable = true;
       recommendedServices.enable = true;
@@ -371,4 +371,4 @@
         };
       };
   };
-}
+in { flake.modules.nixos = lib.genAttrs hosts (_: mod); }

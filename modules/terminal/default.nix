@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.modules.nixos.terminal = { pkgs, ... }: {
+{ lib, ... }: let hosts = [ "tour" "laptop" ]; mod = 
+  { pkgs, ... }: {
     programs.fish.enable = true;
 
     hm = {
@@ -93,4 +93,4 @@
       };
     };
   };
-}
+in { flake.modules.nixos = lib.genAttrs hosts (_: mod); }

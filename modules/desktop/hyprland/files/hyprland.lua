@@ -8,7 +8,7 @@ package.path = table.concat({
 }, ";")
 
 -- ── Core ──────────────────────────────────────────────────────────────────────
-require("gpu-env")
+pcall(require, "gpu-env")
 require("core.env")
 require("core.general")
 require("core.monitors")

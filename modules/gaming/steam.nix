@@ -1,5 +1,7 @@
-{ ... }: {
-  flake.modules.nixos.gaming = { pkgs, ... }: {
+{ lib, ... }:
+let
+  hosts = [ "tour" "laptop" ];
+  mod = { pkgs, ... }: {
     programs.gamemode = {
       enable = true;
       enableRenice = true;
@@ -35,4 +37,6 @@
       });
     };
   };
+in {
+  flake.modules.nixos = lib.genAttrs hosts (_: mod);
 }
